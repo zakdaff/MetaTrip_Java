@@ -16,10 +16,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
-import metatrip.Datasource;
+import utilis.Datasource;
+
 /**
  *
- * @author medal
+ * @author FLAM
  */
 public class UserService implements IService<user> {
     
@@ -44,7 +45,6 @@ public class UserService implements IService<user> {
       private String Password;
       private String Image;
    
-
     @Override
     public void ajouter(user u) {
          String req = "INSERT INTO `user` (`Cin`,`Nom`,`Prenom`,`Tel`,`Email`,`Password`,`Image`) VALUE (?,?,?,?,?,?,?)";

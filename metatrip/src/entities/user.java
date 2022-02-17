@@ -1,27 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entities;
+
+import java.sql.Date;
 
 /**
  *
- * @author medal
+ * @author FLAM
  */
 public class user {
     private int Idu;
     private double Cin;
     private String Nom;
-        private String Prenom;
+    private String Prenom;
+    private int Role;
         
     private double Tel;
       private String Email;
       private String Password;
       private String Image;
-   private int role ;
+      
+    public user(int Idu) {
+        this.Idu = Idu;
+    }
 
-   
     public user(int Idu, double Cin, String Nom, String Prenom, double Tel, String Email, String Password, String Image) {
         this.Idu = Idu;
         this.Cin = Cin;
@@ -46,13 +46,15 @@ public class user {
     public user() {
         
     }
- public void setRole(int role) {
-        this.role = role;
-    }
 
     public int getRole() {
-        return role;
+        return Role;
     }
+
+    public void setRole(int Role) {
+        this.Role = Role;
+    }
+
  
 
     public void setIdu(int Idu) {
@@ -114,7 +116,8 @@ public class user {
     public String getPassword() {
         return Password;
     }
-
+    
+    
     public String getImage() {
         return Image;
     }

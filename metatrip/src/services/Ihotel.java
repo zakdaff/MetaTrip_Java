@@ -5,15 +5,18 @@
  */
 package services;
 
-
-import java.sql.SQLException;
+import entities.hotel;
 import entities.user;
+import entities.voyage;
+import java.sql.SQLException;
 import java.util.List;
+import static javafx.scene.input.KeyCode.T;
+
 /**
  *
- * @author remo
+ * @author medal
  */
-public interface IuserService {
+public interface Ihotel  {
     void ajouter(user user) throws SQLException;;
     void modifier(int id,user user) throws SQLException;;
     void supprimer(int id) throws SQLException;;

@@ -15,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import metatrip.Datasource;
+import utilis.Datasource;
 
 /**
  *
- * @author medal
+ * @author FLAM
  */
 public class LoginAndSignupService {
       
@@ -36,7 +36,7 @@ public class LoginAndSignupService {
 public String login (String email,String password) throws Exception {
     String test = null;
         List<user> users = new ArrayList<>();
-        String req = "SELECT *  FROM `user` where Email='"+email+"' and Password ='"+password+"'";
+        String req = "SELECT *  FROM `user` where Email="+email+" and Password ="+password;
         System.out.println();
         try {
 
@@ -78,74 +78,5 @@ public String login (String email,String password) throws Exception {
        return test;
     }
 
-
-
-
-  public void Signup(user u) {
-              List<user> users = new ArrayList<>();
-      String Email1=u.getEmail();
-      String pass1=u.getPassword();
-      System.out.println(Email1);
-           System.out.println(pass1);
-      String password=u.getPassword();
-      String req = "SELECT *  FROM `user` where Email='"+Email1+"'";
-   
-        try {
-
-       ste = conn.createStatement();
-            ResultSet rs = ste.executeQuery(req);
-            
-            while(rs.next()){
-            user u1 = new user();
-                u1.setIdu(rs.getInt("idu"));
-                  u1.setCin( rs.getDouble("Cin"));
-                u1.setNom(rs.getString(2));
-                u1.setPrenom(rs.getString(3));      
-                    u1.setTel(rs.getDouble("Tel"));
-            
-              u1.setEmail( rs.getString(3));
-               u1.setPassword(rs.getString(5));
-                u1.setImage(rs.getString(5));
-              
-                 users.add(u) ;   
-                        
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                    System.out.println("+++++++size++++++++"+users.size());
-                                    if(users.size()==0){
-                                        
-                                        
-                                                System.out.println("signup successful");
-                                            String req99 = "INSERT INTO `user` (`Cin`,`Nom`,`Prenom`,`Tel`,`Email`,`Password`,`Image`) VALUE (?,?,?,?,?,?,?)";
-                                      try {
-                                          pste = conn.prepareStatement(req99);
-                                          pste.setDouble(1,u.getCin());
-                                          pste.setString(2, u.getNom());
-                                          pste.setString(3, u.getPrenom());
-                                           pste.setDouble(4,u.getTel());
-                                            pste.setString(5, u.getEmail());
-                                             pste.setString(6, u.getPassword());
-                                              pste.setString(7, u.getImage());
-                                          pste.executeUpdate();
-                                          System.out.println("user créée");
-                                      } catch (SQLException ex) {
-                                          Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
-                                      }
-                                                       }
-                                                       else{
-                                             System.out.print("signup failed ");
-
-                                    }
-                       
-                                    
-
-
-                         
-        
-      
-    }
 }
 

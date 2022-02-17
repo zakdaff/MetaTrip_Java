@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Iservice;
+package services;
+
+import entities.reservation_hotel;
+import java.util.List;
 
 /**
  *
  * @author medal
  */
-public class java {
+public interface IReservation_hotel extends IService<reservation_hotel> {
+
+  
     
 }
