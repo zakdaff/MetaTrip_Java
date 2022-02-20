@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 20 fév. 2022 à 15:36
+-- Généré le : dim. 20 fév. 2022 à 15:58
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `abonnement` (
   `Ida` int(11) NOT NULL,
-  `Type` varchar(20) NOT NULL,
+  `Type` enum('NONPAYE','PAYE','ANNULE','') NOT NULL,
   `Prix_a` int(11) NOT NULL,
   `Date_achat` date NOT NULL,
   `Date_expiration` date NOT NULL,
@@ -49,19 +49,6 @@ CREATE TABLE `chambre` (
   `type` varchar(20) NOT NULL,
   `etat` varchar(20) NOT NULL,
   `idh` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `credit_card`
---
-
-CREATE TABLE `credit_card` (
-  `Id_c` int(11) NOT NULL,
-  `Num_carte` double NOT NULL,
-  `Code_tpe` int(11) NOT NULL,
-  `Idu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -332,26 +319,27 @@ CREATE TABLE `voiture` (
   `Matricule` varchar(50) NOT NULL,
   `Puissance_fiscalle` int(11) NOT NULL,
   `Image_v` varchar(50) NOT NULL,
-  `Modele` varchar(20) NOT NULL
+  `Modele` varchar(20) NOT NULL,
+  `type` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `voiture`
 --
 
-INSERT INTO `voiture` (`Idvoit`, `Matricule`, `Puissance_fiscalle`, `Image_v`, `Modele`) VALUES
-(1, '120TU120', 12, 'image', 'Mercedes'),
-(2, '120TU120', 12, 'image', 'Mercedes'),
-(3, '220TU120', 12, 'image', 'bmw'),
-(55, '220TU120', 12, 'image', 'Mercedes'),
-(663, '220TU120', 12, 'image', 'bmw'),
-(669, '220TU120', 12, 'image', 'bmw'),
-(2000, '220TU120', 12, 'image', 'bmw'),
-(2001, '220TU120', 12, 'image', 'bmw'),
-(6390, '220TU120', 12, 'image', 'bmw'),
-(6600, '220TU120', 12, 'image', 'bmw'),
-(6690, '220TU120', 12, 'image', 'bmw'),
-(6890, '220TU120', 12, 'image', 'bmw');
+INSERT INTO `voiture` (`Idvoit`, `Matricule`, `Puissance_fiscalle`, `Image_v`, `Modele`, `type`) VALUES
+(1, '120TU120', 12, 'image', 'Mercedes', ''),
+(2, '120TU120', 12, 'image', 'Mercedes', ''),
+(3, '220TU120', 12, 'image', 'bmw', ''),
+(55, '220TU120', 12, 'image', 'Mercedes', ''),
+(663, '220TU120', 12, 'image', 'bmw', ''),
+(669, '220TU120', 12, 'image', 'bmw', ''),
+(2000, '220TU120', 12, 'image', 'bmw', ''),
+(2001, '220TU120', 12, 'image', 'bmw', ''),
+(6390, '220TU120', 12, 'image', 'bmw', ''),
+(6600, '220TU120', 12, 'image', 'bmw', ''),
+(6690, '220TU120', 12, 'image', 'bmw', ''),
+(6890, '220TU120', 12, 'image', 'bmw', '');
 
 -- --------------------------------------------------------
 
@@ -443,14 +431,6 @@ ALTER TABLE `chambre`
   ADD PRIMARY KEY (`idc`),
   ADD KEY `chambre_ibfk_1` (`idh`),
   ADD KEY `idc` (`idc`);
-
---
--- Index pour la table `credit_card`
---
-ALTER TABLE `credit_card`
-  ADD PRIMARY KEY (`Id_c`),
-  ADD KEY `Id_c` (`Id_c`),
-  ADD KEY `FKus` (`Idu`);
 
 --
 -- Index pour la table `evenement`
@@ -647,12 +627,6 @@ ALTER TABLE `abonnement`
   ADD CONSTRAINT `FK_pai` FOREIGN KEY (`Ref_paiement`) REFERENCES `paiement` (`Ref_paiement`);
 
 --
--- Contraintes pour la table `credit_card`
---
-ALTER TABLE `credit_card`
-  ADD CONSTRAINT `FKus` FOREIGN KEY (`Idu`) REFERENCES `user` (`Idu`);
-
---
 -- Contraintes pour la table `reservation_event`
 --
 ALTER TABLE `reservation_event`
@@ -663,8 +637,7 @@ ALTER TABLE `reservation_event`
 -- Contraintes pour la table `reservation_hotel`
 --
 ALTER TABLE `reservation_hotel`
-  ADD CONSTRAINT `FK_u` FOREIGN KEY (`Idu`) REFERENCES `user` (`Idu`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_chh` FOREIGN KEY (`idc`) REFERENCES `chambre` (`idc`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_u` FOREIGN KEY (`Idu`) REFERENCES `user` (`Idu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `reservation_voiture`
