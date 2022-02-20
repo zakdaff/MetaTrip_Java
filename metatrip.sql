@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 18 fév. 2022 à 04:11
+-- Généré le : dim. 20 fév. 2022 à 15:36
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -35,6 +35,20 @@ CREATE TABLE `abonnement` (
   `Date_expiration` date NOT NULL,
   `Etat` varchar(20) NOT NULL,
   `Ref_paiement` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chambre`
+--
+
+CREATE TABLE `chambre` (
+  `idc` int(11) NOT NULL,
+  `numc` varchar(20) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `etat` varchar(20) NOT NULL,
+  `idh` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -157,8 +171,8 @@ CREATE TABLE `reservation_hotel` (
   `Nb_nuitees` int(11) NOT NULL,
   `Nb_personnes` int(11) NOT NULL,
   `Prix` float NOT NULL,
-  `Idh` int(11) NOT NULL,
   `Idu` int(11) NOT NULL,
+  `idc` int(11) NOT NULL,
   `Date_depart` date DEFAULT NULL,
   `Date_arrivee` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -167,9 +181,9 @@ CREATE TABLE `reservation_hotel` (
 -- Déchargement des données de la table `reservation_hotel`
 --
 
-INSERT INTO `reservation_hotel` (`Idrh`, `Type_room`, `Nb_nuitees`, `Nb_personnes`, `Prix`, `Idh`, `Idu`, `Date_depart`, `Date_arrivee`) VALUES
-(1, 'single', 2, 1, 2.2, 12, 811, NULL, NULL),
-(3, 'single', 2, 1, 2.2, 12, 811, '2020-09-01', '2050-09-01');
+INSERT INTO `reservation_hotel` (`Idrh`, `Type_room`, `Nb_nuitees`, `Nb_personnes`, `Prix`, `Idu`, `idc`, `Date_depart`, `Date_arrivee`) VALUES
+(1, 'single', 2, 1, 2.2, 811, 0, NULL, NULL),
+(3, 'single', 2, 1, 2.2, 811, 0, '2020-09-01', '2050-09-01');
 
 -- --------------------------------------------------------
 
@@ -222,6 +236,20 @@ INSERT INTO `reservation_voyage` (`Idrv`, `Date_depart`, `Date_arrivee`, `etat`,
 (9, '2022-02-16', '2022-02-16', 'NonPaye', 26, 97, 0),
 (10, '2020-09-01', '2050-09-01', 'Paye', 26, 97, 0),
 (11, '2050-09-01', '2050-09-01', 'Paye', 26, 97, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `sponsor`
+--
+
+CREATE TABLE `sponsor` (
+  `ids` int(11) NOT NULL,
+  `nomsponsor` varchar(20) NOT NULL,
+  `date_sp` date NOT NULL,
+  `prix_sp` float NOT NULL,
+  `ide` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -409,6 +437,14 @@ ALTER TABLE `abonnement`
   ADD KEY `FK_pai` (`Ref_paiement`);
 
 --
+-- Index pour la table `chambre`
+--
+ALTER TABLE `chambre`
+  ADD PRIMARY KEY (`idc`),
+  ADD KEY `chambre_ibfk_1` (`idh`),
+  ADD KEY `idc` (`idc`);
+
+--
 -- Index pour la table `credit_card`
 --
 ALTER TABLE `credit_card`
@@ -449,8 +485,8 @@ ALTER TABLE `reservation_event`
 ALTER TABLE `reservation_hotel`
   ADD PRIMARY KEY (`Idrh`),
   ADD KEY `Idrh` (`Idrh`),
-  ADD KEY `FK_h` (`Idh`),
-  ADD KEY `FK_u` (`Idu`);
+  ADD KEY `FK_u` (`Idu`),
+  ADD KEY `fk_chh` (`idc`);
 
 --
 -- Index pour la table `reservation_voiture`
@@ -470,6 +506,13 @@ ALTER TABLE `reservation_voyage`
   ADD KEY `Idrv` (`Idrv`),
   ADD KEY `FKPAY` (`Ref_paiement`),
   ADD KEY `FK_resvoy` (`Idv`);
+
+--
+-- Index pour la table `sponsor`
+--
+ALTER TABLE `sponsor`
+  ADD PRIMARY KEY (`ids`),
+  ADD KEY `sponsor_ibfk_1` (`ide`);
 
 --
 -- Index pour la table `user`
@@ -516,6 +559,12 @@ ALTER TABLE `abonnement`
   MODIFY `Ida` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `chambre`
+--
+ALTER TABLE `chambre`
+  MODIFY `idc` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
@@ -550,6 +599,12 @@ ALTER TABLE `reservation_voiture`
 --
 ALTER TABLE `reservation_voyage`
   MODIFY `Idrv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT pour la table `sponsor`
+--
+ALTER TABLE `sponsor`
+  MODIFY `ids` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `user`
@@ -608,8 +663,8 @@ ALTER TABLE `reservation_event`
 -- Contraintes pour la table `reservation_hotel`
 --
 ALTER TABLE `reservation_hotel`
-  ADD CONSTRAINT `FK_h` FOREIGN KEY (`Idh`) REFERENCES `hotel` (`Idh`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_u` FOREIGN KEY (`Idu`) REFERENCES `user` (`Idu`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_u` FOREIGN KEY (`Idu`) REFERENCES `user` (`Idu`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_chh` FOREIGN KEY (`idc`) REFERENCES `chambre` (`idc`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `reservation_voiture`
@@ -623,6 +678,12 @@ ALTER TABLE `reservation_voiture`
 --
 ALTER TABLE `reservation_voyage`
   ADD CONSTRAINT `FK_resvoy` FOREIGN KEY (`Idv`) REFERENCES `voyage` (`Idv`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `sponsor`
+--
+ALTER TABLE `sponsor`
+  ADD CONSTRAINT `sponsor_ibfk_1` FOREIGN KEY (`ide`) REFERENCES `evenement` (`Ide`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `voyage_organise`
