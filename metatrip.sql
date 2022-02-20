@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 20 fév. 2022 à 15:58
+-- Généré le : dim. 20 fév. 2022 à 16:19
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -233,6 +233,8 @@ INSERT INTO `reservation_voyage` (`Idrv`, `Date_depart`, `Date_arrivee`, `etat`,
 CREATE TABLE `sponsor` (
   `ids` int(11) NOT NULL,
   `nomsponsor` varchar(20) NOT NULL,
+  `tel` double NOT NULL,
+  `email` varchar(20) NOT NULL,
   `date_sp` date NOT NULL,
   `prix_sp` float NOT NULL,
   `ide` int(11) NOT NULL
