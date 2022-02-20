@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 20 fév. 2022 à 16:19
+-- Généré le : dim. 20 fév. 2022 à 16:40
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -387,6 +387,7 @@ CREATE TABLE `voyage_organise` (
   `Prix_billet` float NOT NULL,
   `Airline` varchar(20) NOT NULL,
   `Nb_nuitees` int(11) NOT NULL,
+  `etatVoyage` enum('DISPO','INDIPSO','','') NOT NULL,
   `Idv` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -394,11 +395,11 @@ CREATE TABLE `voyage_organise` (
 -- Déchargement des données de la table `voyage_organise`
 --
 
-INSERT INTO `voyage_organise` (`Idvo`, `Prix_billet`, `Airline`, `Nb_nuitees`, `Idv`) VALUES
-(78, 170.6, 'nex', 3, 369),
-(79, 990.6, 'sounay', 3, 369),
-(80, 170.6, 'nex', 3, 369),
-(81, 10.6, 'flam', 3, 369);
+INSERT INTO `voyage_organise` (`Idvo`, `Prix_billet`, `Airline`, `Nb_nuitees`, `etatVoyage`, `Idv`) VALUES
+(78, 170.6, 'nex', 3, 'DISPO', 369),
+(79, 990.6, 'sounay', 3, 'DISPO', 369),
+(80, 170.6, 'nex', 3, 'DISPO', 369),
+(81, 10.6, 'flam', 3, 'DISPO', 369);
 
 -- --------------------------------------------------------
 
