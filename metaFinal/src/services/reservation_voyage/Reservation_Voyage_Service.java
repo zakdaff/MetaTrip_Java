@@ -19,6 +19,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Config.Datasource;
+
+import static java.util.Collections.list;
+import java.util.HashMap;
+import java.util.Map;
 import services.user.UserService;
 
 /**
@@ -161,7 +165,150 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
        // System.out.println(listVORG.toString());
         return listRV;    }
 
-  
+
+    
+    public HashMap<  String,Integer> ListVoyagePlusRéservé(){
+            HashMap<String,Integer > List = new HashMap< >();
+           String req = "SELECT voyage.Pays,COUNT(*) 'nb de Reservation'\n" +
+                                    "FROM`reservation_voyage` \n" +
+                                    "JOIN`voyage_organise`   \n" +
+                                        "JOIN `voyage`\n" +
+                                        "ON voyage_organise.Idv=reservation_voyage.Idv\n" +
+                                    "WHERE reservation_voyage.Idv=voyage.Idv\n" +
+                                "GROUP BY voyage.Pays; ;";
+    
+            try {
+
+            pste = conn.prepareStatement(req);
+          
+            
+            ResultSet rs = pste.executeQuery();
+            
+             while(rs.next()){
+             
+               List.put(rs.getString(1),rs.getInt(2));
+               
+                 
+                                                   
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       // System.out.println(listVORG.toString());
+        return List;  
+    
+    }
+        public HashMap<  String,Integer> LeMaximumDevoyageReserve(){
+            HashMap<String,Integer > List = new HashMap< >();
+           String req = "SELECT voyage.Pays, count(*)'Voyage le plus Réserve'\n" +
+                                        "FROM`reservation_voyage` \n" +
+                                        "                         JOIN`voyage_organise`   \n" +
+                                        "                            JOIN `voyage`\n" +
+                                        "                        ON voyage_organise.Idv=reservation_voyage.Idv\n" +
+                                        "                        WHERE voyage_organise.Idv=voyage.Idv \n" +
+                                        "				GROUP BY voyage.Pays\n" +
+                                        "HAVING count(*) >= ALL (SELECT count(*) FROM`reservation_voyage` \n" +
+                                        "                    JOIN `voyage_organise`   \n" +
+                                        "                            JOIN `voyage`\n" +
+                                        "                        ON voyage_organise.Idv=reservation_voyage.Idv\n" +
+                                        "                        WHERE (reservation_voyage.Idv=voyage.Idv )\n" +
+                                        "                        GROUP BY voyage.Pays)";
+    
+            try {
+
+            pste = conn.prepareStatement(req);
+          
+            
+            ResultSet rs = pste.executeQuery();
+            
+             while(rs.next()){
+             
+               List.put(rs.getString(1),rs.getInt(2));
+               
+                 
+                                                   
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       // System.out.println(listVORG.toString());
+        return List;  
+    
+    }
+   public HashMap<  String,Integer> LeMinimumevoyageReserve(){
+            HashMap<String,Integer > List = new HashMap< >();
+           String req = "SELECT voyage.Pays, count(*)'Voyage le Moins Réserve'\n" +
+"                                        FROM`reservation_voyage` \n" +
+"                                                             JOIN`voyage_organise`   \n" +
+"                                                                   JOIN `voyage` \n" +
+"                                                               ON voyage_organise.Idv=reservation_voyage.Idv \n" +
+"                                                               WHERE voyage_organise.Idv=voyage.Idv \n" +
+"                                     				GROUP BY voyage.Pays \n" +
+"                                        HAVING count(*) <= ALL (SELECT count(*) FROM`reservation_voyage`  \n" +
+"                                                          JOIN `voyage_organise`    \n" +
+"                                                                   JOIN `voyage` \n" +
+"                                                               ON voyage_organise.Idv=reservation_voyage.Idv \n" +
+"                                                               WHERE reservation_voyage.Idv=voyage.Idv \n" +
+"                                                       GROUP BY voyage.Pays)";
+    
+            try {
+
+            pste = conn.prepareStatement(req);
+          
+            
+            ResultSet rs = pste.executeQuery();
+            
+             while(rs.next()){
+             
+               List.put(rs.getString(1),rs.getInt(2));
+               
+                 
+                                                   
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       // System.out.println(listVORG.toString());
+        return List;  
+    
+    }
+   
+    public List<Object> listedevoyageTrierParPrix(){
+            List<Object>  List = new ArrayList< >();
+           String req = "SELECT voyage_organise.Prix_billet,voyage.Pays,voyage_organise.Airline\n" +
+                                                        "FROM `reservation_voyage` \n" +
+"                                                          JOIN `voyage_organise`  \n" +
+"                                                                   JOIN `voyage` \n" +
+"                                                               ON voyage_organise.Idv=reservation_voyage.Idv \n" +
+"                                                             WHERE reservation_voyage.Idv=voyage.Idv \n" +
+"                                                     GROUP BY voyage_organise.Prix_billet";
+    
+            try {
+
+            pste = conn.prepareStatement(req);
+          
+            
+            ResultSet rs = pste.executeQuery();
+            
+             while(rs.next()){
+             
+               List.add(rs.getFloat(1));
+                 List.add(rs.getString(2));
+                List.add(rs.getString(3));
+                 
+                                                   
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       // System.out.println(listVORG.toString());
+        return List;  
+    
+    }
 }
 
     

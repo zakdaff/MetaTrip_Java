@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package services.user;
 
 import entities.user;
@@ -16,9 +12,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Config.Datasource;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  *
@@ -39,10 +32,9 @@ public class LoginAndSignupService {
 public String login (String email,String password) throws Exception {
     String test = null;
         List<user> users = new ArrayList<>();
-
-        String pass = doHashing(password);
-        String req = "SELECT * FROM `user` WHERE `Email`='"+email+"'  AND `Password`='"+ pass+"'; ";
-        System.out.println();
+        String req = "SELECT *  FROM `user` where Email='"+email+"' and Password ='"+password+"'";
+        System.out.println(email);
+         System.out.println(password);
         try {
 
        ste = conn.createStatement();
@@ -50,16 +42,17 @@ public String login (String email,String password) throws Exception {
             
             while(rs.next()){
             user u = new user();
-                u.setIdu(rs.getInt("idu"));
-                  u.setCin( rs.getDouble("Cin"));
-                u.setNom(rs.getString(2));
-                u.setPrenom(rs.getString(3));      
-                    u.setTel(rs.getDouble("Tel"));
+                u.setIdu(rs.getInt(1));
+                  u.setCin( rs.getDouble(2));
+                u.setNom(rs.getString(3));
+                u.setPrenom(rs.getString(4));      
+                    u.setTel(rs.getDouble(5));
             
-              u.setEmail( rs.getString(3));
-               u.setPassword(rs.getString(5));
-                u.setImage(rs.getString(5));
-              
+              u.setEmail( rs.getString(6));
+               u.setPassword(rs.getString(7));
+                u.setImage(rs.getString(8));
+                 u.setRole(rs.getInt(9));
+                u.setDateNaissance(rs.getDate(10));
                  users.add(u) ;   
                         
             }
@@ -76,21 +69,21 @@ public String login (String email,String password) throws Exception {
                          }
                          else{
                              test="login successful";
+                           
                          }
            }catch(IndexOutOfBoundsException e){
-            System.out.println("login failed");
+         
         }
        return test;
     }
-
-public void Signup(user u) {
+  public void Signup(user u) {
               List<user> users = new ArrayList<>();
       String Email1=u.getEmail();
       String pass1=u.getPassword();
     //  System.out.println(Email1);
           // System.out.println(pass1);
       String password=u.getPassword();
-      String req = "SELECT *  FROM user where Email='"+Email1+"'";
+      String req = "SELECT *  FROM `user` where Email='"+Email1+"'";
    
         try {
 
@@ -122,7 +115,7 @@ public void Signup(user u) {
                                         
                                         
 
-                                                         String req10 = "INSERT INTO user (Cin,`Nom`,`Prenom`,`Tel`,`Email`,`Password`,`Image`,`dateNaissance`) VALUES (?,?,?,?,?,?,?,?) ;";
+                                                         String req10 = "INSERT INTO `user` (`Cin`,`Nom`,`Prenom`,`Tel`,`Email`,`Password`,`Image`,`dateNaissance`) VALUES (?,?,?,?,?,?,?,?) ;";
                                                        try {
                                                            pste = conn.prepareStatement(req10);
 
@@ -132,7 +125,7 @@ public void Signup(user u) {
                                                            pste.setString(3, u.getPrenom());
                                                             pste.setDouble(4,u.getTel());
                                                              pste.setString(5, u.getEmail());
-                                                              pste.setString(6, doHashing(u.getPassword()));
+                                                              pste.setString(6, u.getPassword());
                                                                pste.setString(7, u.getImage());
                                                                  pste.setDate(8, u.getDateNaissance());
                                                            pste.executeUpdate();
@@ -147,32 +140,6 @@ public void Signup(user u) {
 
                                     }
 }
-
-
-
- public static String doHashing(String password) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-
-            messageDigest.update(password.getBytes());
-
-            byte[] resultByteArray = messageDigest.digest();
-
-            StringBuilder sb = new StringBuilder();
-
-            for (byte b : resultByteArray) {
-                sb.append(String.format("%02x", b));
-            }
-
-            return sb.toString();
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        return "";
-    }
-
 
 }
 

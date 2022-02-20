@@ -19,8 +19,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
 import Config.Datasource;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import services.IService;
 import services.IService;
+import static services.user.LoginAndSignupService.doHashing;
 
 /**
  *
@@ -43,24 +47,69 @@ public class UserService implements IService<user> {
  
     @Override
     public void ajouter(user u) {
-         String req = "INSERT INTO `user` (`Cin`,`Nom`,`Prenom`,`Tel`,`Email`,`Password`,`Image`,`dateNaissance`) VALUES (?,?,?,?,?,?,?,?) ;";
-        try {
-            pste = conn.prepareStatement(req);
-	
 
-            pste.setDouble(1,u.getCin());
-            pste.setString(2, u.getNom());
-            pste.setString(3, u.getPrenom());
-             pste.setDouble(4,u.getTel());
-              pste.setString(5, u.getEmail());
-               pste.setString(6, u.getPassword());
-                pste.setString(7, u.getImage());
-                  pste.setDate(8, u.getDateNaissance());
-            pste.executeUpdate();
-            System.out.println("user créée");
+              List<user> users = new ArrayList<>();
+      String Email1=u.getEmail();
+      String pass1=u.getPassword();
+    //  System.out.println(Email1);
+          // System.out.println(pass1);
+      String password=u.getPassword();
+      String req = "SELECT *  FROM user where Email='"+Email1+"'";
+   
+        try {
+
+       ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+              user u1 = new user();
+                u1.setIdu(rs.getInt(1));
+                  u1.setCin( rs.getDouble(2));
+                u1.setNom(rs.getString(3));
+                u1.setPrenom(rs.getString(4));      
+                    u1.setTel(rs.getDouble(5));
+            
+              u1.setEmail( rs.getString(6));
+               u1.setPassword(rs.getString(7));
+                u1.setImage(rs.getString(8));
+                u1.setRole(rs.getInt(9));
+                u1.setDateNaissance(rs.getDate(10));
+                 users.add(u) ; 
+                     
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
+                    System.out.println("+++++++size++++++++"+users.size());
+                                    if(users.size()==0){
+                                        
+                                        
+
+                                                         String req10 = "INSERT INTO user (Cin,`Nom`,`Prenom`,`Tel`,`Email`,`Password`,`Image`,`dateNaissance`) VALUES (?,?,?,?,?,?,?,?) ;";
+                                                       try {
+                                                           pste = conn.prepareStatement(req10);
+
+
+                                                           pste.setDouble(1,u.getCin());
+                                                           pste.setString(2, u.getNom());
+                                                           pste.setString(3, u.getPrenom());
+                                                            pste.setDouble(4,u.getTel());
+                                                             pste.setString(5, u.getEmail());
+                                                              pste.setString(6, doHashing(u.getPassword()));
+                                                               pste.setString(7, u.getImage());
+                                                                 pste.setDate(8, u.getDateNaissance());
+                                                           pste.executeUpdate();
+                                                           System.out.println("user créée");
+                                                       } catch (SQLException ex) {
+                                                           Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+                                                       }
+                                                       
+                                    }
+                                                       else{
+                                             System.out.print("user deja exist ");
+
+                                    }
     }
     
 
@@ -79,7 +128,8 @@ public class UserService implements IService<user> {
             pste.setString(3, u.getPrenom());
              pste.setDouble(4,u.getTel());
               pste.setString(5, u.getEmail());
-               pste.setString(6, u.getPassword());
+
+               pste.setString(6, doHashing(u.getPassword()));
                 pste.setString(7, u.getImage());
                 pste.setDate(8, u.getDateNaissance());
             pste.executeUpdate();
@@ -138,6 +188,31 @@ public class UserService implements IService<user> {
     }
 
     
+
+    public int  afficherUserByRole(String Email) {
+     
+        int Role = 0 ;
+        String req = "SELECT`Role` FROM `user` WHERE `Email`='"+Email+"';";
+        
+        try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+            
+                Role =rs.getInt(1);
+                                                       
+                                                   
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return Role;
+    }
+    
   
 
             
@@ -146,8 +221,29 @@ public class UserService implements IService<user> {
  
 
     
-    
-  
+
+   public static String doHashing(String password) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+
+            messageDigest.update(password.getBytes());
+
+            byte[] resultByteArray = messageDigest.digest();
+
+            StringBuilder sb = new StringBuilder();
+
+            for (byte b : resultByteArray) {
+                sb.append(String.format("%02x", b));
+            }
+
+            return sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
 
   
 
