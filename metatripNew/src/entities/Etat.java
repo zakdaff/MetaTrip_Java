@@ -9,10 +9,9 @@ package entities;
  *
  * @author FLAM
  */
-public enum EtatPayment {
-    NonPaye,
-    Paye,
-    EnCours,
-    Annule,
+public enum Etat {
+    NONPAYE,
+    PAYE,
+    ANUULE,
     
 }

@@ -9,6 +9,7 @@ package services.user;
 import java.sql.SQLException;
 import entities.user;
 import entities.user;
+import entities.voyage;
 import java.util.List;
 /**
  *
@@ -17,6 +18,10 @@ import java.util.List;
 public interface IuserService {
     void ajouter(user user) throws SQLException;;
     void modifier(int id,user user) throws SQLException;;
-    void supprimer(int id) throws SQLException;;
+    void supprimer(int id) throws SQLException;
     List<user> afficher() throws SQLException;
+    
+    public int nbUsers() throws SQLException;
+     public int nbVoyagesDispo() throws SQLException;
+       public List<?> VoyageParDates() throws SQLException;
 }

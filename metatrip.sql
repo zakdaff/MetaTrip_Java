@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 20 fév. 2022 à 16:40
+-- Généré le : dim. 20 fév. 2022 à 19:24
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -220,7 +220,7 @@ CREATE TABLE `reservation_voyage` (
 
 INSERT INTO `reservation_voyage` (`Idrv`, `Date_depart`, `Date_arrivee`, `etat`, `Idu`, `Idv`, `Ref_paiement`) VALUES
 (7, '2022-02-16', '2022-02-16', 'Paye', 26, 97, 0),
-(9, '2022-02-16', '2022-02-16', 'NonPaye', 26, 97, 0),
+(9, '2022-02-16', '2022-02-16', 'NonPaye', 26, 18, 0),
 (10, '2020-09-01', '2050-09-01', 'Paye', 26, 97, 0),
 (11, '2050-09-01', '2050-09-01', 'Paye', 26, 97, 0);
 
@@ -374,7 +374,13 @@ INSERT INTO `voyage` (`Idv`, `Pays`, `Image_pays`) VALUES
 (501, 'tounis', 'c://berlin.png'),
 (509, 'tounis', 'c://berlin.png'),
 (599, 'tounis', 'c://berlin.png'),
-(55555, 'espagne', 'c://espagne.png');
+(600, 'allemagne', 'c://berlin.png'),
+(601, 'gafsa', 'c://beja.png'),
+(602, 'gafsa', 'c://beja.png'),
+(603, 'gafsa', 'c://beja.png'),
+(604, 'gafsa', 'c://beja.png'),
+(605, 'gafsa', 'c://beja.png'),
+(606, 'gafsa', 'c://beja.png');
 
 -- --------------------------------------------------------
 
@@ -387,7 +393,7 @@ CREATE TABLE `voyage_organise` (
   `Prix_billet` float NOT NULL,
   `Airline` varchar(20) NOT NULL,
   `Nb_nuitees` int(11) NOT NULL,
-  `etatVoyage` enum('DISPO','INDIPSO','','') NOT NULL,
+  `etatVoyage` enum('DISPO','INDISPO') NOT NULL,
   `Idv` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -396,10 +402,15 @@ CREATE TABLE `voyage_organise` (
 --
 
 INSERT INTO `voyage_organise` (`Idvo`, `Prix_billet`, `Airline`, `Nb_nuitees`, `etatVoyage`, `Idv`) VALUES
-(78, 170.6, 'nex', 3, 'DISPO', 369),
-(79, 990.6, 'sounay', 3, 'DISPO', 369),
-(80, 170.6, 'nex', 3, 'DISPO', 369),
-(81, 10.6, 'flam', 3, 'DISPO', 369);
+(78, 170.6, 'nex', 3, 'DISPO', 18),
+(79, 990.6, 'sounay', 3, '', 369),
+(80, 170.6, 'nex', 3, '', 369),
+(81, 10.6, 'flam', 3, '', 369),
+(82, 170.6, 'nex', 3, '', 600),
+(84, 170.6, 'nex', 3, 'INDISPO', 605),
+(85, 170.6, 'nexdd', 3, 'DISPO', 97),
+(86, 170.6, 'nexdd', 3, 'INDISPO', 605),
+(87, 170.6, 'nexdd', 3, 'INDISPO', 605);
 
 -- --------------------------------------------------------
 
@@ -611,7 +622,7 @@ ALTER TABLE `voyage`
 -- AUTO_INCREMENT pour la table `voyage_organise`
 --
 ALTER TABLE `voyage_organise`
-  MODIFY `Idvo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `Idvo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT pour la table `voyage_virtuel`

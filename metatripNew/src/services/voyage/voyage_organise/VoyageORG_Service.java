@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Config.Datasource;
+import entities.EtatVoyage;
 import services.user.UserService;
 
 /**
@@ -40,15 +41,17 @@ public class VoyageORG_Service implements IVoyage_ORG_Service{
     public void ajouter(voyage_organise vo) {
      
          
-            String req2 = "INSERT INTO `voyage_organise` (`Prix_billet`,`Airline`,`Nb_nuitees`,`Idv`) VALUE (?,?,?,?)";
+            String req2 = "INSERT INTO `voyage_organise` (`Prix_billet`,`Airline`,`Nb_nuitees`,`etatVoyage`,`Idv`) VALUE (?,?,?,?,?)";
 
         try {
               pste = conn.prepareStatement(req2);
               pste.setFloat(1,vo.getPrix_billet());
               pste.setString(2, vo.getAirline());
               pste.setInt(3, vo.getNb_nuitees());
-              pste.setInt(4, vo.getVoyage().getIdv());
-                    System.out.println(vo.getVoyage().getIdv());
+            pste.setString(4,vo.getEtatVoyage().name());
+              
+              pste.setInt(5, vo.getVoyage().getIdv());
+                    //System.out.println(vo.getVoyage().getIdv());
             pste.executeUpdate();
             System.out.println("voyage organise créée");
             

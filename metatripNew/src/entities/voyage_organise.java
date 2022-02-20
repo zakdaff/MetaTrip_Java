@@ -11,6 +11,7 @@ public class voyage_organise extends voyage{
     private String Airline;
     private int Nb_nuitees;
     
+    private EtatVoyage etatVoyage;
     private voyage voyage;
    
   
@@ -45,6 +46,9 @@ public class voyage_organise extends voyage{
     }
     
 
+    
+    
+    
     public voyage_organise( int Idvo, float Prix_billet, String Airline, int Nb_nuitees, voyage voyage) {
         //super(Idv, pays,Image_pays);
         this.Idvo = Idvo;
@@ -63,6 +67,31 @@ public class voyage_organise extends voyage{
 
     public String getImage_pays() {
         return this.getVoyage().getImage_pays();
+    }
+
+    public voyage_organise(int Idvo, float Prix_billet, String Airline, int Nb_nuitees, EtatVoyage etatVoyage, voyage voyage) {
+        this.Idvo = Idvo;
+        this.Prix_billet = Prix_billet;
+        this.Airline = Airline;
+        this.Nb_nuitees = Nb_nuitees;
+        this.etatVoyage = etatVoyage;
+        this.voyage = voyage;
+    }
+
+    public EtatVoyage getEtatVoyage() {
+        return etatVoyage;
+    }
+
+    public void setEtatVoyage(EtatVoyage etatVoyage) {
+        this.etatVoyage = etatVoyage;
+    }
+
+    public voyage_organise(float Prix_billet, String Airline, int Nb_nuitees, EtatVoyage etatVoyage, voyage voyage) {
+        this.Prix_billet = Prix_billet;
+        this.Airline = Airline;
+        this.Nb_nuitees = Nb_nuitees;
+        this.etatVoyage = etatVoyage;
+        this.voyage = voyage;
     }
 
   

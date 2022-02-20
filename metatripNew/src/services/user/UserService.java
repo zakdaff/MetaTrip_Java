@@ -19,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
 import Config.Datasource;
+import entities.reservation_voyage;
+import entities.voyage;
 import services.IService;
 import services.IService;
 
@@ -26,7 +28,7 @@ import services.IService;
  *
  * @author FLAM
  */
-public class UserService implements IService<user> {
+public class UserService implements IuserService {
     
 
 
@@ -137,6 +139,85 @@ public class UserService implements IService<user> {
         return users;
     }
 
+    @Override
+    public int nbUsers() throws SQLException {
+    int nb=0;
+          String req = "SELECT count(*) from `user` ;";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+            nb=rs.getInt(1);
+                                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return nb;
+    }
+
+    @Override
+    public int nbVoyagesDispo() throws SQLException {
+   int nb=0;
+   
+          String req = "SELECT count(*) from `voyage_organise` where etatVoyage='DISPO';";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+            nb=rs.getInt(1);
+                                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return nb;    }
+
+    @Override
+    public List<?> VoyageParDates() throws SQLException {
+
+List<Object> voyages = new ArrayList<>();   
+          String req ="SELECT v.idv,v.pays,v.image_pays,rv.date_depart FROM `voyage` v,`reservation_voyage`  rv,`voyage_organise` vo"+
+                 " where v.Idv=rv.Idv and vo.Idv=v.Idv and vo.etatVoyage='DISPO' "+ 
+                    "group by Date_depart;";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+              while(rs.next()){
+                  
+                voyage v = new voyage();
+                reservation_voyage rv=new reservation_voyage();
+                v.setIdv(rs.getInt(1));
+                v.setPays( rs.getString(2));
+                v.setImage_pays(rs.getString(3));
+                rv.setDate_depart(rs.getDate(4));
+
+                 voyages.add(v) ; 
+                  voyages.add(rv.getDate_depart()) ; 
+                                                   
+            }
+            
+            
+            }
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return voyages;  
+    
+    }
+
+  
+    
+
     
   
 
@@ -145,11 +226,11 @@ public class UserService implements IService<user> {
 
  
 
-    
-    
-  
-
-  
-
-  
 }
+    
+  
+
+  
+
+  
+

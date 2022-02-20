@@ -1,6 +1,7 @@
 
 package Config;
 
+import entities.EtatVoyage;
 import entities.Voiture;
 import entities.Voyage_virtuel;
 import entities.abonnement;
@@ -87,25 +88,32 @@ public class Metatrip {
 
        voyage v = new voyage(501,"tounis", "c://berlin.png");
              voyage chrf = new voyage(967,"istanbul", "c://antalya.png");
-        voyage v1 = new voyage( 55555,"espagne", "c://espagne.png");
-   // vs.ajout(v1); 
+        voyage v1 = new voyage( 605,"gafsa", "c://beja.png");
+   //vs.ajout(v1); 
+   
      //vs.ajout(v1); 
       //  System.out.println(vs.afficher());
                // System.out.println( v1.getPays());
        // System.out.println(v.getIdv());
 
                                 //voyage_organise vo2=new voyage_organise(5,50.6f,"Lufthansa",15,5,"torkiya","c://assets"); 
-    /* voyage_organise vo3 = new voyage_organise(170.6f, "nex", 3, v);
-          voyage_organise vo4 = new voyage_organise(10.6f, "flam", 3, v);*/
-                voyage_organise vom = new voyage_organise(990.6f, "sounay", 3);
-                
-             
-       
+     voyage_organise vo3 = new voyage_organise(170.6f, "nexdd", 3,EtatVoyage.INDISPO, v1);
+          //voyage_organise vo4 = new voyage_organise(10.6f, "flam", 3, v);
+               // voyage_organise vom = new voyage_organise(990.6f, "sounay", 3);
+                //vos.ajouter(vo3);
+        System.out.println("List voyages par date croissante"+ us.VoyageParDates());
+           System.out.println("Le nombre de users est = "+us.nbUsers());
+
+                      System.out.println("Le nombre de voyages disponibles est = "+us.nbVoyagesDispo());
+
      String str="2020-09-01";  
       String str2="2050-09-01";  
      Date date1=Date.valueOf(str);
      Date date9=Date.valueOf(str2);//converting string into sql date      System.out.println(date);
-                user u2 = new user(196525, "ssss", "cxx", 2568435, "fares@live.fr", doHashing("12345678"), "image",date2);
+                user u2 = new user(99925, "ssss", "cxx", 2568435, "fares@live.fr", doHashing("12345678"), "image",date9);
+           //   LoginAndSignupService LASS =new LoginAndSignupService();
+              //LASS.Signup(u2);
+          //    System.out.println(LASS.login("nex@live.fr", "aaaa"));
            //    us.ajouter(u1);
         // reservation_voyage rv=new reservation_voyage();
       //    rv.setIdrv(999);
@@ -125,7 +133,7 @@ public class Metatrip {
          
          
         //System.out.println(vo3.getVoyage());
-    // vos.ajouter(vo3);
+     
       // vos.ajouter(vo4);
        //vos.modifier(79, vom);
        
@@ -207,7 +215,10 @@ public class Metatrip {
   
                    
                    
-    }  public static String doHashing(String password) {
+    }
+    
+    
+    public static String doHashing(String password) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
 
@@ -231,4 +242,3 @@ public class Metatrip {
     }
 
 }
-
