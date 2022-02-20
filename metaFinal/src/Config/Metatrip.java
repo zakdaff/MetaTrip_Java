@@ -9,6 +9,7 @@ import entities.hotel;
 import entities.reservation_event;
 import entities.reservation_hotel;
 import entities.reservation_voiture;
+import entities.reservation_voyage;
 import entities.user;
 import entities.voyage;
 import entities.voyage_organise;
@@ -79,8 +80,10 @@ public class Metatrip {
        //  vov.modifier(3,vov2);
         // vov.supprimer(3);
 
-        user u1 = new user(9999, 5866, "dafdouf", "zakzouk", 5895, "zak@live.fr", "0000", "image",date2);
-         // us.ajouter(u1);
+        user u1 = new user(10000, 5866, "dafdouf", "zakzouk", 5895, "9999@live.fr", "0000", "image",date2);
+        //System.out.println(loginSignup.login("9999@live.fr","555"));
+       //  us.ajouter(u1);
+       System.out.println("Role:"+us.afficherUserByRole("nex@live.fr"));
         //us.supprimer(810);
         user u3 = new user(5866, "ges", "nay", 5895, "zak@live.fr", "0000", "image",date2);
         user u4 = new user(58656, "khaldi", "imen", 5895, "zak@live.fr", "0000", "image",date2);
@@ -107,7 +110,12 @@ public class Metatrip {
      Date date9=Date.valueOf(str2);//converting string into sql date      System.out.println(date);
                 user u2 = new user(196525, "ssss", "cxx", 2568435, "fares@live.fr", doHashing("12345678"), "image",date2);
            //    us.ajouter(u1);
-        // reservation_voyage rv=new reservation_voyage();
+        reservation_voyage rv=new reservation_voyage();
+        System.out.println("les voyages les plus Réservé:"+rvs.ListVoyagePlusRéservé());
+        System.out.println ("le maximum de voyage Réserve est "+rvs.LeMaximumDevoyageReserve());
+             System.out.println ("le minimum de voyage Réserve est "+rvs.LeMinimumevoyageReserve());
+                     System.out.println ("la list  de voyage Trié selon Prix est "+rvs.listedevoyageTrierParPrix());
+       
       //    rv.setIdrv(999);
    
        /*   rv.setDate_depart(date);

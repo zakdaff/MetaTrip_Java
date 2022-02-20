@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Config.Datasource;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
@@ -36,7 +38,8 @@ public class LoginAndSignupService {
 public String login (String email,String password) throws Exception {
     String test = null;
         List<user> users = new ArrayList<>();
-        String req = "SELECT *  FROM `user` where Email="+email+" and Password ="+password;
+        String pass = doHashing(password);
+        String req = "SELECT * FROM `user` WHERE `Email`='"+email+"'  AND `Password`='"+ pass+"'; ";
         System.out.println();
         try {
 
@@ -76,6 +79,95 @@ public String login (String email,String password) throws Exception {
             System.out.println("login failed");
         }
        return test;
+    }
+public void Signup(user u) {
+              List<user> users = new ArrayList<>();
+      String Email1=u.getEmail();
+      String pass1=u.getPassword();
+    //  System.out.println(Email1);
+          // System.out.println(pass1);
+      String password=u.getPassword();
+      String req = "SELECT *  FROM user where Email='"+Email1+"'";
+   
+        try {
+
+       ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+              user u1 = new user();
+                u1.setIdu(rs.getInt(1));
+                  u1.setCin( rs.getDouble(2));
+                u1.setNom(rs.getString(3));
+                u1.setPrenom(rs.getString(4));      
+                    u1.setTel(rs.getDouble(5));
+            
+              u1.setEmail( rs.getString(6));
+               u1.setPassword(rs.getString(7));
+                u1.setImage(rs.getString(8));
+                u1.setRole(rs.getInt(9));
+                u1.setDateNaissance(rs.getDate(10));
+                 users.add(u) ; 
+                     
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    System.out.println("+++++++size++++++++"+users.size());
+                                    if(users.size()==0){
+                                        
+                                        
+
+                                                         String req10 = "INSERT INTO user (Cin,`Nom`,`Prenom`,`Tel`,`Email`,`Password`,`Image`,`dateNaissance`) VALUES (?,?,?,?,?,?,?,?) ;";
+                                                       try {
+                                                           pste = conn.prepareStatement(req10);
+
+
+                                                           pste.setDouble(1,u.getCin());
+                                                           pste.setString(2, u.getNom());
+                                                           pste.setString(3, u.getPrenom());
+                                                            pste.setDouble(4,u.getTel());
+                                                             pste.setString(5, u.getEmail());
+                                                              pste.setString(6, doHashing(u.getPassword()));
+                                                               pste.setString(7, u.getImage());
+                                                                 pste.setDate(8, u.getDateNaissance());
+                                                           pste.executeUpdate();
+                                                           System.out.println("user créée");
+                                                       } catch (SQLException ex) {
+                                                           Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+                                                       }
+                                                       
+                                    }
+                                                       else{
+                                             System.out.print("signup failed ");
+
+                                    }
+}
+
+
+
+ public static String doHashing(String password) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+
+            messageDigest.update(password.getBytes());
+
+            byte[] resultByteArray = messageDigest.digest();
+
+            StringBuilder sb = new StringBuilder();
+
+            for (byte b : resultByteArray) {
+                sb.append(String.format("%02x", b));
+            }
+
+            return sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return "";
     }
 
 }
