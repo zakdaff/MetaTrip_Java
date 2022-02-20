@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package services.reservation_voyage;
 import java.sql.Date;
 import entities.reservation_voyage;
@@ -310,6 +305,3 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
     
     }
 }
-
-    
-
