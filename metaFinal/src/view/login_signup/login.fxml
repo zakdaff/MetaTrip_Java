@@ -23,7 +23,7 @@
          <children>
             <ImageView fitHeight="363.0" fitWidth="406.0" layoutX="69.0" layoutY="72.0">
                <image>
-                  <Image url="@../img/logo meta.png" />
+                  <Image url="@/view/img/logo_meta.png" />
                </image>
             </ImageView>
             <Label layoutX="80.0" layoutY="435.0" prefHeight="50.0" prefWidth="395.0" text="Welcome to MetaTrip " textFill="#fcfcfc">
