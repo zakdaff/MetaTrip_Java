@@ -106,7 +106,7 @@ public class Metatrip {
            System.out.println("Le nombre de users est = "+us.nbUsers());
 
                       System.out.println("Le nombre de voyages disponibles est = "+us.nbVoyagesDispo());
-
+System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
      String str="2020-09-01";  
       String str2="2050-09-01";  
      Date date1=Date.valueOf(str);

@@ -254,6 +254,40 @@ public class UserService implements IuserService {
         }
         
         return nb;    }
+    
+    
+    public List<user> getUserByEmail (String Email)  {
+     List<user> users = new ArrayList<>();
+   
+          String req = "SELECT * from `user` where Email='"+Email+"';";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                   user u = new user();
+                u.setIdu(rs.getInt(1));
+                  u.setCin( rs.getDouble(2));
+                u.setNom(rs.getString(3));
+                u.setPrenom(rs.getString(4));      
+                    u.setTel(rs.getDouble(5));
+            
+              u.setEmail( rs.getString(6));
+               u.setPassword(rs.getString(7));
+                u.setImage(rs.getString(8));
+                   u.setRole(rs.getInt(9));
+                u.setDateNaissance(rs.getDate(10));
+                 users.add(u) ;                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return users;    
+    }
+    
 
     @Override
     public List<?> VoyageParDates() throws SQLException {
