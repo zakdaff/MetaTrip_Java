@@ -5,7 +5,7 @@ package entities;
  *
  * @author FLAM
  */
-public enum EtatVoyage {
+public enum EtatDispo {
     DISPO,
     INDISPO
 }

@@ -1,7 +1,12 @@
 
 package Config;
-
-import entities.EtatVoyage;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import entities.EtatDispo;
 import entities.Voiture;
 import entities.Voyage_virtuel;
 import entities.abonnement;
@@ -16,6 +21,7 @@ import entities.voyage_organise;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
+import javafx.application.Application;
 import services.abonnement.abonnement_Service;
 import services.evenement.Serviceevenement;
 import services.evenement.Servicereservation_event;
@@ -39,7 +45,7 @@ import services.voyage.voyage_virtuel.VoyageVRT_Service;
  *
  * @author FLAM
  */
-public class Metatrip {
+public class Metatrip extends Application {
 
     /**
      * @param args the command line arguments
@@ -98,7 +104,7 @@ public class Metatrip {
        // System.out.println(v.getIdv());
 
                                 //voyage_organise vo2=new voyage_organise(5,50.6f,"Lufthansa",15,5,"torkiya","c://assets"); 
-     voyage_organise vo3 = new voyage_organise(170.6f, "nexdd", 3,EtatVoyage.INDISPO, v1);
+     voyage_organise vo3 = new voyage_organise(170.6f, "nexdd", 3,EtatDispo.INDISPO, v1);
           //voyage_organise vo4 = new voyage_organise(10.6f, "flam", 3, v);
                // voyage_organise vom = new voyage_organise(990.6f, "sounay", 3);
                 //vos.ajouter(vo3);
@@ -217,8 +223,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
         
 
   
-                   
-                   
+     launch(args);              
     }
     
     
@@ -231,7 +236,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
             byte[] resultByteArray = messageDigest.digest();
 
             StringBuilder sb = new StringBuilder();
-
+ 
             for (byte b : resultByteArray) {
                 sb.append(String.format("%02x", b));
             }
@@ -245,4 +250,16 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
         return "";
     }
 
+ @Override
+	public void start(Stage primaryStage) {
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("/services/user/login.fxml"));
+			Scene scene = new Scene(root);
+			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
