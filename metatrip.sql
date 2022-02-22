@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 21 fév. 2022 à 17:54
+-- Généré le : mar. 22 fév. 2022 à 02:37
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -45,9 +45,10 @@ CREATE TABLE `abonnement` (
 
 CREATE TABLE `chambre` (
   `idc` int(11) NOT NULL,
-  `numc` varchar(20) NOT NULL,
-  `type` enum('DISPO','INDISPO','','') NOT NULL,
-  `etat` varchar(20) NOT NULL,
+  `numc` int(20) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `etat` enum('DISPO','INDISPO') NOT NULL,
+  `Idrh` int(11) NOT NULL,
   `idh` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -259,6 +260,13 @@ CREATE TABLE `sponsor` (
   `ide` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `sponsor`
+--
+
+INSERT INTO `sponsor` (`ids`, `nomsponsor`, `tel`, `email`, `date_sp`, `prix_sp`, `ide`) VALUES
+(1, 'Vitalait', 22252718, 'amine@zarga.tn', '2011-10-01', 12, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -462,8 +470,9 @@ ALTER TABLE `abonnement`
 --
 ALTER TABLE `chambre`
   ADD PRIMARY KEY (`idc`),
-  ADD KEY `chambre_ibfk_1` (`idh`),
-  ADD KEY `idc` (`idc`);
+  ADD KEY `idc` (`idc`),
+  ADD KEY `fk_rvh` (`Idrh`),
+  ADD KEY `idh` (`idh`);
 
 --
 -- Index pour la table `chauffeur`
@@ -631,7 +640,7 @@ ALTER TABLE `reservation_voyage`
 -- AUTO_INCREMENT pour la table `sponsor`
 --
 ALTER TABLE `sponsor`
-  MODIFY `ids` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ids` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `user`
@@ -672,6 +681,13 @@ ALTER TABLE `voyage_virtuel`
 --
 ALTER TABLE `abonnement`
   ADD CONSTRAINT `FK_pai` FOREIGN KEY (`Ref_paiement`) REFERENCES `paiement` (`Ref_paiement`);
+
+--
+-- Contraintes pour la table `chambre`
+--
+ALTER TABLE `chambre`
+  ADD CONSTRAINT `fk_hot` FOREIGN KEY (`idh`) REFERENCES `hotel` (`idh`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_rvh` FOREIGN KEY (`Idrh`) REFERENCES `reservation_hotel` (`Idrh`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `reservation_event`
