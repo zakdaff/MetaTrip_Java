@@ -58,7 +58,7 @@ public class Metatrip extends Application {
     
     
     
-    
+  
     	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -70,7 +70,7 @@ public class Metatrip extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}          
     
     
     
@@ -397,9 +397,25 @@ public class Metatrip extends Application {
 
 
 Serviceevenement see = new Serviceevenement() ; 
-evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
-        System.out.println(see.afficher_par_chanteur(ex.getChanteur()));
-
+//evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
+   
+   
+     String str80="2020-02-02";  
+ 
+     Date date5=Date.valueOf(str80);
+     
+    evenement e10 = new evenement(2, "Musical", "BALTI", "7 rue 2938", date5, 450.0f) ; 
+  //see.ajouter(e10);
+  
+  
+       
+   //     System.out.println(see.cheap_event()); // Event le moins cher  
+   //  System.out.println(see.expensive_event()); // Event le plus cher 
+  //    System.out.println(see.afficher_par_chanteur(ex.getChanteur())); // RECHERCHER PAR CHANTEUR 
+   //  System.out.println(see.afficher_par_date(date5));     //  RECHERCHER PAR DATE EVENT
+      //    System.out.println(see.afficher_par_Type_event("MUSICAL"));  //  RECHERCHER PAR Type_event
+   //  System.out.println(see.afficher_par_Type_event_chanteur("MUSICAL", "BALTI")); //  RECHERCHER PAR Type_event ET CHANTEUR 
+   
 //  evenement e1 = new evenement(4, "aaaaaaa", "c", "7 rue 2938", date1, 120.0f) ; 
 //  //se.ajouter(e1);
 //    //se.modifier(e);
