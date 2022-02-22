@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import services.IService;
 import Config.Datasource;
+import entities.user;
 import java.sql.Date;
 import services.user.UserService;
 /**
@@ -25,7 +26,8 @@ import services.user.UserService;
  */
 public class Serviceevenement {
 
-    Connection conn;    private PreparedStatement pste;
+    Connection conn;    private PreparedStatement pste;    private Statement ste;
+
 
     public Serviceevenement() {
            conn = Datasource.getInstance().getCnx();
@@ -102,11 +104,55 @@ public class Serviceevenement {
         return list;
     }                
 
-   
+     // Affichage par chanteur 
+    public List<evenement> afficher_par_chanteur(String Chanteur) 
+    {
+        List<evenement> listR = new ArrayList<>();
+        try {
+            
+            String req = "select * from `evenement` where `Chanteur`='"+Chanteur+"';";
+          ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                   evenement u = new evenement();
+                u.setIde(rs.getInt(1));
+                  u.setChanteur( rs.getString(2));
+              
+                 listR.add(u) ;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Serviceevenement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listR;
+    }
+    
+        // Affichage par chanteur 
+    public List<evenement> afficher_par_date(Date date) 
+    {
+        List<evenement> listR = new ArrayList<>();
+        try {
+            
+            String req = "select * from `evenement` where `Chanteur`='"+date+"';";
+          ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                   evenement u = new evenement();
+                u.setIde(rs.getInt(1));
+                  u.setChanteur( rs.getString(2));
+              
+                 listR.add(u) ;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Serviceevenement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listR;
+    }
 
-   
-    
-   
-    
     
 }

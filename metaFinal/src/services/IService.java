@@ -12,5 +12,7 @@ public interface IService<T> {
     void modifier(int id,T entity);
     void supprimer(int id);
     List<T> afficher();
+   
+    
 
 }

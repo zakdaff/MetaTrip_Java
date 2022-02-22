@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 20 fév. 2022 à 19:24
+-- Généré le : lun. 21 fév. 2022 à 17:54
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -46,10 +46,33 @@ CREATE TABLE `abonnement` (
 CREATE TABLE `chambre` (
   `idc` int(11) NOT NULL,
   `numc` varchar(20) NOT NULL,
-  `type` varchar(20) NOT NULL,
+  `type` enum('DISPO','INDISPO','','') NOT NULL,
   `etat` varchar(20) NOT NULL,
   `idh` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chauffeur`
+--
+
+CREATE TABLE `chauffeur` (
+  `idch` int(11) NOT NULL,
+  `nom` varchar(20) NOT NULL,
+  `prenom` varchar(20) NOT NULL,
+  `photo` varchar(20) NOT NULL,
+  `tel` double NOT NULL,
+  `description` varchar(20) NOT NULL,
+  `etatDispo` enum('DISPO','INDISPO') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `chauffeur`
+--
+
+INSERT INTO `chauffeur` (`idch`, `nom`, `prenom`, `photo`, `tel`, `description`, `etatDispo`) VALUES
+(666, 'lam', 'fares', 'fares.png', 99999999, 'flam', 'DISPO');
 
 -- --------------------------------------------------------
 
@@ -181,22 +204,18 @@ INSERT INTO `reservation_hotel` (`Idrh`, `Type_room`, `Nb_nuitees`, `Nb_personne
 CREATE TABLE `reservation_voiture` (
   `Idrvoit` int(11) NOT NULL,
   `prix_rent` float NOT NULL,
-  `Chauffeur` varchar(20) NOT NULL,
   `Trajet` varchar(20) NOT NULL,
   `Idu` int(11) NOT NULL,
-  `Idvoit` int(11) NOT NULL
+  `Idvoit` int(11) NOT NULL,
+  `idch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `reservation_voiture`
 --
 
-INSERT INTO `reservation_voiture` (`Idrvoit`, `prix_rent`, `Chauffeur`, `Trajet`, `Idu`, `Idvoit`) VALUES
-(10, 5.5, 'cccc', 'jandouba', 41, 55),
-(20, 5.5, 'cccc', 'jandouba', 41, 2),
-(21, 5.5, 'cccc', 'jandouba', 41, 2),
-(32, 5.5, 'cccc', 'jandouba', 811, 2000),
-(33, 5.5, 'cccc', 'jandouba', 811, 2001);
+INSERT INTO `reservation_voiture` (`Idrvoit`, `prix_rent`, `Trajet`, `Idu`, `Idvoit`, `idch`) VALUES
+(10, 5.5, 'jandouba', 41, 55, 666);
 
 -- --------------------------------------------------------
 
@@ -447,6 +466,13 @@ ALTER TABLE `chambre`
   ADD KEY `idc` (`idc`);
 
 --
+-- Index pour la table `chauffeur`
+--
+ALTER TABLE `chauffeur`
+  ADD PRIMARY KEY (`idch`),
+  ADD KEY `idch` (`idch`);
+
+--
 -- Index pour la table `evenement`
 --
 ALTER TABLE `evenement`
@@ -489,7 +515,8 @@ ALTER TABLE `reservation_voiture`
   ADD PRIMARY KEY (`Idrvoit`),
   ADD KEY `Idrvoit` (`Idrvoit`),
   ADD KEY `FK_resu` (`Idu`),
-  ADD KEY `FK_resv` (`Idvoit`);
+  ADD KEY `FK_resv` (`Idvoit`),
+  ADD KEY `FK_CHAUFF` (`idch`);
 
 --
 -- Index pour la table `reservation_voyage`
@@ -557,6 +584,12 @@ ALTER TABLE `abonnement`
 --
 ALTER TABLE `chambre`
   MODIFY `idc` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `chauffeur`
+--
+ALTER TABLE `chauffeur`
+  MODIFY `idch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=667;
 
 --
 -- AUTO_INCREMENT pour la table `evenement`
@@ -657,6 +690,7 @@ ALTER TABLE `reservation_hotel`
 -- Contraintes pour la table `reservation_voiture`
 --
 ALTER TABLE `reservation_voiture`
+  ADD CONSTRAINT `FK_CHAUFF` FOREIGN KEY (`idch`) REFERENCES `chauffeur` (`idch`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_resu` FOREIGN KEY (`Idu`) REFERENCES `user` (`Idu`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_resv` FOREIGN KEY (`Idvoit`) REFERENCES `voiture` (`Idvoit`) ON DELETE CASCADE ON UPDATE CASCADE;
 
