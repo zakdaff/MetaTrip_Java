@@ -39,17 +39,6 @@ import services.voyage.voyage_organise.VoyageORG_Service;
 import services.voyage.voyage_virtuel.VoyageVRT_Service;
 
 
-
-
-/**
- *
- * @author FLAM
- */
-
-/**
- *
- * @author FLAM
- */
 public class Metatrip extends Application {
 
     /**
@@ -79,7 +68,7 @@ public class Metatrip extends Application {
         // TODO code application logic here
         Datasource data = Datasource.getInstance();
         Datasource data2 = Datasource.getInstance();
-<<<<<<< HEAD
+
         System.out.println(data.hashCode() + "-" + data2.hashCode());
 
         UserService us = new UserService();
@@ -241,7 +230,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
    //us.ajouter(ux);
   Servicereservation_event resE=new Servicereservation_event();
   reservation_event resev=new reservation_event(22,82,e,ux);
-=======
+
 //        System.out.println(data.hashCode() + "-" + data2.hashCode());
 //
 //        UserService us = new UserService();
@@ -301,9 +290,9 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
 //
 //                      System.out.println("Le nombre de voyages disponibles est = "+us.nbVoyagesDispo());
 //
-String str="2020-09-01";  
+String strd="2020-09-01";  
 //      String str2="2050-09-01";  
- Date date1=Date.valueOf(str);
+ Date datex=Date.valueOf(str);
 //     Date date9=Date.valueOf(str2);//converting string into sql date      System.out.println(date);
 //                user u2 = new user(99925, "ssss", "cxx", 2568435, "fares@live.fr", doHashing("12345678"), "image",date9);
 //           //   LoginAndSignupService LASS =new LoginAndSignupService();
@@ -393,7 +382,7 @@ String str="2020-09-01";
 //                   
 //  
 // Serviceevenement se = new Serviceevenement() ; 
-evenement e = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
+evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
 //  evenement e1 = new evenement(4, "aaaaaaa", "c", "7 rue 2938", date1, 120.0f) ; 
 //  //se.ajouter(e1);
 //    //se.modifier(e);
@@ -403,22 +392,21 @@ evenement e = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
 //   //us.ajouter(ux);
 //  Servicereservation_event resE=new Servicereservation_event();
 //  reservation_event resev=new reservation_event(22,82,e,ux);
->>>>>>> origin/zarga
+
   //resE.ajout(resev);
  // resE.modifier(22,resev);
   //resE.supprimer(22);
   
      //System.out.println(resE.afficher());
-        
-<<<<<<< HEAD
+
 
   
      launch(args);              
-=======
+
      
      
      // GESTION SPONSOR 
-     String xx2="2011-10-01";  
+     String x2="2011-10-01";  
      Date date_sp=Date.valueOf(xx2);
      sponsor s = new sponsor(25, "Vitalait", 22252718, "amine@zarga.tn", date_sp, 12.0f,e) ; 
      Servicesponsor ss = new Servicesponsor(); 
@@ -426,7 +414,7 @@ evenement e = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
      ss.ajouter(s);
                    
                    
->>>>>>> origin/zarga
+
     }
     
     
