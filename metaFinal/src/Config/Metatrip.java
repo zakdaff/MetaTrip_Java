@@ -22,6 +22,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import javafx.application.Application;
+import java.io.FileOutputStream;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import entities.reservation_voyage;
 import services.abonnement.abonnement_Service;
 import services.evenement.Serviceevenement;
 import services.evenement.Servicereservation_event;
@@ -142,7 +147,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
               //LASS.Signup(u2);
           //    System.out.println(LASS.login("nex@live.fr", "aaaa"));
            //    us.ajouter(u1);
-        // reservation_voyage rv=new reservation_voyage();
+         reservation_voyage rv=new reservation_voyage();
       //    rv.setIdrv(999);
    
        /*   rv.setDate_depart(date);
@@ -156,7 +161,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
        //rvs.ajouter(rv);  
         //rvs.modifier(10, rv);
         //rvs.supprimer(6);
-    //     System.out.println(rvs.afficher());
+    //   System.out.println(rvs.afficher());
          
          
         //System.out.println(vo3.getVoyage());
@@ -238,12 +243,13 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
   //resE.ajout(resev);
  // resE.modifier(22,resev);
   //resE.supprimer(22);
-  
+  us.factureuser(rvs.affichervoyageByid(10));
      //System.out.println(resE.afficher());
-        
 
+
+     launch(args);      
+     
   
-     launch(args);              
     }
     
     

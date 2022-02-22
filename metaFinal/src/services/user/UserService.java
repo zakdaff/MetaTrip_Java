@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package services.user;
-
+import java.io.FileOutputStream;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import entities.user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +15,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
-
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,13 +25,32 @@ import java.util.logging.Logger;
 import java.sql.SQLException;
 import Config.Datasource;
 import static Config.Metatrip.doHashing;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+
 import entities.reservation_voyage;
 import entities.voyage;
+import java.io.FileOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import services.IService;
 import services.IService;
+import services.reservation_voyage.Reservation_Voyage_Service;
 
+
+
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+ 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import entities.reservation_voiture;
 /**
  *
  * @author FLAM
@@ -324,7 +348,58 @@ List<Object> voyages = new ArrayList<>();
         return voyages;  
     
     }
+    
 
+    public void factureuser (reservation_voyage rv){
+        
+              ArrayList table= new ArrayList <>();
+         try {
+            String  file_name="C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\MetatripVoitureFacture.pdf";
+
+          Document document=new Document ();
+          PdfWriter.getInstance(document, new FileOutputStream(file_name));
+     document.open () ;
+
+        Paragraph para=new Paragraph ("Facture  Voyage :");
+        document.add (para);
+
+        //simple paragraph
+
+
+                            //add table
+                             PdfPTable pdfPTable =new PdfPTable(7);
+                              
+
+                              PdfPCell pdfCell1 = new PdfPCell(new Phrase("Id Voyage ")); 
+                     
+                     
+                            PdfPCell pdfCell2 = new PdfPCell(new Phrase("Date_depart"));
+                             PdfPCell pdfCell3 = new PdfPCell(new Phrase("Date_depart"));
+                              PdfPCell pdfCell4 = new PdfPCell(new Phrase("Etat"));
+                            PdfPCell pdfCell50 = new PdfPCell(new Phrase("Nom&Prenom:"));
+                                    PdfPCell pdfCell5 = new PdfPCell(new Phrase("IDVoiture:"));
+                                       PdfPCell pdfCell555 = new PdfPCell(new Phrase("Ref_paiement:")); 
+                               pdfPTable.addCell(pdfCell1);
+                                pdfPTable.addCell(pdfCell2);
+                                 pdfPTable.addCell(pdfCell3);
+                                  pdfPTable.addCell(pdfCell4);
+                                        pdfPTable.addCell(pdfCell50);
+                                         pdfPTable.addCell(pdfCell5);
+                        pdfPTable.addCell(pdfCell555);
+                            pdfPTable.addCell(""+rv.getIdrv()+"");
+                            pdfPTable.addCell (""+rv.getDate_depart()+"");
+                            pdfPTable.addCell(""+rv.getDate_arrivee()+"");
+                            pdfPTable.addCell(""+rv.getEtat()+"");
+                            pdfPTable.addCell (""+rv.getIdu()+"");
+                              pdfPTable.addCell (""+rv.getIdv()+"");
+                           pdfPTable.addCell (""+rv.getRef_paiement()+"");
+                          document.add(pdfPTable);
+                        document.close();
+                        document.close ();
+        } catch (Exception Exception) {
+         System.out.println(Exception);
+ }
+    }
   
     
 
