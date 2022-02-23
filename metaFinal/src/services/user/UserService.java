@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 import java.sql.SQLException;
 import Config.Datasource;
 import static Config.Metatrip.doHashing;
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 
@@ -39,18 +40,62 @@ import services.reservation_voyage.Reservation_Voyage_Service;
 
 
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
+import javax.imageio.IIOException;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
+import javax.imageio.stream.ImageOutputStream;
+
+  
+import org.apache.pdfbox.cos.COSArray;
+import org.apache.pdfbox.cos.COSDictionary;
+import org.apache.pdfbox.cos.COSName;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.common.PDStream;
+import org.apache.pdfbox.pdmodel.graphics.color.PDDeviceGray;
+import org.apache.pdfbox.pdmodel.graphics.color.PDDeviceRGB;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
- 
+ import org.apache.pdfbox.pdmodel.graphics.xobject.PDXObjectImage;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.sun.scenario.effect.ImageData;
 import entities.reservation_voiture;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.graphics.PDXObject;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.pdfbox.pdmodel.graphics.xobject.PDJpeg;
+
+
 /**
  *
  * @author FLAM
@@ -351,21 +396,24 @@ List<Object> voyages = new ArrayList<>();
     
 
     public void factureuser (reservation_voyage rv){
-        
+         
               ArrayList table= new ArrayList <>();
-         try {
-            String  file_name="C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\MetatripVoitureFacture.pdf";
-
+              String imag1e="C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\metaFinal\\src\\services\\user\\websiteQRCode_noFrame.png";
+ 
+            
+              try {
+                 
           Document document=new Document ();
-          PdfWriter.getInstance(document, new FileOutputStream(file_name));
+         
+          
+         
      document.open () ;
 
         Paragraph para=new Paragraph ("Facture  Voyage :");
         document.add (para);
 
         //simple paragraph
-
-
+ 
                             //add table
                              PdfPTable pdfPTable =new PdfPTable(7);
                               
@@ -379,7 +427,12 @@ List<Object> voyages = new ArrayList<>();
                             PdfPCell pdfCell50 = new PdfPCell(new Phrase("Nom&Prenom:"));
                                     PdfPCell pdfCell5 = new PdfPCell(new Phrase("IDVoiture:"));
                                        PdfPCell pdfCell555 = new PdfPCell(new Phrase("Ref_paiement:")); 
-                               pdfPTable.addCell(pdfCell1);
+                                       
+                         PDPage page=new PDPage();
+                        
+                                      
+
+                                       pdfPTable.addCell(pdfCell1);
                                 pdfPTable.addCell(pdfCell2);
                                  pdfPTable.addCell(pdfCell3);
                                   pdfPTable.addCell(pdfCell4);
@@ -394,8 +447,10 @@ List<Object> voyages = new ArrayList<>();
                               pdfPTable.addCell (""+rv.getIdv()+"");
                            pdfPTable.addCell (""+rv.getRef_paiement()+"");
                           document.add(pdfPTable);
+   
                         document.close();
                         document.close ();
+
         } catch (Exception Exception) {
          System.out.println(Exception);
  }
@@ -430,7 +485,6 @@ List<Object> voyages = new ArrayList<>();
             
          
 
- 
 
 }
     

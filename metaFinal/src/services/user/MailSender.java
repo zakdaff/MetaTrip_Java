@@ -8,6 +8,7 @@
 
 package services.user;
 import entities.user;
+import java.io.IOException;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -70,4 +71,7 @@ public class MailSender {
         }
         return null;
     }
+    
+   
+ 
 }

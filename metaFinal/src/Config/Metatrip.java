@@ -41,7 +41,25 @@ import services.voiture.VoitureCRUD;
 import services.voyage.voyageService;
 import services.voyage.voyage_organise.VoyageORG_Service;
 import services.voyage.voyage_virtuel.VoyageVRT_Service;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing. EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
+
+
+
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.HashMap;
+import java.util.Hashtable;
+
+import java.util.Map;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image. ImageType;
 /**
  *
  * @author FLAM
@@ -114,7 +132,7 @@ public class Metatrip extends Application {
 
         user u1 = new user(9999, 5866, "dafdouf", "zakzouk", 5895, "zak@live.fr", "0000", "image",date2);
          user u8 = new user(811,199525, "ssss", "cxx", 2568435, "nex@live.fr", doHashing("12345678"), "image",date2);
-         us.ajouter(u8);
+        // us.ajouter(u8);
         //us.supprimer(810);
         user u3 = new user(5866, "ges", "nay", 5895, "zak@live.fr", "0000", "image",date2);
         user u4 = new user(58656, "khaldi", "imen", 5895, "zak@live.fr", "0000", "image",date2);
@@ -134,20 +152,20 @@ public class Metatrip extends Application {
           //voyage_organise vo4 = new voyage_organise(10.6f, "flam", 3, v);
                // voyage_organise vom = new voyage_organise(990.6f, "sounay", 3);
                 //vos.ajouter(vo3);
-        System.out.println("List voyages par date croissante"+ us.VoyageParDates());
-           System.out.println("Le nombre de users est = "+us.nbUsers());
+      //  System.out.println("List voyages par date croissante"+ us.VoyageParDates());
+         //  System.out.println("Le nombre de users est = "+us.nbUsers());
 
-                      System.out.println("Le nombre de voyages disponibles est = "+us.nbVoyagesDispo());
+                     // System.out.println("Le nombre de voyages disponibles est = "+us.nbVoyagesDispo());
 System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
      String str="2020-09-01";  
       String str2="2050-09-01";  
      Date date1=Date.valueOf(str);
      Date date9=Date.valueOf(str2);//converting string into sql date      System.out.println(date);
-                user u2 = new user(99925, "ssss", "cxx", 2568435, "bensaid.mohamedali@esprit.tn", "no5", "image",date9);
+                user u2 = new user(99925, "ssss", "cxx", 2568435, "mohamedalimemmi9@gmail.com", "ghassen123", "image",date9);
              
               LoginAndSignupService LASS =new LoginAndSignupService();
              //LASS.Signup(u2);
-             MailSender.sendMail(u2);
+            // MailSender.sendMail(u2);
           //    System.out.println(LASS.login("nex@live.fr", "aaaa"));
            //    us.ajouter(u1);
          reservation_voyage rv=new reservation_voyage();
@@ -226,10 +244,10 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
                   // rhs.modifier(2, rh);
                   // rhs.supprimer(2);
                    
-                      System.out.println("les voyages les plus Réservé:"+rvs.ListVoyagePlusRéservé());
-        System.out.println ("le maximum de voyage Réserve est "+rvs.LeMaximumDevoyageReserve());
-             System.out.println ("le minimum de voyage Réserve est "+rvs.LeMinimumevoyageReserve());
-                     System.out.println ("la list  de voyage Trié selon Prix est "+rvs.listedevoyageTrierParPrix());
+                    //  System.out.println("les voyages les plus Réservé:"+rvs.ListVoyagePlusRéservé());
+        //System.out.println ("le maximum de voyage Réserve est "+rvs.LeMaximumDevoyageReserve());
+          //   System.out.println ("le minimum de voyage Réserve est "+rvs.LeMinimumevoyageReserve());
+            //         System.out.println ("la list  de voyage Trié selon Prix est "+rvs.listedevoyageTrierParPrix());
                    
   
  Serviceevenement se = new Serviceevenement() ; 
@@ -246,15 +264,30 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
   //resE.ajout(resev);
  // resE.modifier(22,resev);
   //resE.supprimer(22);
-  us.factureuser(rvs.affichervoyageByid(10));
+ // us.factureuser(rvs.affichervoyageByid(10));
      //System.out.println(resE.afficher());
 
 
-      
-     
-  
-    }
+       String grCodeData ="https://pbs.twimg.com/profile_images/1118720684950085632/Qc9LxLu0_400x400.png";
+         String filePath = "C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\metaFinal\\src\\services\\user\\websiteQRCode_noFrame.png";
+    String charset ="UTF-8"; // or "ISO-8859-1";
+   
+   
+  try{
+    Map <EncodeHintType,ErrorCorrectionLevel> ss = new Hashtable < EncodeHintType, ErrorCorrectionLevel > ();
+    ss.put (EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+    BitMatrix matrix =new MultiFormatWriter().encode(new String(grCodeData.getBytes(charset), charset),
+        BarcodeFormat.QR_CODE, 200, 200, (Hashtable) ss);
+    MatrixToImageWriter.writeToFile(matrix, filePath.substring(filePath
+        .lastIndexOf ('.') + 1), new File(filePath));
+ 
+    System.out.println("QR Code image created successfully!");
+  }catch(Exception ex){
+            System.err.println(ex.getMessage());
+        }
     
+  }
+        
     
     public static String doHashing(String password) {
         try {
