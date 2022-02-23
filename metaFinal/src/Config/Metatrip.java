@@ -58,6 +58,13 @@ import com.stripe.model.Charge;
 import com.stripe.model.Customer;
 import com.stripe.net.RequestOptions;
 import java.util.ArrayList;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 public class Metatrip  extends Application {
@@ -267,7 +274,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
     //se.modifier(e);
   // se.supprimer(1);
   // System.out.println(se.afficher());
-   user ux = new user(817,"195", "nex", "nex", "256845", "nex@live.fr", "aaaa", "image",date);
+   user ux = new user(817,"195", "youssef", "cheour", "256845", "youssef.cheour@esprit.tn", "aaaa", "image",date);
    //us.ajouter(ux);
   Servicereservation_event resE=new Servicereservation_event();
   reservation_event resev=new reservation_event(22,82,e,ux);
@@ -429,7 +436,7 @@ evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
 //    //se.modifier(e);
 //  // se.supprimer(1);
 //  // System.out.println(se.afficher());
-//   user ux = new user(817,195, "nex", "nex", 256845, "nex@live.fr", "aaaa", "image",date);
+//  user ux = new user(817,195, "nex", "nex", 256845, "nex@live.fr", "aaaa", "image",date);
 //   //us.ajouter(ux);
 //  Servicereservation_event resE=new Servicereservation_event();
 //  reservation_event resev=new reservation_event(22,82,e,ux);
@@ -456,7 +463,7 @@ evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
                    
           
         // The data that the QR code will contain
-        String dataz = "https://www.google.com/search?q=CRIS+ronaldo&client=opera-gx&hs=4Jj&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjkgb_i75b2AhUyuaQKHdlmDxsQ_AUoAXoECAIQAw&biw=1495&bih=723&dpr=1.25#imgrc=N22G2_9SDRtC_M"+ux.toString();
+        String dataz = ux.toString();
  
         // The path where the image will get saved
         String path = "C:/Users/FLAM/Desktop/demo.png";
@@ -475,7 +482,35 @@ evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
         // in the specified folder
         // as a jpg file
         createQR(dataz, path, charset, hashMap, 200, 200);
-        System.out.println("QR Code Generated!!! ");         
+        System.out.println("QR Code Generated!!! ");      
+        
+        
+        
+        
+        Document doc = new Document();
+        try {
+            PdfWriter.getInstance(doc, new FileOutputStream("C:/Users/FLAM/Desktop/ImageDemo.pdf"));
+            doc.open();
+
+            // Creating image by file name
+            String filename = "kodejava-itextpdf/src/main/resources/java.png";
+            Image image = Image.getInstance(path);
+            doc.add(image);
+
+            // The following line to prevent the "Server returned 
+            // HTTP response code: 403" error.
+            System.setProperty("http.agent", "Chrome");
+
+            // Creating image from a URL
+            String url = "https://kodejava.org/wp-content/uploads/2017/01/kodejava.png";
+            image = Image.getInstance(path);
+            doc.add(image);
+        } catch (DocumentException | IOException ez) {
+            ez.printStackTrace();
+        } finally {
+            doc.close();
+        }
+        
 
     }
     
