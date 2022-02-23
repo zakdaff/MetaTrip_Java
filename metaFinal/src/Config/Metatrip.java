@@ -53,7 +53,7 @@ public class Metatrip extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/UserList.fxml"));
 			Scene scene = new Scene(root);
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			//scene.getStylesheets().add(getClass().getResource("/view/adminPanel/style.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
@@ -101,12 +101,12 @@ public class Metatrip extends Application {
        //  vov.modifier(3,vov2);
         // vov.supprimer(3);
 
-        user u1 = new user(9999, 5866, "dafdouf", "zakzouk", 5895, "zak@live.fr", "0000", "image",date2);
-         user u8 = new user(811,199525, "ssss", "cxx", 2568435, "nex@live.fr", doHashing("12345678"), "image",date2);
+        user u1 = new user(9999, "5866", "dafdouf", "zakzouk", "5895", "zak@live.fr", "0000", "image",date2);
+         user u8 = new user(811,"199525", "ssss", "cxx", "2568435", "nex@live.fr", doHashing("12345678"), "image",date2);
          us.ajouter(u8);
         //us.supprimer(810);
-        user u3 = new user(5866, "ges", "nay", 5895, "zak@live.fr", "0000", "image",date2);
-        user u4 = new user(58656, "khaldi", "imen", 5895, "zak@live.fr", "0000", "image",date2);
+        user u3 = new user("5866", "ges", "nay", "5895", "zak@live.fr", "0000", "image",date2);
+        user u4 = new user("58656", "khaldi", "imen", "5895", "zak@live.fr", "0000", "image",date2);
 
        voyage v = new voyage(501,"tounis", "c://berlin.png");
              voyage chrf = new voyage(967,"istanbul", "c://antalya.png");
@@ -132,7 +132,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
       String str2="2050-09-01";  
      Date date1=Date.valueOf(str);
      Date date9=Date.valueOf(str2);//converting string into sql date      System.out.println(date);
-                user u2 = new user(99925, "ssss", "cxx", 2568435, "fares@live.fr", doHashing("12345678"), "image",date9);
+                user u2 = new user("99925", "ssss", "cxx", "2568435", "fares@live.fr", doHashing("12345678"), "image",date9);
            //   LoginAndSignupService LASS =new LoginAndSignupService();
               //LASS.Signup(u2);
           //    System.out.println(LASS.login("nex@live.fr", "aaaa"));
@@ -185,7 +185,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
               rhv.setUser(u2);
                rhv.setVoiture(v99);*/
             
-                 user u18 = new user(811,199525, "ssss", "cxx", 2568435, "nex@live.fr", doHashing("12345678"), "image",date2);
+                 user u18 = new user(811,"199525", "ssss", "cxx", "2568435", "nex@live.fr", doHashing("12345678"), "image",date2);
               // us.ajouter(u18);
                             Voiture v78 =new Voiture(2001,"220TU120",12,"image","bmw");
                              //     VC.ajouterVoiture(v78);
@@ -226,7 +226,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
     //se.modifier(e);
   // se.supprimer(1);
   // System.out.println(se.afficher());
-   user ux = new user(817,195, "nex", "nex", 256845, "nex@live.fr", "aaaa", "image",date);
+   user ux = new user(817,"195", "nex", "nex", "256845", "nex@live.fr", "aaaa", "image",date);
    //us.ajouter(ux);
   Servicereservation_event resE=new Servicereservation_event();
   reservation_event resev=new reservation_event(22,82,e,ux);
@@ -408,10 +408,10 @@ evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
      // GESTION SPONSOR 
      String x2="2011-10-01";  
      Date date_sp=Date.valueOf(xx2);
-     sponsor s = new sponsor(25, "Vitalait", 22252718, "amine@zarga.tn", date_sp, 12.0f,e) ; 
+     sponsor s = new sponsor(25, "Vitalait", "22252718", "amine@zarga.tn", date_sp, 12.0f,e) ; 
      Servicesponsor ss = new Servicesponsor(); 
      
-     ss.ajouter(s);
+    // ss.ajouter(s);
                    
                    
 

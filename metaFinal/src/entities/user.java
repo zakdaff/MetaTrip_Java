@@ -8,19 +8,19 @@ import java.sql.Date;
  */
 public class user {
     private int Idu;
-    private double Cin;
+    private String Cin;
     private String Nom;
     private String Prenom;
     private int Role;
         
-    private double Tel;
+    private String Tel;
       private String Email;
       private String Password;
       private String Image;
       private Date dateNaissance;
 
 
-    public user(int Idu, double Cin, String Nom, String Prenom, double Tel, String Email, String Password, String Image, Date dateNaissance) {
+    public user(int Idu, String Cin, String Nom, String Prenom, String Tel, String Email, String Password, String Image, Date dateNaissance) {
         this.Idu = Idu;
         this.Cin = Cin;
         this.Nom = Nom;
@@ -36,11 +36,23 @@ public class user {
         this.Idu = Idu;
     }
 
+    public user(int Idu, String Cin, String Nom, String Prenom, String Tel, String Email, String Image, Date dateNaissance) {
+        this.Idu = Idu;
+        this.Cin = Cin;
+        this.Nom = Nom;
+        this.Prenom = Prenom;
+        this.Tel = Tel;
+        this.Email = Email;
+        this.Image = Image;
+        this.dateNaissance = dateNaissance;
+    }
+
     
-    public user(double Cin, 
+    
+    public user(String Cin, 
             String Nom,
             String Prenom, 
-            double Tel,
+            String Tel,
             String Email,
             String Password,
             String Image,
@@ -81,7 +93,7 @@ public class user {
         this.Idu = Idu;
     }
 
-    public void setCin(double Cin) {
+    public void setCin(String Cin) {
         this.Cin = Cin;
     }
 
@@ -93,7 +105,7 @@ public class user {
         this.Prenom = Prenom;
     }
 
-    public void setTel(double Tel) {
+    public void setTel(String Tel) {
         this.Tel = Tel;
     }
 
@@ -113,7 +125,7 @@ public class user {
         return Idu;
     }
 
-    public double getCin() {
+    public String getCin() {
         return Cin;
     }
 
@@ -125,7 +137,7 @@ public class user {
         return Prenom;
     }
 
-    public double getTel() {
+    public String getTel() {
         return Tel;
     }
 

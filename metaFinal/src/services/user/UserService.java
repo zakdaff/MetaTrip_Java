@@ -65,10 +65,10 @@ public class UserService implements IuserService {
             while(rs.next()){
               user u1 = new user();
                 u1.setIdu(rs.getInt(1));
-                  u1.setCin( rs.getDouble(2));
+                  u1.setCin( rs.getString(2));
                 u1.setNom(rs.getString(3));
                 u1.setPrenom(rs.getString(4));      
-                    u1.setTel(rs.getDouble(5));
+                    u1.setTel(rs.getString(5));
             
               u1.setEmail( rs.getString(6));
                u1.setPassword(rs.getString(7));
@@ -92,10 +92,10 @@ public class UserService implements IuserService {
                                                            pste = conn.prepareStatement(req10);
 
 
-                                                           pste.setDouble(1,u.getCin());
+                                                           pste.setString(1,u.getCin());
                                                            pste.setString(2, u.getNom());
                                                            pste.setString(3, u.getPrenom());
-                                                            pste.setDouble(4,u.getTel());
+                                                            pste.setString(4,u.getTel());
                                                              pste.setString(5, u.getEmail());
                                                               pste.setString(6, doHashing(u.getPassword()));
                                                                pste.setString(7, u.getImage());
@@ -148,10 +148,10 @@ public class UserService implements IuserService {
     
         try {
             pste = conn.prepareStatement(req);
-           pste.setDouble(1,u.getCin());
+           pste.setString(1,u.getCin());
             pste.setString(2, u.getNom());
             pste.setString(3, u.getPrenom());
-             pste.setDouble(4,u.getTel());
+             pste.setString(4,u.getTel());
               pste.setString(5, u.getEmail());
 
                pste.setString(6, doHashing(u.getPassword()));
@@ -195,10 +195,10 @@ public class UserService implements IuserService {
             while(rs.next()){
                 user u = new user();
                 u.setIdu(rs.getInt(1));
-                  u.setCin( rs.getDouble(2));
+                  u.setCin( rs.getString(2));
                 u.setNom(rs.getString(3));
                 u.setPrenom(rs.getString(4));      
-                    u.setTel(rs.getDouble(5));
+                    u.setTel(rs.getString(5));
             
               u.setEmail( rs.getString(6));
                u.setPassword(rs.getString(7));
@@ -269,10 +269,10 @@ public class UserService implements IuserService {
           
                    user u = new user();
                 u.setIdu(rs.getInt(1));
-                  u.setCin( rs.getDouble(2));
+                  u.setCin( rs.getString(2));
                 u.setNom(rs.getString(3));
                 u.setPrenom(rs.getString(4));      
-                    u.setTel(rs.getDouble(5));
+                    u.setTel(rs.getString(5));
             
               u.setEmail( rs.getString(6));
                u.setPassword(rs.getString(7));

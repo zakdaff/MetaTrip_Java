@@ -13,7 +13,7 @@ public class sponsor {
     
     private int idS;
     private String nomsponsor ; 
-    private double Tel; 
+    private String Tel; 
     private String email ; 
     private Date date_sp ; 
     private float prix_sp ; 
@@ -25,7 +25,7 @@ public class sponsor {
     public sponsor() {
     }
 
-    public sponsor(int idS, String nomsponsor, double Tel, String email, Date date_sp, float prix_sp, evenement evenement) {
+    public sponsor(int idS, String nomsponsor, String Tel, String email, Date date_sp, float prix_sp, evenement evenement) {
         this.idS = idS;
         this.nomsponsor = nomsponsor;
         this.Tel = Tel;
@@ -35,7 +35,7 @@ public class sponsor {
         this.evenement = evenement;
     }
 
-    public sponsor(String nomsponsor, double Tel, String email, Date date_sp, float prix_sp, evenement evenement) {
+    public sponsor(String nomsponsor, String Tel, String email, Date date_sp, float prix_sp, evenement evenement) {
         this.nomsponsor = nomsponsor;
         this.Tel = Tel;
         this.email = email;
@@ -52,7 +52,7 @@ public class sponsor {
         return nomsponsor;
     }
 
-    public double getTel() {
+    public String getTel() {
         return Tel;
     }
 
@@ -80,7 +80,7 @@ public class sponsor {
         this.nomsponsor = nomsponsor;
     }
 
-    public void setTel(double Tel) {
+    public void setTel(String Tel) {
         this.Tel = Tel;
     }
 

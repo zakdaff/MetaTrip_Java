@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="etudiant.FXMLDocumentController">
+    <children>
+        <VBox layoutX="14.0" layoutY="113.0" prefHeight="157.0" prefWidth="62.0" spacing="25.0">
+            <children>
+                <Label styleClass="labelform" stylesheets="@style.css" text="ID" />
+                <Label layoutX="10.0" layoutY="10.0" styleClass="labelform" stylesheets="@style.css" text="NOM" />
+                <Label layoutX="10.0" layoutY="27.0" styleClass="labelform" stylesheets="@style.css" text="PRENOM" />
+                <Label layoutX="10.0" layoutY="44.0" styleClass="labelform" stylesheets="@style.css" text="SEXE" />
+            </children>
+        </VBox>
+        <VBox layoutX="76.0" layoutY="113.0" prefHeight="157.0" prefWidth="180.0" spacing="15.0">
+            <children>
+                <TextField fx:id="id" editable="false" styleClass="field" stylesheets="@style.css" />
+                <TextField fx:id="nom" layoutX="10.0" layoutY="10.0" styleClass="field" stylesheets="@style.css" />
+                <TextField fx:id="prenom" layoutX="10.0" layoutY="35.0" styleClass="field" stylesheets="@style.css" />
+                <ComboBox fx:id="sexe" prefHeight="25.0" prefWidth="186.0" styleClass="box" stylesheets="@style.css" />
+            </children>
+        </VBox>
+        <Button fx:id="bsave" layoutX="14.0" layoutY="298.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" stylesheets="@style.css" text="Save">
+            <graphic>
+                <FontAwesomeIconView fill="#5d0fe4" glyphName="SAVE" size="20.0" />
+            </graphic>
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="bupdate" layoutX="104.0" layoutY="298.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" stylesheets="@style.css" text="Edit">
+            <graphic>
+                <FontAwesomeIconView fill="#5d0fe4" glyphName="EDIT" size="20.0" />
+            </graphic>
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="bdelete" layoutX="199.0" layoutY="298.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" stylesheets="@style.css" text="Delete">
+            <graphic>
+                <FontAwesomeIconView fill="#f50606" glyphName="REMOVE" size="20.0" />
+            </graphic>
+            <font>
+                <Font name="Times New Roman" size="12.0" />
+            </font>
+        </Button>
+        <Button layoutX="104.0" layoutY="349.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" stylesheets="@style.css" text="Reset">
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+            <graphic>
+                <MaterialDesignIconView fill="#470ec3" glyphName="FORMAT_CLEAR" size="20.0" />
+            </graphic>
+        </Button>
+        <TableView fx:id="table" layoutX="284.0" layoutY="113.0" onMouseClicked="#tablehandleButtonAction" prefHeight="212.0" prefWidth="481.0">
+            <columns>
+                <TableColumn fx:id="colid" prefWidth="110.0" text="ID" />
+                <TableColumn fx:id="colnom" prefWidth="127.0" text="NOM" />
+                <TableColumn fx:id="colprenom" prefWidth="121.0" text="PRENOM" />
+                <TableColumn fx:id="colsexe" prefWidth="122.0" text="SEXE" />
+            </columns>
+        </TableView>
+        <Pane layoutX="99.0" layoutY="16.0" prefHeight="76.0" prefWidth="634.0" stylesheets="@style.css">
+            <children>
+                <Label layoutX="113.0" layoutY="11.0" text="JAVAFX CRUD" textFill="#ffc300">
+                    <font>
+                        <Font name="Arial Bold" size="48.0" />
+                    </font>
+                    <graphic>
+                        <FontAwesomeIconView glyphName="CODE" size="48.0" />
+                    </graphic>
+                </Label>
+            </children>
+        </Pane>
+        <Label layoutX="706.0" layoutY="352.0" styleClass="labelform" stylesheets="@style.css" text="melo Code" />
+    </children>
+</AnchorPane>

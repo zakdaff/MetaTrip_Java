@@ -85,7 +85,7 @@ public class Servicesponsor {
                 sponsor s = new sponsor();
                 s.setIdS (rs.getInt(1));
                 s.setNomsponsor(rs.getString("nomsponsor"));
-                s.setTel(rs.getDouble("tel"));
+                s.setTel(rs.getString("tel"));
                 s.setEmail(rs.getString("email"));
                 s.setDate_sp(rs.getDate("date_sp"));
                 s.setPrix_sp(rs.getFloat("prix_sp"));
