@@ -37,17 +37,54 @@ import services.voiture.VoitureCRUD;
 import services.voyage.voyageService;
 import services.voyage.voyage_organise.VoyageORG_Service;
 import services.voyage.voyage_virtuel.VoyageVRT_Service;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.Charge;
+import com.stripe.model.Customer;
+import com.stripe.net.RequestOptions;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Metatrip extends Application {
+public class Metatrip  extends Application {
 
     /**
      * @param args the command line arguments
      */
     
     
+     public static void createQR(String data, String path,
+                                String charset, Map hashMap,
+                                int height, int width)
+        throws WriterException, IOException
+    {
+ 
+        BitMatrix matrix = new MultiFormatWriter().encode(
+            new String(data.getBytes(charset), charset),
+            BarcodeFormat.QR_CODE, width, height);
+ 
+        MatrixToImageWriter.writeToFile(
+            matrix,
+            path.substring(path.lastIndexOf('.') + 1),
+            new File(path));
+    }
     
     
+  
     	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -64,7 +101,8 @@ public class Metatrip extends Application {
     
     
     
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception, WriterException, IOException,
+               NotFoundException{
         // TODO code application logic here
         Datasource data = Datasource.getInstance();
         Datasource data2 = Datasource.getInstance();
@@ -73,6 +111,9 @@ public class Metatrip extends Application {
 
         UserService us = new UserService();
         Reservation_Voyage_Service rvs=  new Reservation_Voyage_Service();
+        
+        
+
         
         voyageService vs= new voyageService();
         
@@ -401,7 +442,7 @@ evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
 
 
   
-     launch(args);              
+   //  launch(args);              
 
      
      
@@ -413,7 +454,28 @@ evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
      
     // ss.ajouter(s);
                    
-                   
+          
+        // The data that the QR code will contain
+        String dataz = "https://www.google.com/search?q=CRIS+ronaldo&client=opera-gx&hs=4Jj&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjkgb_i75b2AhUyuaQKHdlmDxsQ_AUoAXoECAIQAw&biw=1495&bih=723&dpr=1.25#imgrc=N22G2_9SDRtC_M"+ux.toString();
+ 
+        // The path where the image will get saved
+        String path = "C:/Users/FLAM/Desktop/demo.png";
+ 
+        // Encoding charset
+        String charset = "UTF-8";
+ 
+        Map<EncodeHintType, ErrorCorrectionLevel> hashMap
+            = new HashMap<EncodeHintType,
+                          ErrorCorrectionLevel>();
+ 
+        hashMap.put(EncodeHintType.ERROR_CORRECTION,
+                    ErrorCorrectionLevel.L);
+ 
+        // Create the QR code and save
+        // in the specified folder
+        // as a jpg file
+        createQR(dataz, path, charset, hashMap, 200, 200);
+        System.out.println("QR Code Generated!!! ");         
 
     }
     
