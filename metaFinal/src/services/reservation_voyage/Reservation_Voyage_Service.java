@@ -44,7 +44,7 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
             String req2 = "INSERT INTO `reservation_voyage` (`Date_depart`,`Date_arrivee`,`etat`,`Idu`,`Idv`) VALUES (?,?,?,?,?)";
 
         try {
-        
+       
             
               pste = conn.prepareStatement(req2);
               pste.setDate(1,rv.getDate_arrivee());

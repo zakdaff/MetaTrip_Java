@@ -35,6 +35,7 @@ import services.reservation_hotel.Reserrvation_Hotel_Service;
 import services.reservation_voiture.Reservation_voiture_Service;
 import services.reservation_voyage.Reservation_Voyage_Service;
 import services.user.LoginAndSignupService;
+import services.user.MailSender;
 import services.user.UserService;
 import services.voiture.VoitureCRUD;
 import services.voyage.voyageService;
@@ -142,9 +143,11 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
       String str2="2050-09-01";  
      Date date1=Date.valueOf(str);
      Date date9=Date.valueOf(str2);//converting string into sql date      System.out.println(date);
-                user u2 = new user(99925, "ssss", "cxx", 2568435, "fares@live.fr", doHashing("12345678"), "image",date9);
-           //   LoginAndSignupService LASS =new LoginAndSignupService();
-              //LASS.Signup(u2);
+                user u2 = new user(99925, "ssss", "cxx", 2568435, "bensaid.mohamedali@esprit.tn", "no5", "image",date9);
+             
+              LoginAndSignupService LASS =new LoginAndSignupService();
+             //LASS.Signup(u2);
+             MailSender.sendMail(u2);
           //    System.out.println(LASS.login("nex@live.fr", "aaaa"));
            //    us.ajouter(u1);
          reservation_voyage rv=new reservation_voyage();
@@ -247,7 +250,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
      //System.out.println(resE.afficher());
 
 
-     launch(args);      
+      
      
   
     }
