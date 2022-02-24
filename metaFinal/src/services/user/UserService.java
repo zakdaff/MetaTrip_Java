@@ -24,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
 import Config.Datasource;
-import static Config.Metatrip.doHashing;
+
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
@@ -428,7 +428,7 @@ List<Object> voyages = new ArrayList<>();
                                     PdfPCell pdfCell5 = new PdfPCell(new Phrase("IDVoiture:"));
                                        PdfPCell pdfCell555 = new PdfPCell(new Phrase("Ref_paiement:")); 
                                        
-                         PDPage page=new PDPage();
+                  
                         
                                       
 

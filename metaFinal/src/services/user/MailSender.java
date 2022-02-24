@@ -10,13 +10,21 @@ package services.user;
 import entities.user;
 import java.io.IOException;
 import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.Authenticator;
+import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 /**
  *
@@ -72,6 +80,65 @@ public class MailSender {
         return null;
     }
     
+    
+   public static void sendFacture(String to){
+   
+    to="fares.lamloum@esprit.tn";//change accordingly   
+        final String user="solidev.3a18@gmail.com";//change accordingly   
+       //change accordingly     
+
+        //1) get the session object      
+          Properties p = new Properties();
+        
+        p.put("mail.smtp.auth", "true");
+        p.put("mail.smtp.starttls.enable", "true");
+        p.put("mail.smtp.host", "smtp.gmail.com");
+             p.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        p.put("mail.smtp.port", "587");
+        
+        String myAccountEmail = "solidev.3a18@gmail.com";
+        String password = "flam123.";
+        
+        Session session = Session.getInstance(p , new Authenticator() {
+        @Override 
+        protected PasswordAuthentication getPasswordAuthentication() {
+         return new PasswordAuthentication(myAccountEmail, password);
+      }
+        });     
+
+        //2) compose message      
+        try{    
+            MimeMessage message = new MimeMessage(session);    
+            message.setFrom(new InternetAddress(user));     
+            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
+            message.setSubject(" Facture Metatrip");         
+
+            //3) create MimeBodyPart object and set your message text        
+            BodyPart messageBodyPart1 = new MimeBodyPart();     
+            messageBodyPart1.setText("Merci pour votre confiance ,voici votre facture de Reservation ");          
+
+            //4) create new MimeBodyPart object and set DataHandler object to this object        
+            MimeBodyPart messageBodyPart2 = new MimeBodyPart();      
+            String filename = "C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\MetatripVoitureFacture.pdf";//change accordingly     
+            DataSource source = new FileDataSource(filename);    
+            messageBodyPart2.setDataHandler(new DataHandler(source));    
+            messageBodyPart2.setFileName(filename);             
+
+            //5) create Multipart object and add MimeBodyPart objects to this object        
+            Multipart multipart = new MimeMultipart();    
+            multipart.addBodyPart(messageBodyPart1);     
+            multipart.addBodyPart(messageBodyPart2);      
+
+            //6) set the multiplart object to the message object    
+            message.setContent(multipart );        
+
+            //7) send message    
+            Transport.send(message);      
+            System.out.println("message sent....");   
+
+        }catch (MessagingException ex) {ex.printStackTrace();}  
+    }
+   }
    
  
-}
+

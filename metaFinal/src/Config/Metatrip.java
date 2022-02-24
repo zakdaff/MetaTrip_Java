@@ -58,8 +58,25 @@ import java.util.HashMap;
 import java.util.Hashtable;
 
 import java.util.Map;
+import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.Authenticator;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image. ImageType;
+import static services.user.UserService.doHashing;
 /**
  *
  * @author FLAM
@@ -161,11 +178,12 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
       String str2="2050-09-01";  
      Date date1=Date.valueOf(str);
      Date date9=Date.valueOf(str2);//converting string into sql date      System.out.println(date);
-                user u2 = new user(99925, "ssss", "cxx", 2568435, "mohamedalimemmi9@gmail.com", "ghassen123", "image",date9);
+                user u2 = new user(99925, "ssss", "cxx", 2568435, "bensaid.mohamedali@esprit.tn", "ghassen123", "image",date9);
              
               LoginAndSignupService LASS =new LoginAndSignupService();
              //LASS.Signup(u2);
-            // MailSender.sendMail(u2);
+         //   MailSender.sendMail(u2);
+         MailSender.sendFacture("fares.lamlou@esprit.tn");
           //    System.out.println(LASS.login("nex@live.fr", "aaaa"));
            //    us.ajouter(u1);
          reservation_voyage rv=new reservation_voyage();
@@ -272,7 +290,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
          String filePath = "C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\metaFinal\\src\\services\\user\\websiteQRCode_noFrame.png";
     String charset ="UTF-8"; // or "ISO-8859-1";
    
-   
+  /* 
   try{
     Map <EncodeHintType,ErrorCorrectionLevel> ss = new Hashtable < EncodeHintType, ErrorCorrectionLevel > ();
     ss.put (EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
@@ -285,8 +303,9 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
   }catch(Exception ex){
             System.err.println(ex.getMessage());
         }
-    
-  }
+      */  
+  
+    }
         
     
     public static String doHashing(String password) {
