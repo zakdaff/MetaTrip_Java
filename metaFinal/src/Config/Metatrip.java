@@ -52,11 +52,8 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.stripe.Stripe;
-import com.stripe.exception.StripeException;
-import com.stripe.model.Charge;
-import com.stripe.model.Customer;
-import com.stripe.net.RequestOptions;
+
+
 import java.util.ArrayList;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -66,6 +63,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import services.user.MailSender;
 
 public class Metatrip  extends Application {
 
@@ -150,7 +148,8 @@ public class Metatrip  extends Application {
         // vov.supprimer(3);
 
         user u1 = new user(9999, "5866", "dafdouf", "zakzouk", "5895", "zak@live.fr", "0000", "image",date2);
-         user u8 = new user(811,"199525", "ssss", "cxx", "2568435", "nex@live.fr", doHashing("12345678"), "image",date2);
+         user u8 = new user(811,"199525", "ssss", "cxx", "2568435", "fares.lamloum@esprit.tn", doHashing("12345678"), "image",date2);
+          MailSender.sendMail(u8);
          us.ajouter(u8);
         //us.supprimer(810);
         user u3 = new user("5866", "ges", "nay", "5895", "zak@live.fr", "0000", "image",date2);
