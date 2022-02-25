@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 23 fév. 2022 à 20:59
+-- Généré le : sam. 26 fév. 2022 à 00:12
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -46,6 +46,7 @@ CREATE TABLE `abonnement` (
 CREATE TABLE `chambre` (
   `idc` int(11) NOT NULL,
   `numc` int(20) NOT NULL,
+  `image` varchar(40) NOT NULL,
   `type` varchar(20) NOT NULL,
   `etat` enum('DISPO','INDISPO') NOT NULL,
   `idh` int(11) NOT NULL
@@ -107,26 +108,27 @@ CREATE TABLE `hotel` (
   `Idh` int(11) NOT NULL,
   `Nom_hotel` varchar(20) NOT NULL,
   `Nb_etoiles` int(11) NOT NULL,
-  `Adresse` varchar(50) NOT NULL
+  `Adresse` varchar(50) NOT NULL,
+  `image` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `hotel`
 --
 
-INSERT INTO `hotel` (`Idh`, `Nom_hotel`, `Nb_etoiles`, `Adresse`) VALUES
-(1, 'gulden tulip', 4, 'gammarth'),
-(2, '4 seasons', 4, 'gammarth'),
-(3, '4 seasons', 4, 'gammarth'),
-(4, '4 seasons', 4, 'gammarth'),
-(5, '4 seasons', 4, 'gammarth'),
-(6, '4 seasons', 4, 'gammarth'),
-(7, '4 seasons', 4, 'gammarth'),
-(8, '4 seasons', 4, 'gammarth'),
-(9, '4 seasons', 4, 'gammarth'),
-(10, '4 seasons', 4, 'gammarth'),
-(11, '4 seasons', 4, 'gammarth'),
-(12, 'gulden tulip', 4, 'gammarth');
+INSERT INTO `hotel` (`Idh`, `Nom_hotel`, `Nb_etoiles`, `Adresse`, `image`) VALUES
+(1, 'gulden tulip', 4, 'gammarth', ''),
+(2, '4 seasons', 4, 'gammarth', ''),
+(3, '4 seasons', 4, 'gammarth', ''),
+(4, '4 seasons', 4, 'gammarth', ''),
+(5, '4 seasons', 4, 'gammarth', ''),
+(6, '4 seasons', 4, 'gammarth', ''),
+(7, '4 seasons', 4, 'gammarth', ''),
+(8, '4 seasons', 4, 'gammarth', ''),
+(9, '4 seasons', 4, 'gammarth', ''),
+(10, '4 seasons', 4, 'gammarth', ''),
+(11, '4 seasons', 4, 'gammarth', ''),
+(12, 'gulden tulip', 4, 'gammarth', '');
 
 -- --------------------------------------------------------
 
@@ -206,7 +208,7 @@ CREATE TABLE `reservation_voiture` (
   `Trajet` varchar(20) NOT NULL,
   `Idu` int(11) NOT NULL,
   `Idvoit` int(11) NOT NULL,
-  `idch` int(11) NOT NULL
+  `idch` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -287,7 +289,7 @@ CREATE TABLE `user` (
   `Tel` varchar(20) NOT NULL,
   `Email` varchar(38) NOT NULL,
   `Password` varchar(50) NOT NULL,
-  `Image` varchar(20) NOT NULL,
+  `Image` varchar(40) NOT NULL,
   `Role` int(11) DEFAULT 0,
   `dateNaissance` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -350,7 +352,8 @@ INSERT INTO `user` (`Idu`, `Cin`, `Nom`, `Prenom`, `Tel`, `Email`, `Password`, `
 (825, '12345879', 'azzazaz', 'zzzzzzzzzz', '98665541', 'fares@esprit.tn', '5d793fc5b00a2348c3fb9ab59e5ca98a', 'fares.png', 0, '2000-02-02'),
 (826, '11223344', 'lamloum', 'fares', '98665580', 'fareslamloum@gmail.com', 'ab4f63f9ac65152575886860dde480a1', 'fares.png', 0, '2000-02-07'),
 (827, '1236987', 'lamloum', 'fares', '98663217', 'flam@gmail.com', '54965f9cd7e81588669cbbb393950569', 'fares.jpg', 0, '2000-02-07'),
-(828, '1230000', 'lamloum', 'fares', '98332140', 'fareslam@esprit.tn', '74b87337454200d4d33f80c4663dc5e5', 'fares.png', 0, '2000-07-08');
+(828, '1230000', 'lamloum', 'fares', '98332140', 'fareslam@esprit.tn', '74b87337454200d4d33f80c4663dc5e5', 'fares.png', 0, '2000-07-08'),
+(831, '199525', 'ssss', 'cxx', '2568435', 'fares.lamloum@esprit.tn', '550e1bafe077ff0b0b67f4e32f29d751', 'image', 0, '2011-10-01');
 
 -- --------------------------------------------------------
 
@@ -394,7 +397,7 @@ INSERT INTO `voiture` (`Idvoit`, `Matricule`, `Puissance_fiscalle`, `Image_v`, `
 CREATE TABLE `voyage` (
   `Idv` int(11) NOT NULL,
   `Pays` varchar(20) NOT NULL,
-  `Image_pays` varchar(20) NOT NULL
+  `Image_pays` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -660,7 +663,7 @@ ALTER TABLE `sponsor`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `Idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=831;
+  MODIFY `Idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=832;
 
 --
 -- AUTO_INCREMENT pour la table `voiture`

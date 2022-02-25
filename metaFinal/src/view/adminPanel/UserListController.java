@@ -6,6 +6,11 @@
 package view.adminPanel;
 
 import Config.Datasource;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.*;
+import com.itextpdf.text.pdf.PdfPTable;
 import entities.user;
 import java.net.URL;
 import java.sql.Connection;
@@ -13,6 +18,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -321,7 +327,67 @@ public class UserListController implements Initializable {
     
    
     
-  
+  /*
+    public void factureuser (user u){
+         
+              ArrayList table= new ArrayList <>();
+              String imag1e="C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\metaFinal\\src\\services\\user\\websiteQRCode_noFrame.png";
+ 
+            
+              try {
+                 
+          Document document=new Document ();
+         
+          
+         
+     document.open () ;
+
+        Paragraph para=new Paragraph ("Facture  Voyage :");
+        document.add (para);
+
+        //simple paragraph
+ 
+                            //add table
+                             PdfPTable pdfPTable =new PdfPTable(7);
+                              
+
+                              PdfPCell pdfCell1 = new PdfPCell(new Phrase("Id Voyage ")); 
+                     
+                     
+                            PdfPCell pdfCell2 = new PdfPCell(new Phrase("Date_depart"));
+                             PdfPCell pdfCell3 = new PdfPCell(new Phrase("Date_depart"));
+                              PdfPCell pdfCell4 = new PdfPCell(new Phrase("Etat"));
+                            PdfPCell pdfCell50 = new PdfPCell(new Phrase("Nom&Prenom:"));
+                                    PdfPCell pdfCell5 = new PdfPCell(new Phrase("IDVoiture:"));
+                                       PdfPCell pdfCell555 = new PdfPCell(new Phrase("Ref_paiement:")); 
+                                       
+                         //PDPage page=new PDPage();
+                        
+                                      
+
+                                       pdfPTable.addCell(pdfCell1);
+                                pdfPTable.addCell(pdfCell2);
+                                 pdfPTable.addCell(pdfCell3);
+                                  pdfPTable.addCell(pdfCell4);
+                                        pdfPTable.addCell(pdfCell50);
+                                         pdfPTable.addCell(pdfCell5);
+                        pdfPTable.addCell(pdfCell555);
+                            pdfPTable.addCell(""+rv.getIdrv()+"");
+                            pdfPTable.addCell (""+rv.getDate_depart()+"");
+                            pdfPTable.addCell(""+rv.getDate_arrivee()+"");
+                            pdfPTable.addCell(""+rv.getEtat()+"");
+                            pdfPTable.addCell (""+rv.getIdu()+"");
+                              pdfPTable.addCell (""+rv.getIdv()+"");
+                           pdfPTable.addCell (""+rv.getRef_paiement()+"");
+                          document.add(pdfPTable);
+   
+                        document.close();
+                        document.close ();
+
+        } catch (Exception Exception) {
+         System.out.println(Exception);
+ }
+    }*/
 		
     
 }
