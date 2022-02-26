@@ -54,6 +54,7 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Hashtable;
 
@@ -77,6 +78,8 @@ import javax.mail.internet.MimeMultipart;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image. ImageType;
 import static services.user.UserService.doHashing;
+import services.voyage.voyage_organise.mapa;
+
 /**
  *
  * @author FLAM
@@ -173,7 +176,7 @@ public class Metatrip extends Application {
          //  System.out.println("Le nombre de users est = "+us.nbUsers());
 
                      // System.out.println("Le nombre de voyages disponibles est = "+us.nbVoyagesDispo());
-System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
+//System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
      String str="2020-09-01";  
       String str2="2050-09-01";  
      Date date1=Date.valueOf(str);
@@ -183,7 +186,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
               LoginAndSignupService LASS =new LoginAndSignupService();
              //LASS.Signup(u2);
          //   MailSender.sendMail(u2);
-         MailSender.sendFacture("fares.lamlou@esprit.tn");
+       //  MailSender.sendFacture("fares.lamlou@esprit.tn");
           //    System.out.println(LASS.login("nex@live.fr", "aaaa"));
            //    us.ajouter(u1);
          reservation_voyage rv=new reservation_voyage();
@@ -290,8 +293,9 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
          String filePath = "C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\metaFinal\\src\\services\\user\\websiteQRCode_noFrame.png";
     String charset ="UTF-8"; // or "ISO-8859-1";
    
-  /* 
-  try{
+   
+  /*
+try{
     Map <EncodeHintType,ErrorCorrectionLevel> ss = new Hashtable < EncodeHintType, ErrorCorrectionLevel > ();
     ss.put (EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
     BitMatrix matrix =new MultiFormatWriter().encode(new String(grCodeData.getBytes(charset), charset),
@@ -302,11 +306,18 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
     System.out.println("QR Code image created successfully!");
   }catch(Exception ex){
             System.err.println(ex.getMessage());
-        }
-      */  
-  
-    }
+        }*/
+
+ try{
+		final mapa example = new mapa("test");
+	
+                }catch(Exception e11){
+                    System.out.println(e11);
+                }
         
+    
+
+    }     
     
     public static String doHashing(String password) {
         try {
