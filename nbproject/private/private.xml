@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/user/LoginAndSignupService.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/voiture/VoitureCRUD.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/entities/etat.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/entities/Voiture.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/Config/Metatrip.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/entities/Chauffeur.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/Config/Datasource.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/voiture/VoitureService.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/entities/reservation_voiture.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/chauffeur/chauffeur_services.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/chauffeur/Ichaufffeur.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/reservation_voiture/Reservation_voiture_Service.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/IService.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/voiture/Ivoiture.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/reservation_voiture/IReservation_voiture.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/entities/user.java</file>
+        </group>
+    </open-files>
+</project-private>
