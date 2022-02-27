@@ -423,7 +423,7 @@ List<Object> voyages = new ArrayList<>();
         // The data that the QR code will contain
         String dataz = ux.toString();
             
-                   String path = "C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\demo.png";
+                   String path = "C:/Users/FLAM/Desktop/MetatripGit/MetaTrip_Java/demo.png";
  
         Map<EncodeHintType, ErrorCorrectionLevel> hashMap
             = new HashMap<EncodeHintType,
@@ -446,7 +446,7 @@ List<Object> voyages = new ArrayList<>();
                  
           Document document=new Document ();
   
-                 PdfWriter.getInstance(document, new FileOutputStream("C:/Users/medal/OneDrive/Bureau/Metatrip_git/MetaTrip_Java/MetaTrip_Java/MetatripVoitureFacture.pdf"));
+                    PdfWriter.getInstance(document, new FileOutputStream("C:/Users/FLAM/Desktop/MetatripGit/MetaTrip_Java/MetatripVoitureFacture.pdf"));
             document.open();
               Image image = Image.getInstance(path);
          

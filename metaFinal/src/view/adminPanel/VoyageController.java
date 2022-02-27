@@ -12,6 +12,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.PdfPTable;
 import entities.user;
+import entities.voyage;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -38,6 +39,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import services.user.UserService;
+import services.voyage.voyageService;
 
 /**
  * FXML Controller class
@@ -54,68 +56,43 @@ public class VoyageController implements Initializable {
 
 		
 		@FXML
-		private TableView<user> table;
+		private TableView<voyage> table;
 		
 		@FXML
-		private TableColumn<user, Integer> uidu;
+		private TableColumn<voyage, Integer> uidv;
                 
                 
 		@FXML
-		private TableColumn<user, String> unom;
-		@FXML
-		private TableColumn<user, String> uprenom;
-		@FXML
-		private TableColumn<user, String> uemail;
-                
-                //@FXML
-		//private TableColumn<user, String> password;
-                                	
+		private TableColumn<voyage, String> unom;
+
                 @FXML
-		private TableColumn<user, String> uimage;
+		private TableColumn<voyage, String> uimage;
                                 
-		@FXML
-		private TableColumn<user, Date> udateNaissance;
-                @FXML
-		private TableColumn<user, Double> utel;
-                @FXML
-		private TableColumn<user, Double> ucin;
+	
                 
 		
                 
                 //*********si flam******************//
                 @FXML
-		private TextField  idu;
+		private TextField  idv;
                 
                 
 		@FXML
-		private TextField  nom;
+		private TextField  pays;
                 
-		@FXML
-		private TextField  prenom;
-                
-		@FXML
-		private TextField  email;
-                
+                 	
                 @FXML
-		private TextField  password;
-                                	
-                @FXML
-		private TextField  image;
+		private TextField  image_pays;
                                 
-		@FXML
-		private TextField dateNaissance;
-                @FXML
-		private TextField  tel;
-                @FXML
-		private TextField  cin;
+	
                 
-		user user;
+		voyage voyage;
                 	
 		Connection con=null;
 		ResultSet rs=null;
 		PreparedStatement st=null;
  
-    UserService us;
+    voyageService vs;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -129,16 +106,11 @@ public class VoyageController implements Initializable {
     
     @FXML
     private void tablehandleButtonAction(MouseEvent event) {
-        user u = table.getSelectionModel().getSelectedItem();
-        idu.setText(String.valueOf(u.getIdu()));
-        cin.setText(String.valueOf(u.getCin()));
-        nom.setText(u.getNom());
-        prenom.setText(u.getPrenom());
-        //sexe.getSelectionModel().select(et.getSexe());
-        tel.setText(String.valueOf(u.getTel()));
-         email.setText(u.getEmail());
-         dateNaissance.setText(String.valueOf(u.getDateNaissance()));
-         image.setText(u.getImage());
+        voyage v = table.getSelectionModel().getSelectedItem();
+              idv.setText(String.valueOf(v.getIdv()));
+        pays.setText(v.getPays());
+
+         image_pays.setText(v.getImage_pays());
         
        // bsave.setDisable(true);
     }
@@ -147,91 +119,74 @@ public class VoyageController implements Initializable {
   
   
      
-    public ObservableList<user> getUser(){
-         ObservableList<user> list = FXCollections.observableArrayList();
+    public ObservableList<voyage> getVoyage(){
+         ObservableList<voyage> list = FXCollections.observableArrayList();
 		
 				con =Datasource.getInstance().getCnx();
-				String select="select u.idu,u.cin,u.nom,u.prenom,u.tel,u.email,u.image,u.dateNaissance from user u where u.Role=0;";
+				String select="select * from voyage v ;";
 			
 				 try {
             st = con.prepareStatement(select);
             rs = st.executeQuery();
             while (rs.next()) {
-                user u = new user();
-                u.setIdu(rs.getInt("idu"));
-                u.setCin(rs.getString("cin"));
+          voyage v=new voyage();
+                v.setIdv(rs.getInt("idv"));
+                v.setPays(rs.getString("pays"));
                 
-                u.setNom(rs.getString("nom"));
-                u.setPrenom(rs.getString("prenom"));
-                u.setTel(rs.getString("tel"));
-                u.setEmail(rs.getString("email"));
-                u.setDateNaissance(rs.getDate("dateNaissance"));
-                u.setImage(rs.getString("image"));
-                list.add(u);
+                v.setImage_pays(rs.getString("image_pays"));
+                list.add(v);
             }}
          catch (SQLException ex) {
-            Logger.getLogger(UserListController.class.getName())
+            Logger.getLogger(VoyageController.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
         return list;}
  
       public void affiche() {
-        ObservableList<user> list = getUser();
-        uidu.setCellValueFactory(new PropertyValueFactory<user, Integer>("idu"));
-           ucin.setCellValueFactory(new PropertyValueFactory<>("cin"));
-        unom.setCellValueFactory(new PropertyValueFactory<user, String>("nom"));
-        uprenom.setCellValueFactory(new PropertyValueFactory<user, String>("prenom"));
-        utel.setCellValueFactory(new PropertyValueFactory<>("tel"));
-        uemail.setCellValueFactory(new PropertyValueFactory<user, String>("email"));
-         uimage.setCellValueFactory(new PropertyValueFactory<user, String>("image"));
-         udateNaissance.setCellValueFactory(new PropertyValueFactory<user, Date>("dateNaissance"));
+        ObservableList<voyage> list = getVoyage();
+        uidv.setCellValueFactory(new PropertyValueFactory<voyage, Integer>("idv"));
+        unom.setCellValueFactory(new PropertyValueFactory<voyage, String>("pays"));
+       
+         uimage.setCellValueFactory(new PropertyValueFactory<voyage, String>("image_pays"));
+  
         
         table.setItems(list);
  
     }
       
          void clear() {
-        idu.setText(null);
-        cin.setText(null);
-        nom.setText(null);
-        prenom.setText(null);
-        tel.setText(null);
-        email.setText(null);
-        password.setText(null);
-        dateNaissance.setText(null);
-        image.setText(null);
+        idv.setText(null);
+
+        pays.setText(null);
+
+        image_pays.setText(null);
         //sexe.getSelectionModel().selectFirst();
         bsave.setDisable(false);
     }
          
          private void insert() {
 	con =Datasource.getInstance().getCnx();
-       String insert = "INSERT INTO user (`Cin`,`Nom`,`Prenom`,`Tel`,`Email`,`Password`,`Image`,`dateNaissance`) VALUES (?,?,?,?,?,?,?,?) ;";
+       String insert = "INSERT INTO voyage (`pays`,`Image_pays`) VALUES (?,?) ;";
         try {
             
             st = con.prepareStatement(insert);
-            st.setString(1, cin.getText());
-            st.setString(2, nom.getText());
-            st.setString(3, prenom.getText());
-            st.setString(4, tel.getText());
-            st.setString(5, email.getText());
-            st.setString(6, UserService.doHashing(password.getText()));
-            st.setString(7, image.getText());
-            st.setString(8, dateNaissance.getText());
+            st.setString(1, pays.getText());
+            st.setString(2, image_pays.getText());
+     
           
             Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Deleting user");
+                    alert.setTitle("Adding voyage");
 
 		// Header Text: null
 		alert.setHeaderText(null);
-		alert.setContentText("'utilisateur " +nom.getText()+"   "+prenom.getText()+" est ajouté avec succés");
+		alert.setContentText("'voyage de pays" +pays.getText()+" est ajouté avec succés");
 
 		alert.showAndWait();
             //st.setString(3, sexe.getSelectionModel().getSelectedItem());
             st.executeUpdate();
             affiche();
         } catch (SQLException ex) {
-            Logger.getLogger(UserListController.class.getName())
+            Logger.getLogger(VoyageController.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
     }
@@ -241,45 +196,39 @@ public class VoyageController implements Initializable {
          
           private void update() {
 	con =Datasource.getInstance().getCnx();
-            String update = "UPDATE `user` SET "
-                +"`Cin`=?,`Nom`=?,`Prenom`=?,`Tel`=?,`Email`=?,`Image`=?,`dateNaissance`=?"
-                + "WHERE idu =?";
+            String update = "UPDATE `voyage` SET "
+                +"`pays`=?,`image_pays`=? "
+                + "WHERE `idv` =? ;";
         try {
                 st = con.prepareStatement(update);
-                st.setString(1, cin.getText());
-                st.setString(2, nom.getText());
-                st.setString(3, prenom.getText());
-                st.setString(4, tel.getText());
-                st.setString(5, email.getText());
-                //st.setString(6, UserService.doHashing(password.getText()));
-                st.setString(6, image.getText());
-                st.setString(7, dateNaissance.getText());
-                st.setInt(8, Integer.parseInt(idu.getText()));
+                st.setString(1, pays.getText());
+                st.setString(2, image_pays.getText());
+             
+                st.setInt(3, Integer.parseInt(idv.getText()));
             
             //st.setString(3, sexe.getSelectionModel().getSelectedItem());
     Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Deleting user");
+		alert.setTitle("Updating voyage");
 
 		// Header Text: null
 		alert.setHeaderText(null);
-		alert.setContentText("'utilisateur " +nom.getText()+"   "+prenom.getText()+" avec ID"+idu .getText()+" est modifié avec succés");
-
+	alert.setContentText("'voyage de pays" +pays.getText()+" est modifié avec succés");
 		alert.showAndWait();
                 
                 st.executeUpdate();
                 affiche();
         } catch (SQLException ex) {
-            Logger.getLogger(UserListController.class.getName())
+            Logger.getLogger(VoyageController.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
     }
          
          public void delete() {
          con =Datasource.getInstance().getCnx();
-        String delete = "DELETE FROM user  where idu = ?";
+        String delete = "DELETE FROM voyage  where idv = ?";
         try {
             st = con.prepareStatement(delete);
-            st.setInt(1, Integer.parseInt(idu.getText()));
+            st.setInt(1, Integer.parseInt(idv.getText()));
             
             
             	Alert alert = new Alert(AlertType.INFORMATION);
@@ -287,8 +236,7 @@ public class VoyageController implements Initializable {
 
 		// Header Text: null
 		alert.setHeaderText(null);
-		alert.setContentText(" utilisateur " +nom.getText()+"   "+prenom.getText()+" avec ID"+idu .getText()+" est supprimé avec succés");
-
+	alert.setContentText("'voyage de ID"+ idv.getText()+"est supprimé avec succés");
 		alert.showAndWait();
             
             
@@ -296,7 +244,7 @@ public class VoyageController implements Initializable {
             st.executeUpdate();
             affiche();
         } catch (SQLException ex) {
-            Logger.getLogger(UserListController.class.getName())
+            Logger.getLogger(VoyageController.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
     } 

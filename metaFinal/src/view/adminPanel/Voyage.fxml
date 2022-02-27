@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="514.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.UserListController">
+<VBox prefHeight="514.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.VoyageController">
   <children>
       <VBox prefHeight="400.0" prefWidth="640.0">
         <children>
@@ -19,15 +19,10 @@
     <children>
         <VBox layoutX="15.0" layoutY="16.0" prefHeight="157.0" prefWidth="62.0" spacing="25.0">
             <children>
-                <Label styleClass="labelform" text="ID" />
-                <Label layoutX="10.0" layoutY="10.0" styleClass="labelform" text="CIN" />
-                <Label layoutX="10.0" layoutY="27.0" styleClass="labelform" text="NOM" />
-                        <Label styleClass="labelform" text="PRENOM" />
-                        <Label styleClass="labelform" text="TEL" />
-                        <Label styleClass="labelform" text="EMAIL" />
-                        <Label styleClass="labelform" text="Password" />
-                        <Label styleClass="labelform" text="DateNais" />
-                        <Label styleClass="labelform" text="Image" />
+                <Label styleClass="labelform" text="IDV" />
+                <Label layoutX="10.0" layoutY="10.0" styleClass="labelform" text="NOM PAYS" />
+                <Label layoutX="10.0" layoutY="27.0" styleClass="labelform" text="IMAGE PAYS" />
+                   
                 
             </children>
         </VBox>
@@ -59,19 +54,15 @@
             
            <TableView fx:id="table" onMouseClicked="#tablehandleButtonAction" layoutX="316.0" layoutY="66.0"  prefHeight="302.0" prefWidth="575.0">
             <columns>
-                <TableColumn fx:id="uidu" prefWidth="33.0" text="ID" />
-                <TableColumn fx:id="ucin" prefWidth="82.33331298828125" text="CIN" />
-                <TableColumn fx:id="unom" prefWidth="49.66668701171875" text="NOM" />
-                <TableColumn fx:id="uprenom" prefWidth="60.999969482421875" text="Prenom" />
-                        <TableColumn fx:id="utel" prefWidth="68.0" text="Tel" />
-                        <TableColumn fx:id="uemail" prefWidth="84.33331298828125" text="Email" />
-                        <TableColumn fx:id="udateNaissance" prefWidth="102.6666259765625" text="DateNaissance" />
-                        <TableColumn fx:id="uimage" prefWidth="85.3333740234375" text="Image" />
+                <TableColumn fx:id="uidv" prefWidth="33.0" text="IDV" />
+                <TableColumn fx:id="unom" prefWidth="82.33331298828125" text="Nom pays" />
+      
+                        <TableColumn fx:id="uimage" prefWidth="85.3333740234375" text="Image pays" />
             </columns>
         </TableView>
         <Pane layoutX="96.0" layoutY="12.0" prefHeight="39.0" prefWidth="634.0">
             <children>
-                <Label layoutX="238.0" layoutY="1.0" prefHeight="10.0" prefWidth="337.0" text="LISTE USERS" textFill="#ffc300">
+                <Label layoutX="238.0" layoutY="1.0" prefHeight="10.0" prefWidth="337.0" text="LISTE DES VOYAGES" textFill="#ffc300">
                     <font>
                         <Font name="Arial Bold" size="25.0" />
                     </font>
@@ -81,15 +72,9 @@
         </Pane>
         <VBox layoutX="78.0" layoutY="13.0" prefHeight="157.0" prefWidth="180.0" spacing="15.0">
             <children>
-                            <TextField fx:id="idu" editable="false" prefHeight="20.0" prefWidth="80.0" />
-                            <TextField fx:id="cin" layoutX="10.0" layoutY="10.0" />
-                            <TextField fx:id="nom" layoutX="10.0" layoutY="20.0" />
-                            <TextField fx:id="prenom" styleClass="field" />
-                            <TextField fx:id="tel" prefHeight="26.0" prefWidth="0.0" styleClass="field" />
-                            <TextField fx:id="email" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
-                            <TextField fx:id="password" prefHeight="0.0" prefWidth="56.0" styleClass="field" /> 
-                            <TextField fx:id="dateNaissance" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
-                            <TextField fx:id="image" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
+                            <TextField fx:id="idv" editable="false" prefHeight="20.0" prefWidth="80.0" />
+                            <TextField fx:id="pays" layoutX="10.0" layoutY="10.0" />
+                            <TextField fx:id="image_pays" layoutX="10.0" layoutY="20.0" />
             </children>
         </VBox>
         
