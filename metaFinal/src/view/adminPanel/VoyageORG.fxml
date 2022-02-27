@@ -1,11 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.VoyageORGController">
-    
+
+<VBox prefHeight="456.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.VoyageORGController">
+  <children>
+      <VBox prefHeight="400.0" prefWidth="640.0">
+        <children>
+       
+<AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/8.0.171">
+    <children>
+        <VBox layoutX="46.0" layoutY="111.0" prefHeight="157.0" prefWidth="95.0" spacing="25.0">
+            <children>
+                <Label styleClass="labelform" text="IDV_ORG" />
+                <Label layoutX="10.0" layoutY="10.0" styleClass="labelform" text="Prix Billet" />
+                <Label layoutX="10.0" layoutY="27.0" styleClass="labelform" text="Campagnie Aérienne" />
+                  <Label layoutX="10.0" layoutY="27.0" styleClass="labelform" text="Status" />
+                    <Label layoutX="10.0" layoutY="27.0" styleClass="labelform" text="ID Voyage" />
+              
+                   
+                
+            </children>
+        </VBox>
+        <Button fx:id="bsave" layoutX="59.0" layoutY="303.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Save">
+           
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="bupdate" layoutX="154.0" layoutY="303.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="33.0" prefWidth="71.0" text="Edit">
+         
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+        </Button>
+            <Button fx:id="bdelete" layoutX="245.0" layoutY="304.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Delete">
+            
+                                 <font>
+                <Font name="Times New Roman" size="12.0" />
+            </font>
+            </Button>
+            
+              <Button layoutX="342.0" layoutY="304.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Reset">
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+            
+        </Button>
+            
+           <TableView fx:id="table" layoutX="468.0" layoutY="81.0" onMouseClicked="#tablehandleButtonAction" prefHeight="290.0" prefWidth="654.0">
+            <columns>
+                <TableColumn fx:id="uidvv" prefWidth="108.0" text="IDV_ORG" />
+                <TableColumn fx:id="uprix" prefWidth="294.0" text="Prix Billet" />
+                <TableColumn fx:id="unuits" prefWidth="251.0" text="Nombre de nuitées" />
+                  <TableColumn fx:id="uetat" prefWidth="251.0" text="Status" />
+                    <TableColumn fx:id="uidv" prefWidth="251.0" text="ID Voyage" />
+            </columns>
+        </TableView>
+        <Pane layoutX="96.0" layoutY="12.0" prefHeight="39.0" prefWidth="634.0">
+            <children>
+                <Label layoutX="238.0" layoutY="1.0" prefHeight="10.0" prefWidth="337.0" text="LISTE DES VOYAGES" textFill="#ffc300">
+                    <font>
+                        <Font name="Arial Bold" size="25.0" />
+                    </font>
+                
+                </Label>
+            </children>
+        </Pane>
+        <VBox layoutX="164.0" layoutY="111.0" prefHeight="192.0" prefWidth="247.0" spacing="15.0">
+            <children>
+                            <TextField fx:id="idvo" editable="false" prefHeight="20.0" prefWidth="80.0" />
+                            <TextField fx:id="prix_billet" layoutX="10.0" layoutY="10.0" />
+                            <TextField fx:id="airline" layoutX="10.0" layoutY="20.0" />
+                             <TextField fx:id="Nb_nuitees" layoutX="10.0" layoutY="20.0" />
+                              <TextField fx:id="etatVoyage" layoutX="10.0" layoutY="20.0" />
+                               <TextField fx:id="idv" layoutX="10.0" layoutY="20.0" />
+            </children>
+        </VBox>
+        
+     
+    </children>
 </AnchorPane>
+            
+        </children>
+      </VBox>
+  </children>
+</VBox>

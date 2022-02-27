@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="514.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.VoyageController">
+<VBox prefHeight="456.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.VoyageController">
   <children>
       <VBox prefHeight="400.0" prefWidth="640.0">
         <children>
        
 <AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/8.0.171">
     <children>
-        <VBox layoutX="15.0" layoutY="16.0" prefHeight="157.0" prefWidth="62.0" spacing="25.0">
+        <VBox layoutX="46.0" layoutY="111.0" prefHeight="157.0" prefWidth="95.0" spacing="25.0">
             <children>
                 <Label styleClass="labelform" text="IDV" />
                 <Label layoutX="10.0" layoutY="10.0" styleClass="labelform" text="NOM PAYS" />
@@ -26,38 +26,49 @@
                 
             </children>
         </VBox>
-        <Button fx:id="bsave" layoutX="3.0" layoutY="432.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn"  text="Save">
+        <Button fx:id="bsave" layoutX="59.0" layoutY="303.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Save">
            
             <font>
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="bupdate" layoutX="98.0" layoutY="432.0" onAction="#updateEvent" mnemonicParsing="false" prefHeight="33.0" prefWidth="71.0" text="Edit">
+        <Button fx:id="bupdate" layoutX="154.0" layoutY="303.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="33.0" prefWidth="71.0" text="Edit">
          
             <font>
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
         </Button>
-            <Button fx:id="bdelete" layoutX="189.0" layoutY="433.0" onAction="#deleteEvent" mnemonicParsing="false" prefHeight="33.0" prefWidth="71.0" styleClass="btn"  text="Delete">
+            <Button fx:id="bdelete" layoutX="245.0" layoutY="304.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Delete">
             
                                  <font>
                 <Font name="Times New Roman" size="12.0" />
             </font>
             </Button>
             
-              <Button layoutX="279.0" layoutY="433.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Reset">
+              <Button layoutX="342.0" layoutY="304.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Reset">
             <font>
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
             
         </Button>
+        
+        
+        <Button fx:id="blink" layoutX="295.0" layoutY="363.0" mnemonicParsing="false" onAction="#link" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Link">
+           
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+        </Button>
+        
+        
+        
             
-           <TableView fx:id="table" onMouseClicked="#tablehandleButtonAction" layoutX="316.0" layoutY="66.0"  prefHeight="302.0" prefWidth="575.0">
+           <TableView fx:id="table" layoutX="468.0" layoutY="81.0" onMouseClicked="#tablehandleButtonAction" prefHeight="290.0" prefWidth="654.0">
             <columns>
-                <TableColumn fx:id="uidv" prefWidth="33.0" text="IDV" />
-                <TableColumn fx:id="unom" prefWidth="82.33331298828125" text="Nom pays" />
+                <TableColumn fx:id="uidv" prefWidth="108.0" text="IDV" />
+                <TableColumn fx:id="unom" prefWidth="294.0" text="Nom pays" />
       
-                        <TableColumn fx:id="uimage" prefWidth="85.3333740234375" text="Image pays" />
+                        <TableColumn fx:id="uimage" prefWidth="251.0" text="Image pays" />
             </columns>
         </TableView>
         <Pane layoutX="96.0" layoutY="12.0" prefHeight="39.0" prefWidth="634.0">
@@ -70,7 +81,7 @@
                 </Label>
             </children>
         </Pane>
-        <VBox layoutX="78.0" layoutY="13.0" prefHeight="157.0" prefWidth="180.0" spacing="15.0">
+        <VBox layoutX="164.0" layoutY="111.0" prefHeight="192.0" prefWidth="247.0" spacing="15.0">
             <children>
                             <TextField fx:id="idv" editable="false" prefHeight="20.0" prefWidth="80.0" />
                             <TextField fx:id="pays" layoutX="10.0" layoutY="10.0" />
