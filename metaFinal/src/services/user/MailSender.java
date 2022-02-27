@@ -1,19 +1,18 @@
-<<<<<<< HEAD
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-=======
->>>>>>> origin/main
+
 
 
 package services.user;
 import entities.user;
 import java.io.IOException;
 import java.util.Properties;
-<<<<<<< HEAD
+
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -22,15 +21,15 @@ import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
-=======
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
->>>>>>> origin/main
+
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-<<<<<<< HEAD
+
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
@@ -86,13 +85,12 @@ public class MailSender {
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
             message.setSubject("Metatrip");
             String htmlcode="  <center><img src=\"https://pbs.twimg.com/profile_images/1118720684950085632/Qc9LxLu0_400x400.png\" alt=\"Girl in a jacket\" height=50%;width=50%></center>"
-<<<<<<< HEAD
+
                     + "<center><h2>bienvenue sur notre site  Metatrip</h2> <br><h4>une fois metatrip!toujour metatrip </h4></center></br>"
                     + "</center><center><h3>voici les coordonnéesde votre compte:</h3></center><br><center>Email:"+user.getEmail()+"</center><br><center>Password:"+user.getPassword()+"</center></br>";
-=======
-                    + "<center><h2>bienvenue sur notre site  Metatrip</h2> <br><h4>une fois metatrip! toujours metatrip </h4></center></br>"
-                    + "</center><center><h3>voici les coordonnées de votre compte:</h3></center><br><center>Email:"+user.getEmail()+"</center><br><center>Password:"+user.getPassword()+"</center></br>";
->>>>>>> origin/main
+
+              
+
             message.setContent(htmlcode,"text/html");
             return message;
         } catch(Exception ex){
@@ -100,8 +98,7 @@ public class MailSender {
         }
         return null;
     }
-    
-<<<<<<< HEAD
+
     
    public static void sendFacture(String to){
    
@@ -164,8 +161,5 @@ public class MailSender {
    
  
 
-=======
    
- 
-}
->>>>>>> origin/main
+

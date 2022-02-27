@@ -43,7 +43,7 @@ import services.voiture.VoitureCRUD;
 import services.voyage.voyageService;
 import services.voyage.voyage_organise.VoyageORG_Service;
 import services.voyage.voyage_virtuel.VoyageVRT_Service;
-<<<<<<< HEAD
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing. EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -78,11 +78,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import net.glxn.qrgen.QRCode;
-import net.glxn.qrgen.image. ImageType;
+
 import static services.user.UserService.doHashing;
-import services.voyage.voyage_organise.mapa;
-=======
+
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -97,7 +96,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.util.HashMap;
 import java.util.Map;
->>>>>>> origin/main
+
 
 
 
@@ -138,8 +137,15 @@ public class Metatrip  extends Application {
     
   
     	@Override
-	public void start(Stage primaryStage) {
-		try {
+	public void start(Stage primaryStage) throws IOException {
+            
+             Parent root = FXMLLoader.load(getClass().getResource("/view/login_signup/login.fxml"));
+        Scene scene = new Scene(root, 300, 250);
+   
+        primaryStage.setTitle("Hello World!");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+		/*try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/UserList.fxml"));
 			Scene scene = new Scene(root);
 			//scene.getStylesheets().add(getClass().getResource("/view/adminPanel/style.css").toExternalForm());
@@ -147,7 +153,7 @@ public class Metatrip  extends Application {
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
     
     
@@ -194,16 +200,9 @@ public class Metatrip  extends Application {
        //  vov.modifier(3,vov2);
         // vov.supprimer(3);
 
-<<<<<<< HEAD
-        user u1 = new user(9999, 5866, "dafdouf", "zakzouk", 5895, "zak@live.fr", "0000", "image",date2);
-         user u8 = new user(811,199525, "ssss", "cxx", 2568435, "nex@live.fr", doHashing("12345678"), "image",date2);
-        // us.ajouter(u8);
-=======
-        user u1 = new user(9999, "5866", "dafdouf", "zakzouk", "5895", "zak@live.fr", "0000", "image",date2);
-         user u8 = new user(811,"199525", "ssss", "cxx", "2568435", "fares.lamloum@esprit.tn", doHashing("12345678"), "image",date2);
-          MailSender.sendMail(u8);
-         us.ajouter(u8);
->>>>>>> origin/main
+     
+         // MailSender.sendMail(u8);
+         //us.ajouter(u8);
         //us.supprimer(810);
         user u3 = new user("5866", "ges", "nay", "5895", "zak@live.fr", "0000", "image",date2);
         user u4 = new user("58656", "khaldi", "imen", "5895", "zak@live.fr", "0000", "image",date2);
@@ -232,18 +231,17 @@ public class Metatrip  extends Application {
       String str2="2050-09-01";  
      Date date1=Date.valueOf(str);
      Date date9=Date.valueOf(str2);//converting string into sql date      System.out.println(date);
-<<<<<<< HEAD
-                user u2 = new user(99925, "ssss", "cxx", 2568435, "bensaid.mohamedali@esprit.tn", "ghassen123", "image",date9);
+               // user u2 = new user(99925, "ssss", "cxx", 2568435, "bensaid.mohamedali@esprit.tn", "ghassen123", "image",date9);
              
               LoginAndSignupService LASS =new LoginAndSignupService();
              //LASS.Signup(u2);
          //   MailSender.sendMail(u2);
        //  MailSender.sendFacture("fares.lamlou@esprit.tn");
-=======
-                user u2 = new user("99925", "ssss", "cxx", "2568435", "fares@live.fr", doHashing("12345678"), "image",date9);
+
+             //   user u2 = new user("99925", "ssss", "cxx", "2568435", "fares@live.fr", doHashing("12345678"), "image",date9);
            //   LoginAndSignupService LASS =new LoginAndSignupService();
               //LASS.Signup(u2);
->>>>>>> origin/main
+
           //    System.out.println(LASS.login("nex@live.fr", "aaaa"));
            //    us.ajouter(u1);
          reservation_voyage rv=new reservation_voyage();
@@ -299,7 +297,7 @@ public class Metatrip  extends Application {
                             Voiture v78 =new Voiture(2001,"220TU120",12,"image","bmw");
                              //     VC.ajouterVoiture(v78);
                                   
-    reservation_voiture rhv1=new reservation_voiture(5.5f,"cccc","jandouba",u8,v78);
+//    reservation_voiture rhv1=new reservation_voiture(5.5f,"cccc","jandouba",u8,v78);
   
               
             
@@ -317,7 +315,7 @@ public class Metatrip  extends Application {
            // hc.supprimerHotel(h2);
            Reserrvation_Hotel_Service rhs=new Reserrvation_Hotel_Service ();
 
-                   reservation_hotel rh =new reservation_hotel("single",2,1,2.2f,u8,h2,date1,date9);
+              //    reservation_hotel rh =new reservation_hotel("single",2,1,2.2f,u8,h2,date1,date9);
           // rhs.ajouter(rh);
                   // rhs.modifier(2, rh);
                   // rhs.supprimer(2);
@@ -505,9 +503,9 @@ evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
   //resE.ajout(resev);
  // resE.modifier(22,resev);
   //resE.supprimer(22);
- // us.factureuser(rvs.affichervoyageByid(10));
+ us.factureuser(rvs.affichervoyageByid(10));
      //System.out.println(resE.afficher());
-<<<<<<< HEAD
+
 
 
        String grCodeData ="https://pbs.twimg.com/profile_images/1118720684950085632/Qc9LxLu0_400x400.png";
@@ -529,14 +527,9 @@ try{
             System.err.println(ex.getMessage());
         }*/
 
- try{
-		final mapa example = new mapa("test");
-	
-                }catch(Exception e11){
-                    System.out.println(e11);
-                }
+
         
-=======
+
 
 
   
@@ -554,60 +547,9 @@ try{
                    
           
         // The data that the QR code will contain
-        String dataz = ux.toString();
- 
-        // The path where the image will get saved
-        String path = "C:/Users/FLAM/Desktop/demo.png";
- 
-        // Encoding charset
-        String charset = "UTF-8";
- 
-        Map<EncodeHintType, ErrorCorrectionLevel> hashMap
-            = new HashMap<EncodeHintType,
-                          ErrorCorrectionLevel>();
- 
-        hashMap.put(EncodeHintType.ERROR_CORRECTION,
-                    ErrorCorrectionLevel.L);
- 
-        // Create the QR code and save
-        // in the specified folder
-        // as a jpg file
-        createQR(dataz, path, charset, hashMap, 200, 200);
-        System.out.println("QR Code Generated!!! ");      
-        
-        
-        
-        
-        Document doc = new Document();
-        try {
-            PdfWriter.getInstance(doc, new FileOutputStream("C:/Users/FLAM/Desktop/ImageDemo.pdf"));
-            doc.open();
+         } 
 
-            // Creating image by file name
-            String filename = "kodejava-itextpdf/src/main/resources/java.png";
-            Image image = Image.getInstance(path);
-            doc.add(image);
-
-            // The following line to prevent the "Server returned 
-            // HTTP response code: 403" error.
-            System.setProperty("http.agent", "Chrome");
-
-            // Creating image from a URL
-            String url = "https://kodejava.org/wp-content/uploads/2017/01/kodejava.png";
-            image = Image.getInstance(path);
-            doc.add(image);
-        } catch (DocumentException | IOException ez) {
-            ez.printStackTrace();
-        } finally {
-            doc.close();
-        }
-        
-
-    }
->>>>>>> origin/main
-    
-
-    }     
+         
     
     public static String doHashing(String password) {
         try {
