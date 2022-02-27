@@ -139,7 +139,7 @@ public class Reservation_voiture_Service implements IReservation_voiture{
                 
                u.setVoiture(new Voiture(rs2.getInt(1),rs2.getString(2),rs2.getInt(3),rs2.getString(4),rs2.getString(5)));
                 
-               u.setUser(new user(rs3.getInt(1),rs3.getDouble(2),rs3.getString(3),rs3.getString(4),rs3.getDouble(5),rs3.getString(6),rs3.getString(7),rs3.getString(8),rs3.getDate(9)));
+               u.setUser(new user(rs3.getInt(1),rs3.getString(2),rs3.getString(3),rs3.getString(4),rs3.getString(5),rs3.getString(6),rs3.getString(7),rs3.getString(8),rs3.getDate(9)));
                 
 
                   
