@@ -15,11 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
-import org.apache.poi.hslf.model.Sheet;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import services.user.UserService;
 
 /**
@@ -42,7 +38,7 @@ public class excel {
 
      Statement ste;
         PreparedStatement pst;
-        String filepath="C:/Users/FLAM/Desktop/users.csv";
+        String filepath="CC:\\Users\\medal\\OneDrive\\Bureau\\users.csv";
         
       String req = "INSERT INTO user (cin, nom ,"
                 + "prenom , tel , email , "

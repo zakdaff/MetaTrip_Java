@@ -29,8 +29,8 @@ public class LoginAndSignupService {
 
       private String Email;
       private String Password;
-public String login (String email,String password) throws Exception {
-    String test = null;
+public boolean login (String email,String password) throws Exception {
+    boolean test = false;
         List<user> users = new ArrayList<>();
         String req = "SELECT *  FROM `user` where Email='"+email+"' and Password ='"+password+"'";
         System.out.println(email);
@@ -64,11 +64,11 @@ public String login (String email,String password) throws Exception {
            try{
                
          if(users.size()==0){
-                             test="login failed";
+                         return test;
                          
                          }
                          else{
-                             test="login successful";
+                             test=true;
                            
                          }
            }catch(IndexOutOfBoundsException e){

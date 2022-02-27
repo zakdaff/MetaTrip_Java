@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Config.Datasource;
+import entities.Voiture;
 
 import static java.util.Collections.list;
 import java.util.HashMap;
@@ -43,7 +44,7 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
             String req2 = "INSERT INTO `reservation_voyage` (`Date_depart`,`Date_arrivee`,`etat`,`Idu`,`Idv`) VALUES (?,?,?,?,?)";
 
         try {
-        
+       
             
               pste = conn.prepareStatement(req2);
               pste.setDate(1,rv.getDate_arrivee());
@@ -303,5 +304,57 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
        // System.out.println(listVORG.toString());
         return List;  
     
+    }
+    
+
+    
+    
+    public reservation_voyage affichervoyageByid(int id ) {
+     
+        String req = "SELECT * FROM `reservation_voyage` WHERE Idrv="+id+";";
+ reservation_voyage rvo = new reservation_voyage();
+        
+        try {
+    pste = conn.prepareStatement(req);
+
+           
+          
+            ResultSet rs = pste.executeQuery();
+            
+            
+            while(rs.next()){
+             
+             
+                
+                rvo.setIdrv(rs.getInt(1));
+                rvo.setDate_depart(rs.getDate(2));
+                rvo.setDate_arrivee(rs.getDate(3));
+                rvo.setEtat(rs.getString(4));
+                rvo.setIdu(rs.getInt(5));
+                rvo.setIdv(rs.getInt(6));
+
+                    rvo.setRef_paiement(rs.getInt(7));
+              
+                
+              
+             
+         
+      
+                  
+  
+              
+              
+                
+                 
+                 
+                 
+                }                                          
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+        return rvo;
     }
 }

@@ -23,6 +23,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import javafx.application.Application;
+import java.io.FileOutputStream;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import entities.reservation_voyage;
 import services.abonnement.abonnement_Service;
 import services.evenement.Serviceevenement;
 import services.evenement.Servicereservation_event;
@@ -32,11 +37,51 @@ import services.reservation_voiture.Reservation_voiture_Service;
 import services.reservation_voyage.Reservation_Voyage_Service;
 import services.sponsor.Servicesponsor;
 import services.user.LoginAndSignupService;
+import services.user.MailSender;
 import services.user.UserService;
 import services.voiture.VoitureCRUD;
 import services.voyage.voyageService;
 import services.voyage.voyage_organise.VoyageORG_Service;
 import services.voyage.voyage_virtuel.VoyageVRT_Service;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing. EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+
+
+
+
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Hashtable;
+
+import java.util.Map;
+import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.Authenticator;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+
+import static services.user.UserService.doHashing;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -51,6 +96,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.util.HashMap;
 import java.util.Map;
+
 
 
 
@@ -91,8 +137,15 @@ public class Metatrip  extends Application {
     
   
     	@Override
-	public void start(Stage primaryStage) {
-		try {
+	public void start(Stage primaryStage) throws IOException {
+            
+             Parent root = FXMLLoader.load(getClass().getResource("/view/login_signup/login.fxml"));
+        Scene scene = new Scene(root, 300, 250);
+   
+        primaryStage.setTitle("Hello World!");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+		/*try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/UserList.fxml"));
 			Scene scene = new Scene(root);
 			//scene.getStylesheets().add(getClass().getResource("/view/adminPanel/style.css").toExternalForm());
@@ -100,7 +153,7 @@ public class Metatrip  extends Application {
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
     
     
@@ -151,6 +204,9 @@ public class Metatrip  extends Application {
          user u8 = new user(811,"199525", "ssss", "cxx", "2568435", "fares.lamloum@esprit.tn", doHashing("12345678"), "image",date2);
          //MailSender.sendMail(u8);
          us.ajouter(u8);
+     
+         // MailSender.sendMail(u8);
+         //us.ajouter(u8);
         //us.supprimer(810);
         user u3 = new user("5866", "ges", "nay", "5895", "zak@live.fr", "0000", "image",date2);
         user u4 = new user("58656", "khaldi", "imen", "5895", "zak@live.fr", "0000", "image",date2);
@@ -173,19 +229,30 @@ public class Metatrip  extends Application {
         vos.modifier(88, vom);
         System.out.println("List voyages par date croissante"+ us.VoyageParDates());
            System.out.println("Le nombre de users est = "+us.nbUsers());
+                //vos.ajouter(vo3);
+      //  System.out.println("List voyages par date croissante"+ us.VoyageParDates());
+         //  System.out.println("Le nombre de users est = "+us.nbUsers());
 
-                      System.out.println("Le nombre de voyages disponibles est = "+us.nbVoyagesDispo());
-System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
+                     // System.out.println("Le nombre de voyages disponibles est = "+us.nbVoyagesDispo());
+//System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
      String str="2020-09-01";  
       String str2="2050-09-01";  
      Date date1=Date.valueOf(str);
      Date date9=Date.valueOf(str2);//converting string into sql date      System.out.println(date);
-                user u2 = new user("99925", "ssss", "cxx", "2568435", "fares@live.fr", doHashing("12345678"), "image",date9);
+               // user u2 = new user(99925, "ssss", "cxx", 2568435, "bensaid.mohamedali@esprit.tn", "ghassen123", "image",date9);
+             
+              LoginAndSignupService LASS =new LoginAndSignupService();
+             //LASS.Signup(u2);
+         //   MailSender.sendMail(u2);
+       //  MailSender.sendFacture("fares.lamlou@esprit.tn");
+
+             //   user u2 = new user("99925", "ssss", "cxx", "2568435", "fares@live.fr", doHashing("12345678"), "image",date9);
            //   LoginAndSignupService LASS =new LoginAndSignupService();
               //LASS.Signup(u2);
+
           //    System.out.println(LASS.login("nex@live.fr", "aaaa"));
            //    us.ajouter(u1);
-        // reservation_voyage rv=new reservation_voyage();
+         reservation_voyage rv=new reservation_voyage();
       //    rv.setIdrv(999);
    
        /*   rv.setDate_depart(date);
@@ -199,7 +266,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
        //rvs.ajouter(rv);  
         //rvs.modifier(10, rv);
         //rvs.supprimer(6);
-    //     System.out.println(rvs.afficher());
+    //   System.out.println(rvs.afficher());
          
          
         //System.out.println(vo3.getVoyage());
@@ -238,7 +305,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
                             Voiture v78 =new Voiture(2001,"220TU120",12,"image","bmw");
                              //     VC.ajouterVoiture(v78);
                                   
-    reservation_voiture rhv1=new reservation_voiture(5.5f,"cccc","jandouba",u8,v78);
+//    reservation_voiture rhv1=new reservation_voiture(5.5f,"cccc","jandouba",u8,v78);
   
               
             
@@ -256,15 +323,15 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
            // hc.supprimerHotel(h2);
            Reserrvation_Hotel_Service rhs=new Reserrvation_Hotel_Service ();
 
-                   reservation_hotel rh =new reservation_hotel("single",2,1,2.2f,u8,h2,date1,date9);
+              //    reservation_hotel rh =new reservation_hotel("single",2,1,2.2f,u8,h2,date1,date9);
           // rhs.ajouter(rh);
                   // rhs.modifier(2, rh);
                   // rhs.supprimer(2);
                    
-                      System.out.println("les voyages les plus Réservé:"+rvs.ListVoyagePlusRéservé());
-        System.out.println ("le maximum de voyage Réserve est "+rvs.LeMaximumDevoyageReserve());
-             System.out.println ("le minimum de voyage Réserve est "+rvs.LeMinimumevoyageReserve());
-                     System.out.println ("la list  de voyage Trié selon Prix est "+rvs.listedevoyageTrierParPrix());
+                    //  System.out.println("les voyages les plus Réservé:"+rvs.ListVoyagePlusRéservé());
+        //System.out.println ("le maximum de voyage Réserve est "+rvs.LeMaximumDevoyageReserve());
+          //   System.out.println ("le minimum de voyage Réserve est "+rvs.LeMinimumevoyageReserve());
+            //         System.out.println ("la list  de voyage Trié selon Prix est "+rvs.listedevoyageTrierParPrix());
                    
   
  Serviceevenement se = new Serviceevenement() ; 
@@ -444,8 +511,33 @@ evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
   //resE.ajout(resev);
  // resE.modifier(22,resev);
   //resE.supprimer(22);
-  
+ us.factureuser(rvs.affichervoyageByid(10));
      //System.out.println(resE.afficher());
+
+
+
+       String grCodeData ="https://pbs.twimg.com/profile_images/1118720684950085632/Qc9LxLu0_400x400.png";
+         String filePath = "C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\metaFinal\\src\\services\\user\\websiteQRCode_noFrame.png";
+    String charset ="UTF-8"; // or "ISO-8859-1";
+   
+   
+  /*
+try{
+    Map <EncodeHintType,ErrorCorrectionLevel> ss = new Hashtable < EncodeHintType, ErrorCorrectionLevel > ();
+    ss.put (EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+    BitMatrix matrix =new MultiFormatWriter().encode(new String(grCodeData.getBytes(charset), charset),
+        BarcodeFormat.QR_CODE, 200, 200, (Hashtable) ss);
+    MatrixToImageWriter.writeToFile(matrix, filePath.substring(filePath
+        .lastIndexOf ('.') + 1), new File(filePath));
+ 
+    System.out.println("QR Code image created successfully!");
+  }catch(Exception ex){
+            System.err.println(ex.getMessage());
+        }*/
+
+
+        
+
 
 
   
@@ -463,57 +555,9 @@ evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
                    
           
         // The data that the QR code will contain
-        String dataz = ux.toString();
- 
-        // The path where the image will get saved
-        String path = "C:/Users/FLAM/Desktop/demo.png";
- 
-        // Encoding charset
-        String charset = "UTF-8";
- 
-        Map<EncodeHintType, ErrorCorrectionLevel> hashMap
-            = new HashMap<EncodeHintType,
-                          ErrorCorrectionLevel>();
- 
-        hashMap.put(EncodeHintType.ERROR_CORRECTION,
-                    ErrorCorrectionLevel.L);
- 
-        // Create the QR code and save
-        // in the specified folder
-        // as a jpg file
-        createQR(dataz, path, charset, hashMap, 200, 200);
-        System.out.println("QR Code Generated!!! ");      
-        
-        
-        
-        
-        Document doc = new Document();
-        try {
-            PdfWriter.getInstance(doc, new FileOutputStream("C:/Users/FLAM/Desktop/ImageDemo.pdf"));
-            doc.open();
+         } 
 
-            // Creating image by file name
-            String filename = "kodejava-itextpdf/src/main/resources/java.png";
-            Image image = Image.getInstance(path);
-            doc.add(image);
-
-            // The following line to prevent the "Server returned 
-            // HTTP response code: 403" error.
-            System.setProperty("http.agent", "Chrome");
-
-            // Creating image from a URL
-            String url = "https://kodejava.org/wp-content/uploads/2017/01/kodejava.png";
-            image = Image.getInstance(path);
-            doc.add(image);
-        } catch (DocumentException | IOException ez) {
-            ez.printStackTrace();
-        } finally {
-            doc.close();
-        }
-        
-
-    }
-    
+         
     
     public static String doHashing(String password) {
         try {

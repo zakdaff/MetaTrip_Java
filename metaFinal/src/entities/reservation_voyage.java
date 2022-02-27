@@ -76,46 +76,6 @@ public class reservation_voyage {
     public reservation_voyage() {
         this.etat="NonPaye";    }
 
-    public int getIdrv() {
-        return Idrv;
-    }
-
-    public Date getDate_depart() {
-        return Date_depart;
-    }
-
-    public Date getDate_arrivee() {
-        return Date_arrivee;
-    }
-
-    public String getEtat() {
-        return etat;
-    }
-
-    public int getIdu() {
-        return Idu;
-    }
-
-    public int getIdv() {
-        return Idv;
-    }
-
-    public int getRef_paiement() {
-        return Ref_paiement;
-    }
-
-    public user getUser() {
-        return user;
-    }
-
-    public paiement getPaiement() {
-        return paiement;
-    }
-
-    public voyage getVoyage() {
-        return voyage;
-    }
-
     public void setIdrv(int Idrv) {
         this.Idrv = Idrv;
     }
@@ -156,13 +116,50 @@ public class reservation_voyage {
         this.voyage = voyage;
     }
 
-    @Override
-    public String toString() {
-        return "reservation_voyage{" + "Idrv=" + Idrv + ", Date_depart=" + Date_depart + ", Date_arrivee=" + Date_arrivee + ", etat=" + etat + ", Idu=" + Idu + ", Idv=" + Idv + ", Ref_paiement=" + Ref_paiement + ", user=" + user + ", paiement=" + paiement + ", voyage=" + voyage + '}';
+    
+    
+    
+    public int getIdrv() {
+        return Idrv;
     }
-     
-    
-    
+
+    public Date getDate_depart() {
+        return Date_depart;
+    }
+
+    public Date getDate_arrivee() {
+        return Date_arrivee;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public int getIdu() {
+        return Idu;
+    }
+
+    public int getIdv() {
+        return Idv;
+    }
+
+    public int getRef_paiement() {
+        return Ref_paiement;
+    }
+
+    public user getUser() {
+        return user;
+    }
+
+    public paiement getPaiement() {
+        return paiement;
+    }
+
+    public voyage getVoyage() {
+        return voyage;
+    }
+
+   
     
     
 }

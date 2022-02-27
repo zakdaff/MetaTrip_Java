@@ -66,7 +66,9 @@ private Voiture Voiture;
     public int getIdrvoit() {
         return Idrvoit;
     }
-
+   public int getIdvoit() {
+        return Idvoit;
+    }
     public float getPrix_rent() {
         return prix_rent;
     }
