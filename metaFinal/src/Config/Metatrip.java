@@ -149,7 +149,7 @@ public class Metatrip  extends Application {
 
         user u1 = new user(9999, "5866", "dafdouf", "zakzouk", "5895", "zak@live.fr", "0000", "image",date2);
          user u8 = new user(811,"199525", "ssss", "cxx", "2568435", "fares.lamloum@esprit.tn", doHashing("12345678"), "image",date2);
-          MailSender.sendMail(u8);
+         //MailSender.sendMail(u8);
          us.ajouter(u8);
         //us.supprimer(810);
         user u3 = new user("5866", "ges", "nay", "5895", "zak@live.fr", "0000", "image",date2);
@@ -166,10 +166,11 @@ public class Metatrip  extends Application {
        // System.out.println(v.getIdv());
 
                                 //voyage_organise vo2=new voyage_organise(5,50.6f,"Lufthansa",15,5,"torkiya","c://assets"); 
-     voyage_organise vo3 = new voyage_organise(170.6f, "nexdd", 3,EtatDispo.INDISPO, v1);
+     voyage_organise vom = new voyage_organise(170.6f, "aazaa", 3,EtatDispo.INDISPO, v1);
           //voyage_organise vo4 = new voyage_organise(10.6f, "flam", 3, v);
                // voyage_organise vom = new voyage_organise(990.6f, "sounay", 3);
-                //vos.ajouter(vo3);
+                //vos.ajouter(vom);
+        vos.modifier(88, vom);
         System.out.println("List voyages par date croissante"+ us.VoyageParDates());
            System.out.println("Le nombre de users est = "+us.nbUsers());
 
@@ -204,7 +205,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
         //System.out.println(vo3.getVoyage());
      
       // vos.ajouter(vo4);
-       //vos.modifier(79, vom);
+    
        
        //vs.modifier(97,chrf);
     //vs.supprimer(360);
@@ -448,7 +449,7 @@ evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
 
 
   
-    launch(args);              
+  //  launch(args);              
 
      
      
