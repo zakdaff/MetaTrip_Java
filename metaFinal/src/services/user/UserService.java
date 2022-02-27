@@ -454,7 +454,7 @@ List<Object> voyages = new ArrayList<>();
 
         Paragraph para=new Paragraph ("Facture  Voyage :");
         document.add (para);
-                    document.add(image);
+           
 
 
         //simple paragraph
@@ -492,7 +492,7 @@ List<Object> voyages = new ArrayList<>();
                               pdfPTable.addCell (""+rv.getIdv()+"");
                            pdfPTable.addCell (""+rv.getRef_paiement()+"");
                           document.add(pdfPTable);
-    
+             document.add(image);
                         document.close();
                         document.close ();
 
