@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Config.Datasource;
+import static services.user.MailSender.sendMail;
 
 /**
  *
@@ -76,7 +77,8 @@ public boolean login (String email,String password) throws Exception {
         }
        return test;
     }
-  public void Signup(user u) {
+  public boolean Signup(user u) throws Exception {
+        boolean test = false;
               List<user> users = new ArrayList<>();
       String Email1=u.getEmail();
       String pass1=u.getPassword();
@@ -130,6 +132,8 @@ public boolean login (String email,String password) throws Exception {
                                                                  pste.setDate(8, u.getDateNaissance());
                                                            pste.executeUpdate();
                                                            System.out.println("user créée");
+                                                           MailSender.sendMail(u);
+                                                             test=true;
                                                        } catch (SQLException ex) {
                                                            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
                                                        }
@@ -137,9 +141,13 @@ public boolean login (String email,String password) throws Exception {
                                     }
                                                        else{
                                              System.out.print("signup failed ");
+                                            test=false;
 
                                     }
-}
+                    return   test;               
+                                       
+ 
 
-}
 
+
+}}

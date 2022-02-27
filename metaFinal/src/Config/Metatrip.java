@@ -138,13 +138,15 @@ public class Metatrip  extends Application {
   
     	@Override
 	public void start(Stage primaryStage) throws IOException {
-            
-             Parent root = FXMLLoader.load(getClass().getResource("/view/login_signup/login.fxml"));
+            try {
+             Parent root = FXMLLoader.load(getClass().getResource("/view/login_signup/signup.fxml"));
         Scene scene = new Scene(root, 300, 250);
    
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
+        } catch(Exception e) {
+			e.printStackTrace();}
 		/*try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/UserList.fxml"));
 			Scene scene = new Scene(root);
