@@ -78,12 +78,12 @@
         </Pane>
         <VBox layoutX="78.0" layoutY="66.0" prefHeight="275.0" prefWidth="182.0" spacing="15.0">
             <children>
-                            <TextField fx:id="Ide" editable="false" prefHeight="20.0" prefWidth="80.0" />
-                            <TextField fx:id="Type_event" layoutX="10.0" layoutY="10.0" />
-                            <TextField fx:id="Chanteur" layoutX="10.0" layoutY="20.0" />
-                            <TextField fx:id="Adresse" styleClass="field" />
-                            <TextField fx:id="Date_event" prefHeight="26.0" prefWidth="0.0" styleClass="field" />
-                            <TextField fx:id="prix_e" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
+                            <TextField fx:id="ids" editable="false" prefHeight="20.0" prefWidth="80.0" />
+                            <TextField fx:id="nomsponsor" layoutX="10.0" layoutY="10.0" />
+                            <TextField fx:id="tel" layoutX="10.0" layoutY="20.0" />
+                            <TextField fx:id="email" styleClass="field" />
+                            <TextField fx:id="date_sp" prefHeight="26.0" prefWidth="0.0" styleClass="field" />
+                            <TextField fx:id="prix_sp" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
                             <TextField fx:id="image" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
             </children>
         </VBox>
