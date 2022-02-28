@@ -36,8 +36,8 @@ public class Servicesponsor {
 
     public void ajouter(sponsor s) {
         try {
-            String req = "insert into sponsor (nomsponsor,tel,email,date_sp,prix_sp,ide) values"
-                    + "('" + s.getNomsponsor() + "'   ,   '" + s.getTel() + "'   ,   '" + s.getEmail() + "' ,  '" + s.getDate_sp() + "' ,  '" + s.getPrix_sp() + "' , '" + s.getEvenement().getIde() + "' )";
+            String req = "insert into sponsor (nomsponsor,tel,email,date_sp,prix_sp,image,ide) values"
+                    + "('" + s.getNomsponsor() + "'   ,   '" + s.getTel() + "'   ,   '" + s.getEmail() + "' ,  '" + s.getDate_sp() + "' , '" + s.getImage() + "' , '" + s.getPrix_sp() + "' , '" + s.getEvenement().getIde() + "' )";
             Statement st = conn.createStatement();
             st.executeUpdate(req);
             System.out.println("sponsor ajoutée");
@@ -85,10 +85,13 @@ public class Servicesponsor {
                 sponsor s = new sponsor();
                 s.setIdS (rs.getInt(1));
                 s.setNomsponsor(rs.getString("nomsponsor"));
-                s.setTel(rs.getDouble("tel"));
+                s.setTel(rs.getString("tel"));
                 s.setEmail(rs.getString("email"));
                 s.setDate_sp(rs.getDate("date_sp"));
                 s.setPrix_sp(rs.getFloat("prix_sp"));
+                 s.setImage(rs.getString("image"));
+                 
+                
                 list.add(s);
             }
 

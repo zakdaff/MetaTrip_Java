@@ -157,7 +157,5 @@ public class Servicereservation_event  {
         }
            return listr;
     }
-    
-    
 }
 

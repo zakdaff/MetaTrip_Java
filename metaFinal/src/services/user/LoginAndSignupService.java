@@ -29,8 +29,8 @@ public class LoginAndSignupService {
 
       private String Email;
       private String Password;
-public String login (String email,String password) throws Exception {
-    String test = null;
+public boolean login (String email,String password) throws Exception {
+    boolean test = false;
         List<user> users = new ArrayList<>();
         String req = "SELECT *  FROM `user` where Email='"+email+"' and Password ='"+password+"'";
         System.out.println(email);
@@ -43,10 +43,10 @@ public String login (String email,String password) throws Exception {
             while(rs.next()){
             user u = new user();
                 u.setIdu(rs.getInt(1));
-                  u.setCin( rs.getDouble(2));
+                  u.setCin( rs.getString(2));
                 u.setNom(rs.getString(3));
                 u.setPrenom(rs.getString(4));      
-                    u.setTel(rs.getDouble(5));
+                    u.setTel(rs.getString(5));
             
               u.setEmail( rs.getString(6));
                u.setPassword(rs.getString(7));
@@ -64,11 +64,11 @@ public String login (String email,String password) throws Exception {
            try{
                
          if(users.size()==0){
-                             test="login failed";
+                         return test;
                          
                          }
                          else{
-                             test="login successful";
+                             test=true;
                            
                          }
            }catch(IndexOutOfBoundsException e){
@@ -93,10 +93,10 @@ public String login (String email,String password) throws Exception {
             while(rs.next()){
               user u1 = new user();
                 u1.setIdu(rs.getInt(1));
-                  u1.setCin( rs.getDouble(2));
+                  u1.setCin( rs.getString(2));
                 u1.setNom(rs.getString(3));
                 u1.setPrenom(rs.getString(4));      
-                    u1.setTel(rs.getDouble(5));
+                    u1.setTel(rs.getString(5));
             
               u1.setEmail( rs.getString(6));
                u1.setPassword(rs.getString(7));
@@ -120,10 +120,10 @@ public String login (String email,String password) throws Exception {
                                                            pste = conn.prepareStatement(req10);
 
 
-                                                           pste.setDouble(1,u.getCin());
+                                                           pste.setString(1,u.getCin());
                                                            pste.setString(2, u.getNom());
                                                            pste.setString(3, u.getPrenom());
-                                                            pste.setDouble(4,u.getTel());
+                                                            pste.setString(4,u.getTel());
                                                              pste.setString(5, u.getEmail());
                                                               pste.setString(6, u.getPassword());
                                                                pste.setString(7, u.getImage());

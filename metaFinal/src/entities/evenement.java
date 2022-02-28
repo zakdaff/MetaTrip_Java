@@ -21,6 +21,7 @@ public class evenement {
     private String Adresse;
     private Date Date_event ; 
     private float  prix_e ; 
+    private String image;
     
 
     public evenement() {
@@ -30,47 +31,23 @@ public class evenement {
         this.Ide = Ide;
     }
 
-    public evenement(int Ide, String Type_event, String Chanteur, String Adresse, Date Date_event, float prix_e) {
+    public evenement(int Ide, String Type_event, String Chanteur, String Adresse, Date Date_event, float prix_e, String image) {
         this.Ide = Ide;
         this.Type_event = Type_event;
         this.Chanteur = Chanteur;
         this.Adresse = Adresse;
         this.Date_event = Date_event;
         this.prix_e = prix_e;
+        this.image = image;
     }
 
-  
-
-    public evenement(String Type_event, String Chanteur, String Adresse, Date Date_event, float prix_e) {
+    public evenement(String Type_event, String Chanteur, String Adresse, Date Date_event, float prix_e, String image) {
         this.Type_event = Type_event;
         this.Chanteur = Chanteur;
         this.Adresse = Adresse;
         this.Date_event = Date_event;
         this.prix_e = prix_e;
-    }
-
-    public int getIde() {
-        return Ide;
-    }
-
-    public String getType_event() {
-        return Type_event;
-    }
-
-    public String getChanteur() {
-        return Chanteur;
-    }
-
-    public String getAdresse() {
-        return Adresse;
-    }
-
-    public Date getDate_event() {
-        return Date_event;
-    }
-
-    public float getPrix_e() {
-        return prix_e;
+        this.image = image;
     }
 
     public void setIde(int Ide) {
@@ -97,10 +74,44 @@ public class evenement {
         this.prix_e = prix_e;
     }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getIde() {
+        return Ide;
+    }
+
+    public String getType_event() {
+        return Type_event;
+    }
+
+    public String getChanteur() {
+        return Chanteur;
+    }
+
+    public String getAdresse() {
+        return Adresse;
+    }
+
+    public Date getDate_event() {
+        return Date_event;
+    }
+
+    public float getPrix_e() {
+        return prix_e;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
     @Override
     public String toString() {
-        return "evenement{" + "Ide=" + Ide + ", Type_event=" + Type_event + ", Chanteur=" + Chanteur + ", Adresse=" + Adresse + ", Date_event=" + Date_event + ", prix_e=" + prix_e + '}';
+        return "evenement{" + "Ide=" + Ide + ", Type_event=" + Type_event + ", Chanteur=" + Chanteur + ", Adresse=" + Adresse + ", Date_event=" + Date_event + ", prix_e=" + prix_e + ", image=" + image + '}';
     }
+
+    
 
    
 }

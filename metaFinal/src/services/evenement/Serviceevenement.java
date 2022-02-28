@@ -40,8 +40,8 @@ public class Serviceevenement {
 
     public void ajouter(evenement e) {
         try {
-            String req = "insert into evenement (Type_event,Chanteur,Adresse,Date_event,prix_e) values"
-                    + "('" + e.getType_event() + "'   ,   '" + e.getChanteur() + "'   ,   '" + e.getAdresse() + "' ,  '" + e.getDate_event() + "' ,  '" + e.getPrix_e() + "' )" ;
+            String req = "insert into evenement (Type_event,Chanteur,Adresse,Date_event,prix_e,image) values"
+                    + "('" + e.getType_event() + "'   ,   '" + e.getChanteur() + "'   ,   '" + e.getAdresse() + "' ,  '" + e.getDate_event() + "' ,  '" + e.getPrix_e() + "' , '" + e.getImage() + "' )" ;
             Statement st = conn.createStatement();
             st.executeUpdate(req);
             System.out.println("Evenement ajoutée");
@@ -97,6 +97,7 @@ public class Serviceevenement {
                 e.setAdresse(rs.getString("Adresse"));
                 e.setDate_event(rs.getDate("Date_event"));
                 e.setPrix_e(rs.getFloat("Prix_e"));
+                e.setImage(rs.getString("image"));
                 list.add(e);
             }
             
@@ -125,6 +126,7 @@ public class Serviceevenement {
                   u.setAdresse( rs.getString(4));
                    u.setDate_event( rs.getDate(5));
                    u.setPrix_e( rs.getFloat(6));
+                   u.setImage(rs.getString(7));
               
                  listR.add(u) ;
             }
@@ -154,6 +156,7 @@ public class Serviceevenement {
                   u.setAdresse( rs.getString(4));
                    u.setDate_event( rs.getDate(5));
                    u.setPrix_e( rs.getFloat(6));
+                     u.setImage(rs.getString(7));
               
                  listR.add(u) ;
             }
@@ -183,6 +186,7 @@ public class Serviceevenement {
                   u.setAdresse( rs.getString(4));
                    u.setDate_event( rs.getDate(5));
                    u.setPrix_e( rs.getFloat(6));
+                     u.setImage(rs.getString(7));
               
                  listR.add(u) ;
             }
@@ -213,7 +217,8 @@ public class Serviceevenement {
                   u.setAdresse( rs.getString(4));
                    u.setDate_event( rs.getDate(5));
                    u.setPrix_e( rs.getFloat(6));
-               System.out.println("dkhal");
+                     u.setImage(rs.getString(7));
+        
                  listRee.add(u) ;
                  
             }
@@ -248,6 +253,7 @@ public class Serviceevenement {
                   u.setAdresse( rs.getString(4));
                    u.setDate_event( rs.getDate(5));
                    u.setPrix_e( rs.getFloat(6));
+                    u.setImage(rs.getString(7));
                  
              listR.add(u) ;
                                                    
@@ -286,6 +292,7 @@ public class Serviceevenement {
                   u.setAdresse( rs.getString(4));
                    u.setDate_event( rs.getDate(5));
                    u.setPrix_e( rs.getFloat(6));
+                    u.setImage(rs.getString(7));
                  
              listR.add(u) ;
                                                    
@@ -298,6 +305,8 @@ public class Serviceevenement {
       }
         return listR;
     }
+      
+      
     
     
 }

@@ -63,17 +63,17 @@ public class VoyageORG_Service implements IVoyage_ORG_Service{
     }
 
     
-    @Override
+@Override
     public void modifier(int idvo, voyage_organise vo) {
-           String req = "UPDATE `voyage_organise` SET "
-                +"`Prix_billet`=?,`Airline`=?,`Nb_nuitees`=?"
+           String req = "UPDATE voyage_organise SET "
+                +"Prix_billet`=?,Airline`=?,`Nb_nuitees`=?,`etatVoyage`=?"
                + " WHERE Idvo = '" + idvo+ "'";
-    
         try {
             pste = conn.prepareStatement(req);
            pste.setFloat(1,vo.getPrix_billet());
             pste.setString(2, vo.getAirline());
             pste.setInt(3, vo.getNb_nuitees());
+           pste.setString(4,vo.getEtatVoyage().name());
          
             pste.executeUpdate();
             System.out.println("Voyage organisé de id "+ idvo+ " Updated sucessfully");

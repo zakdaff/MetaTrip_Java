@@ -1,36 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="514.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.UserListController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="286.0" prefWidth="669.0" VBox.vgrow="ALWAYS">
-      <children>
-      
-            <Text layoutX="228.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List users" />
-      </children>
-      <children>
-            
-            <TableView layoutX="10.0" layoutY="169.0" prefHeight="200.0" prefWidth="625.0" style="-fx-background-color: lightgray; -fx-border-color: gray;">
-              <columns>
-                  <TableColumn prefWidth="39.0" text="ID" />
-                  <TableColumn prefWidth="111.0" text="CIN" />
-                  <TableColumn prefWidth="75.0" text="Prenom" />
-                  <TableColumn prefWidth="75.0" text="Nom" />
-                  <TableColumn prefWidth="75.0" text="Tel" />
-                  <TableColumn prefWidth="143.0" text="DateNaissance" />
-                  <TableColumn prefWidth="106.0" text="Image" />
-              </columns>
-            </TableView>
+      <VBox prefHeight="400.0" prefWidth="640.0">
+        <children>
+       
+<AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/8.0.171">
+    <children>
+        <VBox layoutX="15.0" layoutY="16.0" prefHeight="157.0" prefWidth="62.0" spacing="25.0">
+            <children>
+                <Label styleClass="labelform" text="ID" />
+                <Label layoutX="10.0" layoutY="10.0" styleClass="labelform" text="CIN" />
+                <Label layoutX="10.0" layoutY="27.0" styleClass="labelform" text="NOM" />
+                        <Label styleClass="labelform" text="PRENOM" />
+                        <Label styleClass="labelform" text="TEL" />
+                        <Label styleClass="labelform" text="EMAIL" />
+                        <Label styleClass="labelform" text="Password" />
+                        <Label styleClass="labelform" text="DateNais" />
+                        <Label styleClass="labelform" text="Image" />
+                
+            </children>
+        </VBox>
+        <Button fx:id="bsave" layoutX="3.0" layoutY="432.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn"  text="Save">
            
-      </children>
-    </AnchorPane>
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="bupdate" layoutX="98.0" layoutY="432.0" onAction="#updateEvent" mnemonicParsing="false" prefHeight="33.0" prefWidth="71.0" text="Edit">
+         
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+        </Button>
+            <Button fx:id="bdelete" layoutX="189.0" layoutY="433.0" onAction="#deleteEvent" mnemonicParsing="false" prefHeight="33.0" prefWidth="71.0" styleClass="btn"  text="Delete">
+            
+                                 <font>
+                <Font name="Times New Roman" size="12.0" />
+            </font>
+            </Button>
+            
+              <Button layoutX="279.0" layoutY="433.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Reset">
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+            
+        </Button>
+            
+           <TableView fx:id="table" onMouseClicked="#tablehandleButtonAction" layoutX="316.0" layoutY="66.0"  prefHeight="302.0" prefWidth="575.0">
+            <columns>
+                <TableColumn fx:id="uidu" prefWidth="33.0" text="ID" />
+                <TableColumn fx:id="ucin" prefWidth="82.33331298828125" text="CIN" />
+                <TableColumn fx:id="unom" prefWidth="49.66668701171875" text="NOM" />
+                <TableColumn fx:id="uprenom" prefWidth="60.999969482421875" text="Prenom" />
+                        <TableColumn fx:id="utel" prefWidth="68.0" text="Tel" />
+                        <TableColumn fx:id="uemail" prefWidth="84.33331298828125" text="Email" />
+                        <TableColumn fx:id="udateNaissance" prefWidth="102.6666259765625" text="DateNaissance" />
+                        <TableColumn fx:id="uimage" prefWidth="85.3333740234375" text="Image" />
+            </columns>
+        </TableView>
+        <Pane layoutX="96.0" layoutY="12.0" prefHeight="39.0" prefWidth="634.0">
+            <children>
+                <Label layoutX="238.0" layoutY="1.0" prefHeight="10.0" prefWidth="337.0" text="LISTE USERS" textFill="#ffc300">
+                    <font>
+                        <Font name="Arial Bold" size="25.0" />
+                    </font>
+                
+                </Label>
+            </children>
+        </Pane>
+        <VBox layoutX="78.0" layoutY="13.0" prefHeight="157.0" prefWidth="180.0" spacing="15.0">
+            <children>
+                            <TextField fx:id="idu" editable="false" prefHeight="20.0" prefWidth="80.0" />
+                            <TextField fx:id="cin" layoutX="10.0" layoutY="10.0" />
+                            <TextField fx:id="nom" layoutX="10.0" layoutY="20.0" />
+                            <TextField fx:id="prenom" styleClass="field" />
+                            <TextField fx:id="tel" prefHeight="26.0" prefWidth="0.0" styleClass="field" />
+                            <TextField fx:id="email" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
+                            <TextField fx:id="password" prefHeight="0.0" prefWidth="56.0" styleClass="field" /> 
+                            <TextField fx:id="dateNaissance" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
+                            <TextField fx:id="image" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
+            </children>
+        </VBox>
+        
+     
+    </children>
+</AnchorPane>
+            
+        </children>
+      </VBox>
   </children>
 </VBox>

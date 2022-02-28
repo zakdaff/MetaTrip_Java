@@ -13,11 +13,11 @@ public class sponsor {
     
     private int idS;
     private String nomsponsor ; 
-    private double Tel; 
+    private String Tel; 
     private String email ; 
     private Date date_sp ; 
     private float prix_sp ; 
-
+    private String image;
     
     private evenement evenement ; 
     
@@ -25,22 +25,24 @@ public class sponsor {
     public sponsor() {
     }
 
-    public sponsor(int idS, String nomsponsor, double Tel, String email, Date date_sp, float prix_sp, evenement evenement) {
+    public sponsor(int idS, String nomsponsor, String Tel, String email, Date date_sp, float prix_sp, String image, evenement evenement) {
         this.idS = idS;
         this.nomsponsor = nomsponsor;
         this.Tel = Tel;
         this.email = email;
         this.date_sp = date_sp;
         this.prix_sp = prix_sp;
+        this.image = image;
         this.evenement = evenement;
     }
 
-    public sponsor(String nomsponsor, double Tel, String email, Date date_sp, float prix_sp, evenement evenement) {
+    public sponsor(String nomsponsor, String Tel, String email, Date date_sp, float prix_sp, String image, evenement evenement) {
         this.nomsponsor = nomsponsor;
         this.Tel = Tel;
         this.email = email;
         this.date_sp = date_sp;
         this.prix_sp = prix_sp;
+        this.image = image;
         this.evenement = evenement;
     }
 
@@ -52,7 +54,7 @@ public class sponsor {
         return nomsponsor;
     }
 
-    public double getTel() {
+    public String getTel() {
         return Tel;
     }
 
@@ -68,6 +70,10 @@ public class sponsor {
         return prix_sp;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     public evenement getEvenement() {
         return evenement;
     }
@@ -80,7 +86,7 @@ public class sponsor {
         this.nomsponsor = nomsponsor;
     }
 
-    public void setTel(double Tel) {
+    public void setTel(String Tel) {
         this.Tel = Tel;
     }
 
@@ -96,15 +102,20 @@ public class sponsor {
         this.prix_sp = prix_sp;
     }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public void setEvenement(evenement evenement) {
         this.evenement = evenement;
     }
 
     @Override
     public String toString() {
-        return "sponsor{" + "idS=" + idS + ", nomsponsor=" + nomsponsor + ", Tel=" + Tel + ", email=" + email + ", date_sp=" + date_sp + ", prix_sp=" + prix_sp + ", evenement=" + evenement + '}';
+        return "sponsor{" + "idS=" + idS + ", nomsponsor=" + nomsponsor + ", Tel=" + Tel + ", email=" + email + ", date_sp=" + date_sp + ", prix_sp=" + prix_sp + ", image=" + image + ", evenement=" + evenement + '}';
     }
 
+    
   
     
 }
