@@ -14,6 +14,7 @@ public class hotel {
     private String Nom_hotel;
     private int Nb_etoiles;
     private String Adresse ;
+    private String image_hotel;
 
     public hotel() {
     }
@@ -24,11 +25,19 @@ public class hotel {
         this.Adresse = Adresse;
     }
 
-    public hotel(int idh, String Nom_hotel, int Nb_etoiles, String Adresse) {
+    public hotel(String Nom_hotel, int Nb_etoiles, String Adresse, String image_hotel) {
+        this.Nom_hotel = Nom_hotel;
+        this.Nb_etoiles = Nb_etoiles;
+        this.Adresse = Adresse;
+        this.image_hotel = image_hotel;
+    }
+
+    public hotel(int idh, String Nom_hotel, int Nb_etoiles, String Adresse,String image_hotel) {
         this.idh = idh;
         this.Nom_hotel = Nom_hotel;
         this.Nb_etoiles = Nb_etoiles;
         this.Adresse=Adresse;
+        this.image_hotel=image_hotel;
     }
 
     public hotel(int idh) {
@@ -66,6 +75,20 @@ public class hotel {
     public void setAdresse(String Adresse) {
         this.Adresse = Adresse;
     }
+
+    public String getImage_hotel() {
+        return image_hotel;
+    }
+
+    public void setImage_hotel(String image_hotel) {
+        this.image_hotel = image_hotel;
+    }
+
+    @Override
+    public String toString() {
+        return "hotel{" + "idh=" + idh + ", Nom_hotel=" + Nom_hotel + ", Nb_etoiles=" + Nb_etoiles + ", Adresse=" + Adresse + ", image_hotel=" + image_hotel + '}';
+    }
+
     
    
 }

@@ -8,55 +8,54 @@ package entities;
 import entities.user;
 import java.sql.Date;
 
-
 /**
  *
  * @author medal
  */
 public class reservation_hotel {
+
     private int Idrh;
-   private String Type_room;	
-        private int        Nb_nuitees	;
-            private int    Nb_personnes	;
-             private float       Prix	;
-             
+    private int Nb_nuitees;
+    private int Nb_personnes;
+    private float Prix;
 
-       private user user;
-       private hotel hotel;
-       private int Idu;
-       private int Idh;
-       private Date Date_depart;
-       private Date Date_arrivee;
+    private user user;
+    private Chambre chambre ;
+    private int Idu;
+    private int Idh;
+    private Date Date_depart;
+    private Date Date_arrivee;
 
-    public reservation_hotel(int Idrh, String Type_room, int Nb_nuitees, int Nb_personnes, float Prix, user user, hotel hotel) {
+    public reservation_hotel(int Idrh, int Nb_nuitees, int Nb_personnes, float Prix, user user, Chambre chambre ) {
         this.Idrh = Idrh;
-        this.Type_room = Type_room;
+        
         this.Nb_nuitees = Nb_nuitees;
         this.Nb_personnes = Nb_personnes;
         this.Prix = Prix;
         this.user = user;
-        this.hotel = hotel;
+       this.chambre=chambre ;
     }
+    
 
     public reservation_hotel() {
     }
 
-    public reservation_hotel(int Idrh, String Type_room, int Nb_nuitees, int Nb_personnes, float Prix, user user, hotel hotel, int Idu, int Idh, Date Date_depart, Date Date_arrivee) {
+    public reservation_hotel(int Idrh, int Nb_nuitees, int Nb_personnes, float Prix, user user,Chambre chambre, int Idu, int Idh, Date Date_depart, Date Date_arrivee) {
         this.Idrh = Idrh;
-        this.Type_room = Type_room;
+       
         this.Nb_nuitees = Nb_nuitees;
         this.Nb_personnes = Nb_personnes;
         this.Prix = Prix;
         this.user = user;
-        this.hotel = hotel;
+        this.chambre = chambre;
         this.Idu = Idu;
         this.Idh = Idh;
         this.Date_depart = Date_depart;
         this.Date_arrivee = Date_arrivee;
     }
 
-    public reservation_hotel(String Type_room, int Nb_nuitees, int Nb_personnes, float Prix, int Idu, int Idh, Date Date_depart, Date Date_arrivee) {
-        this.Type_room = Type_room;
+    public reservation_hotel( int Nb_nuitees, int Nb_personnes, float Prix, int Idu, int Idh, Date Date_depart, Date Date_arrivee) {
+       
         this.Nb_nuitees = Nb_nuitees;
         this.Nb_personnes = Nb_personnes;
         this.Prix = Prix;
@@ -66,13 +65,24 @@ public class reservation_hotel {
         this.Date_arrivee = Date_arrivee;
     }
 
-    public reservation_hotel(String Type_room, int Nb_nuitees, int Nb_personnes, float Prix, user user, hotel hotel, Date Date_depart, Date Date_arrivee) {
-        this.Type_room = Type_room;
+    public reservation_hotel(int Idrh, int Nb_nuitees, int Nb_personnes, float Prix, user user, Chambre chambre, Date Date_depart, Date Date_arrivee) {
+        this.Idrh = Idrh;
         this.Nb_nuitees = Nb_nuitees;
         this.Nb_personnes = Nb_personnes;
         this.Prix = Prix;
         this.user = user;
-        this.hotel = hotel;
+        this.chambre = chambre;
+        this.Date_depart = Date_depart;
+        this.Date_arrivee = Date_arrivee;
+    }
+
+    public reservation_hotel( int Nb_nuitees, int Nb_personnes, float Prix, user user, Chambre chambre , Date Date_depart, Date Date_arrivee) {
+        
+        this.Nb_nuitees = Nb_nuitees;
+        this.Nb_personnes = Nb_personnes;
+        this.Prix = Prix;
+        this.user = user;
+        this.chambre= chambre;
         this.Date_depart = Date_depart;
         this.Date_arrivee = Date_arrivee;
     }
@@ -109,39 +119,36 @@ public class reservation_hotel {
         this.Date_arrivee = Date_arrivee;
     }
 
- 
-
-    public reservation_hotel(String Type_room, int Nb_nuitees, int Nb_personnes, float Prix, user user, hotel hotel) {
-        this.Type_room = Type_room;
+    public reservation_hotel(int Nb_nuitees, int Nb_personnes, float Prix, user user,Chambre chambre) {
+        
         this.Nb_nuitees = Nb_nuitees;
         this.Nb_personnes = Nb_personnes;
         this.Prix = Prix;
         this.user = user;
-        this.hotel = hotel;
+        this.chambre = chambre;
     }
 
-
-    
-      public reservation_hotel(String Type_room, int Nb_nuitees, int Nb_personnes, float Prix, hotel hotel, user user) {
-        this.Type_room = Type_room;
+    public reservation_hotel( int Nb_nuitees, int Nb_personnes, float Prix, Chambre chambre, user user) {
+        
         this.Nb_nuitees = Nb_nuitees;
         this.Nb_personnes = Nb_personnes;
         this.Prix = Prix;
         this.user = user;
-        this.hotel = hotel;
-    }
-    
-    @Override
-    public String toString() {
-        return "reservation_hotel{" + "Idrh=" + Idrh + ", Type_room=" + Type_room + ", Nb_nuitees=" + Nb_nuitees + ", Nb_personnes=" + Nb_personnes + ", Prix=" + Prix + ", IDuser=" + user.getIdu() + ", IDhotel=" + hotel.getIdh() + '}';
+        this.chambre = chambre;
     }
 
     public void setIdrh(int Idrh) {
         this.Idrh = Idrh;
     }
 
-    public void setType_room(String Type_room) {
-        this.Type_room = Type_room;
+    @Override
+    
+
+   
+
+   
+    public String toString() {
+        return "reservation_hotel{" + "Idrh=" + Idrh + ", Nb_nuitees=" + Nb_nuitees + ", Nb_personnes=" + Nb_personnes + ", Prix=" + Prix + ", user=" + user + ", chambre=" + chambre + ", Idu=" + Idu + ", Idh=" + Idh + ", Date_depart=" + Date_depart + ", Date_arrivee=" + Date_arrivee + '}';
     }
 
     public void setNb_nuitees(int Nb_nuitees) {
@@ -160,17 +167,15 @@ public class reservation_hotel {
         this.user = user;
     }
 
-    public void setHotel(hotel hotel) {
-        this.hotel = hotel;
+    public void setChambre(Chambre chambre) {
+        this.chambre = chambre;
     }
 
     public int getIdrh() {
         return Idrh;
     }
 
-    public String getType_room() {
-        return Type_room;
-    }
+   
 
     public int getNb_nuitees() {
         return Nb_nuitees;
@@ -188,14 +193,8 @@ public class reservation_hotel {
         return user;
     }
 
-    public hotel getHotel() {
-        return hotel;
+    public Chambre getChambre() {
+        return chambre;
     }
 
-    
-
-   
-
-
-             
 }

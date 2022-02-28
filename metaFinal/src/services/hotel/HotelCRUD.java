@@ -32,12 +32,13 @@ public class HotelCRUD {
     
     public void ajouterHotel(hotel h){
         try {
-            String requete ="INSERT INTO hotel VALUES(?,?,?,?)";
+            String requete ="INSERT INTO hotel VALUES(?,?,?,?,?)";
                pste = conn.prepareStatement(requete);
             pste.setInt(1,h.getIdh());
             pste.setString(2,h.getNom_hotel());
             pste.setInt(3,h.getNb_etoiles());
             pste.setString(4,h.getAdresse());
+            pste.setString(5,h.getImage_hotel());
             
             pste.executeUpdate();
             System.out.println("Hotel ajoutée avec succès");
@@ -61,6 +62,7 @@ public class HotelCRUD {
                   h.setNom_hotel(rs.getString(2));
                   h.setNb_etoiles(rs.getInt(3));
                   h.setAdresse(rs.getString(5));
+                  h.setImage_hotel(rs.getString(6));
                   myList.add(h);
             }
         } catch (SQLException ex) {
@@ -81,15 +83,25 @@ public class HotelCRUD {
         }
         
     }
-   public void modifierHotel(hotel h){
+   public void modifierHotel( int idh ,hotel h){
+       
+        String req = "UPDATE `hotel` SET "
+                +" Nom_hotel`=?,`type`=?"
+               + " WHERE Idh = '" + idh+ "'";
+    
         try {
-            String req= "UPDATE hotel SET Nom_hotel='" + h.getNom_hotel() + "',Nb_etoiles=" + h.getNb_etoiles()+", Adresse='" + h.getAdresse()+ "' WHERE Idh="+h.getIdh()+";";
-             ste = conn.createStatement();
-            ste.executeUpdate(req);
-           System.out.println("Hotel modif avec succes");
+            pste = conn.prepareStatement(req);
+         
+            pste.setInt(1, h.getIdh());
+            pste.setString(2, h.getNom_hotel());
+            pste.executeUpdate();
+            System.out.println("Hotel de id "+ idh+ " Updated sucessfully");
         } catch (SQLException ex) {
-         System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
+        
+     
+        
     
 }
 }

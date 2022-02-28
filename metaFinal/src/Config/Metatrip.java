@@ -1,5 +1,7 @@
 
 package Config;
+import entities.Chambre;
+import entities.Etat;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -24,6 +26,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import javafx.application.Application;
 import services.abonnement.abonnement_Service;
+import services.chambre.Chambre_service;
 import services.evenement.Serviceevenement;
 import services.evenement.Servicereservation_event;
 import services.hotel.HotelCRUD;
@@ -62,7 +65,7 @@ public class Metatrip extends Application {
     	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/UserList.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/view/login_signup/login.fxml"));
 			Scene scene = new Scene(root);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
@@ -79,7 +82,7 @@ public class Metatrip extends Application {
         // TODO code application logic here
         Datasource data = Datasource.getInstance();
         Datasource data2 = Datasource.getInstance();
-<<<<<<< HEAD
+
         System.out.println(data.hashCode() + "-" + data2.hashCode());
 
         UserService us = new UserService();
@@ -112,15 +115,32 @@ public class Metatrip extends Application {
        //  vov.modifier(3,vov2);
         // vov.supprimer(3);
 
-        user u1 = new user(9999, 5866, "dafdouf", "zakzouk", 5895, "zak@live.fr", "0000", "image",date2);
+        user u1 = new user(65, 5866, "dafdouf", "zakzouk", 5895, "zak@live.fr", "0000", "image",date2);
          user u8 = new user(811,199525, "ssss", "cxx", 2568435, "nex@live.fr", doHashing("12345678"), "image",date2);
          us.ajouter(u8);
         //us.supprimer(810);
         user u3 = new user(5866, "ges", "nay", 5895, "zak@live.fr", "0000", "image",date2);
         user u4 = new user(58656, "khaldi", "imen", 5895, "zak@live.fr", "0000", "image",date2);
 
-       voyage v = new voyage(501,"tounis", "c://berlin.png");
-             voyage chrf = new voyage(967,"istanbul", "c://antalya.png");
+       //voyage v = new voyage(501,"tounis", "c://berlin.png");
+            // voyage chrf = new voyage(967,"istanbul", "c://antalya.png");
+             Chambre_service ic =new Chambre_service();
+            Reserrvation_Hotel_Service rvc =new Reserrvation_Hotel_Service(); 
+            //rvc.rechercherHotelparNom("gulden tulip");
+            //System.out.println(rvc.getHotelByNom("gulden tulip"));
+             hotel h1 = new hotel (12,"mouradi",4,"gammarth","hhhh");
+             hc.ajouterHotel(h1);
+            
+             Chambre ch1= new Chambre (131,50,"ff",h1,"hhh");
+             ic.ajouter(ch1); 
+     
+             //reservation_hotel rh =new reservation_hotel(17,2,5,190.2f,u1,ch1,date2,date2);
+            //System.out.println(rvc.nbChambreDispo()); 
+             //rvc.ajouter(rh);
+            // rvc.supprimer(17);
+            
+            // hc.supprimerHotel(h);
+             //Chambre ch = new Chambre(1,20,"single",EtatDispo.DISPO,h,rh);
         voyage v1 = new voyage( 605,"gafsa", "c://beja.png");
    //vs.ajout(v1); 
    
@@ -134,11 +154,11 @@ public class Metatrip extends Application {
           //voyage_organise vo4 = new voyage_organise(10.6f, "flam", 3, v);
                // voyage_organise vom = new voyage_organise(990.6f, "sounay", 3);
                 //vos.ajouter(vo3);
-        System.out.println("List voyages par date croissante"+ us.VoyageParDates());
-           System.out.println("Le nombre de users est = "+us.nbUsers());
+        //System.out.println("List voyages par date croissante"+ us.VoyageParDates());
+          // System.out.println("Le nombre de users est = "+us.nbUsers());
 
-                      System.out.println("Le nombre de voyages disponibles est = "+us.nbVoyagesDispo());
-System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
+                     // System.out.println("Le nombre de voyages disponibles est = "+us.nbVoyagesDispo());
+//System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
      String str="2020-09-01";  
       String str2="2050-09-01";  
      Date date1=Date.valueOf(str);
@@ -212,22 +232,21 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
             
             
             
-            hotel h=new hotel("4 seasons",4,"gammarth");
-            hotel h2=new hotel(12,"gulden tulip",4,"gammarth");
+          
          //  hc.ajouterHotel(h2);
            // hc.modifierHotel(h2);
            // hc.supprimerHotel(h2);
-           Reserrvation_Hotel_Service rhs=new Reserrvation_Hotel_Service ();
+          // Reserrvation_Hotel_Service rhs=new Reserrvation_Hotel_Service ();
 
-                   reservation_hotel rh =new reservation_hotel("single",2,1,2.2f,u8,h2,date1,date9);
+                //   reservation_hotel rh =new reservation_hotel("single",2,1,2.2f,u8,h2,date1,date9);
           // rhs.ajouter(rh);
                   // rhs.modifier(2, rh);
                   // rhs.supprimer(2);
                    
-                      System.out.println("les voyages les plus Réservé:"+rvs.ListVoyagePlusRéservé());
-        System.out.println ("le maximum de voyage Réserve est "+rvs.LeMaximumDevoyageReserve());
-             System.out.println ("le minimum de voyage Réserve est "+rvs.LeMinimumevoyageReserve());
-                     System.out.println ("la list  de voyage Trié selon Prix est "+rvs.listedevoyageTrierParPrix());
+                     // System.out.println("les voyages les plus Réservé:"+rvs.ListVoyagePlusRéservé());
+       // System.out.println ("le maximum de voyage Réserve est "+rvs.LeMaximumDevoyageReserve());
+           //  System.out.println ("le minimum de voyage Réserve est "+rvs.LeMinimumevoyageReserve());
+                //     System.out.println ("la list  de voyage Trié selon Prix est "+rvs.listedevoyageTrierParPrix());
                    
   
  Serviceevenement se = new Serviceevenement() ; 
@@ -241,7 +260,7 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
    //us.ajouter(ux);
   Servicereservation_event resE=new Servicereservation_event();
   reservation_event resev=new reservation_event(22,82,e,ux);
-=======
+
 //        System.out.println(data.hashCode() + "-" + data2.hashCode());
 //
 //        UserService us = new UserService();
@@ -301,9 +320,14 @@ System.out.println("userByEmail:"+us.getUserByEmail("nex@live.fr"));
 //
 //                      System.out.println("Le nombre de voyages disponibles est = "+us.nbVoyagesDispo());
 //
-String str="2020-09-01";  
+
+  String stry="2020-09-01";  
 //      String str2="2050-09-01";  
- Date date1=Date.valueOf(str);
+ Date date11=Date.valueOf(str);
+//String str="2020-09-01";  
+//      String str2="2050-09-01";  
+ //Date date1=Date.valueOf(str);
+
 //     Date date9=Date.valueOf(str2);//converting string into sql date      System.out.println(date);
 //                user u2 = new user(99925, "ssss", "cxx", 2568435, "fares@live.fr", doHashing("12345678"), "image",date9);
 //           //   LoginAndSignupService LASS =new LoginAndSignupService();
@@ -393,7 +417,10 @@ String str="2020-09-01";
 //                   
 //  
 // Serviceevenement se = new Serviceevenement() ; 
-evenement e = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
+evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
+
+evenement e4 = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
+
 //  evenement e1 = new evenement(4, "aaaaaaa", "c", "7 rue 2938", date1, 120.0f) ; 
 //  //se.ajouter(e1);
 //    //se.modifier(e);
@@ -403,30 +430,38 @@ evenement e = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
 //   //us.ajouter(ux);
 //  Servicereservation_event resE=new Servicereservation_event();
 //  reservation_event resev=new reservation_event(22,82,e,ux);
->>>>>>> origin/zarga
+
+
+
   //resE.ajout(resev);
  // resE.modifier(22,resev);
   //resE.supprimer(22);
   
      //System.out.println(resE.afficher());
+
         
-<<<<<<< HEAD
+
+
+  
+     launch(args);
+     
+     // GESTION SPONSOR 
+     String xy2="2011-10-01";  
+
 
   
      launch(args);              
-=======
      
      
      // GESTION SPONSOR 
-     String xx2="2011-10-01";  
+    //String xx2="2011-10-01";  
      Date date_sp=Date.valueOf(xx2);
      sponsor s = new sponsor(25, "Vitalait", 22252718, "amine@zarga.tn", date_sp, 12.0f,e) ; 
      Servicesponsor ss = new Servicesponsor(); 
      
-     ss.ajouter(s);
+   //  ss.ajouter(s);
                    
-                   
->>>>>>> origin/zarga
+
     }
     
     

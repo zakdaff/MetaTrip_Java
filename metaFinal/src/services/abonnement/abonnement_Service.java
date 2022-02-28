@@ -34,7 +34,7 @@ public class abonnement_Service implements Iabonnement{
        
     @Override
     public void ajouter(abonnement a) {
-        String req = "INSERT INTO abonnement (Type,`Prix_a`,`Date_achat`,`Date_expiration`,`Etat`,`Ref_paiement`) VALUE (?,?,?,?,?,?)";
+        String req = "INSERT INTO abonnement (Type,`Prix_a`,`Date_achat`,`Date_expiration`,`Etat`,`Ref_paiement`) VALUES (?,?,?,?,?,?)";
         try {
             pste = conn.prepareStatement(req);
             pste.setString(1, a.getType());
