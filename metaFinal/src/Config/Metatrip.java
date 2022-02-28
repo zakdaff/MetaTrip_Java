@@ -116,8 +116,8 @@ public class Metatrip  extends Application {
     /**
      * @param args the command line arguments
      */
-    
-    
+
+    public static  Stage stg;
      public static void createQR(String data, String path,
                                 String charset, Map hashMap,
                                 int height, int width)
@@ -135,13 +135,13 @@ public class Metatrip  extends Application {
     }
     
     
-  
+
     	@Override
 	public void start(Stage primaryStage) throws IOException {
             try {
-             Parent root = FXMLLoader.load(getClass().getResource("/view/login_signup/signup.fxml"));
+             Parent root = FXMLLoader.load(getClass().getResource("/view/login_signup/login.fxml"));
         Scene scene = new Scene(root, 300, 250);
-   
+   this.stg=primaryStage;
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -238,8 +238,11 @@ public class Metatrip  extends Application {
               LoginAndSignupService LASS =new LoginAndSignupService();
              //LASS.Signup(u2);
          //   MailSender.sendMail(u2);
-       //  MailSender.sendFacture("fares.lamlou@esprit.tn");
-
+                     user u18 = new user(811,"199525", "ssss", "cxx", "2568435", "bensaid.mohamedali@esprit.tn", doHashing("12345678"), "image",date2);
+   //     MailSender.sendFacture("bensaid.mohamedali@esprit.tn");
+ //us.factureuser(rvs.affichervoyageByid(10));
+ 
+ 
              //   user u2 = new user("99925", "ssss", "cxx", "2568435", "fares@live.fr", doHashing("12345678"), "image",date9);
            //   LoginAndSignupService LASS =new LoginAndSignupService();
               //LASS.Signup(u2);
@@ -294,7 +297,7 @@ public class Metatrip  extends Application {
               rhv.setUser(u2);
                rhv.setVoiture(v99);*/
             
-                 user u18 = new user(811,"199525", "ssss", "cxx", "2568435", "nex@live.fr", doHashing("12345678"), "image",date2);
+             
               // us.ajouter(u18);
                             Voiture v78 =new Voiture(2001,"220TU120",12,"image","bmw");
                              //     VC.ajouterVoiture(v78);
@@ -505,7 +508,7 @@ evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
   //resE.ajout(resev);
  // resE.modifier(22,resev);
   //resE.supprimer(22);
- us.factureuser(rvs.affichervoyageByid(10));
+
      //System.out.println(resE.afficher());
 
 

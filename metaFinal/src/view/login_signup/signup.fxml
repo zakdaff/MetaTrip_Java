@@ -19,15 +19,13 @@
                   <Font size="34.0" />
                </font>
             </Label>
-            <ImageView fitHeight="196.0" fitWidth="220.0" layoutX="126.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="273.0" fitWidth="310.0" layoutX="104.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="307.0" fitWidth="330.0" layoutX="96.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../272896551_284823900301309_6294383665325954873_n.png" />
-               </image>
-            </ImageView>
+                  <Image url="@272896551_284823900301309_6294383665325954873_n.png" />
+               </image></ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="submitButton" onAction="#signup" contentDisplay="CENTER" defaultButton="true" layoutX="768.0" layoutY="553.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="192.0" style="-fx-background-color: #073258;" text="Sign Up" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="submitButton" contentDisplay="CENTER" defaultButton="true" layoutX="768.0" layoutY="553.0" mnemonicParsing="false" onAction="#signup" prefHeight="31.0" prefWidth="192.0" style="-fx-background-color: #073258;" text="Sign Up" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Akhbar MT" size="18.0" />
          </font>

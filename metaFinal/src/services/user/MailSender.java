@@ -102,7 +102,7 @@ public class MailSender {
     
    public static void sendFacture(String to){
    
-    to="fares.lamloum@esprit.tn";//change accordingly   
+   //change accordingly   
         final String user="solidev.3a18@gmail.com";//change accordingly   
        //change accordingly     
 

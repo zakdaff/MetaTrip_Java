@@ -5,18 +5,23 @@
  */
 package view.login_signup;
 
+import Config.Metatrip;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import services.user.LoginAndSignupService;
 
@@ -90,5 +95,18 @@ public class LoginController implements Initializable {
         alert.show();
     }
 
+     @FXML
+public void link(ActionEvent event) throws Exception {               
  
+       try {
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login_signup/signup.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));  
+            stage.show();
+         Metatrip.stg.close();   
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}
 }
