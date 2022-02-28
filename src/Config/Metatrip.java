@@ -155,6 +155,8 @@ Voiture v99 =new Voiture(663,"220TU120",12,"image","Mercedes");
 ////        //VC.modifierVoiture(v98);
                reservation_voiture rhv=new reservation_voiture();
                   Reservation_voiture_Service rvs55= new Reservation_voiture_Service();
+                  
+                
               /* rhv.setChauffeur("mohamed salah");
               rhv.setPrix_rent((float) 5.5);
               rhv.setTrajet("jerba");
@@ -171,17 +173,16 @@ Voiture v99 =new Voiture(663,"220TU120",12,"image","Mercedes");
    // rvs55.ajouter(rhv99);
      reservation_voiture rhv92=new reservation_voiture( 2.2f,"gafsa",u8,v78,ch5);
  // rvs55.modifier(36, rhv92);
- rvs55.supprimer(36);
+ //rvs55.supprimer(36);
   Chauffeur  h= new Chauffeur("5mayes", "salah" ,"taswira",6666666,"desc");
   chauffeur_services cs=new chauffeur_services();
-  VC.recherche_parmodele(m);
-  //cs.ajouter(h);
+ // cs.ajouter(h);
       //  cs.modifier(667, h);
       //cs.supprimer(667);
             //rvs55.ajouter(rhv1);
               // rvs55.modifier(2,rhv1);
               //rvs55.supprimer(2);
-            // rvs55.afficher().toString();
+             System.out.println(rvs55.afficher());
             
             
             
