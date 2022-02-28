@@ -101,7 +101,7 @@ public class VoyageORG_Service implements IVoyage_ORG_Service{
     public List<voyage_organise> afficher() {
    List<voyage_organise> listVORG = new ArrayList<>();
    
-        String req = "SELECT * FROM `voyage_organise` ;";
+        String req = "SELECT v.Idvo ,v.Prix_billet,v.Airline,v.Nb_nuitees,v.Idv FROM `voyage_organise` v ;";
         String req2 = "SELECT * FROM `voyage` where `Idv` = ?";
         
         try {

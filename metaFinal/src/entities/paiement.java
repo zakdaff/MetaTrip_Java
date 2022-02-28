@@ -19,6 +19,10 @@ public class paiement {
     public paiement() {
     }
 
+    public paiement(int Ref_paiement) {
+        this.Ref_paiement = Ref_paiement;
+    }
+
     public int getRef_paiement() {
         return Ref_paiement;
     }

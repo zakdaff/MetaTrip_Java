@@ -47,6 +47,19 @@ public class user {
         this.dateNaissance = dateNaissance;
     }
 
+    public user(int Idu, String Cin, String Nom, String Prenom, int Role, String Tel, String Email, String Password, String Image, Date dateNaissance) {
+        this.Idu = Idu;
+        this.Cin = Cin;
+        this.Nom = Nom;
+        this.Prenom = Prenom;
+        this.Role = Role;
+        this.Tel = Tel;
+        this.Email = Email;
+        this.Password = Password;
+        this.Image = Image;
+        this.dateNaissance = dateNaissance;
+    }
+
     
     
     public user(String Cin, 

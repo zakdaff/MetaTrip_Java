@@ -139,8 +139,8 @@ public class Metatrip  extends Application {
     	@Override
 	public void start(Stage primaryStage) throws IOException {
             
-             Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/Voyage.fxml"));
-        Scene scene = new Scene(root, 900, 550);
+             Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/VoyageORG.fxml"));
+        Scene scene = new Scene(root, 1200, 550);
      this.stg=primaryStage;
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
@@ -176,6 +176,7 @@ public class Metatrip  extends Application {
         voyageService vs= new voyageService();
         
         VoyageORG_Service vos = new VoyageORG_Service();
+        //vos.afficher().toString();
         abonnement_Service a = new abonnement_Service();
            VoyageVRT_Service vov = new VoyageVRT_Service();
         LoginAndSignupService loginSignup = new LoginAndSignupService();
@@ -217,7 +218,7 @@ public class Metatrip  extends Application {
    //vs.ajout(v1); 
    
      //vs.ajout(v1); 
-      //  System.out.println(vs.afficher());
+        //System.out.println(vs.afficher());
                // System.out.println( v1.getPays());
        // System.out.println(v.getIdv());
 
@@ -226,7 +227,7 @@ public class Metatrip  extends Application {
           //voyage_organise vo4 = new voyage_organise(10.6f, "flam", 3, v);
                // voyage_organise vom = new voyage_organise(990.6f, "sounay", 3);
                 //vos.ajouter(vom);
-        vos.modifier(88, vom);
+        //vos.modifier(88, vom);
         System.out.println("List voyages par date croissante"+ us.VoyageParDates());
            System.out.println("Le nombre de users est = "+us.nbUsers());
                 //vos.ajouter(vo3);
@@ -266,7 +267,7 @@ public class Metatrip  extends Application {
        //rvs.ajouter(rv);  
         //rvs.modifier(10, rv);
         //rvs.supprimer(6);
-    //   System.out.println(rvs.afficher());
+       //System.out.println(rvs.afficher().toString());
          
          
         //System.out.println(vo3.getVoyage());
@@ -428,7 +429,7 @@ String strd="2020-09-01";
 //       //rvs.ajouter(rv);  
 //        //rvs.modifier(10, rv);
 //        //rvs.supprimer(6);
-//    //     System.out.println(rvs.afficher());
+     System.out.println(rvs.afficher());
 //         
 //         
 //        //System.out.println(vo3.getVoyage());
@@ -541,7 +542,7 @@ try{
 
 
   
-   launch(args);              
+//   launch(args);              
 
      
      
