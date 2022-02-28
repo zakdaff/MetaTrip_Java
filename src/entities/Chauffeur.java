@@ -57,9 +57,10 @@ public class Chauffeur {
         this.description = description;
     }
 
-    public Chauffeur(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Chauffeur(int idch) {
+        this.idch = idch;
     }
+
 
 
     public int getidch() {

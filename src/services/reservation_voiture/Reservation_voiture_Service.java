@@ -142,12 +142,11 @@ public class Reservation_voiture_Service implements IReservation_voiture {
 
                 u.setIdrvoit(rs.getInt(1));
                 u.setPrix_rent(rs.getFloat(2));
-                u.setIdch(rs.getInt(3));
-                u.setTrajet(rs.getString(4));
-                u.setUser(new user(rs.getInt(5)));
-                u.setVoiture(new Voiture(rs.getInt(6)));
-                u.setChauffeur(new Chauffeur(rs.getInt(7)));
-
+              
+                u.setTrajet(rs.getString(3));
+                u.setUser(new user(rs.getInt(4)));
+                u.setVoiture(new Voiture(rs.getInt(5)));
+                u.setChauffeur(new Chauffeur(rs.getInt(6)));
                 ResultSet rs2 = pste2.executeQuery(); //affichage des voitures de req 2
                 ResultSet rs3 = pste3.executeQuery();
                 ResultSet rs4 = pste4.executeQuery();
