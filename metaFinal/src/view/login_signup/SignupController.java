@@ -68,7 +68,7 @@ public class SignupController implements Initializable {
             return;
            
         }
-        if (Password.getText().isEmpty()) {
+        if ((Password.getText().isEmpty())||(Password.getText().length()<4)) {
     
              showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter a password");
@@ -82,8 +82,21 @@ public class SignupController implements Initializable {
             return;
             
           }  
+               
+                        int monEntier1 = 0;
+        boolean ok1 = true;
+                                                                                        try
+                                                                                                 {
+                                                                                                    monEntier1 = Integer.parseInt(Cin.getText());
+                                                                                        // s'il ne contient que des chiffres (0 à 9) c'est ok sauf si les limites int sont dépassées
+                                                                                        // sinon une exception est levée
+                                                                                                 }
+                                                                                                     catch(NumberFormatException nfe)
+                                                                                                    {
+                                                                                                       ok1= false;
+                                                                                                    }
      
-        if (Cin.getText().isEmpty()||((Cin.getText().length()==8))) {
+        if (Cin.getText().isEmpty()||((Cin.getText().length()==8)||(ok1==false))) {
         
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your Cin id");
@@ -104,14 +117,27 @@ public class SignupController implements Initializable {
             return;
            
         }
-        if (Prenom.getText().isEmpty()) {
-        
+         int monEntier = 0;
+        boolean ok = true;
+                                                                                        try
+                                                                                                 {
+                                                                                                    monEntier = Integer.parseInt(Tel.getText());
+                                                                                        // s'il ne contient que des chiffres (0 à 9) c'est ok sauf si les limites int sont dépassées
+                                                                                        // sinon une exception est levée
+                                                                                                 }
+                                                                                                     catch(NumberFormatException nfe)
+                                                                                                    {
+                                                                                                       ok = false;
+                                                                                                    }
+                                                                                       
+      if (Prenom.getText().isEmpty()) {
+
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter your Prenom id");
-            return;
-           
-        }
-  if (Tel.getText().isEmpty()) {
+                    "Please enter your Prenom id");
+                                 return;
+
+                     }
+  if (Tel.getText().isEmpty()||(Tel.getText().length()==8||(ok==false))) {
         
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your Tel id");
