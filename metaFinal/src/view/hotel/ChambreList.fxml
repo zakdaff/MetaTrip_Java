@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="642.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.hotel.ChambreListController">
+   <children>
+      <Label layoutX="19.0" layoutY="148.0" styleClass="labelform" text="Id Chambre " />
+      <TextField fx:id="idc" layoutX="141.0" layoutY="143.0" />
+      <TextField fx:id="numc" layoutX="141.0" layoutY="205.0" />
+      <TextField fx:id="type" layoutX="141.0" layoutY="266.0" />
+      <Label layoutX="19.0" layoutY="210.0" styleClass="labelform" text="Numero chambre" />
+      <Label layoutX="16.0" layoutY="271.0" styleClass="labelform" text="Type" />
+      <Button fx:id="bsave11" layoutX="99.0" layoutY="485.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Save">
+         <font>
+            <Font name="Times New Roman Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_save" layoutX="99.0" layoutY="485.0" mnemonicParsing="false" onAction="#AjouterChambre" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Save">
+         <font>
+            <Font name="Times New Roman Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_delete" layoutX="199.0" layoutY="485.0" mnemonicParsing="false" onAction="#DeleteChambre" prefHeight="33.0" prefWidth="71.0" text="Delete">
+         <font>
+            <Font name="Times New Roman Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_edit" layoutX="313.0" layoutY="485.0" mnemonicParsing="false" onAction="#EditChambre" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Edit">
+         <font>
+            <Font name="Times New Roman Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="57.0" layoutY="399.0" mnemonicParsing="false" text="Browse" />
+      <TextField id="adresse" fx:id="image" layoutX="155.0" layoutY="399.0" prefHeight="31.0" prefWidth="269.0" promptText="Path" />
+      <TableView fx:id="tab_chambre" layoutX="448.0" layoutY="128.0" prefHeight="329.0" prefWidth="499.0">
+        <columns>
+          <TableColumn fx:id="idc_tab" prefWidth="75.0" text="Id chambre" />
+          <TableColumn fx:id="numc_tab" prefWidth="104.0" text="Numero chambre " />
+            <TableColumn fx:id="type_tab" minWidth="0.0" prefWidth="46.0" text="Type" />
+            <TableColumn fx:id="etat_tab" prefWidth="75.0" text="Etat" />
+            <TableColumn fx:id="image_tab" prefWidth="75.0" text="image " />
+            <TableColumn fx:id="idh_tab" prefWidth="75.0" text="Idh" />
+        </columns>
+      </TableView>
+      <Label layoutX="19.0" layoutY="321.0" styleClass="labelform" text="Etat" />
+      <ComboBox fx:id="etat" layoutX="141.0" layoutY="316.0" prefWidth="187.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#747a80" height="87.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" width="985.0" />
+      <Label layoutX="290.0" layoutY="21.0" prefHeight="10.0" prefWidth="337.0" text="Gestion chambre " textAlignment="CENTER" textFill="#00d1ff">
+         <font>
+            <Font name="Arial Bold" size="31.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="101.0" fitWidth="102.0" layoutX="808.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Desktop/nayrouz/metaFinal/build/classes/view/img/logo_meta.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
