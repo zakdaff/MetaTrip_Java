@@ -17,12 +17,14 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.PdfPTable;
 import entities.user;
+import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -36,12 +38,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import services.user.UserService;
 
 /**
@@ -57,7 +66,9 @@ public class UserListController implements Initializable {
                 @FXML
                 private Button bdelete;
 
-		
+		    @FXML
+    private Label file_path;
+                    
 		@FXML
 		private TableView<user> table;
 		
@@ -88,6 +99,9 @@ public class UserListController implements Initializable {
 		
                 
                 //*********si flam******************//
+                 @FXML
+    private AnchorPane left_main;
+                
                 @FXML
 		private TextField  idu;
                 
@@ -102,13 +116,13 @@ public class UserListController implements Initializable {
 		private TextField  email;
                 
                 @FXML
-		private TextField  password;
+		private PasswordField  password;
                                 	
-                @FXML
-		private TextField  image;
+               @FXML
+    private ImageView image_view;
                                 
 		@FXML
-		private TextField dateNaissance;
+		private DatePicker dateNaissance;
                 @FXML
 		private TextField  tel;
                 @FXML
@@ -121,6 +135,7 @@ public class UserListController implements Initializable {
 		PreparedStatement st=null;
  
     UserService us;
+ 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -131,7 +146,33 @@ public class UserListController implements Initializable {
         // TODO
         affiche();
     }    
-    
+     public void insertImage(){
+        
+        FileChooser open = new FileChooser();
+        
+        Stage stage = (Stage)left_main.getScene().getWindow();
+        
+        File file = open.showOpenDialog(stage);
+        
+        if(file != null){
+            
+            String path = file.getAbsolutePath();
+            
+            path = path.replace("\\", "\\\\");
+            
+            file_path.setText(path);
+
+            Image image = new Image(file.toURI().toString(), 110, 110, false, true);
+            
+            image_view.setImage(image);
+            
+        }else{
+            
+            System.out.println("NO DATA EXIST!");
+            
+        }
+    }
+  
     @FXML
     private void tablehandleButtonAction(MouseEvent event) {
         user u = table.getSelectionModel().getSelectedItem();
@@ -142,14 +183,22 @@ public class UserListController implements Initializable {
         //sexe.getSelectionModel().select(et.getSexe());
         tel.setText(String.valueOf(u.getTel()));
          email.setText(u.getEmail());
-         dateNaissance.setText(String.valueOf(u.getDateNaissance()));
-         image.setText(u.getImage());
+         dateNaissance.setValue(u.getDateNaissance().toLocalDate());
+
+        String picture ="file:" +  u.getImage();
+        
+        Image image = new Image(picture, 110, 110, false, true);
+        
+        image_view.setImage(image);
+        
+        String path = u.getImage();
+        
+        file_path.setText(path);
+        file_path.setOpacity(0);
         
        // bsave.setDisable(true);
     }
     
-    
-  
   
      
     public ObservableList<user> getUser(){
@@ -203,9 +252,9 @@ public class UserListController implements Initializable {
         tel.setText(null);
         email.setText(null);
         password.setText(null);
-        dateNaissance.setText(null);
-        image.setText(null);
-        //sexe.getSelectionModel().selectFirst();
+          dateNaissance.getEditor().clear();
+          image_view.setImage(null);
+                
         bsave.setDisable(false);
     }
          
@@ -221,8 +270,12 @@ public class UserListController implements Initializable {
             st.setString(4, tel.getText());
             st.setString(5, email.getText());
             st.setString(6, UserService.doHashing(password.getText()));
-            st.setString(7, image.getText());
-            st.setString(8, dateNaissance.getText());
+            st.setString(7, file_path.getText());
+            file_path.setOpacity(0);
+            
+        String str2=dateNaissance.getValue().toString();  
+     Date date1=Date.valueOf(str2);
+            st.setDate(8, date1);
           
             Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Deleting user");
@@ -257,8 +310,13 @@ public class UserListController implements Initializable {
                 st.setString(4, tel.getText());
                 st.setString(5, email.getText());
                 //st.setString(6, UserService.doHashing(password.getText()));
-                st.setString(6, image.getText());
-                st.setString(7, dateNaissance.getText());
+                st.setString(6, file_path.getText());
+                
+                      String str2=dateNaissance.getValue().toString();  
+     Date date1=Date.valueOf(str2);
+            st.setDate(7, date1);
+            
+           
                 st.setInt(8, Integer.parseInt(idu.getText()));
             
             //st.setString(3, sexe.getSelectionModel().getSelectedItem());

@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="514.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.UserListController">
+<VBox prefHeight="671.0" prefWidth="1166.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.UserListController">
   <children>
       <VBox prefHeight="400.0" prefWidth="640.0">
-        <children>
+         <children>
        
-<AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/8.0.171">
-    <children>
+            <AnchorPane id="AnchorPane" fx:id="left_main" prefHeight="697.0" prefWidth="1166.0">
+      <children>
         <VBox layoutX="15.0" layoutY="16.0" prefHeight="157.0" prefWidth="62.0" spacing="25.0">
             <children>
                 <Label styleClass="labelform" text="ID" />
@@ -30,47 +32,47 @@
                         <Label styleClass="labelform" text="DateNais" />
                         <Label styleClass="labelform" text="Image" />
                 
-            </children>
+                        </children>
             
+                        
             
-            
-              
+                          
                
-        </VBox>
-        
-        
-        <Button fx:id="bsave" layoutX="3.0" layoutY="432.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Save">
-           
-     
-                 
-                
-            <font>
-                <Font name="Times New Roman Bold" size="12.0" />
-            </font>
-        </Button>
-        <Button fx:id="bupdate" layoutX="98.0" layoutY="432.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="33.0" prefWidth="71.0" text="Edit">
-         
-            <font>
-                <Font name="Times New Roman Bold" size="12.0" />
-            </font>
-        </Button>
-            <Button fx:id="bdelete" layoutX="189.0" layoutY="433.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Delete">
+                    </VBox>
             
-                                 <font>
+                      
+            <Button fx:id="bsave" layoutY="564.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Save">
+            
+                      
+                 
+                                  
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+            </Button>
+            <Button fx:id="bupdate" layoutX="95.0" layoutY="564.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="33.0" prefWidth="71.0" text="Edit">
+            
+                           <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+            </Button>
+            <Button fx:id="bdelete" layoutX="186.0" layoutY="565.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Delete">
+            
+                                                   <font>
                 <Font name="Times New Roman" size="12.0" />
             </font>
             </Button>
             
-              <Button layoutX="279.0" layoutY="433.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Reset">
+                                <Button layoutX="276.0" layoutY="565.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Reset">
             <font>
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
             
-        </Button>
+                          </Button>
             
-
             
-           <TableView fx:id="table" layoutX="316.0" layoutY="66.0" onMouseClicked="#tablehandleButtonAction" prefHeight="302.0" prefWidth="575.0">
+                        
+           <TableView fx:id="table" layoutX="439.0" layoutY="51.0" onMouseClicked="#tablehandleButtonAction" prefHeight="399.0" prefWidth="659.0">
             <columns>
                 <TableColumn fx:id="uidu" prefWidth="33.0" text="ID" />
                 <TableColumn fx:id="ucin" prefWidth="82.33331298828125" text="CIN" />
@@ -89,10 +91,10 @@
                         <Font name="Arial Bold" size="25.0" />
                     </font>
                 
-                </Label>
+                            </Label>
             </children>
         </Pane>
-        <VBox layoutX="78.0" layoutY="13.0" prefHeight="157.0" prefWidth="180.0" spacing="15.0">
+        <VBox layoutX="104.0" layoutY="24.0" prefHeight="346.0" prefWidth="199.0" spacing="15.0">
             <children>
                             <TextField fx:id="idu" editable="false" prefHeight="20.0" prefWidth="80.0" />
                             <TextField fx:id="cin" layoutX="10.0" layoutY="10.0" />
@@ -100,17 +102,22 @@
                             <TextField fx:id="prenom" styleClass="field" />
                             <TextField fx:id="tel" prefHeight="26.0" prefWidth="0.0" styleClass="field" />
                             <TextField fx:id="email" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
-                            <TextField fx:id="password" prefHeight="0.0" prefWidth="56.0" styleClass="field" /> 
-                            <TextField fx:id="dateNaissance" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
-                            <TextField fx:id="image" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
+                        <PasswordField fx:id="password" styleClass="field"/>
+                        <DatePicker fx:id="dateNaissance" prefHeight="28.0" prefWidth="180.0"  promptText="dateNaissance"/>
             </children>
         </VBox>
+          
+                              <ImageView fx:id="image_view" fitHeight="112.0" fitWidth="146.0" layoutX="93.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="insert_image" layoutX="315.0" layoutY="368.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Upload">
+                     <font>
+                        <Font name="Times New Roman Bold" size="12.0" />
+                     </font>
+                  </Button>
         
-     
-    </children>
-</AnchorPane>
-            
-        </children>
+                  <Label fx:id="file_path" alignment="CENTER" layoutX="254.0" layoutY="394.0" prefHeight="23.0" prefWidth="199.0" />
+      </children>
+      </AnchorPane>
+         </children>
       </VBox>
   </children>
 </VBox>

@@ -198,7 +198,8 @@ public class SignupController implements Initializable {
                                                                                                     }
       
       
-  if (Tel.getText().isEmpty()||(Tel.getText().length()!=8||(ok1==false))) {
+  if (Tel.getText().isEmpty()||(Tel.getText().length()!=8||(ok1==false))) 
+  {
         
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your Tel id");
