@@ -24,7 +24,7 @@
                   <Font size="34.0" />
                </font>
             </Label>
-            <Button contentDisplay="CENTER" defaultButton="true" layoutX="126.0" layoutY="533.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="192.0" text="Sign Up" textAlignment="CENTER" textFill="#18015e">
+            <Button contentDisplay="CENTER" onAction="#link" defaultButton="true" layoutX="126.0" layoutY="533.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="192.0" text="Sign Up" textAlignment="CENTER" textFill="#18015e">
                <font>
                   <Font name="Akhbar MT" size="18.0" />
                </font>
@@ -32,7 +32,7 @@
             <ImageView fitHeight="196.0" fitWidth="220.0" layoutX="126.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="283.0" fitWidth="235.0" layoutX="119.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../272896551_284823900301309_6294383665325954873_n.png" />
+                 <Image url="@../img/logo_meta.png" />
                </image>
             </ImageView>
          </children>
