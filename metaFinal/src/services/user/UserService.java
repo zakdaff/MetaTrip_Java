@@ -544,6 +544,47 @@ List<Object> voyages = new ArrayList<>();
 
         return "";
     }
+
+    @Override
+    public user afficherById(user u) {
+        
+            String req = "SELECT u.Idu,u.Cin,u.nom,u.prenom,u.tel,u.email,u.password,u.image,u.dateNaissance FROM `user` u where Idu='"+u.getIdu()+"';";
+          
+       
+        
+        try {
+
+              ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+                          
+
+            while(rs.next()){
+            
+             u.setIdu(rs.getInt(1));          
+             u.setCin(rs.getString(2));
+             u.setNom(rs.getString(3));
+             u.setPrenom(rs.getString(4));
+             u.setTel(rs.getString(5));
+             u.setEmail(rs.getString(6));
+             u.setPassword(rs.getString(7));
+             u.setImage(rs.getString(8));
+             u.setDateNaissance(rs.getDate(9));
+                
+             
+                                                       
+                                   
+               
+                 
+                                                   
+            }
+       
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+     return u;
+
+    }
             
          
 

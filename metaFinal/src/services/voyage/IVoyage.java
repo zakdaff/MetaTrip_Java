@@ -11,5 +11,5 @@ import services.IService;
  */
 public interface IVoyage extends IService<voyage>{
     voyage ajout (voyage v);
-    
+        voyage afficherById(voyage v);
 }

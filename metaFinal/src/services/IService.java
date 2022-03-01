@@ -13,4 +13,5 @@ public interface IService<T> {
     void supprimer(int id);
     List<T> afficher();
 
+
 }

@@ -141,6 +141,38 @@ public class voyageService implements IVoyage{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public voyage afficherById(voyage v) {
+          String req = "SELECT * from `voyage` where Idv='"+v.getIdv()+"';";
+       
+        
+        try {
+
+              ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+                          
+
+            while(rs.next()){
+            
+                v.setIdv(rs.getInt(1));
+                  v.setPays( rs.getString(2));
+                
+             v.setImage_pays(rs.getString(3));
+             
+                                                       
+                                   
+               
+                 
+                                                   
+            }
+       
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+     return v;
     
+    
+}
     
 }

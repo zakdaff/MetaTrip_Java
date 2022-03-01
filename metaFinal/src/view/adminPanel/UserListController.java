@@ -281,7 +281,7 @@ public class UserListController implements Initializable {
          
          public void delete() {
          con =Datasource.getInstance().getCnx();
-        String delete = "DELETE FROM user  where idu = ?";
+         String delete = "DELETE FROM user  where idu = ?";
         try {
             st = con.prepareStatement(delete);
             st.setInt(1, Integer.parseInt(idu.getText()));

@@ -204,7 +204,7 @@ public class Metatrip  extends Application {
         user u1 = new user(9999, "5866", "dafdouf", "zakzouk", "5895", "zak@live.fr", "0000", "image",date2);
          user u8 = new user(811,"199525", "ssss", "cxx", "2568435", "fares.lamloum@esprit.tn", doHashing("12345678"), "image",date2);
          //MailSender.sendMail(u8);
-         us.ajouter(u8);
+         //us.ajouter(u8);
      
          // MailSender.sendMail(u8);
          //us.ajouter(u8);
@@ -215,6 +215,7 @@ public class Metatrip  extends Application {
        voyage v = new voyage(501,"tounis", "c://berlin.png");
              voyage chrf = new voyage(967,"istanbul", "c://antalya.png");
         voyage v1 = new voyage( 605,"gafsa", "c://beja.png");
+        System.out.println(us.afficherById(u1));
    //vs.ajout(v1); 
    
      //vs.ajout(v1); 
