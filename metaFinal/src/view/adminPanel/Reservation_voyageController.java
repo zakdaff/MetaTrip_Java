@@ -77,9 +77,9 @@ public class Reservation_voyageController implements Initializable {
       @FXML
     private TextField Refpaiement1;
     @FXML
-    private TextField Date_depart;
+    private DatePicker Date_depart;
     @FXML
-    private TextField Date_arrivee;
+    private DatePicker Date_arrivee;
         @FXML
     private ComboBox<?> etat15;
     @FXML
@@ -225,7 +225,7 @@ public class Reservation_voyageController implements Initializable {
 
 
                     
-            if( etat15.getValue().toString().isEmpty() ||Refpaiement1.getText().toString().isEmpty()||Date_depart.getText().toString().isEmpty()||Date_arrivee.getText().toString().isEmpty()||etat15.getValue().toString().isEmpty()||idu11.getValue().toString().isEmpty()||Idv122.getValue().toString().isEmpty()||Refpaiement1.getText().toString().isEmpty())
+            if( etat15.getValue().toString().isEmpty() ||Refpaiement1.getText().toString().isEmpty()||Date_depart.getValue().toString().isEmpty()||Date_arrivee.getValue().toString().isEmpty()||etat15.getValue().toString().isEmpty()||idu11.getValue().toString().isEmpty()||Idv122.getValue().toString().isEmpty()||Refpaiement1.getText().toString().isEmpty())
             {
      
                 
@@ -251,9 +251,9 @@ public class Reservation_voyageController implements Initializable {
                                                                                                  alert.showAndWait();
                                                                                                          ok = false;
                                                                                                     }
-             String str1=Date_depart.getText().toString();  
+             String str1=Date_depart.getValue().toString();  
       Date date1=Date.valueOf(str1);
-        String str2=Date_arrivee.getText().toString();  
+        String str2=Date_arrivee.getValue().toString();  
      Date date2=Date.valueOf(str2);
             if(!date1.before(date2)){
                   
@@ -292,9 +292,9 @@ public class Reservation_voyageController implements Initializable {
         
                
        String id =Idrv258.getText().toString();
-               String str1=Date_depart.getText().toString();  
+               String str1=Date_depart.getValue().toString();  
       Date date1=Date.valueOf(str1);
-        String str2=Date_arrivee.getText().toString();  
+        String str2=Date_arrivee.getValue().toString();  
      Date date2=Date.valueOf(str2);
    
            //  UserService us=new UserService();
@@ -339,8 +339,8 @@ if(data.getEtat().toString().equals("NonPaye")){
 
  
      Idrv258.setText(String.valueOf(data.getIdrv()));
-     Date_depart.setText(String.valueOf(data.getDate_depart()));
-      Date_arrivee.setText(String.valueOf(data.getDate_arrivee()));
+     Date_depart.setValue(data.getDate_depart().toLocalDate());
+      Date_arrivee.setValue(data.getDate_arrivee().toLocalDate());
 idu11.getSelectionModel().clearSelection();
         Idv122.getSelectionModel().clearSelection();
        Refpaiement1.setText(String.valueOf(data.getRef_paiement()));
@@ -350,8 +350,8 @@ idu11.getSelectionModel().clearSelection();
    public void clear(){
         
         Idrv258.setText("");
-        Date_depart.setText("");
-        Date_arrivee.setText("");
+        Date_depart.getEditor().clear();
+        Date_arrivee.getEditor().clear();
         etat15.getSelectionModel().clearSelection();
         idu11.getSelectionModel().clearSelection();
         Idv122.getSelectionModel().clearSelection();

@@ -6,6 +6,7 @@
 package view.login_signup;
 
 import Config.Metatrip;
+import entities.user;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -24,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import services.user.LoginAndSignupService;
+import services.user.UserService;
 
 /**
  *
@@ -75,7 +77,9 @@ public class LoginController implements Initializable {
             showAlert(Alert.AlertType.ERROR, owner,"Form Error!","Please enter correct Email and Password" );
         } else {
           
-            showAlert(Alert.AlertType.CONFIRMATION,owner,"Form Valide","Login Successful");
+           UserService us=new UserService();
+           user u1=us.getUserByEmail(emailId);
+           link1(u1);
         }
     }
     public static void infoBox(String infoMessage, String headerText, String title) {
@@ -108,5 +112,33 @@ public void link(ActionEvent event) throws Exception {
     } catch(Exception e) {
         e.printStackTrace();
     }
+}
+
+
+public void link1(user user) throws Exception {               
+ if(user.getRole()==1){
+       try {
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));  
+            stage.show();
+         Metatrip.stg.close();   
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}else{
+    try {
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));  
+            stage.show();
+         Metatrip.stg.close();   
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+ }
+
 }
 }
