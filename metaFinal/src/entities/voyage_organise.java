@@ -13,6 +13,7 @@ public class voyage_organise extends voyage{
     
     private EtatDispo etatVoyage;
     private voyage voyage;
+    private int Idv;
    
   
 
@@ -94,6 +95,15 @@ public class voyage_organise extends voyage{
         this.voyage = voyage;
     }
 
+    public voyage_organise(int Idvo, float Prix_billet, String Airline, int Nb_nuitees, EtatDispo etatVoyage,int Idv) {
+        this.Idvo = Idvo;
+        this.Prix_billet = Prix_billet;
+        this.Airline = Airline;
+        this.Nb_nuitees = Nb_nuitees;
+        this.etatVoyage = etatVoyage;
+        this.Idv=Idv;
+    }
+
   
 
 
@@ -107,6 +117,13 @@ public class voyage_organise extends voyage{
 
     public int getIdvo() {
         return Idvo;
+    }
+    
+     public int getIdv() {
+        return Idv;
+    }
+       public void setIdv(int Idvo) {
+        this.Idv = Idvo;
     }
 
     public float getPrix_billet() {
@@ -147,11 +164,10 @@ public class voyage_organise extends voyage{
 
     @Override
     public String toString() {
-        return "voyage_organise{" + "Idvo=" + Idvo + ", Prix_billet=" + Prix_billet + ", Airline=" + Airline + ", Nb_nuitees=" + Nb_nuitees + ", \nvoyage=" + this.voyage + "\n"+'}';
+        return "voyage_organise{" + "Idvo=" + Idvo + ", Prix_billet=" + Prix_billet + ", Airline=" + Airline + ", Nb_nuitees=" + Nb_nuitees + ", etatVoyage=" + etatVoyage + ", voyage=" + voyage + ", Idv=" + Idv + '}';
     }
 
-   
-    
+  
     
     
 }

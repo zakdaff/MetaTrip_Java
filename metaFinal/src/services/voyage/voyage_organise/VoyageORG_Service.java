@@ -29,6 +29,7 @@ public class VoyageORG_Service implements IVoyage_ORG_Service{
     private Statement ste;
     private PreparedStatement pste;
     private PreparedStatement pste2;
+    EtatDispo ev;
 
     public VoyageORG_Service() {
                 conn = Datasource.getInstance().getCnx();
@@ -101,7 +102,7 @@ public class VoyageORG_Service implements IVoyage_ORG_Service{
     public List<voyage_organise> afficher() {
    List<voyage_organise> listVORG = new ArrayList<>();
    
-        String req = "SELECT v.Idvo ,v.Prix_billet,v.Airline,v.Nb_nuitees,v.Idv FROM `voyage_organise` v ;";
+        String req = "SELECT * FROM `voyage_organise` ;";
         String req2 = "SELECT * FROM `voyage` where `Idv` = ?";
         
         try {
@@ -113,13 +114,17 @@ public class VoyageORG_Service implements IVoyage_ORG_Service{
             
             while(rs.next()){
                 voyage_organise vo = new voyage_organise();
-                
+             
                 vo.setIdvo(rs.getInt(1));
                 vo.setPrix_billet(rs.getFloat(2));
                 vo.setAirline(rs.getString(3));
                 vo.setNb_nuitees(rs.getInt(4));
-                
-                vo.setVoyage(new voyage(rs.getInt(5)));
+                vo.setEtatVoyage(EtatDispo.valueOf((rs.getString(5))));
+                vo.setIdv(rs.getInt(6));
+                //Color color = Color.valueOf(resultSet.getString("color"));
+
+                //System.out.println(rs.getString(5).toString());
+                vo.setVoyage(new voyage(rs.getInt(6)));
                 
                 pste2.setInt(1,vo.getVoyage().getIdv()); //parametre de requete 2
                 
@@ -147,4 +152,42 @@ public class VoyageORG_Service implements IVoyage_ORG_Service{
         return listVORG;    }
 
   
+    
+    
+    
+    public List<voyage_organise> afficherSpecial() {
+   List<voyage_organise> listVORG = new ArrayList<>();
+   
+           List<voyage_organise> lista = new ArrayList<voyage_organise>();
+         
+    Statement statement;
+    try {
+        statement = conn.createStatement();
+              String req = "SELECT * FROM `voyage_organise` ;";
+        //String req2 = "SELECT * FROM `voyage` where `Idv` = ?";
+        ResultSet resultSet = statement.executeQuery(req);
+        /* (name, price, weight, color, product count, size, material */
+        while(resultSet.next()) {
+            int idv = resultSet.getInt("idvo");
+            Float prix_billet = resultSet.getFloat("prix_billet");
+            String Airline = resultSet.getString("Airline");
+            Integer Nb_nuitees = resultSet.getInt("Nb_nuitees");
+            EtatDispo etatVoyage = EtatDispo.valueOf(resultSet.getString("etatVoyage"));          
+            Integer Idv = resultSet.getInt("Idv");
+            
+
+            voyage_organise v = new voyage_organise(idv, prix_billet, Airline, Nb_nuitees, etatVoyage, Idv);
+            
+            lista.add(v);
+            //System.out.println(lista.toString());
+        }
+
+    }
+    catch (SQLException e) {
+        e.printStackTrace();
+    }
+return lista;
 }
+    
+}
+

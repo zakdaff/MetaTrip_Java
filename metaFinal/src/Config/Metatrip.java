@@ -215,7 +215,7 @@ public class Metatrip  extends Application {
        voyage v = new voyage(501,"tounis", "c://berlin.png");
              voyage chrf = new voyage(967,"istanbul", "c://antalya.png");
         voyage v1 = new voyage( 605,"gafsa", "c://beja.png");
-        System.out.println(us.afficherById(u1));
+        //System.out.println(us.afficherById(u1));
    //vs.ajout(v1); 
    
      //vs.ajout(v1); 
@@ -441,7 +441,7 @@ String strd="2020-09-01";
 //       //vs.modifier(97,chrf);
 //    //vs.supprimer(360);
 //     
-//      //System.out.println(vos.afficher()); 
+System.out.println(vos.afficher().toString()); 
 //                    //  System.out.println(vo3.toString());
 //       
 //        //us.modifier(1,u3);

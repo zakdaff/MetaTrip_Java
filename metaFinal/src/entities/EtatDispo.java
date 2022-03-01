@@ -7,5 +7,17 @@ package entities;
  */
 public enum EtatDispo {
     DISPO,
-    INDISPO
+    INDISPO;
+    
+    
+    
+    public static EtatDispo getDISPO() {
+        return DISPO;
+    }
+
+    public static EtatDispo getINDISPO() {
+        return INDISPO;
+    }
+    
+    
 }
