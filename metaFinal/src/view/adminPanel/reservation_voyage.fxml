@@ -14,7 +14,7 @@
    <children>
       <AnchorPane fx:id="left_main" layoutX="23.0" layoutY="11.0" prefHeight="475.0" prefWidth="295.0">
          <children>
-            <TextField fx:id="Idrv258" layoutX="103.0" layoutY="37.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Idrv" styleClass="textfield-design" stylesheets="@design.css" AnchorPane.leftAnchor="103.0">
+            <TextField fx:id="Idrv258" editable="false" layoutX="103.0" layoutY="37.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Idrv" styleClass="textfield-design" stylesheets="@design.css" AnchorPane.leftAnchor="103.0">
                <font>
                   <Font size="15.0" />
                </font>
@@ -45,11 +45,6 @@
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="file_path" alignment="CENTER" layoutX="145.0" layoutY="324.0" prefHeight="23.0" prefWidth="199.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
             <Button fx:id="insert" layoutX="19.0" layoutY="375.0" mnemonicParsing="false" onAction="#insert50" prefHeight="46.0" prefWidth="87.0" styleClass="insert-button" stylesheets="@design.css" text="Insert" />
             <Button fx:id="update" layoutX="112.0" layoutY="375.0" mnemonicParsing="false" onAction="#update" prefHeight="46.0" prefWidth="87.0" styleClass="update-button" stylesheets="@design.css" text="Update">
                <font>
@@ -71,13 +66,10 @@
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="Refpaiement1" layoutX="141.0" layoutY="320.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="176.0" styleClass="textfield-design" stylesheets="@design.css">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
+      
             <TextField fx:id="Date_depart" layoutX="136.0" layoutY="78.0" />
             <TextField fx:id="Date_arrivee" layoutX="136.0" layoutY="119.0" />
+            <TextField fx:id="Refpaiement1" layoutX="136.0" layoutY="320.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="335.0" prefHeight="500.0" prefWidth="466.0">

@@ -81,6 +81,21 @@ public class reservation_voyage {
         this.voyage=voyage;
     }
 
+    public reservation_voyage(Date Date_depart, Date Date_arrivee, String etat, int Ref_paiement, user user, voyage voyage) {
+        this.Date_depart = Date_depart;
+        this.Date_arrivee = Date_arrivee;
+        this.etat = etat;
+        this.Ref_paiement = Ref_paiement;
+        this.user = user;
+        this.voyage = voyage;
+    }
+
+    public reservation_voyage(Date Date_depart, Date Date_arrivee, String etat) {
+        this.Date_depart = Date_depart;
+        this.Date_arrivee = Date_arrivee;
+        this.etat = etat;
+    }
+
     public reservation_voyage(int Idrv, Date Date_depart, Date Date_arrivee, int Ref_paiement, user user, voyage voyage) {
         this.Idrv = Idrv;
         this.Date_depart = Date_depart;

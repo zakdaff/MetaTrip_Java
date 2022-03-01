@@ -6,6 +6,7 @@
 package view.adminPanel;
 
 import Config.Datasource;
+import entities.Voiture;
 import entities.reservation_voyage;
 import entities.user;
 import entities.voyage;
@@ -37,8 +38,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import services.reservation_voyage.Reservation_Voyage_Service;
 import services.user.UserService;
 import services.voiture.VoitureCRUD;
+import services.voyage.voyageService;
 
 /**
  * FXML Controller class
@@ -85,8 +88,7 @@ public class Reservation_voyageController implements Initializable {
     private ComboBox<?> Idv122;
     @FXML
     private Label Idv1;
-    @FXML
-    private Label Refpaiement;
+
    
     @FXML
     
@@ -113,7 +115,7 @@ public class Reservation_voyageController implements Initializable {
     
 
     
-    private String[] comboGender = {"Dispo", "indispo"};
+    private String[] comboGender = {"NonPaye", "Paye"};
         @FXML
     public void comboBox(){
         
@@ -216,70 +218,146 @@ public class Reservation_voyageController implements Initializable {
         @FXML
     public void insert50(){
                 Connection connect = Datasource.getInstance().getCnx();
-
+                Alert alert = new Alert(AlertType.ERROR);
+   int monEntier = 0;
+        boolean ok = true;
 //        I HAVE 5 COLUMNS
 
-                    String sql = "INSERT INTO `reservation_voyage` (`Date_depart`,`Date_arrivee`,`etat`,`Idu`,`Idv`) VALUES (?,?,?,?,?)";
-        try{
-            
-            if( etat15.getValue().toString().isEmpty() ){
-                
-                Alert alert = new Alert(AlertType.ERROR);
+
+                    
+            if( etat15.getValue().toString().isEmpty() ||Refpaiement1.getText().toString().isEmpty()||Date_depart.getText().toString().isEmpty()||Date_arrivee.getText().toString().isEmpty()||etat15.getValue().toString().isEmpty()||idu11.getValue().toString().isEmpty()||Idv122.getValue().toString().isEmpty()||Refpaiement1.getText().toString().isEmpty())
+            {
+     
                 
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Enter all blank fields!");
                 alert.showAndWait();
                 
-            }else{
-                
-                   String str1=Date_depart.toString();  
-     Date date1=Date.valueOf(str1);
-        String str2=Date_arrivee.toString();  
+                 ok = false;
+            }
+            
+                                                                                                  try
+                                                                                                 {
+                                                                                                    monEntier = Integer.parseInt(Refpaiement1.getText().toString());
+                                                                                        // s'il ne contient que des chiffres (0 à 9) c'est ok sauf si les limites int sont dépassées
+                                                                                        // sinon une exception est levée
+                                                                                                 }
+                                                                                                     catch(NumberFormatException nfe)
+                                                                                                    {   
+                                                                                                        alert.setTitle("Error Message");
+                                                                                             alert.setHeaderText(null);
+                                                                               alert.setContentText("RefPeiment doit étre un nombre");
+                                                                                                 alert.showAndWait();
+                                                                                                         ok = false;
+                                                                                                    }
+             String str1=Date_depart.getText().toString();  
+      Date date1=Date.valueOf(str1);
+        String str2=Date_arrivee.getText().toString();  
      Date date2=Date.valueOf(str2);
+            if(!date1.before(date2)){
+                  
                 
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Date Depart > Date Arrive");
+                alert.showAndWait();
+                 ok = false;
+            }
+            
+            if(ok==true){
+                 String sql = "INSERT INTO `reservation_voyage` (`Date_depart`,`Date_arrivee`,`etat`,`Idu`,`Idv`,`Ref_paiement`) VALUES (?,?,?,?,?,?)";
+               try{
+              
+                        prepare = connect.prepareStatement(sql);
+       System.out.println(Refpaiement1.getText().toString());
                  prepare.setDate(1,date1);
               prepare.setDate(2, date2);
               prepare.setString(3, etat15.getValue().toString());
                prepare.setInt(4, Integer.parseInt(idu11.getValue().toString()));
               prepare.setInt(5,Integer.parseInt(Idv122.getValue().toString()));
-                            prepare.setInt(5,Integer.parseInt(Refpaiement1.getText()));
+                            prepare.setInt(6,Integer.parseInt(Refpaiement1.getText().toString()));
                 prepare.executeUpdate();
             
                 showData();
                 clear();
             }
-        }catch(Exception e){}
+        catch(Exception e){
         
-    }
+        System.out.println(e.getMessage());}
+        
+    }}
         @FXML
     public void update(){
         
-         Connection connect = Datasource.getInstance().getCnx();
-        
-       
+               
+       String id =Idrv258.getText().toString();
+               String str1=Date_depart.getText().toString();  
+      Date date1=Date.valueOf(str1);
+        String str2=Date_arrivee.getText().toString();  
+     Date date2=Date.valueOf(str2);
+   
+           //  UserService us=new UserService();
+          //  user u1= us.getUserByID(Integer.parseInt(idu11.getValue().toString()));
+           //  voyageService VC=new voyageService();
+              //  voyage v=VC.afficherbyID(Integer.parseInt(Idv122.getValue().toString()));
+
+         
+           reservation_voyage rv=new reservation_voyage(date1,date2,etat15.getValue().toString());
+    Reservation_Voyage_Service rvs=new Reservation_Voyage_Service();
+    rvs.modifier(Integer.parseInt(id), rv);
+        showData();
+                clear(); 
     }
         @FXML
     public void delete(){
-        
-       
-        
+  Reservation_Voyage_Service rv = new   Reservation_Voyage_Service();
+  rv.supprimer(Integer.parseInt(Idrv258.getText()));  
+    showData();
+                clear();
     }
+    
 
 
-    
-    public void selectData(){
+     @FXML
+       public void selectData(){
+           etat15.getSelectionModel().clearSelection();
+          List<String> list1 = new ArrayList<>();
+     
+        reservation_voyage data = table_view.getSelectionModel().getSelectedItem();
+              System.out.println("tttttttttttttttttttttttS"+data.getIdu());
+        int num = table_view.getSelectionModel().getSelectedIndex();
         
-      
+        if((num-1) < -1)
+            return;
+        
+if(data.getEtat().toString().equals("NonPaye")){
+   etat15.getSelectionModel().selectFirst();
+}else{
+   etat15.getSelectionModel().selectLast();
+}
+
+ 
+     Idrv258.setText(String.valueOf(data.getIdrv()));
+     Date_depart.setText(String.valueOf(data.getDate_depart()));
+      Date_arrivee.setText(String.valueOf(data.getDate_arrivee()));
+idu11.getSelectionModel().clearSelection();
+        Idv122.getSelectionModel().clearSelection();
+       Refpaiement1.setText(String.valueOf(data.getRef_paiement()));
         
     }
-    
-    public void clear(){
+      @FXML
+   public void clear(){
         
-   
+        Idrv258.setText("");
+        Date_depart.setText("");
+        Date_arrivee.setText("");
+        etat15.getSelectionModel().clearSelection();
+        idu11.getSelectionModel().clearSelection();
+        Idv122.getSelectionModel().clearSelection();
+        Refpaiement1.setText("");
         
     }
-    
     public void textfieldDesign(){
         
      
@@ -297,7 +375,7 @@ public class Reservation_voyageController implements Initializable {
       VoitureCRUD u= new VoitureCRUD();
             List<Integer> list1 = new ArrayList<>();
         for(Integer data:u.gelallID()){
-            System.out.print("77777"+data);
+           
             list1.add(data);
             
         }
