@@ -73,7 +73,54 @@ public class VoitureCRUD {
         return myList ;
       
        }
-    
+        public Voiture afficherVoiturebyid(int id){
+                 Voiture v =new Voiture();
+        try {
+          
+            String requete ="SELECT * FROM voiture where Idvoit="+id+";";
+                      ste = conn.createStatement();
+            ResultSet res =ste.executeQuery(requete);
+            
+            while (res.next()){
+     
+                  v.setIdvoit(res.getInt(1));
+                  v.setMatricule(res.getString(2));
+                  v.setPuissance_fiscalle(res.getInt(3));
+                  v.setImage_v(res.getString(4));
+                  v.setModele(res.getString(5));
+                  
+               
+       
+            }
+        } catch (SQLException ex) {
+           System.out.println(ex.getMessage());
+        }
+        return v ;
+      
+       }
+           public  List<Integer> gelallID()  {
+     List<Integer> ID = new ArrayList<>();
+     
+   
+          String req = "SELECT Idvoit  from `voiture`";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                  
+            
+               
+                 ID.add(rs.getInt(1));                                   
+            }}
+            catch (SQLException ex) {
+          
+        }
+        
+        return ID;    
+    }
     public void supprimerVoiture(Voiture v){
         try {
             String req ="DELETE FROM voiture where id_cmd=" + v.getIdvoit();

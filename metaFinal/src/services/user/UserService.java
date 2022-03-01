@@ -367,6 +367,29 @@ public class UserService implements IuserService {
         
         return u;    
     }
+      public  List<Integer> gelallID()  {
+     List<Integer> ID = new ArrayList<>();
+     
+   
+          String req = "SELECT Idu  from `user`";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                  
+            
+               
+                 ID.add(rs.getInt(1));                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return ID;    
+    }
     public user getUserByEmail (String Email)  {
      List<user> users = new ArrayList<>();
       user u = new user();
