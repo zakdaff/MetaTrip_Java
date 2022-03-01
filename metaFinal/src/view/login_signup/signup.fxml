@@ -8,9 +8,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="683.0" prefWidth="1196.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.login_signup.SignupController">
+<AnchorPane fx:id="left_main" prefHeight="683.0" prefWidth="1196.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.login_signup.SignupController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="8.0" prefHeight="675.0" prefWidth="522.0" style="-fx-background-color: #073258;">
          <children>
@@ -35,9 +36,12 @@
       <TextField fx:id="Prenom" layoutX="557.0" layoutY="227.0" prefHeight="28.0" prefWidth="277.0" promptText="Prenom" style="-fx-border-color: #073258; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px;" />
       <TextField fx:id="Tel" layoutX="883.0" layoutY="227.0" prefHeight="28.0" prefWidth="277.0" promptText="Tel" style="-fx-border-color: #073258; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px;" />
       <TextField fx:id="Email" layoutX="557.0" layoutY="325.0" prefHeight="28.0" prefWidth="277.0" promptText="Email" style="-fx-border-color: #073258; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px;" />
-    
-      <TextField fx:id="Image" accessibleRole="PASSWORD_FIELD" layoutX="557.0" layoutY="431.0" prefHeight="28.0" prefWidth="277.0" promptText="Image" style="-fx-border-color: #073258; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px;" />
       <DatePicker fx:id="DateNaissance" layoutX="896.0" layoutY="431.0" promptText="DateNaissance" />
       <PasswordField fx:id="Password" layoutX="885.0" layoutY="329.0" prefHeight="33.0" prefWidth="240.0" promptText="Password" style="-fx-border-color: #073258; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px;" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="92.0" layoutX="620.0" layoutY="413.0" stroke="BLACK" strokeType="INSIDE" width="170.0" />
+      <Label fx:id="file_path" layoutX="661.0" layoutY="523.0" prefHeight="21.0" prefWidth="90.0" />
+      <Label layoutX="557.0" layoutY="421.0" prefHeight="21.0" prefWidth="50.0" text="Image:" textFill="#0e0079" />
+ <ImageView fx:id="image_view" fitHeight="92.0" fitWidth="170.0" layoutX="621.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="insert_image" layoutX="635.0" layoutY="508.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="31.0" prefWidth="143.0" styleClass="insert-image-button" text="Insert Image" />
    </children>
 </AnchorPane>

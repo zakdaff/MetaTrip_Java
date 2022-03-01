@@ -135,6 +135,39 @@ public class voyageService implements IVoyage{
        // System.out.println(listVORG.toString());
         return listRV; 
     }
+    
+    public voyage afficherbyID(int id) {
+
+   voyage v= new voyage();
+   
+        String req = "SELECT * FROM `voyage`WHERE Idv="+id+";";
+       
+        
+        try {
+
+              ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+             
+                v.setIdv(rs.getInt(1));
+                  v.setPays( rs.getString(2));
+                
+             v.setImage_pays(rs.getString(3));
+             
+          ;                                        
+                                   
+               
+                 
+                                                   
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       // System.out.println(listVORG.toString());
+        return v; 
+    }
 
     @Override
     public void ajouter(voyage entity) {

@@ -22,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import services.user.UserService;
 import Config.Datasource;
+import entities.Chauffeur;
 
 /**
  *
@@ -127,7 +128,7 @@ public class Reservation_voiture_Service implements IReservation_voiture{
                
                            u.setUser(new user(rs.getInt(5)));
                            u.setVoiture(new Voiture(rs.getInt(6)));
-                
+                        
                   pste2.setInt(1,u.getVoiture().getIdvoit()); //parametre de requete 2
              pste3.setInt(1,u.getUser().getIdu());
              
@@ -145,7 +146,7 @@ public class Reservation_voiture_Service implements IReservation_voiture{
                   
   
               
-                 hotels.add(u) ; 
+                 hotels.add(u); 
                 
                  
                  

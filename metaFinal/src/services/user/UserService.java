@@ -282,7 +282,8 @@ public class UserService implements IuserService {
               u.setEmail( rs.getString(6));
                u.setPassword(rs.getString(7));
                 u.setImage(rs.getString(8));
-                u.setDateNaissance(rs.getDate(9));
+                   u.setRole(rs.getInt(9));
+                u.setDateNaissance(rs.getDate(10));
                  users.add(u) ;                                        
                                                    
             }
@@ -334,11 +335,11 @@ public class UserService implements IuserService {
         
         return nb;    }
     
-    
-    public List<user> getUserByEmail (String Email)  {
+     public user getUserByID(int id)  {
      List<user> users = new ArrayList<>();
+      user u = new user();
    
-          String req = "SELECT * from `user` where Email='"+Email+"';";
+          String req = "SELECT * from `user` where Idu="+id+";";
             try {
 
             ste = conn.createStatement();
@@ -346,7 +347,7 @@ public class UserService implements IuserService {
             
             while(rs.next()){
           
-                   user u = new user();
+                  
                 u.setIdu(rs.getInt(1));
                   u.setCin( rs.getString(2));
                 u.setNom(rs.getString(3));
@@ -364,7 +365,39 @@ public class UserService implements IuserService {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return users;    
+        return u;    
+    }
+    public user getUserByEmail (String Email)  {
+     List<user> users = new ArrayList<>();
+      user u = new user();
+   
+          String req = "SELECT * from `user` where Email='"+Email+"';";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                  
+                u.setIdu(rs.getInt(1));
+                  u.setCin( rs.getString(2));
+                u.setNom(rs.getString(3));
+                u.setPrenom(rs.getString(4));      
+                    u.setTel(rs.getString(5));
+            
+              u.setEmail( rs.getString(6));
+               u.setPassword(rs.getString(7));
+                u.setImage(rs.getString(8));
+                   u.setRole(rs.getInt(9));
+                u.setDateNaissance(rs.getDate(10));
+                 users.add(u) ;                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return u;    
     }
     
 

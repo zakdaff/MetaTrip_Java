@@ -111,13 +111,36 @@ import java.io.IOException;
 import java.util.List;
 import services.user.MailSender;
 
-public class Metatrip  extends Application {
+public class Metatrip  extends Application  {
 
     /**
      * @param args the command line arguments
      */
 
     public static  Stage stg;
+    
+    
+      	@Override
+	public void start(Stage primaryStage) throws IOException {
+            try {
+                 Parent root = FXMLLoader.load(getClass().getResource("/view/login_signup/signup.fxml"));
+        Scene scene = new Scene(root, 300, 250);
+   this.stg=primaryStage;
+        primaryStage.setTitle("Hello World!");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        } catch(Exception e) {
+			e.printStackTrace();}
+		/*try {
+			Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/UserList.fxml"));
+			Scene scene = new Scene(root);
+			//scene.getStylesheets().add(getClass().getResource("/view/adminPanel/style.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}*/
+	}
      public static void createQR(String data, String path,
                                 String charset, Map hashMap,
                                 int height, int width)
@@ -136,27 +159,6 @@ public class Metatrip  extends Application {
     
     
 
-    	@Override
-	public void start(Stage primaryStage) throws IOException {
-            try {
-             Parent root = FXMLLoader.load(getClass().getResource("/view/login_signup/login.fxml"));
-        Scene scene = new Scene(root, 300, 250);
-   this.stg=primaryStage;
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        } catch(Exception e) {
-			e.printStackTrace();}
-		/*try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/UserList.fxml"));
-			Scene scene = new Scene(root);
-			//scene.getStylesheets().add(getClass().getResource("/view/adminPanel/style.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}*/
-	}
     
     
     
@@ -184,8 +186,8 @@ public class Metatrip  extends Application {
         
         HotelCRUD hc=new HotelCRUD();
         String xx="2010-09-11";  
+            Date date=Date.valueOf(xx);
       String xx2="2011-10-01";  
-     Date date=Date.valueOf(xx);
   Date date2=Date.valueOf(xx2);
   
           Date datedebut = Date.valueOf(xx);
@@ -263,7 +265,8 @@ public class Metatrip  extends Application {
        //rvs.ajouter(rv);  
         //rvs.modifier(10, rv);
         //rvs.supprimer(6);
-    //   System.out.println(rvs.afficher());
+    
+// System.out.println(rvs.afficher());
          
          
         //System.out.println(vo3.getVoyage());
@@ -309,7 +312,7 @@ public class Metatrip  extends Application {
             //rvs55.ajouter(rhv1);
               // rvs55.modifier(2,rhv1);
               //rvs55.supprimer(2);
-            // rvs55.afficher().toString();
+        //   System.out.println( rvs55.afficher());
             
             
             
@@ -325,7 +328,7 @@ public class Metatrip  extends Application {
                   // rhs.modifier(2, rh);
                   // rhs.supprimer(2);
                    
-                    //  System.out.println("les voyages les plus Réservé:"+rvs.ListVoyagePlusRéservé());
+                    // System.out.println("les voyages les plus Réservé:"+rvs.ListVoyagePlusRéservé());
         //System.out.println ("le maximum de voyage Réserve est "+rvs.LeMaximumDevoyageReserve());
           //   System.out.println ("le minimum de voyage Réserve est "+rvs.LeMinimumevoyageReserve());
             //         System.out.println ("la list  de voyage Trié selon Prix est "+rvs.listedevoyageTrierParPrix());
@@ -337,12 +340,12 @@ public class Metatrip  extends Application {
   //se.ajouter(e1);
     //se.modifier(e);
   // se.supprimer(1);
-  // System.out.println(se.afficher());
+  //System.out.println(se.afficher());
    user ux = new user(817,"195", "youssef", "cheour", "256845", "youssef.cheour@esprit.tn", "aaaa", "image",date);
    //us.ajouter(ux);
   Servicereservation_event resE=new Servicereservation_event();
   reservation_event resev=new reservation_event(22,82,e,ux);
-
+//System.out.println(resE.afficher());
 //        System.out.println(data.hashCode() + "-" + data2.hashCode());
 //
 //        UserService us = new UserService();
@@ -538,7 +541,7 @@ try{
 
 
   
-    launch(args);              
+           
 
      
      
@@ -550,7 +553,7 @@ try{
      
     // ss.ajouter(s);
                    
-          
+            launch(args);    
         // The data that the QR code will contain
          } 
 

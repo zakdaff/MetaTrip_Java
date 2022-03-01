@@ -1,4 +1,3 @@
-
 package entities;
 
 import java.sql.Date;
@@ -28,10 +27,30 @@ public class reservation_voyage {
         this.Idv = Idv;
         this.Ref_paiement = Ref_paiement;
     }
+
+    public reservation_voyage(int Idrv, Date Date_depart, Date Date_arrivee, String etat, int Idu, int Idv, user user, voyage voyage) {
+        this.Idrv = Idrv;
+        this.Date_depart = Date_depart;
+        this.Date_arrivee = Date_arrivee;
+        this.etat = etat;
+        this.Idu = Idu;
+        this.Idv = Idv;
+        this.user = user;
+        this.voyage = voyage;
+    }
+
+    public reservation_voyage(int Idrv, Date Date_depart, Date Date_arrivee, String etat, int Idu, int Idv) {
+        this.Idrv = Idrv;
+        this.Date_depart = Date_depart;
+        this.Date_arrivee = Date_arrivee;
+        this.etat = etat;
+        this.Idu = Idu;
+        this.Idv = Idv;
+    }
     
      
     
- 
+  
     
        public reservation_voyage( Date Date_depart, Date Date_arrivee, String etat,user u,voyage voyage) {
        
@@ -157,6 +176,11 @@ public class reservation_voyage {
 
     public voyage getVoyage() {
         return voyage;
+    }
+
+    @Override
+    public String toString() {
+        return "reservation_voyage{" + "Idrv=" + Idrv + ", Date_depart=" + Date_depart + ", Date_arrivee=" + Date_arrivee + ", etat=" + etat + ", Idu=" + Idu + ", Idv=" + Idv + ", Ref_paiement=" + Ref_paiement + ", user=" + user + ", paiement=" + paiement + ", voyage=" + voyage + '}';
     }
 
    
