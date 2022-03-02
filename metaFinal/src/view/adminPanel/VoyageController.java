@@ -15,6 +15,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import entities.user;
 import entities.voyage;
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -47,8 +48,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -71,6 +76,9 @@ public class VoyageController implements Initializable {
                      @FXML
                 private Button blink;
 UserListController ul;
+
+                 @FXML
+    private AnchorPane left_main;
 		
 		@FXML
 		private TableView<voyage> table;
@@ -85,7 +93,8 @@ UserListController ul;
                 @FXML
 		private TableColumn<voyage, String> uimage;
                                 
-	
+		    @FXML
+    private Label file_path;
                 
 		
                 
@@ -101,7 +110,8 @@ UserListController ul;
                 @FXML
 		private TextField  image_pays;
                                 
-	
+	             @FXML
+    private ImageView image_view;
                 
 		voyage voyage;
                 	
@@ -119,15 +129,49 @@ UserListController ul;
         sexe.setValue("Masculin");*/
         // TODO
         affiche();
-    }    
+    }  
+    
+         public void insertImage(){
+        
+        FileChooser open = new FileChooser();
+        
+        Stage stage = (Stage)left_main.getScene().getWindow();
+        
+        File file = open.showOpenDialog(stage);
+        
+        if(file != null){
+            
+            String path = file.getAbsolutePath();
+            
+            path = path.replace("\\", "\\\\");
+            
+            file_path.setText(path);
+
+            Image image = new Image(file.toURI().toString(), 110, 110, false, true);
+            
+            image_view.setImage(image);
+            
+        }else{
+            
+            System.out.println("NO DATA EXIST!");
+            
+        }
+    }
     
     @FXML
     private void tablehandleButtonAction(MouseEvent event) {
         voyage v = table.getSelectionModel().getSelectedItem();
               idv.setText(String.valueOf(v.getIdv()));
         pays.setText(v.getPays());
-
-         image_pays.setText(v.getImage_pays());
+  String picture ="file:" + v.getImage_pays();
+         Image image = new Image(picture, 110, 110, false, true);
+        
+        image_view.setImage(image);
+        
+        String path = v.getImage_pays();
+        
+        file_path.setText(path);
+        file_path.setOpacity(0);
         
        // bsave.setDisable(true);
     }
@@ -176,7 +220,7 @@ UserListController ul;
 
         pays.setText(null);
 
-        image_pays.setText(null);
+         image_view.setImage(null);
         //sexe.getSelectionModel().selectFirst();
         bsave.setDisable(false);
     }
@@ -188,9 +232,10 @@ UserListController ul;
             
             st = con.prepareStatement(insert);
             st.setString(1, pays.getText());
-            st.setString(2, image_pays.getText());
      
-          
+     
+            st.setString(2, file_path.getText());
+            file_path.setOpacity(0);
             Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Adding voyage");
 
@@ -219,7 +264,7 @@ UserListController ul;
         try {
                 st = con.prepareStatement(update);
                 st.setString(1, pays.getText());
-                st.setString(2, image_pays.getText());
+               st.setString(2, file_path.getText());
              
                 st.setInt(3, Integer.parseInt(idv.getText()));
             
