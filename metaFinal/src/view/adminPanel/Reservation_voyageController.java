@@ -116,7 +116,10 @@ public class Reservation_voyageController implements Initializable {
     
     private String[] comboGender = {"NonPaye", "Paye"};
     
-   
+    public void setUsername(String username) {
+      System.out.println("85258"+username);
+    }
+    
         @FXML
     public void comboBox(){
         
@@ -133,7 +136,7 @@ public class Reservation_voyageController implements Initializable {
         etat15.setItems(dataList);
         
     }
-    
+        
 
    @FXML
     public void comboBox1(){
@@ -397,5 +400,7 @@ idu11.getSelectionModel().clearSelection();
         showData();
         
     }
+    
+
     
 }

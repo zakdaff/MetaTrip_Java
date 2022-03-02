@@ -7,6 +7,7 @@ package view.login_signup;
 
 import Config.Metatrip;
 import entities.user;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -26,6 +27,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import services.user.LoginAndSignupService;
 import services.user.UserService;
+import view.adminPanel.Reservation_voyageController;
 
 /**
  *
@@ -119,12 +121,19 @@ public void link(ActionEvent event) throws Exception {
 public void link1(user user) throws Exception {               
  if(user.getRole()==1){
        try {
-       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-             
-            stage.setScene(new Scene(root));  
-            stage.show();
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(""));
+     
+          
+            //Personne.user = ;
+            //Personne.user.get
+                      FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
+            Parent root = loader.load();
+            Reservation_voyageController controller = loader.getController();
+            controller.setUsername(emailIdField.getText());
+            //Personne.user = ;
+            //Personne.user.get
+            emailIdField.getScene().setRoot(root);
+        } catch (IOException ex) {
          Metatrip.stg.close();   
     } catch(Exception e) {
         e.printStackTrace();
