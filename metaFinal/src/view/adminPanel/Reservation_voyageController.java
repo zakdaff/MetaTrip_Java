@@ -42,6 +42,7 @@ import services.reservation_voyage.Reservation_Voyage_Service;
 import services.user.UserService;
 import services.voiture.VoitureCRUD;
 import services.voyage.voyageService;
+import view.login_signup.LoginController;
 
 /**
  * FXML Controller class
@@ -80,8 +81,8 @@ public class Reservation_voyageController implements Initializable {
     private DatePicker Date_depart;
     @FXML
     private DatePicker Date_arrivee;
-        @FXML
-    private ComboBox<?> etat15;
+            @FXML
+        private ComboBox<?> etat15;
     @FXML
     private ComboBox<?> idu11;
     @FXML
@@ -113,9 +114,9 @@ public class Reservation_voyageController implements Initializable {
     private ResultSet result;
     
     
-
-    
     private String[] comboGender = {"NonPaye", "Paye"};
+    
+   
         @FXML
     public void comboBox(){
         
@@ -202,7 +203,7 @@ public class Reservation_voyageController implements Initializable {
     public void showData(){
        
         ObservableList<reservation_voyage> showList = dataList();
-  
+  System.out.println(showList);
         col_id.setCellValueFactory(new PropertyValueFactory<reservation_voyage, Integer>("Idrv"));
         col_date_depart.setCellValueFactory(new PropertyValueFactory<reservation_voyage, Date>("Date_depart"));
         col_date_arrive.setCellValueFactory(new PropertyValueFactory<reservation_voyage, Date>("Date_arrivee"));
@@ -386,11 +387,12 @@ idu11.getSelectionModel().clearSelection();
     }
     @Override
     public void initialize(URL url, ResourceBundle resource){
-        
+    
         comboBox();
         comboBox1();
           comboBox2();
         defaultId();
+       
       
         showData();
         

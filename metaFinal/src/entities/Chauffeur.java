@@ -14,12 +14,12 @@ public class Chauffeur {
    private String nom ;
    private String prenom ;
    private String photo;
-   private int  tel ;
+   private String  tel ;
    private String description;
-   private  Enum etatDispo ;
+   private  String etatDispo ;
 
     public Chauffeur(){}
-    public Chauffeur(int idch, String nom, String prenom, String photo, int tel, String description, Enum etatDispo) {
+    public Chauffeur(int idch, String nom, String prenom, String photo, String tel, String description, String etatDispo) {
         this.idch = idch;
         this.nom = nom;
         this.prenom = prenom;
@@ -28,7 +28,7 @@ public class Chauffeur {
         this.description = description;
         this.etatDispo = etatDispo;
     }
-    public Chauffeur(String nom, String prenom, String photo, int tel, String description, Enum etatDispo) {
+    public Chauffeur(String nom, String prenom, String photo, String tel, String description, String etatDispo) {
        // this.idch = idch;
         this.nom = nom;
         this.prenom = prenom;
@@ -38,7 +38,7 @@ public class Chauffeur {
         this.etatDispo = etatDispo;
     }
 
-    public Chauffeur(int idch, String nom, String prenom, String photo, int tel, String description) {
+    public Chauffeur(int idch, String nom, String prenom, String photo, String tel, String description) {
         this.idch = idch;
         this.nom = nom;
         this.prenom = prenom;
@@ -87,11 +87,11 @@ public class Chauffeur {
         this.photo = photo;
     }
 
-    public int gettel() {
+    public String gettel() {
         return tel;
     }
 
-    public void settel(int tel) {
+    public void settel(String tel) {
         this.tel = tel;
     }
 
@@ -103,18 +103,20 @@ public class Chauffeur {
         this.description = description;
     }
 
-    public Enum getetatDispo() {
+    public String getetatDispo() {
         return etatDispo;
     }
 
-    public void setetatDispo(Enum etatDispo) {
+    public void setetatDispo(String etatDispo) {
         this.etatDispo = etatDispo;
     }
 
     @Override
     public String toString() {
-        return "Chauffeur{" + "idch=" + idch + ", nom=" + nom + ", prenom=" + prenom + ", photo=" + photo + ", tel=" + tel + ", description=" + description + ", Disponibilit\u00e9=" + etatDispo + '}';
+        return "Chauffeur{" + "idch=" + idch + ", nom=" + nom + ", prenom=" + prenom + ", photo=" + photo + ", tel=" + tel + ", description=" + description + ", etatDispo=" + etatDispo + '}';
     }
+
+    
  
    
 }

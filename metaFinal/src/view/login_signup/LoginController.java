@@ -32,6 +32,7 @@ import services.user.UserService;
  * @author medal
  */
 public class LoginController implements Initializable {
+        public static  Stage stg1;
    @FXML
     private TextField emailIdField;
    @FXML
@@ -121,6 +122,7 @@ public void link1(user user) throws Exception {
        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
+             
             stage.setScene(new Scene(root));  
             stage.show();
          Metatrip.stg.close();   
@@ -132,6 +134,7 @@ public void link1(user user) throws Exception {
        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
+          
             stage.setScene(new Scene(root));  
             stage.show();
          Metatrip.stg.close();   

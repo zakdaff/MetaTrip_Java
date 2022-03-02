@@ -127,6 +127,7 @@ public class Metatrip  extends Application  {
         Scene scene = new Scene(root, 300, 250);
    this.stg=primaryStage;
         primaryStage.setTitle("Hello World!");
+      
         primaryStage.setScene(scene);
         primaryStage.show();
         } catch(Exception e) {

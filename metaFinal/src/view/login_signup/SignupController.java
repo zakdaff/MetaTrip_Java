@@ -68,7 +68,8 @@ public class SignupController implements Initializable {
 
     @FXML
     private Button insert_image;
- @FXML
+ 
+    @FXML
     private AnchorPane left_main;
     /**
      * Initializes the controller class.
