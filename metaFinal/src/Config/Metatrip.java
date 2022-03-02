@@ -139,10 +139,16 @@ public class Metatrip  extends Application {
     	@Override
 	public void start(Stage primaryStage) throws IOException {
             
-             Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/SponsorList.fxml"));
+         Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/EventList.fxml"));
+         
+         
+            
         Scene scene = new Scene(root, 300, 250);
-   
-        primaryStage.setTitle("Hello World!");
+        
+        String css = this.getClass().getResource("/css/BACK.css").toExternalForm();
+        scene.getStylesheets().add(css); 
+
+        primaryStage.setTitle("MetaTrip Application");
         primaryStage.setScene(scene);
         primaryStage.show();
 		/*try {
@@ -528,19 +534,15 @@ String strd="2020-09-01";
 //     Servicesponsor ss = new Servicesponsor(); 
 //     
 //     ss.ajouter(s);
-                   
-     
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
 
  us.factureuser(rvs.affichervoyageByid(10));
      //System.out.println(resE.afficher());

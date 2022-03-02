@@ -76,8 +76,6 @@ public class SponsorListController implements Initializable {
     private TableColumn<sponsor, String> simage;
     
     
-    @FXML
-    private TextField image;
     
         //********* Connexion au BD  ******************//
     
@@ -97,9 +95,9 @@ public class SponsorListController implements Initializable {
     @FXML
     private TextField email;
     @FXML
-    private TextField date_sp;
-    @FXML
     private TextField prix_sp;
+    @FXML
+    private Button insert_image;
    
     
     
@@ -172,7 +170,7 @@ public class SponsorListController implements Initializable {
        public void affiche() {
         ObservableList<sponsor> list = getSponsor();
     
-        sids.setCellValueFactory(new PropertyValueFactory<sponsor, Integer>("ids"));
+       sids.setCellValueFactory(new PropertyValueFactory<sponsor, Integer>("ids"));
         snomsponsor.setCellValueFactory(new PropertyValueFactory<sponsor, String>("nomsponsor"));
         stel.setCellValueFactory(new PropertyValueFactory<sponsor, String>("tel"));
         semail.setCellValueFactory(new PropertyValueFactory<sponsor, String>("email"));
@@ -185,5 +183,12 @@ public class SponsorListController implements Initializable {
         table.setItems(list);
  
     }
+
+    @FXML
+    private void insertImage(ActionEvent event) {
+    }
+    
+    
+    
     
 }
