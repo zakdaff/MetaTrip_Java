@@ -23,6 +23,15 @@ public class Chambre {
         
     }
 
+    public Chambre(int idc, int numc, String type, String etat_dispo, hotel hotel, String image_chambre) {
+        this.idc = idc;
+        this.numc = numc;
+        this.type = type;
+        this.etat_dispo = etat_dispo;
+        this.hotel = hotel;
+        this.image_chambre = image_chambre;
+    }
+
     public Chambre(int idc, int numc, String type, String image_chambre) {
         this.idc = idc;
         this.numc = numc;
@@ -39,6 +48,15 @@ public class Chambre {
         this.hotel = hotel;
         this.Idh = Idh;
         this.image_chambre=image_chambre;
+    }
+
+    public Chambre(int idc, int numc, String type, String etat_dispo, int Idh, String image_chambre) {
+        this.idc = idc;
+        this.numc = numc;
+        this.type = type;
+        this.etat_dispo = etat_dispo;
+        this.Idh = Idh;
+        this.image_chambre = image_chambre;
     }
 
     public Chambre(int idc, int numc, String type, hotel hotel, String image_chambre) {

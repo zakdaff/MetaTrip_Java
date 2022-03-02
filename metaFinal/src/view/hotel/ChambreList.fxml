@@ -12,37 +12,33 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="642.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.hotel.ChambreListController">
+<AnchorPane id="AnchorPane" fx:id="left_main" prefHeight="642.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.hotel.ChambreListController">
    <children>
       <Label layoutX="19.0" layoutY="148.0" styleClass="labelform" text="Id Chambre " />
       <TextField fx:id="idc" layoutX="141.0" layoutY="143.0" />
       <TextField fx:id="numc" layoutX="141.0" layoutY="205.0" />
-      <TextField fx:id="type" layoutX="141.0" layoutY="266.0" />
       <Label layoutX="19.0" layoutY="210.0" styleClass="labelform" text="Numero chambre" />
       <Label layoutX="16.0" layoutY="271.0" styleClass="labelform" text="Type" />
-      <Button fx:id="bsave11" layoutX="99.0" layoutY="485.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Save">
+      <Button fx:id="btn_save" layoutX="88.0" layoutY="552.0" mnemonicParsing="false" onAction="#AjouterChambre" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Save">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btn_save" layoutX="99.0" layoutY="485.0" mnemonicParsing="false" onAction="#AjouterChambre" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Save">
+      <Button fx:id="btn_delete" layoutX="199.0" layoutY="552.0" mnemonicParsing="false" onAction="#DeleteChambre" prefHeight="33.0" prefWidth="71.0" text="Delete">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btn_delete" layoutX="199.0" layoutY="485.0" mnemonicParsing="false" onAction="#DeleteChambre" prefHeight="33.0" prefWidth="71.0" text="Delete">
+      <Button fx:id="btn_edit" layoutX="315.0" layoutY="552.0" mnemonicParsing="false" onAction="#Update" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Edit">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btn_edit" layoutX="313.0" layoutY="485.0" mnemonicParsing="false" onAction="#EditChambre" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Edit">
-         <font>
-            <Font name="Times New Roman Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button layoutX="57.0" layoutY="399.0" mnemonicParsing="false" text="Browse" />
-      <TextField id="adresse" fx:id="image" layoutX="155.0" layoutY="399.0" prefHeight="31.0" prefWidth="269.0" promptText="Path" />
-      <TableView fx:id="tab_chambre" layoutX="448.0" layoutY="128.0" prefHeight="329.0" prefWidth="499.0">
+      <ImageView fx:id="image_view" fitHeight="142.0" fitWidth="199.0" layoutX="216.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="54.0" layoutY="464.0" mnemonicParsing="false" onAction="#insertImage" text="Browse" />
+      <Label fx:id="file_path" alignment="CENTER" layoutX="16.0" layoutY="419.0" prefHeight="23.0" prefWidth="199.0" />
+        
+      <TableView fx:id="tab_chambre" layoutX="448.0" layoutY="128.0" onMouseClicked="#tablehandleButtonAction" prefHeight="329.0" prefWidth="499.0">
         <columns>
           <TableColumn fx:id="idc_tab" prefWidth="75.0" text="Id chambre" />
           <TableColumn fx:id="numc_tab" prefWidth="104.0" text="Numero chambre " />
@@ -65,5 +61,9 @@
             <Image url="@../../../../../../Desktop/nayrouz/metaFinal/build/classes/view/img/logo_meta.png" />
          </image>
       </ImageView>
+      <ComboBox fx:id="type" layoutX="141.0" layoutY="266.0" prefHeight="31.0" prefWidth="187.0" />
+      
+      <Label layoutX="15.0" layoutY="390.0" styleClass="labelform" text="Choissisez une image " />
+      
    </children>
 </AnchorPane>

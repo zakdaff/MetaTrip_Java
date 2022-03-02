@@ -129,9 +129,9 @@ public class Metatrip extends Application {
             //rvc.rechercherHotelparNom("gulden tulip");
             //System.out.println(rvc.getHotelByNom("gulden tulip"));
              hotel h1 = new hotel (12,"mouradi",4,"gammarth","hhhh");
-             hc.ajouterHotel(h1);
+             //hc.ajouterHotel(h1);
             
-             Chambre ch1= new Chambre (131,50,"ff",h1,"hhh");
+             Chambre ch1= new Chambre (1,50,"ff","d",h1,"hhh");
              ic.ajouter(ch1); 
      
              //reservation_hotel rh =new reservation_hotel(17,2,5,190.2f,u1,ch1,date2,date2);

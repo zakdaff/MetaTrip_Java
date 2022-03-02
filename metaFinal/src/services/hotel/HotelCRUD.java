@@ -100,8 +100,10 @@ public class HotelCRUD {
             System.out.println(ex.getMessage());
         }
         
+        }
+        
      
         
     
-}
+
 }
