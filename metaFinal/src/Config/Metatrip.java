@@ -139,7 +139,7 @@ public class Metatrip  extends Application {
     	@Override
 	public void start(Stage primaryStage) throws IOException {
             
-             Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/VoyageORG.fxml"));
+             Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/Chauffeur.fxml"));
         Scene scene = new Scene(root, 1200, 650);
      this.stg=primaryStage;
         primaryStage.setTitle("Welcome to MetaTrip!");

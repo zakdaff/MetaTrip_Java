@@ -105,10 +105,7 @@ public class UserListController implements Initializable {
                 @FXML
 		private TextField  idu;
                 
-                
-		@FXML
-		private TextField  nom;
-                
+             
 		@FXML
 		private TextField  prenom;
                 
@@ -116,7 +113,10 @@ public class UserListController implements Initializable {
 		private TextField  email;
                 
                 @FXML
-		private PasswordField  password;
+		private PasswordField  password;      
+		@FXML
+		private TextField  nom;
+             
                                 	
                @FXML
     private ImageView image_view;
