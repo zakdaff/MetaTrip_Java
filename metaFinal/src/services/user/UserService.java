@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package services.user;
 import java.io.FileOutputStream;
 import com.itextpdf.text.Document;
@@ -24,7 +19,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
 import Config.Datasource;
-import Config.excel;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -96,11 +90,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.sun.scenario.effect.ImageData;
 import entities.reservation_voiture;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -121,7 +112,7 @@ public class UserService implements IuserService {
 
     private Connection conn;
     private Statement ste;
-    private PreparedStatement pste,pst;
+    private PreparedStatement pste;
 
     public UserService() {
         conn = Datasource.getInstance().getCnx();
@@ -286,7 +277,8 @@ public class UserService implements IuserService {
               u.setEmail( rs.getString(6));
                u.setPassword(rs.getString(7));
                 u.setImage(rs.getString(8));
-                u.setDateNaissance(rs.getDate(9));
+                   u.setRole(rs.getInt(9));
+                u.setDateNaissance(rs.getDate(10));
                  users.add(u) ;                                        
                                                    
             }
@@ -338,11 +330,11 @@ public class UserService implements IuserService {
         
         return nb;    }
     
-    
-    public List<user> getUserByEmail (String Email)  {
+     public user getUserByID(int id)  {
      List<user> users = new ArrayList<>();
+      user u = new user();
    
-          String req = "SELECT * from `user` where Email='"+Email+"';";
+          String req = "SELECT * from `user` where Idu="+id+";";
             try {
 
             ste = conn.createStatement();
@@ -350,7 +342,7 @@ public class UserService implements IuserService {
             
             while(rs.next()){
           
-                   user u = new user();
+                  
                 u.setIdu(rs.getInt(1));
                   u.setCin( rs.getString(2));
                 u.setNom(rs.getString(3));
@@ -368,7 +360,62 @@ public class UserService implements IuserService {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return users;    
+        return u;    
+    }
+      public  List<Integer> gelallID()  {
+     List<Integer> ID = new ArrayList<>();
+     
+   
+          String req = "SELECT Idu  from `user`";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                  
+            
+               
+                 ID.add(rs.getInt(1));                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return ID;    
+    }
+    public user getUserByEmail (String Email)  {
+     List<user> users = new ArrayList<>();
+      user u = new user();
+   
+          String req = "SELECT * from `user` where Email='"+Email+"';";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                  
+                u.setIdu(rs.getInt(1));
+                  u.setCin( rs.getString(2));
+                u.setNom(rs.getString(3));
+                u.setPrenom(rs.getString(4));      
+                    u.setTel(rs.getString(5));
+            
+              u.setEmail( rs.getString(6));
+               u.setPassword(rs.getString(7));
+                u.setImage(rs.getString(8));
+                   u.setRole(rs.getInt(9));
+                u.setDateNaissance(rs.getDate(10));
+                 users.add(u) ;                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return u;    
     }
     
 
@@ -409,13 +456,15 @@ List<Object> voyages = new ArrayList<>();
     }
     
 
-    public void factureuser (reservation_voyage rv) throws WriterException, IOException{
+    public void factureuser (reservation_voyage rv,user ux) throws WriterException, IOException{
               String xx="2010-09-11";  
       String xx2="2011-10-01";  
      String x2="2011-10-01";  
+     System.out.println("getIdv"+rv.getVoyage().getIdv());
+          System.out.println("getIdu"+rv.getUser().getIdu());
      Date date_sp=Date.valueOf(xx2);
               ArrayList table= new ArrayList <>();
-              user ux = new user(817,"195", "youssef", "cheour", "256845", "youssef.cheour@esprit.tn", "aaaa", "image",date_sp);
+          
      // GESTION SPONSOR 
      
  
@@ -427,7 +476,7 @@ List<Object> voyages = new ArrayList<>();
         // The data that the QR code will contain
         String dataz = ux.toString();
             
-                   String path = "C:/Users/FLAM/Desktop/MetatripGit/MetaTrip_Java/demo.png";
+                   String path = "C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\demo.png";
  
         Map<EncodeHintType, ErrorCorrectionLevel> hashMap
             = new HashMap<EncodeHintType,
@@ -450,7 +499,7 @@ List<Object> voyages = new ArrayList<>();
                  
           Document document=new Document ();
   
-                    PdfWriter.getInstance(document, new FileOutputStream("C:/Users/FLAM/Desktop/MetatripGit/MetaTrip_Java/MetatripVoitureFacture.pdf"));
+                 PdfWriter.getInstance(document, new FileOutputStream("C:/Users/medal/OneDrive/Bureau/Metatrip_git/MetaTrip_Java/MetaTrip_Java/MetatripVoitureFacture.pdf"));
             document.open();
               Image image = Image.getInstance(path);
          
@@ -458,7 +507,7 @@ List<Object> voyages = new ArrayList<>();
 
         Paragraph para=new Paragraph ("Facture  Voyage :");
         document.add (para);
-                    document.add(image);
+           
 
 
         //simple paragraph
@@ -492,11 +541,11 @@ List<Object> voyages = new ArrayList<>();
                             pdfPTable.addCell (""+rv.getDate_depart()+"");
                             pdfPTable.addCell(""+rv.getDate_arrivee()+"");
                             pdfPTable.addCell(""+rv.getEtat()+"");
-                            pdfPTable.addCell (""+rv.getIdu()+"");
-                              pdfPTable.addCell (""+rv.getIdv()+"");
+                            pdfPTable.addCell (""+ux.getNom()+""+ux.getPrenom()+"");
+                              pdfPTable.addCell (""+rv.getVoyage().getIdv()+"");
                            pdfPTable.addCell (""+rv.getRef_paiement()+"");
                           document.add(pdfPTable);
-    
+             document.add(image);
                         document.close();
                         document.close ();
 
@@ -548,64 +597,8 @@ List<Object> voyages = new ArrayList<>();
 
         return "";
     }
-
-    @Override
-    public user afficherById(user u) {
-        
-            String req = "SELECT u.Idu,u.Cin,u.nom,u.prenom,u.tel,u.email,u.password,u.image,u.dateNaissance FROM `user` u where Idu='"+u.getIdu()+"';";
-          
-       
-        
-        try {
-
-              ste = conn.createStatement();
-            ResultSet rs = ste.executeQuery(req);
-                          
-
-            while(rs.next()){
             
-             u.setIdu(rs.getInt(1));          
-             u.setCin(rs.getString(2));
-             u.setNom(rs.getString(3));
-             u.setPrenom(rs.getString(4));
-             u.setTel(rs.getString(5));
-             u.setEmail(rs.getString(6));
-             u.setPassword(rs.getString(7));
-             u.setImage(rs.getString(8));
-             u.setDateNaissance(rs.getDate(9));
-                
-             
-                                                       
-                                   
-               
-                 
-                                                   
-            }
-       
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
-        }    
-     return u;
-
-    }
-       
-    public void addFromCSV() throws IOException, SQLException {
-           excel e=new excel();
-           excel.main();
-
-        
-    }
-
+         
 
 
 }
-
-    
-
-
-
-
-
-
-

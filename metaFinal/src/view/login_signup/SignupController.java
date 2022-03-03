@@ -1,15 +1,18 @@
-
 package view.login_signup;
 
+import Config.Metatrip;
 import entities.user;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -24,6 +27,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import services.user.LoginAndSignupService;
+import view.PartieClient.Reservation_VoyageClientController;
+import view.adminPanel.Reservation_voyageController;
 
 /**
  * FXML Controller class
@@ -64,7 +69,8 @@ public class SignupController implements Initializable {
 
     @FXML
     private Button insert_image;
- @FXML
+ 
+    @FXML
     private AnchorPane left_main;
     /**
      * Initializes the controller class.
@@ -107,7 +113,7 @@ public class SignupController implements Initializable {
  Window owner = submitButton.getScene().getWindow();
 
 
-        if ((Email.getText().isEmpty())||((!Email.getText().matches("\\w{3,}@\\S+")))) {
+        if ((Email.getText().isEmpty())||((!Email.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")))) {
         
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your email id");
@@ -130,10 +136,7 @@ public class SignupController implements Initializable {
           }  
                
                         int monEntier1 = 0;
-                        int telcheck=0;
-        boolean ok = true;
-         boolean ok1 = true;
-        
+        boolean ok1 = true;
                                                                                         try
                                                                                                  {
                                                                                                     monEntier1 = Integer.parseInt(Cin.getText());
@@ -142,10 +145,10 @@ public class SignupController implements Initializable {
                                                                                                  }
                                                                                                      catch(NumberFormatException nfe)
                                                                                                     {
-                                                                                                       ok= false;
+                                                                                                       ok1= false;
                                                                                                     }
      
-        if (Cin.getText().isEmpty()||((Cin.getText().length()!=8)||(ok==false))) {
+        if (Cin.getText().isEmpty()||((Cin.getText().length()!=8)||(ok1==false))) {
         
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your Cin id");
@@ -166,18 +169,19 @@ public class SignupController implements Initializable {
             return;
            
         }
-     
-                                                        try
-                                           {
-                                       telcheck = Integer.parseInt(Tel.getText());
-
-                                               }
-                                  catch(NumberFormatException nfe)
-                                                {
-                                            ok1 = false;
-                                         }
-                                                        
-
+         int monEntier = 0;
+        boolean ok = true;
+                                                                                        try
+                                                                                                 {
+                                                                                                    monEntier = Integer.parseInt(Tel.getText());
+                                                                                        // s'il ne contient que des chiffres (0 à 9) c'est ok sauf si les limites int sont dépassées
+                                                                                        // sinon une exception est levée
+                                                                                                 }
+                                                                                                     catch(NumberFormatException nfe)
+                                                                                                    {
+                                                                                                       ok = false;
+                                                                                                    }
+                                                                                       
       if (Prenom.getText().isEmpty()) {
 
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
@@ -185,33 +189,13 @@ public class SignupController implements Initializable {
                                  return;
 
                      }
-      
-               try
-                                                                                                 {
-                                                                                                    telcheck = Integer.parseInt(Tel.getText());
-                                                                                        // s'il ne contient que des chiffres (0 à 9) c'est ok sauf si les limites int sont dépassées
-                                                                                        // sinon une exception est levée
-                                                                                                 }
-                                                                                                     catch(NumberFormatException nfe)
-                                                                                                    {
-                                                                                                       ok1= false;
-                                                                                                    }
-      
-      
-  if (Tel.getText().isEmpty()||(Tel.getText().length()!=8||(ok1==false))) 
-  {
+  if (Tel.getText().isEmpty()||(Tel.getText().length()!=8||(ok==false))) {
         
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your Tel id");
             return;
            
         }
-  
-  
-  if (ok==false){   showAlert(Alert.AlertType.ERROR, owner, "Form Error!", "Please enter a correct cin number"); return;}
-  if (ok1==false){ showAlert(Alert.AlertType.ERROR, owner, "Form Error!", "Please enter a correct tel number"); return;}
-  
-  
         String str2=DateNaissance.getValue().toString();  
      Date date1=Date.valueOf(str2);
 
@@ -246,4 +230,42 @@ public class SignupController implements Initializable {
         alert.show();
     }
     
+
+public void link1(user user) throws Exception {               
+ if(user.getRole()==1){
+       try {
+   
+          
+            //Personne.user = ;
+            //Personne.user.get
+                      FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
+            Parent root = loader.load();
+            Reservation_voyageController controller = loader.getController();
+            controller.setUser(Email.getText());
+            //Personne.user = ;
+            //Personne.user.get
+            Email.getScene().setRoot(root);
+        } catch (IOException ex) {
+         Metatrip.stg.close();   
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}else{
+    try {
+     
+            //Personne.user = ;
+            //Personne.user.get
+                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
+            Parent root1 = loader1.load();
+            Reservation_VoyageClientController controller = loader1.getController();
+            controller.setUser(Email.getText());
+            //Personne.user = ;
+            //Personne.user.get
+            Email.getScene().setRoot(root1);
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+ }
+
+}
 }

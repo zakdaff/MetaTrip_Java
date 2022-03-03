@@ -357,4 +357,38 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
  
         return rvo;
     }
+    
+    
+        public Date lastDatearrivebyuser(user user1 ) {
+            
+     System.out.println("sssssssssssssssssssssssssssssssssssssssssssss"+user1.getIdu());
+        String req = "SELECT Max(Date_arrivee)	FROM `reservation_voyage` JOIN user on user.Idu=reservation_voyage.Idu WHERE user.Idu="+user1.getIdu()+";";
+   List<Date>  List = new ArrayList< >();
+        
+        try {
+       pste = conn.prepareStatement(req);
+           
+          
+            ResultSet rs = pste.executeQuery();
+            
+            
+            while(rs.next()){
+             
+                     System.out.println("7777777777777777"+rs.getDate(1));
+                List.add(rs.getDate(1));
+               
+                
+        
+      
+  
+                 
+                }                                          
+            
+            
+        } catch (SQLException ex) {
+           System.out.println(ex.getMessage());
+        }
+ 
+        return  List.get(0);
+    }
 }

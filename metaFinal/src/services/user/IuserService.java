@@ -24,5 +24,4 @@ public interface IuserService {
     public int nbUsers() throws SQLException;
      public int nbVoyagesDispo() throws SQLException;
        public List<?> VoyageParDates() throws SQLException;
-       user afficherById(user u);
 }

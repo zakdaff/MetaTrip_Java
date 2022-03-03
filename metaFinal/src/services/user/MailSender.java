@@ -1,13 +1,4 @@
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-
-
 package services.user;
 import entities.user;
 import java.io.IOException;
@@ -39,7 +30,6 @@ import javax.mail.internet.MimeMultipart;
  * @author medal
 =======
 import javax.mail.internet.MimeMessage;
-
 /**
  *
  * @author FLAM
@@ -102,7 +92,7 @@ public class MailSender {
     
    public static void sendFacture(String to){
    
-    to="fares.lamloum@esprit.tn";//change accordingly   
+   //change accordingly   
         final String user="solidev.3a18@gmail.com";//change accordingly   
        //change accordingly     
 
@@ -138,7 +128,7 @@ public class MailSender {
 
             //4) create new MimeBodyPart object and set DataHandler object to this object        
             MimeBodyPart messageBodyPart2 = new MimeBodyPart();      
-            String filename = "C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\MetatripVoitureFacture.pdf";//change accordingly     
+            String filename = "C:\\Users\\FLAM\\Desktop\\MetatripGit\\MetaTrip_Java\\MetatripVoyageFacture.pdf";//change accordingly     
             DataSource source = new FileDataSource(filename);    
             messageBodyPart2.setDataHandler(new DataHandler(source));    
             messageBodyPart2.setFileName(filename);             
@@ -158,8 +148,3 @@ public class MailSender {
         }catch (MessagingException ex) {ex.printStackTrace();}  
     }
    }
-   
- 
-
-   
-

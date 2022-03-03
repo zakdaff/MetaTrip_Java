@@ -48,6 +48,12 @@ public class reservation_voyage {
         this.Idu = Idu;
         this.Idv = Idv;
     }
+
+    public reservation_voyage(Date Date_depart, Date Date_arrivee, String etat) {
+        this.Date_depart = Date_depart;
+        this.Date_arrivee = Date_arrivee;
+        this.etat = etat;
+    }
     
      
     
