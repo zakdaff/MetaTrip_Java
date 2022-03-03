@@ -37,6 +37,13 @@ public class voyage_organise extends voyage{
        
     }
 
+    public voyage_organise(float Prix_billet, String Airline, int Nb_nuitees, EtatDispo etatVoyage) {
+        this.Prix_billet = Prix_billet;
+        this.Airline = Airline;
+        this.Nb_nuitees = Nb_nuitees;
+        this.etatVoyage = etatVoyage;
+    }
+
 
     public voyage_organise(float Prix_billet, String Airline, int Nb_nuitees, voyage voyage) {
         

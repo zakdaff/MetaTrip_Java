@@ -101,6 +101,31 @@ public class voyageService implements IVoyage{
        
         }
     }
+    
+     public  List<Integer> getAllByID()  {
+     List<Integer> ID = new ArrayList<>();
+     
+   
+          String req = "SELECT Idv  from `voyage`";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                  
+            
+               
+                 ID.add(rs.getInt(1));                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return ID;    
+    }
+    
 
     @Override
     public List<voyage> afficher() {

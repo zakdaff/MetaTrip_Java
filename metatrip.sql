@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 26 fév. 2022 à 00:12
+-- Généré le : mer. 02 mars 2022 à 21:41
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -46,7 +46,7 @@ CREATE TABLE `abonnement` (
 CREATE TABLE `chambre` (
   `idc` int(11) NOT NULL,
   `numc` int(20) NOT NULL,
-  `image` varchar(40) NOT NULL,
+  `image` varchar(100) NOT NULL,
   `type` varchar(20) NOT NULL,
   `etat` enum('DISPO','INDISPO') NOT NULL,
   `idh` int(11) NOT NULL
@@ -62,10 +62,10 @@ CREATE TABLE `chauffeur` (
   `idch` int(11) NOT NULL,
   `nom` varchar(20) NOT NULL,
   `prenom` varchar(20) NOT NULL,
-  `photo` varchar(20) NOT NULL,
+  `photo` varchar(100) NOT NULL,
   `tel` varchar(20) NOT NULL,
   `description` varchar(20) NOT NULL,
-  `etatDispo` enum('DISPO','INDISPO') NOT NULL
+  `etatDispo` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -73,7 +73,8 @@ CREATE TABLE `chauffeur` (
 --
 
 INSERT INTO `chauffeur` (`idch`, `nom`, `prenom`, `photo`, `tel`, `description`, `etatDispo`) VALUES
-(666, 'lam', 'fares', 'fares.png', '99999999', 'flam', 'DISPO');
+(666, 'lam', 'fares', 'fares.png', '99999999', 'flam', 'Dispo'),
+(56235, 'zazaea', 'zzz', 'zzzzzzzz', '69962150', 'edzeez', 'nondispo');
 
 -- --------------------------------------------------------
 
@@ -109,7 +110,7 @@ CREATE TABLE `hotel` (
   `Nom_hotel` varchar(20) NOT NULL,
   `Nb_etoiles` int(11) NOT NULL,
   `Adresse` varchar(50) NOT NULL,
-  `image` varchar(40) NOT NULL
+  `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -211,13 +212,6 @@ CREATE TABLE `reservation_voiture` (
   `idch` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Déchargement des données de la table `reservation_voiture`
---
-
-INSERT INTO `reservation_voiture` (`Idrvoit`, `prix_rent`, `Trajet`, `Idu`, `Idvoit`, `idch`) VALUES
-(10, 5.5, 'jandouba', 41, 55, 666);
-
 -- --------------------------------------------------------
 
 --
@@ -239,10 +233,7 @@ CREATE TABLE `reservation_voyage` (
 --
 
 INSERT INTO `reservation_voyage` (`Idrv`, `Date_depart`, `Date_arrivee`, `etat`, `Idu`, `Idv`, `Ref_paiement`) VALUES
-(7, '2022-02-16', '2022-02-16', 'Paye', 26, 97, 0),
-(9, '2022-02-16', '2022-02-16', 'NonPaye', 26, 18, 0),
-(10, '2020-09-01', '2050-09-01', 'Paye', 26, 97, 0),
-(11, '2050-09-01', '2050-09-01', 'Paye', 26, 97, 0);
+(99993, '2022-02-01', '2022-02-03', 'NonPaye', 816, 198, 0);
 
 -- --------------------------------------------------------
 
@@ -289,7 +280,7 @@ CREATE TABLE `user` (
   `Tel` varchar(20) NOT NULL,
   `Email` varchar(38) NOT NULL,
   `Password` varchar(50) NOT NULL,
-  `Image` varchar(40) NOT NULL,
+  `Image` varchar(100) NOT NULL,
   `Role` int(11) DEFAULT 0,
   `dateNaissance` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -299,15 +290,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`Idu`, `Cin`, `Nom`, `Prenom`, `Tel`, `Email`, `Password`, `Image`, `Role`, `dateNaissance`) VALUES
-(41, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(42, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(43, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(44, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(45, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(44, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\modules pidev.PNG', 0, '2000-02-07'),
+(45, '196525', 'ssss', 'aaa', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (47, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', 'e882b72bccfc2ad578c27b0d9b472a14', 'image', 0, '2011-10-01'),
 (48, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (49, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(50, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (51, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (52, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (53, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
@@ -353,7 +340,18 @@ INSERT INTO `user` (`Idu`, `Cin`, `Nom`, `Prenom`, `Tel`, `Email`, `Password`, `
 (826, '11223344', 'lamloum', 'fares', '98665580', 'fareslamloum@gmail.com', 'ab4f63f9ac65152575886860dde480a1', 'fares.png', 0, '2000-02-07'),
 (827, '1236987', 'lamloum', 'fares', '98663217', 'flam@gmail.com', '54965f9cd7e81588669cbbb393950569', 'fares.jpg', 0, '2000-02-07'),
 (828, '1230000', 'lamloum', 'fares', '98332140', 'fareslam@esprit.tn', '74b87337454200d4d33f80c4663dc5e5', 'fares.png', 0, '2000-07-08'),
-(831, '199525', 'ssss', 'cxx', '2568435', 'fares.lamloum@esprit.tn', '550e1bafe077ff0b0b67f4e32f29d751', 'image', 0, '2011-10-01');
+(831, '199525', 'ssss', 'cxx', '2568435', 'fares.lamloum@esprit.tn', '550e1bafe077ff0b0b67f4e32f29d751', 'image', 0, '2011-10-01'),
+(836, '09935054', 'fares', 'lamloum', '98663358', 'fares@ra.tn', 'e2fc714c4727ee9395f324cd2e7f331f', 'fares.png', 0, '2000-02-02'),
+(837, '09935054', 'fares', 'lamloum', '98663358', 'fares@ra.tn', 'e2fc714c4727ee9395f324cd2e7f331f', 'fares.png', 0, '2000-02-02'),
+(838, '00005054', 'fares', 'lamloum', '98663358', 'fares@ra.tn', 'e2fc714c4727ee9395f324cd2e7f331f', 'fares.png', 0, '2000-02-02'),
+(839, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '337be3074ca499c5a397b2888c3dcda0', 'image', 0, '2011-10-01'),
+(840, '004406', 'fff', 'zakzouk', '444895', 'zak@live.fr', 'af4dff190111fab70a4380122abd7e99', 'image', 0, '2011-10-01'),
+(841, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '337be3074ca499c5a397b2888c3dcda0', 'image', 0, '2011-10-01'),
+(842, '004406', 'fff', 'zakzouk', '444895', 'zak@live.fr', 'af4dff190111fab70a4380122abd7e99', 'image', 0, '2011-10-01'),
+(843, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '337be3074ca499c5a397b2888c3dcda0', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\flam.jpg', 0, '2011-10-01'),
+(844, '004406', 'fff', 'zakzouk', '444895', 'zak@live.fr', 'af4dff190111fab70a4380122abd7e99', 'image', 0, '2011-10-01'),
+(845, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '337be3074ca499c5a397b2888c3dcda0', 'image', 0, '2011-10-01'),
+(847, '15698236', 'fares', 'lamloum', '98336024', 'lam@esprit.tn', 'aaaa', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\modules pidev.PNG', 0, '2022-03-09');
 
 -- --------------------------------------------------------
 
@@ -396,7 +394,7 @@ INSERT INTO `voiture` (`Idvoit`, `Matricule`, `Puissance_fiscalle`, `Image_v`, `
 
 CREATE TABLE `voyage` (
   `Idv` int(11) NOT NULL,
-  `Pays` varchar(20) NOT NULL,
+  `Pays` varchar(100) NOT NULL,
   `Image_pays` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -408,7 +406,7 @@ INSERT INTO `voyage` (`Idv`, `Pays`, `Image_pays`) VALUES
 (18, 'espagne', 'c://espagne.png'),
 (97, 'istanbul', 'c://antalya.png'),
 (98, 'tounis', 'c://maroc.png'),
-(99, 'tounis', 'c://maroc.png'),
+(99, 'ttttunis', 'c://maroc.png'),
 (100, 'tounis', 'c://maroc.png'),
 (169, 'espagne', 'c://espagne.png'),
 (198, 'espagne', 'c://espagne.png'),
@@ -424,8 +422,7 @@ INSERT INTO `voyage` (`Idv`, `Pays`, `Image_pays`) VALUES
 (602, 'gafsa', 'c://beja.png'),
 (603, 'gafsa', 'c://beja.png'),
 (604, 'gafsa', 'c://beja.png'),
-(605, 'gafsa', 'c://beja.png'),
-(606, 'gafsa', 'c://beja.png');
+(55557, 'kievaaa', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\modules pidev.PNG');
 
 -- --------------------------------------------------------
 
@@ -448,14 +445,11 @@ CREATE TABLE `voyage_organise` (
 
 INSERT INTO `voyage_organise` (`Idvo`, `Prix_billet`, `Airline`, `Nb_nuitees`, `etatVoyage`, `Idv`) VALUES
 (78, 170.6, 'nex', 3, 'DISPO', 18),
-(79, 990.6, 'sounay', 3, '', 369),
-(80, 170.6, 'nex', 3, '', 369),
-(81, 10.6, 'flam', 3, '', 369),
-(82, 170.6, 'nex', 3, '', 600),
-(84, 170.6, 'nex', 3, 'INDISPO', 605),
-(85, 170.6, 'nexdd', 3, 'DISPO', 97),
-(86, 170.6, 'nexdd', 3, 'INDISPO', 605),
-(87, 170.6, 'nexdd', 3, 'INDISPO', 605);
+(79, 990.6, 'sounay', 3, 'DISPO', 369),
+(80, 170.6, 'nex', 3, 'INDISPO', 369),
+(81, 10.6, 'flam', 3, 'INDISPO', 369),
+(82, 170.6, 'nex', 3, 'DISPO', 600),
+(85, 170.6, 'nexdd', 3, 'DISPO', 97);
 
 -- --------------------------------------------------------
 
@@ -549,10 +543,10 @@ ALTER TABLE `reservation_voiture`
 --
 ALTER TABLE `reservation_voyage`
   ADD PRIMARY KEY (`Idrv`),
-  ADD KEY `FK_reusr` (`Idu`),
   ADD KEY `Idrv` (`Idrv`),
   ADD KEY `FKPAY` (`Ref_paiement`),
-  ADD KEY `FK_resvoy` (`Idv`);
+  ADD KEY `FK_resvoy` (`Idv`),
+  ADD KEY `FKUSERT` (`Idu`);
 
 --
 -- Index pour la table `sponsor`
@@ -615,7 +609,7 @@ ALTER TABLE `chambre`
 -- AUTO_INCREMENT pour la table `chauffeur`
 --
 ALTER TABLE `chauffeur`
-  MODIFY `idch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=667;
+  MODIFY `idch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56236;
 
 --
 -- AUTO_INCREMENT pour la table `evenement`
@@ -651,7 +645,7 @@ ALTER TABLE `reservation_voiture`
 -- AUTO_INCREMENT pour la table `reservation_voyage`
 --
 ALTER TABLE `reservation_voyage`
-  MODIFY `Idrv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Idrv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99994;
 
 --
 -- AUTO_INCREMENT pour la table `sponsor`
@@ -663,7 +657,7 @@ ALTER TABLE `sponsor`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `Idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=832;
+  MODIFY `Idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=849;
 
 --
 -- AUTO_INCREMENT pour la table `voiture`
@@ -675,13 +669,13 @@ ALTER TABLE `voiture`
 -- AUTO_INCREMENT pour la table `voyage`
 --
 ALTER TABLE `voyage`
-  MODIFY `Idv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55556;
+  MODIFY `Idv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55558;
 
 --
 -- AUTO_INCREMENT pour la table `voyage_organise`
 --
 ALTER TABLE `voyage_organise`
-  MODIFY `Idvo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `Idvo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT pour la table `voyage_virtuel`
@@ -730,6 +724,7 @@ ALTER TABLE `reservation_voiture`
 -- Contraintes pour la table `reservation_voyage`
 --
 ALTER TABLE `reservation_voyage`
+  ADD CONSTRAINT `FKUSERT` FOREIGN KEY (`Idu`) REFERENCES `user` (`Idu`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_resvoy` FOREIGN KEY (`Idv`) REFERENCES `voyage` (`Idv`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
 import Config.Datasource;
+import Config.excel;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -95,8 +96,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.sun.scenario.effect.ImageData;
 import entities.reservation_voiture;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -117,7 +121,7 @@ public class UserService implements IuserService {
 
     private Connection conn;
     private Statement ste;
-    private PreparedStatement pste;
+    private PreparedStatement pste,pst;
 
     public UserService() {
         conn = Datasource.getInstance().getCnx();
@@ -585,8 +589,23 @@ List<Object> voyages = new ArrayList<>();
      return u;
 
     }
-            
-         
+       
+    public void addFromCSV() throws IOException, SQLException {
+           excel e=new excel();
+           excel.main();
+
+        
+    }
+
 
 
 }
+
+    
+
+
+
+
+
+
+

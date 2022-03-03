@@ -17,7 +17,11 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.PdfPTable;
 import entities.user;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -65,6 +69,8 @@ public class UserListController implements Initializable {
                private Button bupdate;
                 @FXML
                 private Button bdelete;
+                   @FXML
+                private Button importCS;
 
 		    @FXML
     private Label file_path;
@@ -345,7 +351,7 @@ public class UserListController implements Initializable {
             st.setInt(1, Integer.parseInt(idu.getText()));
             
             
-            	Alert alert = new Alert(AlertType.INFORMATION);
+            	Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Deleting user");
 
 		// Header Text: null
@@ -389,7 +395,84 @@ public class UserListController implements Initializable {
     }
     
    
+    @FXML
+    private void importCSV(ActionEvent event) throws IOException, SQLException {
+        String xx="C:/Users/FLAM/Desktop/users.csv";
+        FileChooser filechooser = new FileChooser();
+        filechooser.setTitle("Importer un fichier csv");
+        Stage stage = (Stage)cin.getScene().getWindow();
+        File fileCSV = filechooser.showOpenDialog(stage);
+        
+       
+        
+        
+   
     
+      String req = "INSERT INTO user (cin, nom ,"
+                + "prenom , tel , email , "
+                + "password , image, dateNaissance) VALUES ( ? , ? , ? , ? , ? , ? , ?, ? ) ;";
+        int batchSize=20;
+
+        try {
+            st = con.prepareStatement(req);
+            BufferedReader lineReader=new BufferedReader(new FileReader(xx));
+
+            String lineText=null;
+            int count=0;
+            
+            // To JUMP COLUMNS NAMES
+            //ineReader.readLine();
+            while ((lineText=lineReader.readLine())!=null){
+                String[] data=lineText.split(",");
+                
+
+                st = con.prepareStatement(req);
+                st.setString(1, data[0]);
+                st.setString(2, data[1]);
+                st.setString(3, data[2]);
+                st.setString(4, data[3]);
+                st.setString(5, data[4]);
+                st.setString(6, UserService.doHashing(data[5]));
+                st.setString(7, data[6]);
+                st.setDate(8, Date.valueOf(data[7]) );
+
+                st.addBatch();
+                if(count%batchSize==0){
+                    st.executeBatch();
+                }
+            }
+            lineReader.close();
+            st.executeBatch();
+
+            System.out.println("Data has been inserted successfully.");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        } catch (FileNotFoundException ex) {
+            System.err.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ajout d'utilisateur(s)");
+            alert.setContentText("Liste d'utilisateurs importée avec succées.");
+            alert.show();
+          
+        
+    }
+ 
   /*
     public void factureuser (user u){
          
