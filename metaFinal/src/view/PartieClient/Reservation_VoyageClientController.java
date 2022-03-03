@@ -93,12 +93,12 @@ user u1 = new user();
             if(date.compareTo(r1.lastDatearrivebyuser(u1))<0){
                   alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Date Depart > Date Arrive");
+                alert.setContentText("Vous avez une Reservation dans cette periode Merci ");
                 alert.showAndWait();
                  ok = false;
             }
             if(ok==true){
-          /*    
+          
             Reservation_Voyage_Service  rvs = new  Reservation_Voyage_Service ();
          voyageService v=new voyageService();
        
@@ -112,7 +112,7 @@ user u1 = new user();
   System.out.println("test"+u1);
            rvs.ajouter(r);
            us.factureuser(r,u1);
-        MailSender.sendFacture(u1.getEmail());*/
+        MailSender.sendFacture(u1.getEmail());
      
 
             }

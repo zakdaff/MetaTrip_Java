@@ -5,15 +5,19 @@
  */
 package view.login_signup;
 
+import Config.Metatrip;
 import entities.user;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -28,6 +32,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import services.user.LoginAndSignupService;
+import view.PartieClient.Reservation_VoyageClientController;
+import view.adminPanel.Reservation_voyageController;
 
 /**
  * FXML Controller class
@@ -112,7 +118,7 @@ public class SignupController implements Initializable {
  Window owner = submitButton.getScene().getWindow();
 
 
-        if ((Email.getText().isEmpty())||((!Email.getText().matches("\\w{3,}@\\S+")))) {
+        if ((Email.getText().isEmpty())||((!Email.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")))) {
         
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your email id");
@@ -229,4 +235,42 @@ public class SignupController implements Initializable {
         alert.show();
     }
     
+
+public void link1(user user) throws Exception {               
+ if(user.getRole()==1){
+       try {
+   
+          
+            //Personne.user = ;
+            //Personne.user.get
+                      FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
+            Parent root = loader.load();
+            Reservation_voyageController controller = loader.getController();
+            controller.setUser(Email.getText());
+            //Personne.user = ;
+            //Personne.user.get
+            Email.getScene().setRoot(root);
+        } catch (IOException ex) {
+         Metatrip.stg.close();   
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}else{
+    try {
+     
+            //Personne.user = ;
+            //Personne.user.get
+                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
+            Parent root1 = loader1.load();
+            Reservation_VoyageClientController controller = loader1.getController();
+            controller.setUser(Email.getText());
+            //Personne.user = ;
+            //Personne.user.get
+            Email.getScene().setRoot(root1);
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+ }
+
+}
 }
