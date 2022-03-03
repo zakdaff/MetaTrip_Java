@@ -129,7 +129,7 @@ public void link1(user user) throws Exception {
                       FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
             Parent root = loader.load();
             Reservation_voyageController controller = loader.getController();
-            controller.setUsername(emailIdField.getText());
+            controller.setUser(emailIdField.getText());
             //Personne.user = ;
             //Personne.user.get
             emailIdField.getScene().setRoot(root);
@@ -146,7 +146,7 @@ public void link1(user user) throws Exception {
                       FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
             Parent root1 = loader1.load();
             Reservation_VoyageClientController controller = loader1.getController();
-            controller.setUsername(emailIdField.getText());
+            controller.setUser(emailIdField.getText());
             //Personne.user = ;
             //Personne.user.get
             emailIdField.getScene().setRoot(root1);

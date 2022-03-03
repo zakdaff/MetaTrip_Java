@@ -49,7 +49,7 @@ public class Reservation_VoyageClientController implements Initializable {
         // TODO
     }    
 user u1 = new user();
- public user setUsername(String username) {
+ public user setUser(String username) {
   UserService u= new UserService();
         
  u1= u.getUserByEmail(username);
@@ -60,8 +60,13 @@ user u1 = new user();
 
     @FXML
     private void ReserverVoyage(ActionEvent event) throws WriterException, IOException {
-        System.out.println("ssssssssss"+u1);
+
+          String xx=Date_depart.getValue().toString();  
+            Date date=Date.valueOf(xx);
           Alert alert = new Alert(Alert.AlertType.ERROR);
+                 UserService us =new UserService();
+                 Reservation_Voyage_Service r1=new Reservation_Voyage_Service();
+                     System.out.println("ssssssssss"+r1.lastDatearrivebyuser(u1));  
         boolean ok = true;
         
                String str1=Date_depart.getValue().toString();  
@@ -84,8 +89,16 @@ user u1 = new user();
                 alert.showAndWait();
                  ok = false;
             }
+       
+            if(date.compareTo(r1.lastDatearrivebyuser(u1))<0){
+                  alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Date Depart > Date Arrive");
+                alert.showAndWait();
+                 ok = false;
+            }
             if(ok==true){
-              
+          /*    
             Reservation_Voyage_Service  rvs = new  Reservation_Voyage_Service ();
          voyageService v=new voyageService();
        
@@ -93,11 +106,13 @@ user u1 = new user();
    voyage v1=v.afficherbyID(97);
 
             reservation_voyage r=new reservation_voyage(date1,date2,"NonPaye",u1,v1);
-                    UserService us =new UserService();
+             
+ System.out.println("585958855"+v1);
  
-            rvs.ajouter(r);
-            us.factureuser(r,u1);
-            MailSender.sendFacture(u1.getEmail());
+  System.out.println("test"+u1);
+           rvs.ajouter(r);
+           us.factureuser(r,u1);
+        MailSender.sendFacture(u1.getEmail());*/
      
 
             }

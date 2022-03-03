@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 import Config.Datasource;
 import entities.Voiture;
 import entities.paiement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import static java.util.Collections.list;
 import java.util.HashMap;
@@ -33,7 +35,7 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
      PreparedStatement pste,pste2,pste3,pste4;
 
     public Reservation_Voyage_Service() {
-           conn = Datasource.getInstance().getCnx();
+             conn = Datasource.getInstance().getCnx();
 
     }
     
@@ -70,6 +72,7 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
          String req = "UPDATE `reservation_voyage` SET "
                 +"`Date_depart`=?,`Date_arrivee`=?,`etat`=?"
                + " WHERE Idrv = '" + id+ "'";
+         
     
         try {
             pste = conn.prepareStatement(req);
@@ -356,5 +359,39 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
         }
  
         return rvo;
+    }
+    
+    
+        public Date lastDatearrivebyuser(user user1 ) {
+            
+     System.out.println("sssssssssssssssssssssssssssssssssssssssssssss"+user1.getIdu());
+        String req = "SELECT Max(Date_arrivee)	FROM `reservation_voyage` JOIN user on user.Idu=reservation_voyage.Idu WHERE user.Idu="+user1.getIdu()+";";
+   List<Date>  List = new ArrayList< >();
+        
+        try {
+       pste = conn.prepareStatement(req);
+           
+          
+            ResultSet rs = pste.executeQuery();
+            
+            
+            while(rs.next()){
+             
+                     System.out.println("7777777777777777"+rs.getDate(1));
+                List.add(rs.getDate(1));
+               
+                
+        
+      
+  
+                 
+                }                                          
+            
+            
+        } catch (SQLException ex) {
+           System.out.println(ex.getMessage());
+        }
+ 
+        return  List.get(0);
     }
 }

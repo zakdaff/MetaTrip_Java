@@ -116,7 +116,7 @@ public class Reservation_voyageController implements Initializable {
     
     private String[] comboGender = {"NonPaye", "Paye"};
     
-public user setUsername(String username) {
+public user setUser(String username) {
   UserService u= new UserService();
         user u1 = new user();
  u1= u.getUserByEmail(username);
@@ -379,7 +379,7 @@ idu11.setValue(data.getIdu());
       
          @FXML
     public void comboBox2(){
-      VoitureCRUD u= new VoitureCRUD();
+      voyageService u= new voyageService();
             List<Integer> list1 = new ArrayList<>();
         for(Integer data:u.gelallID()){
            

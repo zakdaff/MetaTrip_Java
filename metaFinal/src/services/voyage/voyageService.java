@@ -174,6 +174,28 @@ public class voyageService implements IVoyage{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+       public  List<Integer> gelallID()  {
+     List<Integer> ID = new ArrayList<>();
+     
+   
+          String req = "SELECT Idv   from `voyage`";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                  
+            
+               
+                 ID.add(rs.getInt(1));                                   
+            }}
+            catch (SQLException ex) {
+          
+        }
+        
+        return ID;    
+    }
     
 }
