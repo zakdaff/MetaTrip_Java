@@ -461,13 +461,13 @@ List<Object> voyages = new ArrayList<>();
     }
     
 
-    public void factureuser (reservation_voyage rv) throws WriterException, IOException{
+    public void factureuser (reservation_voyage rv,user ux) throws WriterException, IOException{
               String xx="2010-09-11";  
       String xx2="2011-10-01";  
      String x2="2011-10-01";  
      Date date_sp=Date.valueOf(xx2);
               ArrayList table= new ArrayList <>();
-              user ux = new user(817,"195", "youssef", "cheour", "256845", "bensaid.mohamedali@esprit.tn", "aaaa", "image",date_sp);
+          
      // GESTION SPONSOR 
      
  

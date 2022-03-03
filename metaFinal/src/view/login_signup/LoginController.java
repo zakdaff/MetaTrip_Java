@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import services.user.LoginAndSignupService;
 import services.user.UserService;
+import view.PartieClient.Reservation_VoyageClientController;
 import view.adminPanel.Reservation_voyageController;
 
 /**
@@ -121,8 +122,7 @@ public void link(ActionEvent event) throws Exception {
 public void link1(user user) throws Exception {               
  if(user.getRole()==1){
        try {
-       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(""));
-     
+   
           
             //Personne.user = ;
             //Personne.user.get
@@ -140,13 +140,16 @@ public void link1(user user) throws Exception {
     }
 }else{
     try {
-       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-          
-            stage.setScene(new Scene(root));  
-            stage.show();
-         Metatrip.stg.close();   
+     
+            //Personne.user = ;
+            //Personne.user.get
+                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
+            Parent root1 = loader1.load();
+            Reservation_VoyageClientController controller = loader1.getController();
+            controller.setUsername(emailIdField.getText());
+            //Personne.user = ;
+            //Personne.user.get
+            emailIdField.getScene().setRoot(root1);
     } catch(Exception e) {
         e.printStackTrace();
     }

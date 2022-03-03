@@ -84,9 +84,9 @@ public class Reservation_voyageController implements Initializable {
             @FXML
         private ComboBox<?> etat15;
     @FXML
-    private ComboBox<?> idu11;
+    private ComboBox<Integer> idu11;
     @FXML
-    private ComboBox<?> Idv122;
+    private ComboBox<Integer> Idv122;
     @FXML
     private Label Idv1;
 
@@ -116,8 +116,11 @@ public class Reservation_voyageController implements Initializable {
     
     private String[] comboGender = {"NonPaye", "Paye"};
     
-    public void setUsername(String username) {
-      System.out.println("85258"+username);
+public user setUsername(String username) {
+  UserService u= new UserService();
+        user u1 = new user();
+ u1= u.getUserByEmail(username);
+         return u1;
     }
     
         @FXML
@@ -345,20 +348,20 @@ if(data.getEtat().toString().equals("NonPaye")){
      Idrv258.setText(String.valueOf(data.getIdrv()));
      Date_depart.setValue(data.getDate_depart().toLocalDate());
       Date_arrivee.setValue(data.getDate_arrivee().toLocalDate());
-idu11.getSelectionModel().clearSelection();
-        Idv122.getSelectionModel().clearSelection();
+idu11.setValue(data.getIdu());
+        Idv122.setValue(data.getIdv());
        Refpaiement1.setText(String.valueOf(data.getRef_paiement()));
         
     }
       @FXML
    public void clear(){
-        
+            Idv122.getSelectionModel().clearSelection();
         Idrv258.setText("");
         Date_depart.getEditor().clear();
         Date_arrivee.getEditor().clear();
         etat15.getSelectionModel().clearSelection();
         idu11.getSelectionModel().clearSelection();
-        Idv122.getSelectionModel().clearSelection();
+    
         Refpaiement1.setText("");
         
     }
