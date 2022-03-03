@@ -20,15 +20,15 @@ import javafx.stage.Stage;
  *
  * @author Nayrouz
  */
-public class MetatripFXMain extends Application {
+public class MainFx extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-      Parent root = FXMLLoader.load(getClass().getResource("/view/hotel/HotelList.fxml"));
-			Scene scene = new Scene(root);
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
+         Parent root = FXMLLoader.load(getClass().getResource("/view/hotel/AcceuilFXML.fxml"));
+        Scene scene = new Scene(root);
+        //sscene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     /**

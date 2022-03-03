@@ -22,7 +22,7 @@ public class reservation_hotel {
     private user user;
     private Chambre chambre ;
     private int Idu;
-    private int Idh;
+    private int Idc;
     private Date Date_depart;
     private Date Date_arrivee;
 
@@ -40,7 +40,7 @@ public class reservation_hotel {
     public reservation_hotel() {
     }
 
-    public reservation_hotel(int Idrh, int Nb_nuitees, int Nb_personnes, float Prix, user user,Chambre chambre, int Idu, int Idh, Date Date_depart, Date Date_arrivee) {
+    public reservation_hotel(int Idrh, int Nb_nuitees, int Nb_personnes, float Prix, user user,Chambre chambre, int Idu, int Idc, Date Date_depart, Date Date_arrivee) {
         this.Idrh = Idrh;
        
         this.Nb_nuitees = Nb_nuitees;
@@ -49,18 +49,18 @@ public class reservation_hotel {
         this.user = user;
         this.chambre = chambre;
         this.Idu = Idu;
-        this.Idh = Idh;
+        this.Idc = Idc;
         this.Date_depart = Date_depart;
         this.Date_arrivee = Date_arrivee;
     }
 
-    public reservation_hotel( int Nb_nuitees, int Nb_personnes, float Prix, int Idu, int Idh, Date Date_depart, Date Date_arrivee) {
+    public reservation_hotel( int Nb_nuitees, int Nb_personnes, float Prix, int Idu, int Idc, Date Date_depart, Date Date_arrivee) {
        
         this.Nb_nuitees = Nb_nuitees;
         this.Nb_personnes = Nb_personnes;
         this.Prix = Prix;
         this.Idu = Idu;
-        this.Idh = Idh;
+        this.Idc = Idc;
         this.Date_depart = Date_depart;
         this.Date_arrivee = Date_arrivee;
     }
@@ -95,12 +95,12 @@ public class reservation_hotel {
         this.Idu = Idu;
     }
 
-    public int getIdh() {
-        return Idh;
+    public int getIdc() {
+        return Idc;
     }
 
-    public void setIdh(int Idh) {
-        this.Idh = Idh;
+    public void setIdh(int Idc) {
+        this.Idc = Idc;
     }
 
     public Date getDate_depart() {
@@ -141,18 +141,26 @@ public class reservation_hotel {
         this.Idrh = Idrh;
     }
 
-    @Override
+    public void setIdc(int Idc) {
+        this.Idc = Idc;
+    }
+    
+
+   
     
 
    
 
    
-    public String toString() {
-        return "reservation_hotel{" + "Idrh=" + Idrh + ", Nb_nuitees=" + Nb_nuitees + ", Nb_personnes=" + Nb_personnes + ", Prix=" + Prix + ", user=" + user + ", chambre=" + chambre + ", Idu=" + Idu + ", Idh=" + Idh + ", Date_depart=" + Date_depart + ", Date_arrivee=" + Date_arrivee + '}';
-    }
+   
 
     public void setNb_nuitees(int Nb_nuitees) {
         this.Nb_nuitees = Nb_nuitees;
+    }
+
+    @Override
+    public String toString() {
+        return "reservation_hotel{" + "Idrh=" + Idrh + ", Nb_nuitees=" + Nb_nuitees + ", Nb_personnes=" + Nb_personnes + ", Prix=" + Prix + ", user=" + user + ", chambre=" + chambre + ", Idu=" + Idu + ", Idc=" + Idc + ", Date_depart=" + Date_depart + ", Date_arrivee=" + Date_arrivee + '}';
     }
 
     public void setNb_personnes(int Nb_personnes) {

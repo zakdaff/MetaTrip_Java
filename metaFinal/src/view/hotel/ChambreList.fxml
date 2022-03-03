@@ -51,7 +51,7 @@
       <Label layoutX="19.0" layoutY="321.0" styleClass="labelform" text="Etat" />
       <ComboBox fx:id="etat" layoutX="141.0" layoutY="316.0" prefWidth="187.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#747a80" height="87.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" width="985.0" />
-      <Label layoutX="290.0" layoutY="21.0" prefHeight="10.0" prefWidth="337.0" text="Gestion chambre " textAlignment="CENTER" textFill="#00d1ff">
+      <Label layoutX="293.0" layoutY="30.0" prefHeight="10.0" prefWidth="337.0" text="Gestion chambre " textAlignment="CENTER" textFill="#00d1ff">
          <font>
             <Font name="Arial Bold" size="31.0" />
          </font>

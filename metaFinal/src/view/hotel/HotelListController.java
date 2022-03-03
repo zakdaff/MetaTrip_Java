@@ -140,6 +140,7 @@ public class HotelListController implements Initializable {
     private void DeleteHotel(ActionEvent event) {
         System.out.println(event.toString());
         delete();
+        clear();
        
     }
 
@@ -168,15 +169,22 @@ public class HotelListController implements Initializable {
             st.setString(4, Adresse.getText());
             st.setString(5, file_path.getText());
             file_path.setOpacity(0);
+            
+                Alert alert = new Alert(AlertType.INFORMATION);
 
-//           Alert alert = new Alert(AlertType.INFORMATION);
-//		alert.setTitle("Deleting user");
-//		 Header Text: null
-//		alert.setHeaderText(null);
-//		alert.setContentText("'utilisateur " +nom.getText()+"   "+prenom.getText()+" est ajouté avec succés");
+                alert.setTitle("MarcoMan Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully !");
+                alert.showAndWait();
 //
-//		alert.showAndWait();
-//           
+////           Alert alert = new Alert(AlertType.INFORMATION);
+////		alert.setTitle("Deleting user");
+////		 Header Text: null
+////		alert.setHeaderText(null);
+////		alert.setContentText("'utilisateur " +nom.getText()+"   "+prenom.getText()+" est ajouté avec succés");
+////
+////		alert.showAndWait();
+           
 //            st.executeUpdate();
 //            Affiffiche();
          st.executeUpdate();
@@ -285,36 +293,7 @@ public class HotelListController implements Initializable {
 
     }
 
-// private void update1() {
-//	con =Datasource.getInstance().getCnx();
-//            String update = "UPDATE `hotel` SET "
-//                +"`Nom_hotel`=?,`Nb_etoiles`=? ,`Adresse`=?,`image`=?"
-//                + "WHERE `Idh` =? ;";
-//        try {
-//                st = con.prepareStatement(update);
-//                st.setString(1, Idh.getText());
-//                st.setString(2, Nb_etoiles.getText());
-//                st.setString(3, Adresse.getText());
-//        
-//                st.setString(4, file_path.getText());
-//             
-//              
-//            
-//            //st.setString(3, sexe.getSelectionModel().getSelectedItem());
-//    Alert alert = new Alert(AlertType.INFORMATION);
-//		alert.setTitle("Updating hotel");
-//
-//		// Header Text: null
-//		alert.setHeaderText(null);
-//	alert.setContentText(" Hotel " +Nom_hotel.getText()+" est modifié avec succés");
-//		alert.showAndWait();
-//                
-//                st.executeUpdate();
-//                AffichageHotel();
-//        } catch (SQLException ex) {
-//            System.err.println(ex.getMessage());
-//        }
-//    }
+
     @FXML
     private void insert_image(ActionEvent event) {
         FileChooser open = new FileChooser();
@@ -341,6 +320,15 @@ public class HotelListController implements Initializable {
 
         }
 
+    }
+    public boolean controleTextFieldNonNumerique(TextField textField) {
+        if (!textField.getText().matches(".*[a-zA-Z].*")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Veuillez saisir des lettres");
+            alert.showAndWait();
+            return true;
+        }
+        return false;
     }
 
 }
