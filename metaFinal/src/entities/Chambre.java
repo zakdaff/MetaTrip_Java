@@ -114,6 +114,14 @@ public class Chambre {
         this.type = type;
         this.hotel = hotel;
     }
+
+    public Chambre(int numc, String type, String etat_dispo, int Idh, String image_chambre) {
+        this.numc = numc;
+        this.type = type;
+        this.etat_dispo = etat_dispo;
+        this.Idh = Idh;
+        this.image_chambre = image_chambre;
+    }
     
 
     public Chambre(int idc) {

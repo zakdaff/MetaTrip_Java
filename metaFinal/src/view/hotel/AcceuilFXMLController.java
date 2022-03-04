@@ -6,6 +6,7 @@
 package view.hotel;
 
 import entities.AffichHotel;
+import entities.hotel;
 import java.awt.Insets;
 import java.io.IOException;
 import java.net.URL;
@@ -18,9 +19,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,6 +32,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import services.hotel.HotelCRUD;
 import view.hotel.ItemController;
 
 /**
@@ -49,7 +53,14 @@ public class AcceuilFXMLController implements Initializable {
     private ScrollPane hotelgrid;
     @FXML
     private HBox chosenhotelCard1;
-    
+    @FXML
+    private ImageView image_view;
+    HotelCRUD hc=new HotelCRUD();
+    List<hotel> data=hc.afficherHotels();
+    int max_data=data.size();
+    int i=0;
+    @FXML
+    private Label label;
    
 
     /**
@@ -57,6 +68,19 @@ public class AcceuilFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if(hc.afficherHotels().size()>0){
+            hotel h=hc.afficherHotels().get(0);
+        
+        
+        String picture ="file:" + h.getImage_hotel();
+        label.setText(h.getNom_hotel());
+         Image image = new Image(picture);
+
+        image_view.setImage(image);
+
+        String path = h.getImage_hotel();
+        }
+        
 //       listeh=new ArrayList(listeh);
 //       int colums=0;
 //       int row=1;
@@ -111,9 +135,54 @@ public class AcceuilFXMLController implements Initializable {
 //        }
 
     @FXML
-    private void ReserverHotel(ActionEvent event) {
-          try {
-//                   
+    private void next(ActionEvent event) {
+        
+        
+        if(i<max_data-1){
+            i++;
+            hotel h=hc.afficherHotels().get(i);
+        label.setText(h.getNom_hotel());
+        String picture ="file:" + h.getImage_hotel();
+         Image image = new Image(picture);
+
+        image_view.setImage(image);
+
+        String path = h.getImage_hotel();
+        
+        }
+        
+
+        //file_path.setText(path);
+        //file_path.setOpacity(0);
+    }
+
+    @FXML
+    private void prev(ActionEvent event) {
+        System.out.println(i);
+        
+        if(i>0){
+            i--;
+            hotel h=hc.afficherHotels().get(i);
+        label.setText(h.getNom_hotel());
+        String picture ="file:" + h.getImage_hotel();
+         Image image = new Image(picture);
+
+        image_view.setImage(image);
+
+        String path = h.getImage_hotel();
+        
+        }
+    }
+
+    @FXML
+    private void Reserver(ActionEvent event) {
+        try {
+     //9bal mat7el ay interface zid il zouz ostra hedhom taw tetsaker wtet7al  interface o5ra
+     //********
+                   Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+            //-******
             Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/InterfaceReservationFXML.fxml"));
             Scene scene = new Scene(parent);
             
@@ -123,9 +192,35 @@ public class AcceuilFXMLController implements Initializable {
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
         } catch (IOException ex) {
-              System.err.println(ex.getMessage());
+           System.err.println(ex.getMessage());;
         }
+            
     }
+
+    @FXML
+    private void Gerer(ActionEvent event) {
+         try {
+     //9bal mat7el ay interface zid il zouz ostra hedhom taw tetsaker wtet7al  interface o5ra
+     //********
+                   Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+            //-******
+            Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/InterfaceGestion.fxml"));
+            Scene scene = new Scene(parent);
+            
+            Stage stage = new Stage();
+            //stage.getIcons().add(new Image("wood.jpg"));
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+           System.err.println(ex.getMessage());;
+        }
+        
     }
+        
+    }
+    
 
 

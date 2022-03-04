@@ -29,6 +29,24 @@ public class HotelCRUD {
            conn = Datasource.getInstance().getCnx();
 
     }
+    public List<Integer> getAllIdh(){
+        List<Integer> myList=new ArrayList();
+        try {
+          
+            String requete ="SELECT Idh FROM hotel";
+                       ste = conn.createStatement();
+         ResultSet rs = ste.executeQuery(requete);
+          
+            
+            while (rs.next()){
+                
+                  myList.add(rs.getInt("idh"));
+            }
+        } catch (SQLException ex) {
+           System.out.println(ex.getMessage());
+        }
+        return myList ;
+    }
     
     public void ajouterHotel(hotel h){
         try {
@@ -61,8 +79,8 @@ public class HotelCRUD {
                   h.setIdh(rs.getInt(1));
                   h.setNom_hotel(rs.getString(2));
                   h.setNb_etoiles(rs.getInt(3));
-                  h.setAdresse(rs.getString(5));
-                  h.setImage_hotel(rs.getString(6));
+                  h.setAdresse(rs.getString(4));
+                  h.setImage_hotel(rs.getString(5));
                   myList.add(h);
             }
         } catch (SQLException ex) {
@@ -101,9 +119,35 @@ public class HotelCRUD {
         }
         
         }
+  public hotel findByName(String name){
+      
+        hotel h =new hotel();
+        try {
+          
+            String requete ="SELECT * FROM hotel where Nom_hotel='"+name+"'";
+                       ste = conn.createStatement();
+         ResultSet rs = ste.executeQuery(requete);
+          
+            
+            while (rs.next()){
+                
+                  h.setIdh(rs.getInt(1));
+                  h.setNom_hotel(rs.getString(2));
+                  h.setNb_etoiles(rs.getInt(3));
+                  h.setAdresse(rs.getString(4));
+                  h.setImage_hotel(rs.getString(5));
+                  
+            }
+        } catch (SQLException ex) {
+           System.out.println(ex.getMessage());
+        }
+        return h ;
+      
+       }
+  }
         
      
         
     
 
-}
+

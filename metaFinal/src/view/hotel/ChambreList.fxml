@@ -14,56 +14,62 @@
 
 <AnchorPane id="AnchorPane" fx:id="left_main" prefHeight="642.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.hotel.ChambreListController">
    <children>
-      <Label layoutX="19.0" layoutY="148.0" styleClass="labelform" text="Id Chambre " />
-      <TextField fx:id="idc" layoutX="141.0" layoutY="143.0" />
-      <TextField fx:id="numc" layoutX="141.0" layoutY="205.0" />
+      <TextField fx:id="numc" layoutX="141.0" layoutY="205.0" styleClass="search-box" stylesheets="@../../values/style.css" />
       <Label layoutX="19.0" layoutY="210.0" styleClass="labelform" text="Numero chambre" />
       <Label layoutX="16.0" layoutY="271.0" styleClass="labelform" text="Type" />
-      <Button fx:id="btn_save" layoutX="88.0" layoutY="552.0" mnemonicParsing="false" onAction="#AjouterChambre" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Save">
+      <Button fx:id="btn_save" layoutX="88.0" layoutY="552.0" mnemonicParsing="false" onAction="#AjouterChambre" prefHeight="33.0" prefWidth="71.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Save">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btn_delete" layoutX="199.0" layoutY="552.0" mnemonicParsing="false" onAction="#DeleteChambre" prefHeight="33.0" prefWidth="71.0" text="Delete">
+      <Button fx:id="btn_delete" layoutX="199.0" layoutY="552.0" mnemonicParsing="false" onAction="#DeleteChambre" prefHeight="33.0" prefWidth="71.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Delete">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btn_edit" layoutX="315.0" layoutY="552.0" mnemonicParsing="false" onAction="#Update" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Edit">
+      <Button fx:id="btn_edit" layoutX="315.0" layoutY="552.0" mnemonicParsing="false" onAction="#EditChambre" prefHeight="33.0" prefWidth="71.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Edit">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>
       </Button>
       <ImageView fx:id="image_view" fitHeight="142.0" fitWidth="199.0" layoutX="216.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="54.0" layoutY="464.0" mnemonicParsing="false" onAction="#insertImage" text="Browse" />
+      <Button layoutX="54.0" layoutY="464.0" mnemonicParsing="false" onAction="#insertImage" styleClass="search-button" stylesheets="@../../values/style.css" text="Browse" />
       <Label fx:id="file_path" alignment="CENTER" layoutX="16.0" layoutY="419.0" prefHeight="23.0" prefWidth="199.0" />
         
-      <TableView fx:id="tab_chambre" layoutX="448.0" layoutY="128.0" onMouseClicked="#tablehandleButtonAction" prefHeight="329.0" prefWidth="499.0">
+      <TableView fx:id="tab_chambre" layoutX="359.0" layoutY="128.0" onMouseClicked="#tablehandleButtonAction" prefHeight="411.0" prefWidth="617.0">
         <columns>
           <TableColumn fx:id="idc_tab" prefWidth="75.0" text="Id chambre" />
-          <TableColumn fx:id="numc_tab" prefWidth="104.0" text="Numero chambre " />
-            <TableColumn fx:id="type_tab" minWidth="0.0" prefWidth="46.0" text="Type" />
-            <TableColumn fx:id="etat_tab" prefWidth="75.0" text="Etat" />
-            <TableColumn fx:id="image_tab" prefWidth="75.0" text="image " />
-            <TableColumn fx:id="idh_tab" prefWidth="75.0" text="Idh" />
+          <TableColumn fx:id="numc_tab" prefWidth="119.0" text="Numero chambre " />
+            <TableColumn fx:id="type_tab" minWidth="0.0" prefWidth="56.0" text="Type" />
+            <TableColumn fx:id="etat_tab" prefWidth="50.0" text="Etat" />
+            <TableColumn fx:id="image_tab" prefWidth="272.0" text="image " />
+            <TableColumn fx:id="idh_tab" prefWidth="44.0" text="Idh" />
         </columns>
       </TableView>
       <Label layoutX="19.0" layoutY="321.0" styleClass="labelform" text="Etat" />
-      <ComboBox fx:id="etat" layoutX="141.0" layoutY="316.0" prefWidth="187.0" />
+      <ComboBox fx:id="etat" layoutX="141.0" layoutY="316.0" prefWidth="187.0" styleClass="search-box" stylesheets="@../../values/style.css" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#747a80" height="87.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" width="985.0" />
-      <Label layoutX="293.0" layoutY="30.0" prefHeight="10.0" prefWidth="337.0" text="Gestion chambre " textAlignment="CENTER" textFill="#00d1ff">
+      <Label layoutX="281.0" layoutY="21.0" prefHeight="60.0" prefWidth="380.0" text="Gestion chambre " textAlignment="CENTER" textFill="#00d1ff">
          <font>
-            <Font name="Arial Bold" size="31.0" />
+            <Font name="Cambria" size="48.0" />
          </font>
       </Label>
-      <ImageView fitHeight="101.0" fitWidth="102.0" layoutX="808.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <ComboBox fx:id="type" layoutX="141.0" layoutY="266.0" prefHeight="31.0" prefWidth="187.0" styleClass="search-box" stylesheets="@../../values/style.css" />
+      
+      <Label layoutX="14.0" layoutY="411.0" styleClass="labelform" text="Choissisez une image " />
+      <ComboBox fx:id="comboidh" layoutX="140.0" layoutY="364.0" prefHeight="25.0" prefWidth="187.0" promptText="Hotel" styleClass="search-box" stylesheets="@../../values/style.css" />
+      <Label layoutX="16.0" layoutY="377.0" text="Hotel" />
+      <Button layoutX="201.0" layoutY="597.0" mnemonicParsing="false" onAction="#Retour" styleClass="search-button" stylesheets="@../../values/style.css" text="Retour">
+         <font>
+            <Font name="Cambria" size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="101.0" fitWidth="154.0" layoutX="818.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Desktop/nayrouz/metaFinal/build/classes/view/img/logo_meta.png" />
+            <Image url="@../../image/logo_meta.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="type" layoutX="141.0" layoutY="266.0" prefHeight="31.0" prefWidth="187.0" />
-      
-      <Label layoutX="15.0" layoutY="390.0" styleClass="labelform" text="Choissisez une image " />
+      <TextField fx:id="tfrecherche" layoutX="108.0" layoutY="128.0" promptText="Recherche" styleClass="search-box" stylesheets="@../../values/style.css" />
       
    </children>
 </AnchorPane>

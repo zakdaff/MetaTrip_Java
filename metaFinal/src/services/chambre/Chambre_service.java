@@ -61,7 +61,7 @@ public class Chambre_service {
      
     public void modifier(int idc, Chambre ch) {
            String req = "UPDATE `chambre` SET "
-                +"`numc`=?,`type`=?"
+                +"`numc`=?,`type`=?,`etat`=?,`image`=?,`idh`=?"
                + " WHERE idc = '" + idc+ "'";
     
         try {
@@ -69,6 +69,10 @@ public class Chambre_service {
          
             pste.setInt(1, ch.getNumc());
             pste.setString(2, ch.getType());
+            pste.setString(3, ch.getEtat_dispo());
+            pste.setString(4, ch.getImage_chambre());
+            pste.setInt(5, ch.getIdh());
+            
             pste.executeUpdate();
             System.out.println("Chambre de id "+ idc+ " Updated sucessfully");
         } catch (SQLException ex) {

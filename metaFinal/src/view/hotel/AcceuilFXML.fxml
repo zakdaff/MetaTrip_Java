@@ -47,7 +47,7 @@
                      </children>
                   </HBox>
                   <BorderPane prefHeight="53.0" prefWidth="385.0" />
-                  <VBox alignment="CENTER_LEFT" prefHeight="180.0" prefWidth="172.0" styleClass="chosen-fruit-card" stylesheets="@../../values/style.css">
+                  <VBox alignment="CENTER_LEFT" prefHeight="480.0" prefWidth="210.0" styleClass="chosen-fruit-card" stylesheets="@../../values/style.css">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
@@ -85,7 +85,16 @@
                            </children>
                         </VBox>
                      </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </VBox>
+                  <HBox prefHeight="48.0" prefWidth="310.0" />
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#Gerer" prefHeight="31.0" prefWidth="301.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Gerer vos chambre et vos hotels">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
                </children>
             </VBox>
          </left>
@@ -115,13 +124,24 @@
                                       </rowConstraints>
                                     </GridPane>
                                     <HBox fx:id="chosenhotelCard1" alignment="CENTER" layoutX="267.0" layoutY="10.0" prefHeight="100.0" prefWidth="477.0" styleClass="shadow" stylesheets="@../../values/style.css" />
-                                    <Button layoutX="736.0" layoutY="543.0" mnemonicParsing="false" onAction="#ReserverHotel" prefHeight="47.0" prefWidth="117.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Reserver Hotel" />
+                                    <ImageView fx:id="image_view" fitHeight="341.0" fitWidth="524.0" layoutX="222.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Label fx:id="label" layoutX="391.0" layoutY="457.0" prefHeight="17.0" prefWidth="187.0" textFill="#60c7ff">
+                                       <font>
+                                          <Font name="Calibri Bold" size="36.0" />
+                                       </font></Label>
+                                    <Button layoutX="594.0" layoutY="534.0" mnemonicParsing="false" onAction="#next" prefHeight="31.0" prefWidth="85.0" styleClass="search-button" stylesheets="@../../values/style.css" text="suivant" />
+                                    <Button layoutX="320.0" layoutY="534.0" mnemonicParsing="false" onAction="#prev" styleClass="search-button" stylesheets="@../../values/style.css" text="precedant" />
                                  </children>
                               </AnchorPane>
                           </content>
                         </ScrollPane>
                      </children>
                   </HBox>
+                  <Button mnemonicParsing="false" onAction="#Reserver" prefHeight="50.0" prefWidth="163.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Reserver hotel">
+                     <VBox.margin>
+                        <Insets left="400.0" top="50.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
          </center>

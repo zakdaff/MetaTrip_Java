@@ -22,7 +22,7 @@ public class reservation_hotel {
     private user user;
     private Chambre chambre ;
     private int Idu;
-    private int Idc;
+    private int Idh;
     private Date Date_depart;
     private Date Date_arrivee;
 
@@ -40,7 +40,7 @@ public class reservation_hotel {
     public reservation_hotel() {
     }
 
-    public reservation_hotel(int Idrh, int Nb_nuitees, int Nb_personnes, float Prix, user user,Chambre chambre, int Idu, int Idc, Date Date_depart, Date Date_arrivee) {
+    public reservation_hotel(int Idrh, int Nb_nuitees, int Nb_personnes, float Prix, user user,Chambre chambre, int Idu, int Idh, Date Date_depart, Date Date_arrivee) {
         this.Idrh = Idrh;
        
         this.Nb_nuitees = Nb_nuitees;
@@ -49,18 +49,18 @@ public class reservation_hotel {
         this.user = user;
         this.chambre = chambre;
         this.Idu = Idu;
-        this.Idc = Idc;
+        this.Idh = Idh;
         this.Date_depart = Date_depart;
         this.Date_arrivee = Date_arrivee;
     }
 
-    public reservation_hotel( int Nb_nuitees, int Nb_personnes, float Prix, int Idu, int Idc, Date Date_depart, Date Date_arrivee) {
+    public reservation_hotel( int Nb_nuitees, int Nb_personnes, float Prix, int Idu, int Idh, Date Date_depart, Date Date_arrivee) {
        
         this.Nb_nuitees = Nb_nuitees;
         this.Nb_personnes = Nb_personnes;
         this.Prix = Prix;
         this.Idu = Idu;
-        this.Idc = Idc;
+        this.Idh = Idh;
         this.Date_depart = Date_depart;
         this.Date_arrivee = Date_arrivee;
     }
@@ -87,38 +87,7 @@ public class reservation_hotel {
         this.Date_arrivee = Date_arrivee;
     }
 
-    public int getIdu() {
-        return Idu;
-    }
-
-    public void setIdu(int Idu) {
-        this.Idu = Idu;
-    }
-
-    public int getIdc() {
-        return Idc;
-    }
-
-    public void setIdh(int Idc) {
-        this.Idc = Idc;
-    }
-
-    public Date getDate_depart() {
-        return Date_depart;
-    }
-
-    public void setDate_depart(Date Date_depart) {
-        this.Date_depart = Date_depart;
-    }
-
-    public Date getDate_arrivee() {
-        return Date_arrivee;
-    }
-
-    public void setDate_arrivee(Date Date_arrivee) {
-        this.Date_arrivee = Date_arrivee;
-    }
-
+    
     public reservation_hotel(int Nb_nuitees, int Nb_personnes, float Prix, user user,Chambre chambre) {
         
         this.Nb_nuitees = Nb_nuitees;
@@ -137,13 +106,7 @@ public class reservation_hotel {
         this.chambre = chambre;
     }
 
-    public void setIdrh(int Idrh) {
-        this.Idrh = Idrh;
-    }
-
-    public void setIdc(int Idc) {
-        this.Idc = Idc;
-    }
+    
     
 
    
@@ -154,55 +117,92 @@ public class reservation_hotel {
    
    
 
-    public void setNb_nuitees(int Nb_nuitees) {
-        this.Nb_nuitees = Nb_nuitees;
-    }
+    
 
     @Override
     public String toString() {
-        return "reservation_hotel{" + "Idrh=" + Idrh + ", Nb_nuitees=" + Nb_nuitees + ", Nb_personnes=" + Nb_personnes + ", Prix=" + Prix + ", user=" + user + ", chambre=" + chambre + ", Idu=" + Idu + ", Idc=" + Idc + ", Date_depart=" + Date_depart + ", Date_arrivee=" + Date_arrivee + '}';
-    }
-
-    public void setNb_personnes(int Nb_personnes) {
-        this.Nb_personnes = Nb_personnes;
-    }
-
-    public void setPrix(float Prix) {
-        this.Prix = Prix;
-    }
-
-    public void setUser(user user) {
-        this.user = user;
-    }
-
-    public void setChambre(Chambre chambre) {
-        this.chambre = chambre;
+        return "reservation_hotel{" + "Idrh=" + Idrh + ", Nb_nuitees=" + Nb_nuitees + ", Nb_personnes=" + Nb_personnes + ", Prix=" + Prix + ", user=" + user + ", chambre=" + chambre + ", Idu=" + Idu + ", Idh=" + Idh + ", Date_depart=" + Date_depart + ", Date_arrivee=" + Date_arrivee + '}';
     }
 
     public int getIdrh() {
         return Idrh;
     }
 
-   
+    public void setIdrh(int Idrh) {
+        this.Idrh = Idrh;
+    }
 
     public int getNb_nuitees() {
         return Nb_nuitees;
+    }
+
+    public void setNb_nuitees(int Nb_nuitees) {
+        this.Nb_nuitees = Nb_nuitees;
     }
 
     public int getNb_personnes() {
         return Nb_personnes;
     }
 
+    public void setNb_personnes(int Nb_personnes) {
+        this.Nb_personnes = Nb_personnes;
+    }
+
     public float getPrix() {
         return Prix;
+    }
+
+    public void setPrix(float Prix) {
+        this.Prix = Prix;
     }
 
     public user getUser() {
         return user;
     }
 
+    public void setUser(user user) {
+        this.user = user;
+    }
+
     public Chambre getChambre() {
         return chambre;
     }
 
+    public void setChambre(Chambre chambre) {
+        this.chambre = chambre;
+    }
+
+    public int getIdu() {
+        return Idu;
+    }
+
+    public void setIdu(int Idu) {
+        this.Idu = Idu;
+    }
+
+    public int getIdh() {
+        return Idh;
+    }
+
+    public void setIdh(int Idh) {
+        this.Idh = Idh;
+    }
+
+    public Date getDate_depart() {
+        return Date_depart;
+    }
+
+    public void setDate_depart(Date Date_depart) {
+        this.Date_depart = Date_depart;
+    }
+
+    public Date getDate_arrivee() {
+        return Date_arrivee;
+    }
+
+    public void setDate_arrivee(Date Date_arrivee) {
+        this.Date_arrivee = Date_arrivee;
+    }
+
+    
 }

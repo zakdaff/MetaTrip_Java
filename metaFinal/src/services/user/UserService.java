@@ -234,6 +234,37 @@ public class UserService implements IuserService {
         
         return nb;
     }
+    public user findByid(int id){
+        user u = new user();
+        String req = "SELECT * FROM `user` where Idu="+id;
+        
+        try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+                
+                u.setIdu(rs.getInt(1));
+                  u.setCin( rs.getDouble(2));
+                u.setNom(rs.getString(3));
+                u.setPrenom(rs.getString(4));      
+                    u.setTel(rs.getDouble(5));
+            
+              u.setEmail( rs.getString(6));
+               u.setPassword(rs.getString(7));
+                u.setImage(rs.getString(8));
+                u.setDateNaissance(rs.getDate(10));
+                                                         
+                                                   
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return u;
+    }
 
     @Override
     public int nbVoyagesDispo() throws SQLException {

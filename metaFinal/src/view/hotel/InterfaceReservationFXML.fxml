@@ -49,7 +49,7 @@
                      </children>
                   </HBox>
                   <BorderPane prefHeight="53.0" prefWidth="385.0" />
-                  <VBox alignment="CENTER_LEFT" prefHeight="180.0" prefWidth="172.0" styleClass="chosen-fruit-card" stylesheets="@../../values/style.css">
+                  <VBox alignment="CENTER_LEFT" prefHeight="528.0" prefWidth="212.0" styleClass="chosen-fruit-card" stylesheets="@../../values/style.css">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
@@ -62,7 +62,7 @@
                               <Insets left="60.0" />
                            </VBox.margin>
                         </ImageView>
-                        <VBox prefHeight="80.0" prefWidth="265.0">
+                        <VBox prefHeight="88.0" prefWidth="210.0">
                            <children>
                               <HBox fx:id="hosenhotelCard" prefHeight="36.0" prefWidth="235.0">
                                  <children>
@@ -129,7 +129,10 @@
                                     <DatePicker fx:id="Date_depart" layoutX="587.0" layoutY="273.0" />
                                     <DatePicker fx:id="Date_arrivee" layoutX="587.0" layoutY="336.0" />
                                      
-                                    <Button fx:id="affich_list" layoutX="828.0" layoutY="488.0" mnemonicParsing="false" onAction="#AfficherListe" styleClass="search-button" stylesheets="@../../values/style.css" text="Afficher liste " />
+                                    <Button fx:id="affich_list" layoutX="815.0" layoutY="490.0" mnemonicParsing="false" onAction="#AfficherListe" prefHeight="56.0" prefWidth="142.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Afficher liste " textFill="#f5f3f3">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font></Button>
                                    
                                     <Text layoutX="39.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre nuitees ">
                                        <font>
@@ -140,9 +143,14 @@
                                     <Text layoutX="39.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hotel " />
                                     <Text layoutX="478.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Depart" />
                                     <Text layoutX="482.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date arrivé" />
-                                    <Button fx:id="retour_btn" layoutX="69.0" layoutY="519.0" mnemonicParsing="false" onAction="#Retour" prefHeight="31.0" prefWidth="97.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Retour" />
+                                    <Button fx:id="retour_btn" layoutX="822.0" layoutY="554.0" mnemonicParsing="false" onAction="#Retour" prefHeight="48.0" prefWidth="135.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Retour" textFill="WHITE" />
                                     <TextField fx:id="Nb_personnes2" layoutX="168.0" layoutY="192.0" prefHeight="38.0" prefWidth="218.0" styleClass="search-box" stylesheets="@../../values/style.css" />
                                     <ComboBox fx:id="Idh" layoutX="164.0" layoutY="327.0" prefHeight="40.0" prefWidth="224.0" styleClass="search-box" stylesheets="@../../values/style.css" />
+                                    <Button layoutX="414.0" layoutY="440.0" mnemonicParsing="false" onAction="#reserver" prefHeight="31.0" prefWidth="184.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Reserver" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="23.0" />
+                                       </font>
+                                    </Button>
                                  </children>
                               </AnchorPane>
                           </content>

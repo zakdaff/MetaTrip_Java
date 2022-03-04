@@ -40,8 +40,8 @@ public class Reserrvation_Hotel_Service implements IReservation_hotel {
     @Override
     public void ajouter(reservation_hotel rh) {
 
-        System.out.println(rh.getChambre().getIdc());
-        String req2 = "INSERT INTO `reservation_hotel` (`Idrh`,`Nb_nuitees`,`Nb_personnes`,`Prix`,`Idu`,`idc`,`Date_depart`,`Date_arrivee`) VALUES (?,?,?,?,?,?,?,?)";
+        
+        String req2 = "INSERT INTO `reservation_hotel` (`Idrh`,`Nb_nuitees`,`Nb_personnes`,`Prix`,`Idu`,`idh`,`Date_depart`,`Date_arrivee`) VALUES (?,?,?,?,?,?,?,?)";
 
         try {
 
@@ -50,8 +50,8 @@ public class Reserrvation_Hotel_Service implements IReservation_hotel {
             pste.setInt(2, rh.getNb_nuitees());
             pste.setInt(3, rh.getNb_personnes());
             pste.setFloat(4, rh.getPrix());
-            pste.setInt(5, rh.getUser().getIdu());
-            pste.setInt(6, rh.getChambre().getIdc());
+            pste.setInt(5, rh.getIdu());
+            pste.setInt(6, rh.getIdh());
             pste.setDate(7, rh.getDate_depart());
             pste.setDate(8, rh.getDate_arrivee());
 
@@ -123,9 +123,11 @@ public class Reserrvation_Hotel_Service implements IReservation_hotel {
                 u.setNb_personnes(rs.getInt(3));
                 u.setPrix(rs.getFloat(4));
 
-                u.setChambre(new Chambre(rs.getInt(5)));
-                u.setUser(new user(rs.getInt(6)));
-
+                u.setIdh((rs.getInt("Idh")));
+                u.setIdu((rs.getInt("Idu")));
+                u.setDate_arrivee(rs.getDate(8));
+                u.setDate_depart(rs.getDate(7));
+/*
                 pste2.setInt(1, u.getChambre().getIdh()); //parametre de requete 2
                 pste3.setInt(1, u.getUser().getIdu());
 
@@ -138,7 +140,7 @@ public class Reserrvation_Hotel_Service implements IReservation_hotel {
                 u.setChambre(new Chambre(rs2.getInt(1), rs2.getInt(2), rs2.getString(3), rs2.getInt(4)));
 
                 u.setUser(new user(rs3.getInt(1), rs3.getDouble(2), rs3.getString(3), rs3.getString(4), rs3.getDouble(5), rs3.getString(6), rs3.getString(7), rs3.getString(8), rs3.getDate(9)));
-
+*/
                 // System.out.println(u.toString());
                 hotels.add(u);
 

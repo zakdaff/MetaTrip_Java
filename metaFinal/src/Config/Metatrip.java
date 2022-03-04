@@ -132,8 +132,8 @@ public class Metatrip extends Application {
              //hc.ajouterHotel(h1);
             
              Chambre ch1= new Chambre (1,50,"ff","d",h1,"hhh");
-             ic.ajouter(ch1); 
-     
+//             ic.ajouter(ch1); 
+//     
             reservation_hotel rh =new reservation_hotel(12,2,5,190.2f,u1,ch1,date2,date2);
             //System.out.println(rvc.nbChambreDispo()); 
              rvc.ajouter(rh);

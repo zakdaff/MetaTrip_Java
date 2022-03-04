@@ -9,17 +9,26 @@ import Config.Datasource;
 import entities.Chambre;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -34,6 +43,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
+import services.chambre.Chambre_service;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -42,8 +57,7 @@ import javafx.stage.Stage;
  */
 public class ChambreListController implements Initializable {
     
-    @FXML
-    private TextField idc;
+    
     @FXML
     private TextField numc;
     @FXML
@@ -74,6 +88,7 @@ public class ChambreListController implements Initializable {
     
    ObservableList<String> etatt=FXCollections.observableArrayList("Disponible", "Non Disponible");
    ObservableList<String> typee=FXCollections.observableArrayList("Single", "Double");
+   ObservableList<Chambre> list=FXCollections.observableArrayList();
     
     ResultSet rs = null;
     private Connection con = null;
@@ -84,7 +99,27 @@ public class ChambreListController implements Initializable {
     @FXML
     private ImageView image_view;
     PreparedStatement st=null;
-   
+    @FXML
+    private ComboBox<Integer> comboidh;
+    private Connection conn= Datasource.getInstance().getCnx();;
+    private Statement ste;
+    private PreparedStatement pste;
+   Chambre_service cs=new Chambre_service();
+    @FXML
+    private TextField tfrecherche;
+   public boolean isNumeric(String str){
+        if(str==null){
+            return false;
+        }
+        try
+        {
+            int x=Integer.parseInt(str);
+        }
+        catch (NumberFormatException e){
+            return false;
+        }
+        return true;
+    }
     /**
      * Initializes the controller class.
      * @param url
@@ -97,36 +132,80 @@ public class ChambreListController implements Initializable {
        type.setPromptText("Selectioner le type");
        type.setItems(typee);
         AfficherChambre();
+        ResultSet rs;
+        try {
+            ste = conn.createStatement();
+            rs = ste.executeQuery("Select Idh from hotel");
+            while (rs.next()) {  // loop
+
+                comboidh.getItems().addAll(rs.getInt("Idh")); 
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfaceReservationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        recherche_avance();
         // TODO
     }    
 
     @FXML
     private void AjouterChambre(ActionEvent event) {
         InsertHotel();
+        AfficherChambre();
     }
 
     @FXML
     private void DeleteChambre(ActionEvent event) {
         Delete();
-        clear();
+        
+        AfficherChambre();
     }
-
     @FXML
     private void EditChambre(ActionEvent event) {
-        Update();
-         clear();
+        String erreurs="";
+        if(numc.getText().trim().isEmpty()){
+            erreurs+="- Please enter a number\n";
+        }
+        if(type.getValue()==null){
+            erreurs+="- Please enter a Type\n";
+        }
+        if(etat.getValue()==null){
+            erreurs+="- Please enter a state\n";
+        }
+        if(comboidh.getValue()==null){
+            erreurs+="- Please enter a hostel\n";
+        }
+        if(!isNumeric(numc.getText().trim())){
+            erreurs+="- Please enter a valide number\n";
+        }
+        if(erreurs.length()>0){
+             TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Add Reservation");
+            tray.setMessage("Fail");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(1000));
+        }
+        else{
+            Chambre ch=new Chambre(Integer.parseInt(numc.getText()),type.getValue(),etat.getValue(),comboidh.getValue(),file_path.getText());
+            cs.modifier(tab_chambre.getSelectionModel().getSelectedItem().getIdc(), ch);
+         
+         AfficherChambre();
+        }
+        
     }
    
     
     
 
     private void AfficherChambre() {
-        ObservableList<Chambre> list = getChambre();
+        list.clear();
+        list = getChambre();
         idc_tab.setCellValueFactory(new PropertyValueFactory<Chambre, Integer>("idc"));
         numc_tab.setCellValueFactory(new PropertyValueFactory<Chambre, Integer>("numc"));
-        image_tab.setCellValueFactory(new PropertyValueFactory<Chambre, String>("image"));
+        image_tab.setCellValueFactory(new PropertyValueFactory<Chambre, String>("image_chambre"));
         type_tab.setCellValueFactory(new PropertyValueFactory<Chambre, String>("type"));
-        etat_tab.setCellValueFactory(new PropertyValueFactory<Chambre, String>("etat"));
+        etat_tab.setCellValueFactory(new PropertyValueFactory<Chambre, String>("etat_dispo"));
         idh_tab.setCellValueFactory(new PropertyValueFactory<Chambre, Integer>("idh"));
         tab_chambre.setItems(list);
     }
@@ -159,26 +238,64 @@ public class ChambreListController implements Initializable {
     }
 
     private void InsertHotel() {
-        con = Datasource.getInstance().getCnx();
-       String insert = "INSERT INTO chambre (`idc`,`numc`,`image`,`type`,`etat`,`Idh`) VALUES (?,?,?,?,?,?) ;";
+        String erreurs="";
+        if(numc.getText().trim().isEmpty()){
+            erreurs+="- Please enter a number";
+        }
+        if(type.getValue()==null){
+            erreurs+="- Please enter a Type";
+        }
+        if(etat.getValue()==null){
+            erreurs+="- Please enter a state";
+        }
+        if(comboidh.getValue()==null){
+            erreurs+="- Please enter a hostel";
+        }
+        if(erreurs.length()>0){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Add fail");
+            alert.setContentText(erreurs);
+            alert.showAndWait();
+        }
+        else{
+            con = Datasource.getInstance().getCnx();
+       String insert = "INSERT INTO chambre (`numc`,`image`,`type`,`etat`,`Idh`) VALUES (?,?,?,?,?) ;";
         try {
             
             PreparedStatement st = con.prepareStatement(insert);
             
           
-          st.setString(1,idc.getText());
-            st.setString(2, numc.getText());
-             st.setString(3, file_path.getText());
+          
+            st.setString(1, numc.getText());
+             st.setString(2, file_path.getText());
             file_path.setOpacity(0);
             
-            st.setString(4, type.getSelectionModel().getSelectedItem());
-            st.setString(5, etat.getSelectionModel().getSelectedItem());
+            st.setString(3, type.getSelectionModel().getSelectedItem());
+            st.setString(4, etat.getSelectionModel().getSelectedItem());
+            st.setInt(5, comboidh.getValue());
            
           
             st.executeUpdate();
+             TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Add Reservation");
+            tray.setMessage("fail");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(1000));
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
+        //Notification
+        TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Add Success");
+            tray.setMessage("You successufuly added a chambre");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(1000));
+        }
+        
     }
 
     private void Delete() {
@@ -186,7 +303,7 @@ public class ChambreListController implements Initializable {
         String delete = "DELETE  FROM chambre  where idc = ?";
         try {
              PreparedStatement st = con.prepareStatement(delete);
-            st.setInt(1, Integer.parseInt(idc.getText()));
+            st.setInt(1, tab_chambre.getSelectionModel().getSelectedItem().getIdc());
             
             
             	Alert alert = new Alert(AlertType.INFORMATION);
@@ -194,7 +311,7 @@ public class ChambreListController implements Initializable {
 //
 		// Header Text: null
 		alert.setHeaderText(null);
-		alert.setContentText(" chambre " +numc.getText()+" avec ID"+idc .getText()+" est supprimé avec succés");
+		alert.setContentText(" chambre " +numc.getText()+" avec ID"+tab_chambre.getSelectionModel().getSelectedItem().getIdc()+" est supprimé avec succés");
 
 		alert.showAndWait();
 //            
@@ -202,31 +319,31 @@ public class ChambreListController implements Initializable {
             
             st.executeUpdate();
             AfficherChambre();
+            TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Delete room");
+            tray.setMessage("You successufuly deleted room in ur application");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(1000));
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
     }
 
-    private void clear() {
-       idc.setText(null);
-        numc.setText(null);
-   image.setText(null);
-    image_view.setImage(null);
-      
-        
-      
-        //sexe.getSelectionModel().selectFirst();
-        btn_save.setDisable(false);
-    }
+    
 
     @FXML
     private void tablehandleButtonAction(MouseEvent event) {
+        if(tab_chambre.getSelectionModel().getSelectedItem()!=null){
+            
          Chambre ch = tab_chambre.getSelectionModel().getSelectedItem();
-        idc.setText(String.valueOf(ch.getIdc()));
+       
         numc.setText(String.valueOf(ch.getNumc()));
         type.getSelectionModel().select(ch.getType());
-        etat.getSelectionModel().select(ch.getEtat_dispo());    
-       btn_save.setDisable(true);
+        etat.getSelectionModel().select(ch.getEtat_dispo());  
+        comboidh.setValue(ch.getIdh());
+       //btn_save.setDisable(true);
        String picture ="file:" + ch.getImage_chambre();
          Image image = new Image(picture, 110, 110, false, true);
 
@@ -236,6 +353,7 @@ public class ChambreListController implements Initializable {
 
         file_path.setText(path);
         file_path.setOpacity(0);
+        }
 
     }
     @FXML
@@ -267,6 +385,7 @@ public class ChambreListController implements Initializable {
     }
 
     
+    
         public void Update(){
         
        con =Datasource.getInstance().getCnx();
@@ -283,11 +402,11 @@ public class ChambreListController implements Initializable {
                 + etat.getSelectionModel().getSelectedItem() 
                
                
-                + "' WHERE idc = '" + idc.getText() + "'";
+                + "' WHERE idc = '" +tab_chambre.getSelectionModel().getSelectedItem().getIdc() + "'";
         
         try{
             
-            if(idc.getText().isEmpty() | numc.getText().isEmpty()
+            if(numc.getText().isEmpty()
                      
                  | type.getSelectionModel().isEmpty()
                 | etat.getSelectionModel().isEmpty()
@@ -295,31 +414,97 @@ public class ChambreListController implements Initializable {
                        
                  {
                 
-                Alert alert = new Alert(AlertType.ERROR);
-                
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Enter all blank fields!");
-                alert.showAndWait();
+                TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Add Reservation");
+            tray.setMessage("failed");
+            tray.setNotificationType(NotificationType.ERROR);
+            tray.showAndDismiss(Duration.millis(1000));
                 
             }else{
             
-             
+                System.out.println("updaaaaaaaaaaaaaate");
                 st.executeUpdate(sql);
-
-                Alert alert = new Alert(AlertType.INFORMATION);
-
-                alert.setTitle("MarcoMan Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Successfully Update the data!");
-                alert.showAndWait();
+                  System.out.println("updaaaaaaaaaaaaaate");
+                TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Add Reservation");
+            tray.setMessage("You successufuly update chambre");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(1000));
 
                AfficherChambre();
-                clear();
+                
                 
             }
         }catch(Exception e){}
         
+    }
+
+    @FXML
+    private void Retour(ActionEvent event) {
+        try {
+     //9bal mat7el ay interface zid il zouz ostra hedhom taw tetsaker wtet7al  interface o5ra
+     //********
+                   Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+            //-******
+            Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/InterfaceGestion.fxml"));
+            Scene scene = new Scene(parent);
+            
+            Stage stage = new Stage();
+            //stage.getIcons().add(new Image("wood.jpg"));
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+           System.err.println(ex.getMessage());;
+        }
+            
+        
+    }
+    public void recherche_avance(){
+        FilteredList<Chambre> filteredlist=new FilteredList<>(list,b->true);
+        tfrecherche.textProperty().addListener(
+                (observable,oldValue,newValue)->{
+                    filteredlist.setPredicate(chambre->{
+                        if(newValue==null || newValue.isEmpty()){
+                            return true;
+                        }
+                        String lowercasenewvalue=newValue.toLowerCase();
+                        if(chambre.getEtat_dispo().toLowerCase().indexOf(lowercasenewvalue)!=-1){
+                            return true;
+                        }
+                        else if(chambre.getType().toLowerCase().indexOf(lowercasenewvalue)!=-1){
+                            return true;
+                        }
+
+                        
+
+                      
+                        
+                        else if(String.valueOf(chambre.getIdc()).toLowerCase().indexOf(lowercasenewvalue)!=-1){
+                            return true;
+                        }
+                        
+                       else if(String.valueOf(chambre.getIdh()).toLowerCase().indexOf(lowercasenewvalue)!=-1){
+                            return true;
+                        }
+                        else if(String.valueOf(chambre.getNumc()).toLowerCase().indexOf(lowercasenewvalue)!=-1){
+                            return true;
+                        }
+                        
+                        else{
+                            return false;
+                        }
+                        
+                    });
+                }
+        );
+        tab_chambre.setItems(filteredlist);
     }
     
 

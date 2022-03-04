@@ -5,27 +5,38 @@
  */
 package view.hotel;
 
+
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 import Config.Datasource;
 import entities.hotel;
-import entities.user;
+
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SortEvent;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -36,6 +47,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+
 
 /**
  * FXML Controller class
@@ -60,8 +74,7 @@ public class HotelListController implements Initializable {
     private TextField Nb_etoiles;
     @FXML
     private TextField Adresse;
-    @FXML
-    private TextField Idh;
+  
     private Button bsave;
     @FXML
     private TableColumn<hotel, String> image_tab;
@@ -83,20 +96,24 @@ public class HotelListController implements Initializable {
     private ImageView image_view;
     @FXML
     private Label file_path;
+    @FXML
+    private TextField tfrecherche;
+    ObservableList<hotel> list = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
      */
     public void initialize(URL url, ResourceBundle rb) {
         AffichageHotel();
+        recherche_avance();
 
     }
 
     @FXML
     private void tablehandleButtonAction(MouseEvent event) {
-
-        hotel h = tab_hotel.getSelectionModel().getSelectedItem();
-        Idh.setText(String.valueOf(h.getIdh()));
+if(tab_hotel.getSelectionModel().getSelectedItem()!=null){
+    hotel h = tab_hotel.getSelectionModel().getSelectedItem();
+       
         Nom_hotel.setText(h.getNom_hotel());
         Nb_etoiles.setText(String.valueOf(h.getNb_etoiles()));
         Adresse.setText(h.getAdresse());
@@ -109,8 +126,10 @@ public class HotelListController implements Initializable {
 
         file_path.setText(path);
         file_path.setOpacity(0);
+}
+        
 
-        bsave.setDisable(true);
+        //bsave.setDisable(true);
     }
 
     private void delete() {
@@ -118,19 +137,19 @@ public class HotelListController implements Initializable {
         String delete = "DELETE  FROM hotel  where idh = ?";
         try {
             st = con.prepareStatement(delete);
-            st.setInt(1, Integer.parseInt(Idh.getText()));
+            st.setInt(1,tab_hotel.getSelectionModel().getSelectedItem().getIdh());
 
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Deleting user");
 
             // Header Text: null
             alert.setHeaderText(null);
-            alert.setContentText(" hotel " + Nom_hotel.getText() + " avec ID" + Idh.getText() + " est supprimé avec succés");
+            alert.setContentText(" hotel " + Nom_hotel.getText() + " avec ID" + tab_hotel.getSelectionModel().getSelectedItem().getIdh() + " est supprimé avec succés");
 
             alert.showAndWait();
 
             st.executeUpdate();
-            AffichageHotel();
+            //AffichageHotel();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
@@ -141,6 +160,8 @@ public class HotelListController implements Initializable {
         System.out.println(event.toString());
         delete();
         clear();
+       AffichageHotel();
+        recherche_avance();
        
     }
 
@@ -148,6 +169,8 @@ public class HotelListController implements Initializable {
     private void EditHotel(ActionEvent event) {
         update();
         clear();
+        AffichageHotel();
+        recherche_avance();
     }
 
     @FXML
@@ -155,19 +178,20 @@ public class HotelListController implements Initializable {
         insert();
         clear();
       AffichageHotel();
+        recherche_avance();
     }
 
     private void insert() {
         con = Datasource.getInstance().getCnx();
-        String insert = "INSERT INTO hotel (`Idh`,`Nom_hotel`,`Nb_etoiles`,`Adresse`,`image`) VALUES (?,?,?,?,?) ;";
+        String insert = "INSERT INTO hotel (`Nom_hotel`,`Nb_etoiles`,`Adresse`,`image`) VALUES (?,?,?,?) ;";
         try {
 
             st = con.prepareStatement(insert);
-            st.setString(1, Idh.getText());
-            st.setString(2, Nom_hotel.getText());
-            st.setString(3, Nb_etoiles.getText());
-            st.setString(4, Adresse.getText());
-            st.setString(5, file_path.getText());
+            
+            st.setString(1, Nom_hotel.getText());
+            st.setString(2, Nb_etoiles.getText());
+            st.setString(3, Adresse.getText());
+            st.setString(4, file_path.getText());
             file_path.setOpacity(0);
             
                 Alert alert = new Alert(AlertType.INFORMATION);
@@ -188,14 +212,14 @@ public class HotelListController implements Initializable {
 //            st.executeUpdate();
 //            Affiffiche();
          st.executeUpdate();
-           AffichageHotel();
+           //AffichageHotel();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
     }
 
     void clear() {
-        Idh.setText(null);
+        
         Nom_hotel.setText(null);
         Nb_etoiles.setText(null);
         Adresse.setText(null);
@@ -207,10 +231,10 @@ public class HotelListController implements Initializable {
     }
 
     public ObservableList<hotel> getHotel() {
-        ObservableList<hotel> list = FXCollections.observableArrayList();
-
+       
+ObservableList<hotel> resultat=FXCollections.observableArrayList();
         con = Datasource.getInstance().getCnx();
-        String select = "SELECT * FROM hotel ;";
+        String select = "SELECT * FROM hotel ";
 
         try {
             st = con.prepareStatement(select);
@@ -224,22 +248,23 @@ public class HotelListController implements Initializable {
                 h.setImage_hotel(rs.getString("image"));
 //                
 
-                list.add(h);
+                resultat.add(h);
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-        return list;
+        return resultat;
     }
 
     private void AffichageHotel() {
-
-        ObservableList<hotel> list = getHotel();
+        list.clear();
+        System.out.println(getHotel());
+        list = getHotel();
         id_hotel_tab.setCellValueFactory(new PropertyValueFactory<hotel, Integer>("Idh"));
         nom_tab.setCellValueFactory(new PropertyValueFactory<hotel, String>("Nom_hotel"));
         nb_etoile_tab.setCellValueFactory(new PropertyValueFactory<hotel, Integer>("Nb_etoiles"));
         adre_tab.setCellValueFactory(new PropertyValueFactory<hotel, String>("Adresse"));
-        image_tab.setCellValueFactory(new PropertyValueFactory<hotel, String>("image"));
+        image_tab.setCellValueFactory(new PropertyValueFactory<hotel, String>("image_hotel"));
 
         tab_hotel.setItems(list);
     }
@@ -256,35 +281,50 @@ public class HotelListController implements Initializable {
                 + Nom_hotel.getText() + "', `Nb_etoiles` = '"
                 + Nb_etoiles.getText() + "', `Adresse` = '"
                 + Adresse.getText()
-                + "', `image` = '" + image_view
-                + "' WHERE Idh = '" + Idh.getText() + "'";
+                + "', `image` = '" + file_path.getText()
+                + "' WHERE Idh = '" + tab_hotel.getSelectionModel().getSelectedItem().getIdh() + "'";
 
         try {
 
-            if (Idh.getText().isEmpty() | Nom_hotel.getText().isEmpty()
+            if (Nom_hotel.getText().isEmpty()
                     | Nb_etoiles.getText().isEmpty()
                     | Adresse.getText().isEmpty()
                     | image_view.getImage() == null) {
 
-                Alert alert = new Alert(AlertType.ERROR);
-
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Enter all blank fields!");
-                alert.showAndWait();
+//                Alert alert = new Alert(AlertType.ERROR);
+//
+//                alert.setTitle("Error Message");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Enter all blank fields!");
+//                alert.showAndWait();
+ TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Add Success");
+            tray.setMessage("You successufuly added room in ur application");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(1000));
 
             } else {
 
                 st.executeUpdate(sql);
 
-                Alert alert = new Alert(AlertType.INFORMATION);
+//                Alert alert = new Alert(AlertType.INFORMATION);
+//
+//                alert.setTitle("MarcoMan Message");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Successfully Update the data!");
+//                alert.showAndWait();
 
-                alert.setTitle("MarcoMan Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Successfully Update the data!");
-                alert.showAndWait();
+ TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Add Success");
+            tray.setMessage("You successufuly added room in ur application");
+            tray.setNotificationType(NotificationType.ERROR);
+            tray.showAndDismiss(Duration.millis(1000));
 
-                AffichageHotel();
+                //AffichageHotel();
                 clear();
 
             }
@@ -329,6 +369,69 @@ public class HotelListController implements Initializable {
             return true;
         }
         return false;
+    }
+    public void recherche_avance(){
+        FilteredList<hotel> filteredlist=new FilteredList<>(list,b->true);
+        tfrecherche.textProperty().addListener(
+                (observable,oldValue,newValue)->{
+                    filteredlist.setPredicate(hotel->{
+                        if(newValue==null || newValue.isEmpty()){
+                            return true;
+                        }
+                        String lowercasenewvalue=newValue.toLowerCase();
+                        if(hotel.getAdresse().toLowerCase().indexOf(lowercasenewvalue)!=-1){
+                            return true;
+                        }
+                        else if(hotel.getNom_hotel().toLowerCase().indexOf(lowercasenewvalue)!=-1){
+                            return true;
+                        }
+
+                        else if(hotel.getImage_hotel().toLowerCase().indexOf(lowercasenewvalue)!=-1){
+                            return true;
+                        }
+
+                      
+                        
+                        else if(String.valueOf(hotel.getNb_etoiles()).toLowerCase().indexOf(lowercasenewvalue)!=-1){
+                            return true;
+                        }
+                        
+                       else if(String.valueOf(hotel.getIdh()).toLowerCase().indexOf(lowercasenewvalue)!=-1){
+                            return true;
+                        }
+                        
+                        
+                        else{
+                            return false;
+                        }
+                        
+                    });
+                }
+        );
+        tab_hotel.setItems(filteredlist);
+    }
+
+    @FXML
+    private void Retour(ActionEvent event) {
+        try {
+     //9bal mat7el ay interface zid il zouz ostra hedhom taw tetsaker wtet7al  interface o5ra
+     //********
+                   Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+            //-******
+            Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/InterfaceGestion.fxml"));
+            Scene scene = new Scene(parent);
+            
+            Stage stage = new Stage();
+            //stage.getIcons().add(new Image("wood.jpg"));
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+           System.err.println(ex.getMessage());;
+        }
+            
     }
 
 }

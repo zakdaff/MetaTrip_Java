@@ -6,7 +6,9 @@
 package view.hotel;
 
 import Config.Datasource;
+import Config.Smsapi;
 import entities.reservation_hotel;
+import entities.user;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -22,7 +24,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -32,8 +33,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import services.reservation_hotel.Mailapi;
 import services.reservation_hotel.Reserrvation_Hotel_Service;
+import services.user.UserService;
+import java.text.DecimalFormat;
+import javafx.scene.Parent;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -65,6 +70,7 @@ public class ReservationHotelController implements Initializable {
 Connection con = null;
     ResultSet rs = null;
     PreparedStatement st = null;
+    UserService us=new UserService();
 
     /**
      * Initializes the controller class.
@@ -77,15 +83,27 @@ Connection con = null;
 
     @FXML
     private void ConfirmerReservation(ActionEvent event) {
+        user u=us.findByid(tab_reservation.getSelectionModel().getSelectedItem().getIdu());
+        //code il mail (badlou)
+        Mailapi.send("testapimail63@gmail.com", "TESTapimail2022", u.getEmail(), "Confirme Reservation", "You successfuly confirm your reservation");
+        DecimalFormat df = new DecimalFormat("#");
+        df.setMaximumFractionDigits(0);
+        
+        
+        Smsapi.sendSMS("+216"+df.format(u.getTel()), "Test sms api");
+
     }
 
     @FXML
     private void Retour(ActionEvent event) {
-        
-        
-         try {
-                   
-            Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/InterfaceReservationFXML.fxml"));
+        try {
+     //9bal mat7el ay interface zid il zouz ostra hedhom taw tetsaker wtet7al  interface o5ra
+     //********
+                   Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            stageclose.close();
+            //-******
+            Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/AcceuilFXML.fxml"));
             Scene scene = new Scene(parent);
             
             Stage stage = new Stage();
@@ -94,20 +112,22 @@ Connection con = null;
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+           System.err.println(ex.getMessage());;
         }
+            
+    
     }
 
     private void AfficherReservation() {
          
 
         ObservableList<reservation_hotel> list = getReservation();
-        Idrh.setCellValueFactory(new PropertyValueFactory<reservation_hotel, Integer>(" Idrh"));
+        Idrh.setCellValueFactory(new PropertyValueFactory<reservation_hotel, Integer>("Idrh"));
         Nb_nuitees.setCellValueFactory(new PropertyValueFactory<reservation_hotel, Integer>("Nb_nuitees"));
        Nb_personnes.setCellValueFactory(new PropertyValueFactory<reservation_hotel, Integer>("Nb_personnes"));
         Prix.setCellValueFactory(new PropertyValueFactory<reservation_hotel, Double>("Prix"));
         Idu.setCellValueFactory(new PropertyValueFactory<reservation_hotel, Integer>("Idu"));
-         idc.setCellValueFactory(new PropertyValueFactory<reservation_hotel, Integer>("idc"));
+         idc.setCellValueFactory(new PropertyValueFactory<reservation_hotel, Integer>("idh"));
            Date_depart.setCellValueFactory(new PropertyValueFactory<reservation_hotel, Date>("Date_depart"));
            Date_arrivee.setCellValueFactory(new PropertyValueFactory<reservation_hotel, Date>("Date_arrivee"));
 
@@ -134,7 +154,7 @@ Connection con = null;
                 rh.setNb_personnes(rs.getInt("Nb_personnes"));
                 rh.setPrix(rs.getInt("Prix"));
                 rh.setIdu(rs.getInt("Idu"));
-                rh.setIdc(rs.getInt("idc"));
+                rh.setIdh(rs.getInt("idh"));
                 rh.setDate_depart(rs.getDate("Date_depart"));
                rh.setDate_arrivee(rs.getDate("Date_arrivee"));
              
