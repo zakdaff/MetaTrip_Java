@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox prefHeight="671.0" prefWidth="1222.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.UserListController">
   <children>
@@ -96,7 +97,7 @@
                             <TextField fx:id="tel" prefHeight="26.0" prefWidth="0.0" styleClass="field" />
                             <TextField fx:id="email" prefHeight="0.0" prefWidth="56.0" styleClass="field" />
                         <PasswordField fx:id="password" styleClass="field" />
-                        <DatePicker fx:id="dateNaissance" prefHeight="28.0" prefWidth="180.0" promptText="dateNaissance" />
+                        <DatePicker fx:id="dateNaissance" prefHeight="28.0" prefWidth="202.0" promptText="dateNaissance" />
             </children>
         </VBox>
           
@@ -124,11 +125,11 @@
                         <Font name="Arial Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Button layoutY="109.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des utlisateurs" onAction="#toUser"/>
-                  <Button layoutY="141.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages" onAction="#toVoy"/>
-                  <Button layoutY="173.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages organisés" onAction="#toVoyORG"/>
+                  <Button layoutY="109.0" mnemonicParsing="false" onAction="#toUser" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des utlisateurs" />
+                  <Button layoutY="141.0" mnemonicParsing="false" onAction="#toVoy" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages" />
+                  <Button layoutY="173.0" mnemonicParsing="false" onAction="#toVoyORG" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages organisés" />
                   <Button layoutY="205.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages virtuels" />
-                  <Button layoutY="237.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voyages" onAction="#toReserVoy"/>
+                  <Button layoutY="237.0" mnemonicParsing="false" onAction="#toReserVoy" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voyages" />
                   <Button layoutY="270.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des hôtels" />
                   <Button layoutY="302.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des chambres" />
                   <Button layoutY="335.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations hôtels" />
@@ -136,14 +137,16 @@
                   <Button layoutY="400.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservation évenements" />
                   <Button layoutY="432.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gesion des voitures" />
                   <Button layoutY="464.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voitures" />
-                  <Button layoutY="570.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Paramétre compte" onAction="#settings"/>
-                  <Button layoutY="603.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" onAction="#logout"/>
+                  <Button layoutY="570.0" mnemonicParsing="false" onAction="#settings" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Paramétre compte" />
+                  <Button layoutY="603.0" mnemonicParsing="false" onAction="#logout" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" />
                   <ImageView fitHeight="103.0" fitWidth="141.0" layoutX="-19.0" layoutY="-14.0">
                      <image>
                         <Image url="@../img/logo_meta.png" />
                      </image>
                   </ImageView>
-                  <Button layoutY="79.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Acceuil" onAction="#home"/>
+                  <Button layoutY="79.0" mnemonicParsing="false" onAction="#home" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Acceuil" />
+                  <Label layoutX="362.0" layoutY="61.0" prefHeight="43.0" prefWidth="106.0" />
+               
       </children>
       </AnchorPane>
          </children>

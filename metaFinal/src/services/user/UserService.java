@@ -330,6 +330,75 @@ public class UserService implements IuserService {
         
         return nb;    }
     
+    
+      
+    public int nbVoit() throws SQLException {
+   int nb=0;
+   
+          String req = "SELECT count(*) from `voiture`;";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+            nb=rs.getInt(1);
+                                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return nb;    }
+    
+    
+    
+    
+       public int nbHotels() throws SQLException {
+   int nb=0;
+   
+          String req = "SELECT count(*) from `hotel`;";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+            nb=rs.getInt(1);
+                                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return nb;    }
+    
+    
+    
+      public int nbHEvent() throws SQLException {
+   int nb=0;
+   
+          String req = "SELECT count(*) from `evenement`;";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+            nb=rs.getInt(1);
+                                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return nb;    }
+    
+    
+    
+    
+    
+    
      public user getUserByID(int id)  {
      List<user> users = new ArrayList<>();
       user u = new user();

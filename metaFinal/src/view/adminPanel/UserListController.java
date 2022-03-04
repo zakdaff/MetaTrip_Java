@@ -58,8 +58,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import services.user.UserService;
 
 /**
@@ -146,6 +148,25 @@ public class UserListController implements Initializable {
 		PreparedStatement st=null;
  
     UserService us;
+    @FXML
+    private Button insert_image;
+   
+    @FXML
+    private Text cinu;
+    @FXML
+    private Text nomu;
+    @FXML
+    private Text prenomu;
+    @FXML
+    private Text telu;
+    @FXML
+    private Text emailu;
+    @FXML
+    private Text passwordu;
+    @FXML
+    private Text datenaissu;
+    @FXML
+    private Text imageu;
  
     
     @Override
@@ -156,7 +177,21 @@ public class UserListController implements Initializable {
         sexe.setValue("Masculin");*/
         // TODO
         affiche();
+      
     }    
+    
+    
+       
+     
+
+
+            
+            
+    
+    
+    
+    
+    @FXML
      public void insertImage(){
         
         FileChooser open = new FileChooser();
@@ -271,8 +306,30 @@ public class UserListController implements Initializable {
          
          private void insert() {
 	con =Datasource.getInstance().getCnx();
+        
+           if (cin.getText().isEmpty() || email.getText().isEmpty() || tel.getText().isEmpty() || password.getText().isEmpty() || file_path.getText().isEmpty() || (!email.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) )
+            {
+                     Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Checking for user");
+
+		// Header Text: null
+		alert.setHeaderText(null);
+		alert.setContentText("infos non valides");
+
+		alert.showAndWait();
+               
+            }
+           else {
+        
+        
        String insert = "INSERT INTO user (`Cin`,`Nom`,`Prenom`,`Tel`,`Email`,`Password`,`Image`,`dateNaissance`) VALUES (?,?,?,?,?,?,?,?) ;";
         try {
+            
+             
+
+      
+            
+            
             
             st = con.prepareStatement(insert);
             st.setString(1, cin.getText());
@@ -289,7 +346,7 @@ public class UserListController implements Initializable {
             st.setDate(8, date1);
           
             Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Deleting user");
+		alert.setTitle("Inserting user");
 
 		// Header Text: null
 		alert.setHeaderText(null);
@@ -302,7 +359,7 @@ public class UserListController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(UserListController.class.getName())
                     .log(Level.SEVERE, null, ex);
-        }
+        }}
     }
  
          
