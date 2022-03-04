@@ -4,18 +4,19 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="1043.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.Reservation_voyageController">
+<AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="1494.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.Reservation_voyageController">
    <children>
-      <AnchorPane fx:id="left_main" layoutX="23.0" layoutY="11.0" prefHeight="475.0" prefWidth="295.0">
+      <AnchorPane fx:id="left_main" layoutX="295.0" layoutY="50.0" prefHeight="475.0" prefWidth="295.0">
          <children>
-            <TextField fx:id="Idrv258" editable="false" layoutX="103.0" layoutY="37.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Idrv" styleClass="textfield-design" stylesheets="@design.css" AnchorPane.leftAnchor="103.0">
+            <TextField fx:id="Idrv258" editable="false" layoutX="135.0" layoutY="37.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Idrv" styleClass="textfield-design" stylesheets="@design.css" AnchorPane.leftAnchor="135.0">
                <font>
                   <Font size="15.0" />
                </font>
@@ -40,21 +41,21 @@
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <ComboBox fx:id="etat15" layoutX="103.0" layoutY="162.0" onAction="#comboBox" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choose..." styleClass="textfield-design" stylesheets="@design.css" />
+            <ComboBox fx:id="etat15" layoutX="138.0" layoutY="162.0" onAction="#comboBox" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choose..." styleClass="textfield-design" stylesheets="@design.css" />
             <Label fx:id="Idu1" layoutX="29.0" layoutY="216.0" text="Idu ">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="insert" layoutX="19.0" layoutY="375.0" mnemonicParsing="false" onAction="#insert50" prefHeight="46.0" prefWidth="87.0" styleClass="insert-button" stylesheets="@design.css" text="Insert" />
-            <Button fx:id="update" layoutX="112.0" layoutY="375.0" mnemonicParsing="false" onAction="#update" prefHeight="46.0" prefWidth="87.0" styleClass="update-button" stylesheets="@design.css" text="Update">
+            <Button fx:id="insert" layoutX="19.0" layoutY="375.0" mnemonicParsing="false" onAction="#insert50" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: lightblue;" styleClass="insert-button" stylesheets="@design.css" text="Save" />
+            <Button fx:id="update" layoutX="124.0" layoutY="375.0" mnemonicParsing="false" onAction="#update" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: #6DF0AB;" styleClass="update-button" stylesheets="@design.css" text="Edit">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="clear" layoutX="112.0" layoutY="429.0" mnemonicParsing="false" onAction="#clear" prefHeight="46.0" prefWidth="87.0" styleClass="clear-button" stylesheets="@design.css" text="Clear" />
-            <ComboBox fx:id="idu11" layoutX="96.0" layoutY="212.0" onAction="#comboBox1" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choose..." styleClass="textfield-design" stylesheets="@design.css" />
-            <ComboBox fx:id="Idv122" layoutX="96.0" layoutY="272.0" onAction="#comboBox2" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choose..." styleClass="textfield-design" stylesheets="@design.css" />
+            <Button fx:id="clear" layoutX="124.0" layoutY="434.0" mnemonicParsing="false" onAction="#clear" prefHeight="33.0" prefWidth="87.0" styleClass="clear-button" stylesheets="@design.css" text="Clear" />
+            <ComboBox fx:id="idu11" layoutX="138.0" layoutY="212.0" onAction="#comboBox1" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choose..." styleClass="textfield-design" stylesheets="@design.css" />
+            <ComboBox fx:id="Idv122" layoutX="135.0" layoutY="272.0" onAction="#comboBox2" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choose..." styleClass="textfield-design" stylesheets="@design.css" />
             <Label fx:id="Idv1" layoutX="30.0" layoutY="276.0" text="Idv ">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
@@ -65,27 +66,54 @@
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="Refpaiement1" layoutX="136.0" layoutY="320.0" />
+            <TextField fx:id="Refpaiement1" layoutX="138.0" layoutY="320.0" prefHeight="31.0" prefWidth="218.0" />
             <DatePicker fx:id="Date_depart" layoutX="136.0" layoutY="78.0" />
             <DatePicker fx:id="Date_arrivee" layoutX="136.0" layoutY="119.0" />
-            <Button fx:id="delete" layoutX="222.0" layoutY="375.0" mnemonicParsing="false" onAction="#delete" prefHeight="46.0" prefWidth="87.0" styleClass="delete-button" stylesheets="@design.css" text="Delete" />
+            <Button fx:id="delete" layoutX="236.0" layoutY="375.0" mnemonicParsing="false" onAction="#delete" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: #FF4D4D;" styleClass="delete-button" stylesheets="@design.css" text="Delete" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="384.0" prefHeight="513.0" prefWidth="646.0">
+      <AnchorPane layoutX="595.0" prefHeight="497.0" prefWidth="942.0">
          <children>
-            <Separator layoutX="11.0" layoutY="14.0" orientation="VERTICAL" prefHeight="475.0" prefWidth="1.0" />
-            <TableView fx:id="table_view" layoutX="45.0" layoutY="27.0" onMouseClicked="#selectData" prefHeight="450.0" prefWidth="605.0">
+            <TableView fx:id="table_view" layoutX="93.0" layoutY="82.0" onMouseClicked="#selectData" prefHeight="364.0" prefWidth="781.0">
               <columns>
-                <TableColumn fx:id="col_id" prefWidth="67.0" text="Idrv" />
-                <TableColumn fx:id="col_date_depart" prefWidth="83.0" text="Date_depart" />
+                <TableColumn fx:id="col_id" prefWidth="66.0" text="Idrv" />
+                <TableColumn fx:id="col_date_depart" prefWidth="162.0" text="Date_depart" />
                   <TableColumn fx:id="col_date_arrive" prefWidth="75.0" text="Date_arrivee" />
                   <TableColumn fx:id="col_etat" prefWidth="66.0" text="etat" />
                   <TableColumn fx:id="col_Idu" minWidth="0.0" prefWidth="61.0" text="Idu " />
-                        <TableColumn fx:id="col_Idv" minWidth="0.0" prefWidth="61.0" text="idv" />
-                          <TableColumn fx:id="col_Ref_paiement" prefWidth="197.0" text="Ref_paiement " />
+                        <TableColumn fx:id="col_Idv" minWidth="0.0" prefWidth="58.0" text="idv" />
+                          <TableColumn fx:id="col_Ref_paiement" prefWidth="95.0" text="Ref_paiement " />
               </columns>
+               <columnResizePolicy>
+                 
+               </columnResizePolicy>
             </TableView>
+            <Label layoutX="39.0" layoutY="15.0" prefHeight="10.0" prefWidth="337.0" text="RESERVATIONS VOYAGES" textFill="#ffc300">
+               <font>
+                  <Font name="Arial Bold" size="25.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="left_main1" layoutX="-1.0" prefHeight="675.0" prefWidth="269.0" style="-fx-background-color: #628EA4;" />
+      <Button layoutX="-1.0" layoutY="119.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des utlisateurs" />
+      <Button layoutX="-1.0" layoutY="151.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages" />
+      <Button layoutX="-1.0" layoutY="183.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages organisés" />
+      <Button layoutX="-1.0" layoutY="215.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages virtuels" />
+      <Button layoutX="-1.0" layoutY="247.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voyages" />
+      <Button layoutX="-1.0" layoutY="280.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des hôtels" />
+      <Button layoutX="-1.0" layoutY="312.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des chambres" />
+      <Button layoutX="-1.0" layoutY="345.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations hôtels" />
+      <Button layoutX="-1.0" layoutY="378.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des évenements" />
+      <Button layoutX="-1.0" layoutY="410.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservation évenements" />
+      <Button layoutX="-1.0" layoutY="442.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gesion des voitures" />
+      <Button layoutX="-1.0" layoutY="474.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voitures" />
+      <Button layoutX="-1.0" layoutY="580.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Paramétre compte" />
+      <Button layoutX="-1.0" layoutY="613.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" />
+      <ImageView fitHeight="103.0" fitWidth="141.0" layoutX="74.0" layoutY="13.0">
+         <image>
+            <Image url="@../img/logo_meta.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -49,12 +49,22 @@ public class Reservation_VoyageClientController implements Initializable {
         // TODO
     }    
 user u1 = new user();
+  voyage  v2 = new voyage();   
  public user setUser(String username) {
   UserService u= new UserService();
         
  u1= u.getUserByEmail(username);
          return u1;
     }
+ public voyage SetVoyage(String id ) {
+     System.out.println("5altet"+id.toString());
+  voyageService u= new voyageService();
+        int sss = Integer.parseInt(id);
+ v2= u.afficherbyID(sss);
+         return v2;
+    }
+voyage v = new voyage();
+
 
    
 
@@ -105,7 +115,7 @@ user u1 = new user();
     
    voyage v1=v.afficherbyID(97);
 
-            reservation_voyage r=new reservation_voyage(date1,date2,"NonPaye",u1,v1);
+            reservation_voyage r=new reservation_voyage(date1,date2,"NonPaye",u1,v2);
              
  System.out.println("585958855"+v1);
  

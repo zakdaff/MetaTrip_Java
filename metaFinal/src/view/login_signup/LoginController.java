@@ -28,6 +28,7 @@ import javafx.stage.Window;
 import services.user.LoginAndSignupService;
 import services.user.UserService;
 import view.PartieClient.Reservation_VoyageClientController;
+import view.PartieClient.VoyageORGClientPartieController;
 import view.adminPanel.Reservation_voyageController;
 
 /**
@@ -50,8 +51,7 @@ public class LoginController implements Initializable {
    @FXML
     public void login(ActionEvent event) throws SQLException, Exception  {
 
-        System.out.println(emailIdField.getText());
-        System.out.println(passwordField.getText());
+     
  Window owner = submitButton.getScene().getWindow();
 
 
@@ -130,9 +130,11 @@ public void link1(user user) throws Exception {
             Parent root = loader.load();
             Reservation_voyageController controller = loader.getController();
             controller.setUser(emailIdField.getText());
+                    emailIdField.getScene().setRoot(root);
+                    
             //Personne.user = ;
             //Personne.user.get
-            emailIdField.getScene().setRoot(root);
+    
         } catch (IOException ex) {
          Metatrip.stg.close();   
     } catch(Exception e) {
@@ -143,9 +145,9 @@ public void link1(user user) throws Exception {
      
             //Personne.user = ;
             //Personne.user.get
-                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
+                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/VoyageORGClientPartie.fxml"));
             Parent root1 = loader1.load();
-            Reservation_VoyageClientController controller = loader1.getController();
+            VoyageORGClientPartieController controller = loader1.getController();
             controller.setUser(emailIdField.getText());
             //Personne.user = ;
             //Personne.user.get
