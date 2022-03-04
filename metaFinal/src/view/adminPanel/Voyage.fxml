@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -16,9 +17,9 @@
       <VBox prefHeight="400.0" prefWidth="640.0">
         <children>
        
-<AnchorPane fx:id="left_main" id="AnchorPane" prefHeight="513.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane id="AnchorPane" fx:id="left_main" prefHeight="678.0" prefWidth="1449.0" xmlns="http://javafx.com/javafx/8.0.171">
     <children>
-        <VBox layoutX="46.0" layoutY="111.0" prefHeight="157.0" prefWidth="95.0" spacing="25.0">
+        <VBox layoutX="306.0" layoutY="93.0" prefHeight="157.0" prefWidth="95.0" spacing="25.0">
             <children>
                 <Label styleClass="labelform" text="IDV" />
                 <Label layoutX="10.0" layoutY="10.0" styleClass="labelform" text="NOM PAYS" />
@@ -27,26 +28,26 @@
                 
             </children>
         </VBox>
-        <Button fx:id="bsave" layoutX="59.0" layoutY="354.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Save">
+        <Button fx:id="bsave" layoutX="348.0" layoutY="369.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-background-color: lightblue;" styleClass="btn" text="Save">
            
             <font>
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="bupdate" layoutX="154.0" layoutY="354.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="33.0" prefWidth="71.0" text="Edit">
+        <Button fx:id="bupdate" layoutX="443.0" layoutY="369.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-background-color: #6DF0AB;" text="Edit">
          
             <font>
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
         </Button>
-            <Button fx:id="bdelete" layoutX="245.0" layoutY="355.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Delete">
+            <Button fx:id="bdelete" layoutX="534.0" layoutY="370.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-background-color: #FF4D4D;" styleClass="btn" text="Delete">
             
                                  <font>
                 <Font name="Times New Roman" size="12.0" />
             </font>
             </Button>
             
-              <Button layoutX="342.0" layoutY="355.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Reset">
+              <Button layoutX="631.0" layoutY="370.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Reset">
             <font>
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
@@ -54,35 +55,20 @@
         </Button>
         
         
-        <Button fx:id="blink" layoutX="295.0" layoutY="413.0" mnemonicParsing="false" onAction="#link" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Link">
-           
-            <font>
-                <Font name="Times New Roman Bold" size="12.0" />
-            </font>
-        </Button>
-        
+
         
         
             
-           <TableView fx:id="table" layoutX="468.0" layoutY="81.0" onMouseClicked="#tablehandleButtonAction" prefHeight="290.0" prefWidth="654.0">
+           <TableView fx:id="table" layoutX="720.0" layoutY="80.0" onMouseClicked="#tablehandleButtonAction" prefHeight="290.0" prefWidth="654.0">
             <columns>
                 <TableColumn fx:id="uidv" prefWidth="108.0" text="IDV" />
-                <TableColumn fx:id="unom" prefWidth="294.0" text="Nom pays" />
+                <TableColumn fx:id="unom" prefWidth="265.0" text="Nom pays" />
       
-                        <TableColumn fx:id="uimage" prefWidth="251.0" text="Image pays" />
+                        <TableColumn fx:id="uimage" prefWidth="280.0" text="Image pays" />
             </columns>
         </TableView>
-        <Pane layoutX="96.0" layoutY="12.0" prefHeight="39.0" prefWidth="634.0">
-            <children>
-                <Label layoutX="238.0" layoutY="1.0" prefHeight="10.0" prefWidth="337.0" text="LISTE DES VOYAGES" textFill="#ffc300">
-                    <font>
-                        <Font name="Arial Bold" size="25.0" />
-                    </font>
-                
-                </Label>
-            </children>
-        </Pane>
-        <VBox layoutX="164.0" layoutY="111.0" prefHeight="192.0" prefWidth="247.0" spacing="15.0">
+        <Pane layoutX="96.0" layoutY="12.0" prefHeight="39.0" prefWidth="634.0" />
+        <VBox layoutX="430.0" layoutY="81.0" prefHeight="273.0" prefWidth="257.0" spacing="15.0">
             <children>
                             <TextField fx:id="idv" editable="false" prefHeight="20.0" prefWidth="80.0" />
                             <TextField fx:id="pays" layoutX="10.0" layoutY="10.0" />
@@ -92,10 +78,41 @@
                         <Font name="Times New Roman Bold" size="12.0" />
                      </font>
                   </Button>
-                                    <Label fx:id="file_path" alignment="CENTER" layoutX="254.0" layoutY="394.0" prefHeight="23.0" prefWidth="199.0" />
+                  <Label fx:id="file_path" alignment="CENTER" layoutX="254.0" layoutY="394.0" prefHeight="23.0" prefWidth="199.0" />
 
             </children>
         </VBox>
+                  <Label layoutY="-5.0" prefHeight="683.0" prefWidth="269.0" style="-fx-background-color: #628EA4;" textFill="#ffc300">
+                     <font>
+                        <Font name="Arial Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="buser" layoutX="-1.0" layoutY="119.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des utlisateurs" onAction="#toUser"/>
+                  <Button layoutX="-1.0" layoutY="151.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages" onAction="#toVoy"/>                                     
+                  <Button layoutX="-1.0" layoutY="183.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages organisés" onAction="#toVoyORG"/>
+                  <Button layoutX="-1.0" layoutY="215.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages virtuels" />
+                  <Button layoutX="-1.0" layoutY="247.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voyages" onAction="#toReserVoy"/>
+                  <Button layoutX="-1.0" layoutY="280.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des hôtels" />
+                  <Button layoutX="-1.0" layoutY="312.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des chambres" />
+                  <Button layoutX="-1.0" layoutY="345.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations hôtels" />
+                  <Button layoutX="-1.0" layoutY="378.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des évenements"/>
+                  <Button layoutX="-1.0" layoutY="410.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservation évenements" />
+                  <Button layoutX="-1.0" layoutY="442.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voitures" />
+                  <Button layoutX="-1.0" layoutY="474.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voitures" />
+                  <Button layoutX="-1.0" layoutY="580.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Paramétre compte" onAction="#settings"/>
+                  <Button layoutX="-1.0" layoutY="613.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" onAction="#logout"/>
+                  <ImageView fitHeight="103.0" fitWidth="141.0" layoutX="-9.0" layoutY="-4.0">
+                     <image>
+                        <Image url="@../img/logo_meta.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="-1.0" layoutY="89.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Acceuil" onAction="#home"/>
+          <Label layoutX="720.0" layoutY="21.0" prefHeight="10.0" prefWidth="337.0" text="LISTE DES VOYAGES" textFill="#ffc300">
+              <font>
+                  <Font name="Arial Bold" size="25.0" />
+              </font>
+          
+                </Label>
         
      
     </children>

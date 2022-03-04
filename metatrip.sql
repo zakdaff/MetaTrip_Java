@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 02 mars 2022 à 21:41
+-- Généré le : ven. 04 mars 2022 à 04:39
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -233,7 +233,12 @@ CREATE TABLE `reservation_voyage` (
 --
 
 INSERT INTO `reservation_voyage` (`Idrv`, `Date_depart`, `Date_arrivee`, `etat`, `Idu`, `Idv`, `Ref_paiement`) VALUES
-(99993, '2022-02-01', '2022-02-03', 'NonPaye', 816, 198, 0);
+(99993, '2022-02-01', '2022-02-03', 'NonPaye', 816, 198, 0),
+(99997, '2022-03-20', '2022-03-20', 'NonPaye', 857, 97, 0),
+(99998, '2022-03-17', '2022-03-17', 'NonPaye', 857, 97, 0),
+(99999, '2022-04-03', '2022-04-03', 'NonPaye', 857, 97, 0),
+(100000, '2022-03-26', '2022-03-26', 'NonPaye', 857, 97, 0),
+(100001, '2022-03-10', '2022-03-10', 'NonPaye', 857, 97, 0);
 
 -- --------------------------------------------------------
 
@@ -280,7 +285,7 @@ CREATE TABLE `user` (
   `Tel` varchar(20) NOT NULL,
   `Email` varchar(38) NOT NULL,
   `Password` varchar(50) NOT NULL,
-  `Image` varchar(100) NOT NULL,
+  `Image` varchar(255) NOT NULL,
   `Role` int(11) DEFAULT 0,
   `dateNaissance` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -290,13 +295,6 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`Idu`, `Cin`, `Nom`, `Prenom`, `Tel`, `Email`, `Password`, `Image`, `Role`, `dateNaissance`) VALUES
-(44, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\modules pidev.PNG', 0, '2000-02-07'),
-(45, '196525', 'ssss', 'aaa', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(47, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', 'e882b72bccfc2ad578c27b0d9b472a14', 'image', 0, '2011-10-01'),
-(48, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(49, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(51, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(52, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (53, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (54, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (55, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
@@ -304,16 +302,7 @@ INSERT INTO `user` (`Idu`, `Cin`, `Nom`, `Prenom`, `Tel`, `Email`, `Password`, `
 (57, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (58, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (59, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(60, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(61, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(62, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
 (63, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(64, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(65, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(66, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(67, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(68, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(69, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
 (70, '199525', 'ssss', 'cxx', '2568435', 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (71, '199525', 'ssss', 'cxx', '2568435', 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (73, '199525', 'ssss', 'cxx', '2568435', 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
@@ -340,7 +329,6 @@ INSERT INTO `user` (`Idu`, `Cin`, `Nom`, `Prenom`, `Tel`, `Email`, `Password`, `
 (826, '11223344', 'lamloum', 'fares', '98665580', 'fareslamloum@gmail.com', 'ab4f63f9ac65152575886860dde480a1', 'fares.png', 0, '2000-02-07'),
 (827, '1236987', 'lamloum', 'fares', '98663217', 'flam@gmail.com', '54965f9cd7e81588669cbbb393950569', 'fares.jpg', 0, '2000-02-07'),
 (828, '1230000', 'lamloum', 'fares', '98332140', 'fareslam@esprit.tn', '74b87337454200d4d33f80c4663dc5e5', 'fares.png', 0, '2000-07-08'),
-(831, '199525', 'ssss', 'cxx', '2568435', 'fares.lamloum@esprit.tn', '550e1bafe077ff0b0b67f4e32f29d751', 'image', 0, '2011-10-01'),
 (836, '09935054', 'fares', 'lamloum', '98663358', 'fares@ra.tn', 'e2fc714c4727ee9395f324cd2e7f331f', 'fares.png', 0, '2000-02-02'),
 (837, '09935054', 'fares', 'lamloum', '98663358', 'fares@ra.tn', 'e2fc714c4727ee9395f324cd2e7f331f', 'fares.png', 0, '2000-02-02'),
 (838, '00005054', 'fares', 'lamloum', '98663358', 'fares@ra.tn', 'e2fc714c4727ee9395f324cd2e7f331f', 'fares.png', 0, '2000-02-02'),
@@ -351,7 +339,16 @@ INSERT INTO `user` (`Idu`, `Cin`, `Nom`, `Prenom`, `Tel`, `Email`, `Password`, `
 (843, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '337be3074ca499c5a397b2888c3dcda0', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\flam.jpg', 0, '2011-10-01'),
 (844, '004406', 'fff', 'zakzouk', '444895', 'zak@live.fr', 'af4dff190111fab70a4380122abd7e99', 'image', 0, '2011-10-01'),
 (845, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '337be3074ca499c5a397b2888c3dcda0', 'image', 0, '2011-10-01'),
-(847, '15698236', 'fares', 'lamloum', '98336024', 'lam@esprit.tn', 'aaaa', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\modules pidev.PNG', 0, '2022-03-09');
+(849, '115866', 'bob', 'zakzouk', '5895', 'bob@live.fr', '337be3074ca499c5a397b2888c3dcda0', 'image', 0, '2011-10-01'),
+(850, '194406', 'fff', 'zakzouk', '444895', 'chrayef@live.fr', 'af4dff190111fab70a4380122abd7e99', 'image', 0, '2000-10-01'),
+(851, '115866', 'bob', 'zakzouk', '5895', 'bob@live.fr', '337be3074ca499c5a397b2888c3dcda0', 'image', 0, '2011-10-01'),
+(852, '194406', 'fff', 'zakzouk', '444895', 'chrayef@live.fr', 'af4dff190111fab70a4380122abd7e99', 'image', 0, '2000-10-01'),
+(853, '115866', 'bob', 'zakzouk', '5895', 'bob@live.fr', '337be3074ca499c5a397b2888c3dcda0', 'image', 0, '2011-10-01'),
+(854, '194406', 'fff', 'zakzouk', '444895', 'chrayef@live.fr', 'af4dff190111fab70a4380122abd7e99', 'image', 0, '2000-10-01'),
+(855, '12345678', 'lamloum', 'fares', '98663502', 'fares@fares.tn', '0000', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\flam.jpg', 0, '2022-03-10'),
+(857, '11112222', 'lamloum', 'fares', '98666406', 'fareslaamloum@gmail.com', '0000', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\flam.jpg', 0, '2022-03-09'),
+(858, '115866', 'bob', 'zakzouk', '5895', 'bob@live.fr', '337be3074ca499c5a397b2888c3dcda0', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\chat.jpg', 0, '2011-10-01'),
+(859, '194406', 'fff', 'zakzouk', '444895', 'chrayef@live.fr', 'af4dff190111fab70a4380122abd7e99', 'image', 0, '2000-10-01');
 
 -- --------------------------------------------------------
 
@@ -394,7 +391,7 @@ INSERT INTO `voiture` (`Idvoit`, `Matricule`, `Puissance_fiscalle`, `Image_v`, `
 
 CREATE TABLE `voyage` (
   `Idv` int(11) NOT NULL,
-  `Pays` varchar(100) NOT NULL,
+  `Pays` varchar(255) NOT NULL,
   `Image_pays` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -409,8 +406,8 @@ INSERT INTO `voyage` (`Idv`, `Pays`, `Image_pays`) VALUES
 (99, 'ttttunis', 'c://maroc.png'),
 (100, 'tounis', 'c://maroc.png'),
 (169, 'espagne', 'c://espagne.png'),
-(198, 'espagne', 'c://espagne.png'),
-(199, 'espagne', 'c://espagne.png'),
+(198, 'madrid', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\flam.jpg'),
+(199, 'espagne', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\chat.jpg'),
 (369, 'tounis', 'c://maroc.png'),
 (399, 'tounis', 'c://berlin.png'),
 (499, 'tounis', 'c://berlin.png'),
@@ -419,10 +416,9 @@ INSERT INTO `voyage` (`Idv`, `Pays`, `Image_pays`) VALUES
 (599, 'tounis', 'c://berlin.png'),
 (600, 'allemagne', 'c://berlin.png'),
 (601, 'gafsa', 'c://beja.png'),
-(602, 'gafsa', 'c://beja.png'),
 (603, 'gafsa', 'c://beja.png'),
 (604, 'gafsa', 'c://beja.png'),
-(55557, 'kievaaa', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\modules pidev.PNG');
+(55557, 'kievaaa', 'C:\\\\Users\\\\FLAM\\\\Desktop\\\\chat.jpg');
 
 -- --------------------------------------------------------
 
@@ -444,12 +440,10 @@ CREATE TABLE `voyage_organise` (
 --
 
 INSERT INTO `voyage_organise` (`Idvo`, `Prix_billet`, `Airline`, `Nb_nuitees`, `etatVoyage`, `Idv`) VALUES
-(78, 170.6, 'nex', 3, 'DISPO', 18),
-(79, 990.6, 'sounay', 3, 'DISPO', 369),
-(80, 170.6, 'nex', 3, 'INDISPO', 369),
-(81, 10.6, 'flam', 3, 'INDISPO', 369),
+(81, 100, 'flam', 4, 'INDISPO', 369),
 (82, 170.6, 'nex', 3, 'DISPO', 600),
-(85, 170.6, 'nexdd', 3, 'DISPO', 97);
+(85, 170.6, 'nexdd', 3, 'DISPO', 97),
+(90, 986, 'tunisair', 9, 'INDISPO', 100);
 
 -- --------------------------------------------------------
 
@@ -645,7 +639,7 @@ ALTER TABLE `reservation_voiture`
 -- AUTO_INCREMENT pour la table `reservation_voyage`
 --
 ALTER TABLE `reservation_voyage`
-  MODIFY `Idrv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99994;
+  MODIFY `Idrv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100003;
 
 --
 -- AUTO_INCREMENT pour la table `sponsor`
@@ -657,7 +651,7 @@ ALTER TABLE `sponsor`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `Idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=849;
+  MODIFY `Idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=860;
 
 --
 -- AUTO_INCREMENT pour la table `voiture`
@@ -675,7 +669,7 @@ ALTER TABLE `voyage`
 -- AUTO_INCREMENT pour la table `voyage_organise`
 --
 ALTER TABLE `voyage_organise`
-  MODIFY `Idvo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `Idvo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT pour la table `voyage_virtuel`

@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="1494.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.Reservation_voyageController">
+<AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="1537.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.Reservation_voyageController">
    <children>
-      <AnchorPane fx:id="left_main" layoutX="295.0" layoutY="50.0" prefHeight="475.0" prefWidth="295.0">
+      <AnchorPane fx:id="left_main" layoutX="296.0" layoutY="50.0" prefHeight="475.0" prefWidth="295.0">
          <children>
             <TextField fx:id="Idrv258" editable="false" layoutX="135.0" layoutY="37.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Idrv" styleClass="textfield-design" stylesheets="@design.css" AnchorPane.leftAnchor="135.0">
                <font>
@@ -95,11 +95,18 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="left_main1" layoutX="-1.0" prefHeight="648.0" prefWidth="269.0" style="-fx-background-color: #628EA4;" />
-      <Button layoutX="-1.0" layoutY="119.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des utlisateurs" />
-      <Button layoutX="-1.0" layoutY="151.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages" />
-      <Button layoutX="-1.0" layoutY="183.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages organisés" />
-      <Button layoutX="-1.0" layoutY="215.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages virtuels" />
+      <AnchorPane fx:id="left_main1" layoutX="-1.0" prefHeight="675.0" prefWidth="269.0" style="-fx-background-color: #628EA4;">
+         <children>
+            <ImageView fitHeight="103.0" fitWidth="141.0" layoutX="-15.0" layoutY="-9.0">
+               <image>
+                  <Image url="@../img/logo_meta.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <Button layoutX="-1.0" layoutY="119.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des utlisateurs" onAction="#toUser"/>
+      <Button layoutX="-1.0" layoutY="151.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages" onAction="#toVoy"/>
+      <Button layoutX="-1.0" layoutY="183.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages organisés" onAction="#toVoyORG"/>
+      <Button layoutX="-1.0" layoutY="215.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages virtuels" onAction="#toReserVoy"/>
       <Button layoutX="-1.0" layoutY="247.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voyages" />
       <Button layoutX="-1.0" layoutY="280.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des hôtels" />
       <Button layoutX="-1.0" layoutY="312.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des chambres" />
@@ -108,12 +115,8 @@
       <Button layoutX="-1.0" layoutY="410.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservation évenements" />
       <Button layoutX="-1.0" layoutY="442.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gesion des voitures" />
       <Button layoutX="-1.0" layoutY="474.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voitures" />
-      <Button layoutX="-1.0" layoutY="580.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Paramétre compte" />
-      <Button layoutX="-1.0" layoutY="613.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" />
-      <ImageView fitHeight="103.0" fitWidth="141.0" layoutX="74.0" layoutY="13.0">
-         <image>
-            <Image url="@../img/logo_meta.png" />
-         </image>
-      </ImageView>
+      <Button layoutX="-1.0" layoutY="580.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Paramétre compte" onAction="#settings"/>
+      <Button layoutX="-1.0" layoutY="613.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" onAction="#logout"/>
+      <Button layoutX="-1.0" layoutY="86.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Acceuil" onAction="#home"/>
    </children>
 </AnchorPane>

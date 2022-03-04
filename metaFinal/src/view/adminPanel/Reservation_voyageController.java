@@ -1,5 +1,6 @@
 package view.adminPanel;
 import Config.Datasource;
+import Config.Metatrip;
 import entities.Voiture;
 import entities.reservation_voyage;
 import entities.user;
@@ -18,7 +19,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -32,6 +37,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import services.reservation_voyage.Reservation_Voyage_Service;
 import services.user.UserService;
 import services.voiture.VoitureCRUD;
@@ -398,6 +404,135 @@ idu11.setValue(data.getIdu());
         
     }
     
+
+    
+
+       @FXML
+public void home(ActionEvent event) throws Exception {               
+    try {
+                  final Node source = (Node) event.getSource();
+
+            Metatrip.stg.close();  
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminPanel/home.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+           final Stage stage = (Stage) source.getScene().getWindow();
+            stage.setScene(new Scene(root));  
+             Metatrip.stg.close();  
+            stage.show();
+           
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}
+
+        @FXML
+public void logout(ActionEvent event) throws Exception {               
+    try {
+                  final Node source = (Node) event.getSource();
+
+         Metatrip.stg.close();  
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login_signup/login.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+           final Stage stage = (Stage) source.getScene().getWindow();
+            stage.setScene(new Scene(root)); 
+              Metatrip.stg.close();  
+            stage.show();
+           
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}
+
+       @FXML
+public void settings(ActionEvent event) throws Exception {               
+    try {
+                  final Node source = (Node) event.getSource();
+
+              Metatrip.stg.close();  
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminPanel/updateUser.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+           final Stage stage = (Stage) source.getScene().getWindow();
+            stage.setScene(new Scene(root)); 
+          Metatrip.stg.close();  
+            stage.show();
+          
+    } catch(Exception e) {
+        e.printStackTrace();
+    }}
+    
+    
+       @FXML
+public void toUser(ActionEvent event) throws Exception {               
+    try {
+          final Node source = (Node) event.getSource();
+  
+    
+          Metatrip.stg.close();
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminPanel/UserList.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+           final Stage stage = (Stage) source.getScene().getWindow();
+            stage.setScene(new Scene(root)); 
+                Metatrip.stg.close();  
+            stage.show();
+          
+    } catch(Exception e) {
+        e.printStackTrace();
+    }}
+    
+          @FXML
+public void toVoy(ActionEvent event) throws Exception {               
+    try {
+                  final Node source = (Node) event.getSource();
+
+               Metatrip.stg.close();  
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminPanel/Voyage.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+           final Stage stage = (Stage) source.getScene().getWindow();
+            stage.setScene(new Scene(root));  
+              Metatrip.stg.close();  
+            stage.show();
+     
+    } catch(Exception e) {
+        e.printStackTrace();
+    }}
+
+          @FXML
+public void toVoyORG(ActionEvent event) throws Exception {               
+    try {
+                  final Node source = (Node) event.getSource();
+
+                   Metatrip.stg.close();   
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminPanel/VoyageORG.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+           final Stage stage = (Stage) source.getScene().getWindow();
+            stage.setScene(new Scene(root));  
+        Metatrip.stg.close();  
+            stage.show();
+      
+    } catch(Exception e) {
+        e.printStackTrace();
+    }}
+
+
+
+       @FXML
+public void toReserVoy(ActionEvent event) throws Exception {               
+    try {
+                  final Node source = (Node) event.getSource();
+
+            Metatrip.stg.close();   
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+           final Stage stage = (Stage) source.getScene().getWindow();
+            stage.setScene(new Scene(root));  
+                  Metatrip.stg.close();  
+            stage.show();
+   
+    } catch(Exception e) {
+        e.printStackTrace();
+    }}
+
+
 
     
 }
