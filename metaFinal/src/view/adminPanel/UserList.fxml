@@ -7,9 +7,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -18,9 +18,9 @@
       <VBox prefHeight="400.0" prefWidth="640.0">
          <children>
        
-            <AnchorPane id="AnchorPane" fx:id="left_main" prefHeight="598.0" prefWidth="1205.0">
+            <AnchorPane id="AnchorPane" fx:id="left_main" prefHeight="638.0" prefWidth="1183.0">
       <children>
-        <VBox layoutX="15.0" layoutY="16.0" prefHeight="157.0" prefWidth="62.0" spacing="25.0">
+        <VBox layoutX="335.0" layoutY="89.0" prefHeight="157.0" prefWidth="62.0" spacing="25.0">
             <children>
                 <Label styleClass="labelform" text="ID" />
                 <Label layoutX="10.0" layoutY="10.0" styleClass="labelform" text="CIN" />
@@ -40,39 +40,39 @@
                
                     </VBox>
             
-                      
-            <Button fx:id="bsave" layoutY="564.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-background-color: lightblue;" styleClass="btn" text="Save">
+                                                          
+            <Button fx:id="bsave" layoutX="335.0" layoutY="648.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-background-color: lightblue;" styleClass="btn" text="Save">
             
-                      
+                                                          
                  
-                                  
+                                                                      
             <font>
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
             </Button>
-            <Button fx:id="bupdate" layoutX="96.0" layoutY="564.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-background-color: #6DF0AB;" text="Edit">
+            <Button fx:id="bupdate" layoutX="431.0" layoutY="648.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-background-color: #6DF0AB;" text="Edit">
             
-                           <font>
+                                                               <font>
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
             </Button>
-            <Button fx:id="bdelete" layoutX="186.0" layoutY="565.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-background-color: #FF4D4D;" styleClass="btn" text="Delete">
+            <Button fx:id="bdelete" layoutX="521.0" layoutY="649.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-background-color: #FF4D4D;" styleClass="btn" text="Delete">
             
-                                                   <font>
+                                                                                       <font>
                 <Font name="Times New Roman" size="12.0" />
             </font>
             </Button>
             
-                                <Button layoutX="276.0" layoutY="565.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-background-color: lightgray;" styleClass="btn" text="Reset">
+                                                                                <Button layoutX="611.0" layoutY="649.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-background-color: lightgray;" styleClass="btn" text="Reset">
             <font>
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
             
-                          </Button>
+                                                                          </Button>
             
             
                         
-           <TableView fx:id="table" layoutX="438.0" layoutY="125.0" onMouseClicked="#tablehandleButtonAction" prefHeight="315.0" prefWidth="751.0">
+           <TableView fx:id="table" layoutX="790.0" layoutY="166.0" onMouseClicked="#tablehandleButtonAction" prefHeight="315.0" prefWidth="751.0">
             <columns>
                 <TableColumn fx:id="uidu" prefWidth="59.0" text="ID" />
                 <TableColumn fx:id="ucin" prefWidth="129.00003051757812" text="CIN" />
@@ -87,17 +87,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
         </TableView>
-        <Pane layoutX="96.0" layoutY="12.0" prefHeight="39.0" prefWidth="634.0">
-            <children>
-                <Label layoutX="238.0" layoutY="1.0" prefHeight="10.0" prefWidth="337.0" text="LISTE USERS" textFill="#ffc300">
-                    <font>
-                        <Font name="Arial Bold" size="25.0" />
-                    </font>
-                
-                            </Label>
-            </children>
-        </Pane>
-        <VBox layoutX="104.0" layoutY="24.0" prefHeight="346.0" prefWidth="199.0" spacing="15.0">
+        <VBox layoutX="426.0" layoutY="79.0" prefHeight="346.0" prefWidth="199.0" spacing="15.0">
             <children>
                             <TextField fx:id="idu" editable="false" prefHeight="20.0" prefWidth="80.0" />
                             <TextField fx:id="cin" layoutX="10.0" layoutY="10.0" />
@@ -110,19 +100,49 @@
             </children>
         </VBox>
           
-                              <ImageView fx:id="image_view" fitHeight="112.0" fitWidth="146.0" layoutX="93.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="insert_image" layoutX="315.0" layoutY="368.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Upload">
+                              <ImageView fx:id="image_view" fitHeight="145.0" fitWidth="172.0" layoutX="435.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="insert_image" layoutX="678.0" layoutY="378.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="33.0" prefWidth="71.0" styleClass="btn" text="Upload">
                      <font>
                         <Font name="Times New Roman Bold" size="12.0" />
                      </font>
                   </Button>
         
                   <Label fx:id="file_path" alignment="CENTER" layoutX="254.0" layoutY="394.0" prefHeight="23.0" prefWidth="199.0" />
-                  <Button fx:id="importCS" layoutX="1016.0" layoutY="62.0" mnemonicParsing="false" onAction="#importCSV" prefHeight="33.0" prefWidth="124.0" style="-fx-background-color: #11BD33;" styleClass="btn" text="Import Data to DB">
+                  <Button fx:id="importCS" layoutX="1366.0" layoutY="118.0" mnemonicParsing="false" onAction="#importCSV" prefHeight="33.0" prefWidth="124.0" style="-fx-background-color: #11BD33;" styleClass="btn" text="Import Data to DB">
                      <font>
                         <Font name="Times New Roman Bold" size="12.0" />
                      </font>
                   </Button>
+          <Label layoutX="714.0" layoutY="21.0" prefHeight="10.0" prefWidth="337.0" text="LISTE USERS" textFill="#ffc300">
+              <font>
+                  <Font name="Arial Bold" size="25.0" />
+              </font>
+          
+                                        </Label>
+                  <Label layoutY="-1.0" prefHeight="721.0" prefWidth="269.0" style="-fx-background-color: #628EA4;" textFill="#ffc300">
+                     <font>
+                        <Font name="Arial Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Button layoutY="109.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des utlisateurs" />
+                  <Button layoutY="141.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages" />
+                  <Button layoutY="173.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages organisés" />
+                  <Button layoutY="205.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages virtuels" />
+                  <Button layoutY="237.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voyages" />
+                  <Button layoutY="270.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des hôtels" />
+                  <Button layoutY="302.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des chambres" />
+                  <Button layoutY="335.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations hôtels" />
+                  <Button layoutY="368.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des évenements" />
+                  <Button layoutY="400.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservation évenements" />
+                  <Button layoutY="432.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gesion des voitures" />
+                  <Button layoutY="464.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voitures" />
+                  <Button layoutY="570.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Paramétre compte" />
+                  <Button layoutY="603.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" />
+                  <ImageView fitHeight="103.0" fitWidth="141.0" layoutX="64.0" layoutY="3.0">
+                     <image>
+                        <Image url="@../img/logo_meta.png" />
+                     </image>
+                  </ImageView>
       </children>
       </AnchorPane>
          </children>
