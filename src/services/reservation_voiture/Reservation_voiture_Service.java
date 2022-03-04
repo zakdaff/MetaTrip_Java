@@ -5,7 +5,7 @@
  */
 package services.reservation_voiture;
 
-import entities.Voiture;
+import crud.Voiture;
 import entities.Chauffeur;
 
 import entities.reservation_voiture;
@@ -155,7 +155,7 @@ public class Reservation_voiture_Service implements IReservation_voiture {
                 rs3.next();
                 rs4.next();
 
-                u.setChauffeur(new Chauffeur(rs4.getInt(1), rs4.getString(2), rs4.getString(3), rs4.getString(4), rs4.getInt(5), rs4.getString(6)));
+                u.setChauffeur(new Chauffeur(rs4.getInt(1), rs4.getString(2), rs4.getString(3), rs4.getString(4), rs4.getString(5), rs4.getString(6)));
 
                 u.setVoiture(new Voiture(rs2.getInt(1), rs2.getString(2), rs2.getInt(3), rs2.getString(4), rs2.getString(5)));
 

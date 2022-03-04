@@ -5,7 +5,7 @@
  */
 package entities;
 
-import entities.Voiture;
+import crud.Voiture;
 import entities.user;
 import java.util.Date;
 

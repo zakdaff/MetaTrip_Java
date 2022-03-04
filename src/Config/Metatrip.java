@@ -2,7 +2,7 @@
 package Config;
 
 import entities.Chauffeur;
-import entities.Voiture;
+import crud.Voiture;
 //import entities.Voyage_virtuel;
 //import entities.abonnement;
 import entities.etat;
@@ -17,6 +17,11 @@ import entities.user;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import services.chauffeur.chauffeur_services;
 //import services.abonnement.abonnement_Service;
 //import services.evenement.Serviceevenement;
@@ -41,212 +46,55 @@ import services.voiture.VoitureCRUD;
  *
  * @author FLAM
  */
-public class Metatrip {
+public class Metatrip extends Application{
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws Exception {
-        // TODO code application logic here
-        Datasource data = Datasource.getInstance();
-        Datasource data2 = Datasource.getInstance();
-        System.out.println(data.hashCode() + "-" + data2.hashCode());
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+//   public static void main(String[] args) {
+//        
+//        launch(args);
+//        
+//    } 
+//    
+//    @Override
+//    public void start(Stage primaryStage) throws Exception{
+//        
+//        Parent root = FXMLLoader.load(getClass().getResource("View/chauffeurdesign.fxml"));
+//        
+//        Scene scene = new Scene(root);
+//        
+//        Stage stage = new Stage();
+//        
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+    
 
-        UserService us = new UserService();
-//        Reservation_Voyage_Service rvs=  new Reservation_Voyage_Service();
-//        
-//        voyageService vs= new voyageService();
-//        
-//        VoyageORG_Service vos = new VoyageORG_Service();
-//        abonnement_Service a = new abonnement_Service();
-//           VoyageVRT_Service vov = new VoyageVRT_Service();
-//        LoginAndSignupService loginSignup = new LoginAndSignupService();
-//        
-//        HotelCRUD hc=new HotelCRUD();
-//        String xx="2010-09-11";  
-   String xx2="2011-10-01";  
-//     Date date=Date.valueOf(xx);
-Date date2=Date.valueOf(xx2);
-//  
-//          Date datedebut = Date.valueOf(xx);
-//        Date datefinal = Date.valueOf(xx2 );//converting string into sql date   
-     //   voyage v2024 = new voyage(2024, "Madrid", "c://madrid.png");
 
-        //abonnement abon1 = new abonnement(2, "ss", 90, datedebut, datefinal, "Etat", 1);
-        //abonnement abon2 = new abonnement("ss", 90, datedebut, datefinal, "Etat", 1);
        
-       // a.ajouter(abon1);
-         //Voyage_virtuel vov2 = new Voyage_virtuel("Videsso", "Image", abon1, v2024);
-          //vov.afficher();
-             //vov.ajouter(vov2);   
-       //  vov.modifier(3,vov2);
-        // vov.supprimer(3);
-////
-////        user u1 = new user(9999, 5866, "dafdouf", "zakzouk", 5895, "zak@live.fr", "0000", "image",date2);
-////         // us.ajouter(u1);
-////        //us.supprimer(810);
-////        user u3 = new user(5866, "ges", "nay", 5895, "zak@live.fr", "0000", "image",date2);
-       user u4 = new user(60, "dafdouf", "zak", 5895, "zak@live.fr", "0000", "image",date2);
-////
-////       voyage v = new voyage(501,"tounis", "c://berlin.png");
-////             voyage chrf = new voyage(967,"istanbul", "c://antalya.png");
-////        voyage v1 = new voyage( 55555,"espagne", "c://espagne.png");
-////   // vs.ajout(v1); 
-////     //vs.ajout(v1); 
-////      //  System.out.println(vs.afficher());
-////               // System.out.println( v1.getPays());
-////       // System.out.println(v.getIdv());
-////
-////                                //voyage_organise vo2=new voyage_organise(5,50.6f,"Lufthansa",15,5,"torkiya","c://assets"); 
-////    /* voyage_organise vo3 = new voyage_organise(170.6f, "nex", 3, v);
-////          voyage_organise vo4 = new voyage_organise(10.6f, "flam", 3, v);*/
-////                voyage_organise vom = new voyage_organise(990.6f, "sounay", 3);
-////                
-////             
-////       
-////     String str="2020-09-01";  
-////      String str2="2050-09-01";  
-////     Date date1=Date.valueOf(str);
-////     Date date9=Date.valueOf(str2);//converting string into sql date      System.out.println(date);
-////                user u2 = new user(99925, "ssss", "cxx", 2568435, "fares@live.fr", doHashing("12345678"), "image",date9);
-////             // LoginAndSignupService LASS =new LoginAndSignupService();
-////              //LASS.Signup(u2);
-////            //  System.out.println(LASS.login("nex@live.fr", "aaaa"));
-////           //    us.ajouter(u1);
-////        // reservation_voyage rv=new reservation_voyage();
-////      //    rv.setIdrv(999);
-////   
-////       /*   rv.setDate_depart(date);
-////         rv.setDate_arrivee(date2);
-////         rv.setEtat("Paye");
-////          
-////         rv.setRef_paiement(1);
-////         rv.setUser(u2);
-////         rv.setVoyage(chrf);       */
-////        
-////       //rvs.ajouter(rv);  
-////        //rvs.modifier(10, rv);
-////        //rvs.supprimer(6);
-////    //     System.out.println(rvs.afficher());
-////         
-////         
-////        //System.out.println(vo3.getVoyage());
-////    // vos.ajouter(vo3);
-////      // vos.ajouter(vo4);
-////       //vos.modifier(79, vom);
-////       
-////       //vs.modifier(97,chrf);
-////    //vs.supprimer(360);
-////     
-////      //System.out.println(vos.afficher()); 
-////                    //  System.out.println(vo3.toString());
-////       
-////        //us.modifier(1,u3);
-////        // System.out.print(p.getId());
-////        //us.supprimer(4);
-////        //ps.modifier(p);
-////
-////  // System.out.print("ss"+us.afficher());
-////        //System.out.print(loginSignup.login("'zak@live.fr'", "0000"));
-Voiture v99 =new Voiture(663,"220TU120",12,"image","Mercedes");
-     VoitureCRUD VC=new VoitureCRUD();
-////      //VC.ajouterVoiture(v99);
+
+        
+//        
+//Voiture vr =new Voiture(5,"220TU120",96,"image","Mercedes");
+//     VoitureCRUD VC=new VoitureCRUD();
+//  //  VC.ajouterVoiture(vr);
+//  //    VC.afficherVoitures();
+////Chauffeur chauff= new Chauffeur("salah","chakhari","picture",55555,"hayaemchiaman","sjjjjjjjjal");
+//chauffeur_services ch= new chauffeur_services();
+//ch.afficher();
+//    
 ////             Voiture v98 =new Voiture(3,"220TU120",12,"image","bmw");
 ////        //VC.modifierVoiture(v98);
-               reservation_voiture rhv=new reservation_voiture();
-                  Reservation_voiture_Service rvs55= new Reservation_voiture_Service();
-                  
-                
-              /* rhv.setChauffeur("mohamed salah");
-              rhv.setPrix_rent((float) 5.5);
-              rhv.setTrajet("jerba");
-              rhv.setUser(u2);
-               rhv.setVoiture(v99);*/
-                     user u8 = new user(42,199525, "ssss", "cxx", 2568435, "nex@live.fr", doHashing("12345678"), "image",date2);
-              // us.ajouter(u8);
-                            Voiture v78 =new Voiture(2001,"220TU120",12,"image","bmw");
-                             //     VC.ajouterVoiture(v78);
-
-                    Chauffeur ch5=new Chauffeur(666, "belgecem", "ss", "image", 568, "desc");    
-             
-    reservation_voiture rhv99=new reservation_voiture( 66,2.2f,"jandouba",u8,v78,ch5);
-   // rvs55.ajouter(rhv99);
-     reservation_voiture rhv92=new reservation_voiture( 2.2f,"gafsa",u8,v78,ch5);
- // rvs55.modifier(36, rhv92);
- //rvs55.supprimer(36);
-  Chauffeur  h= new Chauffeur("5mayes", "salah" ,"taswira",6666666,"desc");
-  chauffeur_services cs=new chauffeur_services();
- // cs.ajouter(h);
-      //  cs.modifier(667, h);
-      //cs.supprimer(667);
-            //rvs55.ajouter(rhv1);
-              // rvs55.modifier(2,rhv1);
-              //rvs55.supprimer(2);
-             System.out.println(rvs55.afficher());
-            
-            
-            
-            //hotel h=new hotel("4 seasons",4,"gammarth");
-           // hotel h2=new hotel(12,"gulden tulip",4,"gammarth");
-         //  hc.ajouterHotel(h2);
-           // hc.modifierHotel(h2);
-           // hc.supprimerHotel(h2);
-          // Reserrvation_Hotel_Service rhs=new Reserrvation_Hotel_Service ();
-
-            //       reservation_hotel rh =new reservation_hotel("single",2,1,2.2f,u8,h2,date1,date9);
-          // rhs.ajouter(rh);
-                  // rhs.modifier(2, rh);
-                  // rhs.supprimer(2);
-                   
-                   
-                   
+//               reservation_voiture rhv=new reservation_voiture();
+//                  Reservation_voiture_Service rvs55= new Reservation_voiture_Service();
+//                  
+//             
+    }
+    
+    
+    
   
-// Serviceevenement se = new Serviceevenement() ; 
-// evenement e = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
-//  evenement e1 = new evenement(4, "aaaaaaa", "c", "7 rue 2938", date1, 120.0f) ; 
-//  //se.ajouter(e1);
-//    //se.modifier(e);
-//  // se.supprimer(1);
-//  // System.out.println(se.afficher());
-//   user ux = new user(817,195, "nex", "nex", 256845, "nex@live.fr", "aaaa", "image",date);
-//   //us.ajouter(ux);
-//  Servicereservation_event resE=new Servicereservation_event();
-//  reservation_event resev=new reservation_event(22,82,e,ux);
-//  //resE.ajout(resev);
-// // resE.modifier(22,resev);
-//  //resE.supprimer(22);
-//  
-//     //System.out.println(resE.afficher());
-//        
-//
-//  
-//                   
-                   
-    }
-    
-    
-    public static String doHashing(String password) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
 
-            messageDigest.update(password.getBytes());
-
-            byte[] resultByteArray = messageDigest.digest();
-
-            StringBuilder sb = new StringBuilder();
-
-            for (byte b : resultByteArray) {
-                sb.append(String.format("%02x", b));
-            }
-
-            return sb.toString();
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        return "";
-    }
-
-}
 

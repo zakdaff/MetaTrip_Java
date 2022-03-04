@@ -6,7 +6,7 @@
 package services.voiture;
 
 
-import entities.Voiture;
+import crud.Voiture;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,7 +41,7 @@ public class VoitureCRUD {
             pste.setString(5,v.getModele());
             
             pste.executeUpdate();
-            System.out.println("Ajouter ajoutée aves=c succès");
+            System.out.println("VOITURE ajoutée avec succès");
                 
         } catch (SQLException ex) {
            System.err.println(ex.getMessage());
@@ -73,10 +73,10 @@ public class VoitureCRUD {
         return myList ;
       
        }
-    
+
     public void supprimerVoiture(Voiture v){
         try {
-            String req ="DELETE FROM voiture where id_cmd=" + v.getIdvoit();
+            String req ="DELETE FROM voiture where Idvoit=" + v.getIdvoit();
             
              ste = conn.createStatement();
             ste.executeUpdate(req);
@@ -85,16 +85,16 @@ public class VoitureCRUD {
             System.out.println(ex.getMessage());
         }
     }
-     public void recherche_parmodele(String Modele){
-        String req ="SELECT * FROM voiture where Modele=" +Modele+"'";
-            try {
-             ste = conn.createStatement();
-            ste.executeUpdate(req);
-            System.out.println("voici tout les modeles de cette voiture "+Modele);
-              } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
+//     public void recherche_parmodele(String Modele){
+//        String req ="SELECT * FROM voiture where Modele=" +Modele+"'";
+//            try {
+//             ste = conn.createStatement();
+//            ste.executeUpdate(req);
+//            System.out.println("voici tout les modeles de cette voiture "+Modele);
+//              } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//    }
     
     
     public void modifierVoiture(Voiture v){

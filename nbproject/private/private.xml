@@ -3,25 +3,35 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/user/LoginAndSignupService.java</file>
-            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/View/Chauffeurdesign.fxml</file>
-            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/voiture/VoitureCRUD.java</file>
             <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/entities/etat.java</file>
-            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/View/chauffeurdesign.css</file>
-            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/entities/Voiture.java</file>
             <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/Config/Metatrip.java</file>
             <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/crud/wood.jpg</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/chauffeur/Ichaufffeur.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/crud/chauffeurdesign.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/crud/report.jrxml</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/reservation_voiture/IReservation_voiture.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/user/LoginAndSignupService.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/voiture/VoitureCRUD.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/viewvoiture/VoitureController.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/crud/CRUD.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/crud/Chauffeurdesign.fxml</file>
             <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/entities/Chauffeur.java</file>
-            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/View/ChauffeurdesignController.java</file>
             <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/Config/Datasource.java</file>
-            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/voiture/VoitureService.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/chauffeurview/test.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/viewvoiture/voiture.fxml</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/view_reservation_voiture/reservation_voiture.fxml</file>
             <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/entities/reservation_voiture.java</file>
             <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/chauffeur/chauffeur_services.java</file>
-            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/chauffeur/Ichaufffeur.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/view_reservation_voiture/Reservation_voitureController.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/chauffeurview/ChauffeurController.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/Chauffeurdesign/controller.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/crud/design.css</file>
             <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/reservation_voiture/Reservation_voiture_Service.java</file>
             <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/IService.java</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/chauffeurview/chauffeur.fxml</file>
+            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/Chauffeurdesign/java.java</file>
             <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/voiture/Ivoiture.java</file>
-            <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/services/reservation_voiture/IReservation_voiture.java</file>
             <file>file:/C:/Users/ASUS%20I7/Desktop/metaFinal/src/entities/user.java</file>
         </group>
     </open-files>

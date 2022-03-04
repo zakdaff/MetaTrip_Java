@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 public class Datasource {
 
-    private static String url = "jdbc:mysql://localhost:3306/metatrip";
+    private static String url = "jdbc:mysql://localhost:3306/gestionvoiture";
     private static String user = "root";
     private static String pwd = "";
     

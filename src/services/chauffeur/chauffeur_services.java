@@ -6,7 +6,7 @@
 package services.chauffeur;
 import entities.Chauffeur;
 import Config.Datasource;
-import entities.Voiture;
+import crud.Voiture;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,9 +35,9 @@ public class chauffeur_services implements Ichaufffeur {
 
     @Override
     public void ajouter(Chauffeur ch) {
-              System.out.println("595xssssssssssss"+ch); 
-              System.out.println("sssssssssssssssssssssssssssssssssssss"+ch.getetatDispo().name());
-  String req = "INSERT INTO `Chauffeur` (`nom`,`prenom`,`photo`,`tel`,`description`,`etatDispo`) VALUES (?,?,?,?,?,?)";
+//              System.out.println("595xssssssssssss"+ch); 
+//              System.out.println("sssssssssssssssssssssssssssssssssssss"+ch.getetatDispo());
+  String req = "INSERT INTO `chauffeur` (`nom`,`prenom`,`photo`,`tel`,`description`,`etatDispo`) VALUES (?,?,?,?,?,?)";
      
   try {	       
             pste = conn.prepareStatement(req);
@@ -45,9 +45,9 @@ public class chauffeur_services implements Ichaufffeur {
             pste.setString(1,ch.getnom());
             pste.setString(2,ch.getprenom());
             pste.setString(3,ch.getphoto());
-            pste.setInt(4,ch.gettel());
+            pste.setString(4,ch.gettel());
             pste.setString(5,ch.getdescription());
-            pste.setString(6,ch.getetatDispo().toString());
+            pste.setString(6,ch.getetatDispo());
 
             
             pste.executeUpdate();
@@ -59,7 +59,7 @@ public class chauffeur_services implements Ichaufffeur {
 
     @Override
     public void modifier(int idch, Chauffeur ch) {
-            String req = "UPDATE  `Chauffeur` SET "
+            String req = "UPDATE  `chauffeur` SET "
                 + "`nom`=?,`prenom`=?,`photo`=?,`tel`=?,`description`=?,`etatDispo`=? "
                 + "WHERE idch = '" + idch + "'";
         System.out.println(ch);
@@ -69,9 +69,9 @@ public class chauffeur_services implements Ichaufffeur {
             pste.setString(1,ch.getnom());
             pste.setString(2,ch.getprenom());
             pste.setString(3,ch.getphoto());
-            pste.setInt(4,ch.gettel());
+            pste.setString(4,ch.gettel());
             pste.setString(5,ch.getdescription());
-            pste.setString(6,ch.getetatDispo().toString());
+            pste.setString(6,ch.getetatDispo());
             pste.executeUpdate();
             System.out.println("Chauffeur modifiée");
            
@@ -86,7 +86,7 @@ public class chauffeur_services implements Ichaufffeur {
 
     @Override
     public void supprimer(int idch) {
-              String delete = "DELETE FROM Chauffeur  WHERE idch = ?";
+              String delete = "DELETE FROM chauffeur  WHERE idch = ?";
         try {
             pste = conn.prepareStatement(delete);
             pste.setInt(1, idch);
@@ -121,7 +121,7 @@ public class chauffeur_services implements Ichaufffeur {
 List<Chauffeur> maList=new ArrayList();
         try {
           
-            String requete ="SELECT * FROM Chauffeur";
+            String requete ="SELECT * FROM chauffeur";
                       ste = conn.createStatement();
             ResultSet res =ste.executeQuery(requete);
             
@@ -131,9 +131,9 @@ List<Chauffeur> maList=new ArrayList();
                   cha.setnom(res.getString(2));
                   cha.setprenom(res.getString(3));
                   cha.setphoto(res.getString(4));
-                  cha.settel(res.getInt(5));
+                  cha.settel(res.getString(5));
                   cha.setdescription(res.getString(6));
-                  //cha.setetatDispo(res.getString(7));
+                  cha.setetatDispo(res.getString(7));
                   
                
                maList.add(cha);
