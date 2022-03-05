@@ -212,7 +212,11 @@ public class Mapa extends MapView{
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-
+public static void test(){
+    
+    		final Mapa example = new Mapa("test");
+		example.generateMarker(map.getCenter());
+}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		final Mapa example = new Mapa("test");

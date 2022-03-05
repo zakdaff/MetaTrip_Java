@@ -109,7 +109,7 @@
       <Button layoutX="-1.0" layoutY="442.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gesion des voitures" />
       <Button layoutX="-1.0" layoutY="474.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voitures" />
       <Button layoutX="-1.0" layoutY="580.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Paramétre compte" />
-      <Button layoutX="-1.0" layoutY="613.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" />
+      <Button layoutX="-1.0" layoutY="613.0" onAction="#toUser" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" />
       <ImageView fitHeight="103.0" fitWidth="141.0" layoutX="74.0" layoutY="13.0">
          <image>
             <Image url="@../img/logo_meta.png" />

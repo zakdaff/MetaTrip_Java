@@ -90,6 +90,8 @@ static String email;
     private Label idv10;
     @FXML
     private Label idv50;
+    @FXML
+    private Button map;
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -268,6 +270,12 @@ public void link1(user user) throws Exception {
     } catch(Exception e) {
         e.printStackTrace();
     }
+
+    }
+
+    @FXML
+    private void map(ActionEvent event) {
+           Mapa.test();
     }
     
 

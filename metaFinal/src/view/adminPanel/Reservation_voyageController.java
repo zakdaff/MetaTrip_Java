@@ -6,6 +6,7 @@
 package view.adminPanel;
 
 import Config.Datasource;
+import Config.Metatrip;
 import entities.Voiture;
 import entities.reservation_voyage;
 import entities.user;
@@ -24,7 +25,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -38,10 +43,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import services.reservation_voyage.Reservation_Voyage_Service;
 import services.user.UserService;
 import services.voiture.VoitureCRUD;
 import services.voyage.voyageService;
+import view.PartieClient.Reservation_VoyageClientController;
 import view.login_signup.LoginController;
 
 /**
@@ -403,7 +410,26 @@ idu11.setValue(data.getIdu());
         showData();
         
     }
-    
+    @FXML
+public void toUser(ActionEvent event) throws Exception {
+  try {
+     
+            //Personne.user = ;
+            //Personne.user.get
+                   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login_signup/login.fxml"));
+            
+          Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));  
+            stage.show();
+         Metatrip.stg.close();   
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+       
+   
+
+}
 
     
 }
