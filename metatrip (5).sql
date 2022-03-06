@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 21 fév. 2022 à 17:54
+-- Généré le : dim. 06 mars 2022 à 20:33
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -45,11 +45,21 @@ CREATE TABLE `abonnement` (
 
 CREATE TABLE `chambre` (
   `idc` int(11) NOT NULL,
-  `numc` varchar(20) NOT NULL,
-  `type` enum('DISPO','INDISPO','','') NOT NULL,
-  `etat` varchar(20) NOT NULL,
-  `idh` int(11) NOT NULL
+  `numc` int(20) NOT NULL,
+  `image` varchar(1000) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `etat` varchar(40) NOT NULL,
+  `idh` int(11) NOT NULL,
+  `prixc` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `chambre`
+--
+
+INSERT INTO `chambre` (`idc`, `numc`, `image`, `type`, `etat`, `idh`, `prixc`) VALUES
+(135, 255, '', 'Double', 'Non Disponible', 12236, NULL),
+(136, 14, 'C:\\\\Users\\\\Nayrouz\\\\Documents\\\\NetBeansProjects\\\\metaFinal\\\\src\\\\image\\\\hotel4.jpg', 'Double', 'Disponible', 12235, NULL);
 
 -- --------------------------------------------------------
 
@@ -62,9 +72,9 @@ CREATE TABLE `chauffeur` (
   `nom` varchar(20) NOT NULL,
   `prenom` varchar(20) NOT NULL,
   `photo` varchar(20) NOT NULL,
-  `tel` double NOT NULL,
+  `tel` varchar(20) NOT NULL,
   `description` varchar(20) NOT NULL,
-  `etatDispo` enum('DISPO','INDISPO') NOT NULL
+  `etatDispo` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -72,7 +82,7 @@ CREATE TABLE `chauffeur` (
 --
 
 INSERT INTO `chauffeur` (`idch`, `nom`, `prenom`, `photo`, `tel`, `description`, `etatDispo`) VALUES
-(666, 'lam', 'fares', 'fares.png', 99999999, 'flam', 'DISPO');
+(666, 'lam', 'fares', 'fares.png', '99999999', 'flam', 'DISPO');
 
 -- --------------------------------------------------------
 
@@ -107,26 +117,17 @@ CREATE TABLE `hotel` (
   `Idh` int(11) NOT NULL,
   `Nom_hotel` varchar(20) NOT NULL,
   `Nb_etoiles` int(11) NOT NULL,
-  `Adresse` varchar(50) NOT NULL
+  `Adresse` varchar(50) NOT NULL,
+  `image` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `hotel`
 --
 
-INSERT INTO `hotel` (`Idh`, `Nom_hotel`, `Nb_etoiles`, `Adresse`) VALUES
-(1, 'gulden tulip', 4, 'gammarth'),
-(2, '4 seasons', 4, 'gammarth'),
-(3, '4 seasons', 4, 'gammarth'),
-(4, '4 seasons', 4, 'gammarth'),
-(5, '4 seasons', 4, 'gammarth'),
-(6, '4 seasons', 4, 'gammarth'),
-(7, '4 seasons', 4, 'gammarth'),
-(8, '4 seasons', 4, 'gammarth'),
-(9, '4 seasons', 4, 'gammarth'),
-(10, '4 seasons', 4, 'gammarth'),
-(11, '4 seasons', 4, 'gammarth'),
-(12, 'gulden tulip', 4, 'gammarth');
+INSERT INTO `hotel` (`Idh`, `Nom_hotel`, `Nb_etoiles`, `Adresse`, `image`) VALUES
+(12235, 'mouradi', 5, 'hammamet', 'C:\\Users\\Nayrouz\\Documents\\NetBeansProjects\\metaFinal\\src\\image\\hotel2.jpeg'),
+(12236, 'movenpick ', 5, 'gammarth', 'C:\\\\Users\\\\Nayrouz\\\\Documents\\\\NetBeansProjects\\\\metaFinal\\\\src\\\\image\\\\hotel3.jpg');
 
 -- --------------------------------------------------------
 
@@ -177,12 +178,11 @@ INSERT INTO `reservation_event` (`Idrev`, `Nb_pers`, `Ide`, `Idu`) VALUES
 
 CREATE TABLE `reservation_hotel` (
   `Idrh` int(11) NOT NULL,
-  `Type_room` varchar(20) NOT NULL,
   `Nb_nuitees` int(11) NOT NULL,
   `Nb_personnes` int(11) NOT NULL,
   `Prix` float NOT NULL,
   `Idu` int(11) NOT NULL,
-  `idc` int(11) NOT NULL,
+  `idh` int(11) NOT NULL,
   `Date_depart` date DEFAULT NULL,
   `Date_arrivee` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -191,9 +191,9 @@ CREATE TABLE `reservation_hotel` (
 -- Déchargement des données de la table `reservation_hotel`
 --
 
-INSERT INTO `reservation_hotel` (`Idrh`, `Type_room`, `Nb_nuitees`, `Nb_personnes`, `Prix`, `Idu`, `idc`, `Date_depart`, `Date_arrivee`) VALUES
-(1, 'single', 2, 1, 2.2, 811, 0, NULL, NULL),
-(3, 'single', 2, 1, 2.2, 811, 0, '2020-09-01', '2050-09-01');
+INSERT INTO `reservation_hotel` (`Idrh`, `Nb_nuitees`, `Nb_personnes`, `Prix`, `Idu`, `idh`, `Date_depart`, `Date_arrivee`) VALUES
+(24, 5, 10, 3000, 41, 12236, '2022-03-15', '2022-03-17'),
+(25, 2, 2, 240, 41, 12235, '2022-03-08', '2022-03-08');
 
 -- --------------------------------------------------------
 
@@ -207,7 +207,7 @@ CREATE TABLE `reservation_voiture` (
   `Trajet` varchar(20) NOT NULL,
   `Idu` int(11) NOT NULL,
   `Idvoit` int(11) NOT NULL,
-  `idch` int(11) NOT NULL
+  `idch` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -252,12 +252,27 @@ INSERT INTO `reservation_voyage` (`Idrv`, `Date_depart`, `Date_arrivee`, `etat`,
 CREATE TABLE `sponsor` (
   `ids` int(11) NOT NULL,
   `nomsponsor` varchar(20) NOT NULL,
-  `tel` double NOT NULL,
+  `tel` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `date_sp` date NOT NULL,
   `prix_sp` float NOT NULL,
   `ide` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `sponsor`
+--
+
+INSERT INTO `sponsor` (`ids`, `nomsponsor`, `tel`, `email`, `date_sp`, `prix_sp`, `ide`) VALUES
+(1, 'Vitalait', '22252718', 'amine@zarga.tn', '2011-10-01', 12, 2),
+(2, 'Vitalait', '22252718', 'amine@zarga.tn', '2011-10-01', 12, 2),
+(3, 'Vitalait', '22252718', 'amine@zarga.tn', '2011-10-01', 12, 2),
+(4, 'Vitalait', '22252718', 'amine@zarga.tn', '2011-10-01', 12, 2),
+(5, 'Vitalait', '22252718', 'amine@zarga.tn', '2011-10-01', 12, 2),
+(6, 'Vitalait', '22252718', 'amine@zarga.tn', '2011-10-01', 12, 2),
+(7, 'Vitalait', '22252718', 'amine@zarga.tn', '2011-10-01', 12, 2),
+(8, 'Vitalait', '22252718', 'amine@zarga.tn', '2011-10-01', 12, 2),
+(9, 'Vitalait', '22252718', 'amine@zarga.tn', '2011-10-01', 12, 2);
 
 -- --------------------------------------------------------
 
@@ -267,13 +282,13 @@ CREATE TABLE `sponsor` (
 
 CREATE TABLE `user` (
   `Idu` int(11) NOT NULL,
-  `Cin` double NOT NULL,
+  `Cin` varchar(20) NOT NULL,
   `Nom` varchar(20) NOT NULL,
   `Prenom` varchar(20) NOT NULL,
-  `Tel` double NOT NULL,
-  `Email` varchar(20) NOT NULL,
+  `Tel` varchar(20) NOT NULL,
+  `Email` varchar(38) NOT NULL,
   `Password` varchar(50) NOT NULL,
-  `Image` varchar(20) NOT NULL,
+  `Image` varchar(40) NOT NULL,
   `Role` int(11) DEFAULT 0,
   `dateNaissance` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -283,51 +298,61 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`Idu`, `Cin`, `Nom`, `Prenom`, `Tel`, `Email`, `Password`, `Image`, `Role`, `dateNaissance`) VALUES
-(41, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(42, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(43, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(44, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(45, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(46, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(47, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(48, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(49, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(50, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(51, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(52, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(53, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(54, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(55, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(56, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(57, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(58, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(59, 196525, 'ssss', 'cxx', 2568435, 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(60, 5866, 'dafdouf', 'zakzouk', 5895, 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(61, 5866, 'dafdouf', 'zakzouk', 5895, 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(62, 5866, 'dafdouf', 'zakzouk', 5895, 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(63, 5866, 'dafdouf', 'zakzouk', 5895, 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(64, 5866, 'dafdouf', 'zakzouk', 5895, 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(65, 5866, 'dafdouf', 'zakzouk', 5895, 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(66, 5866, 'dafdouf', 'zakzouk', 5895, 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(67, 5866, 'dafdouf', 'zakzouk', 5895, 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(68, 5866, 'dafdouf', 'zakzouk', 5895, 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(69, 5866, 'dafdouf', 'zakzouk', 5895, 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(70, 199525, 'ssss', 'cxx', 2568435, 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(71, 199525, 'ssss', 'cxx', 2568435, 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(72, 199525, 'ssss', 'cxx', 2568435, 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(73, 199525, 'ssss', 'cxx', 2568435, 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(74, 199525, 'ssss', 'cxx', 2568435, 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(75, 199525, 'ssss', 'cxx', 2568435, 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(76, 199525, 'ssss', 'cxx', 2568435, 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(77, 199525, 'ssss', 'cxx', 2568435, 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(78, 199525, 'ssss', 'cxx', 2568435, 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(811, 199525, 'ssss', 'cxx', 2568435, 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(812, 195, 'flam', 'fares', 256845, 'flam@live.fr', '0000', 'image', 0, '2010-09-11'),
-(813, 195, 'flam', 'fares', 256845, 'flam@live.fr', '0000', 'image', 0, '2010-09-11'),
-(814, 5866, 'dafdouf', 'zakzouk', 5895, 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
-(815, 195, 'nex', 'nex', 256845, 'nex@live.fr', 'aaaa', 'image', 0, '2010-09-11'),
-(816, 195, 'nex', 'nex', 256845, 'nex@live.fr', 'aaaa', 'image', 0, '2010-09-11'),
-(817, 195, 'nex', 'nex', 256845, 'nex@live.fr', 'aaaa', 'image', 0, '2010-09-11');
+(41, '196525', 'ssss', 'cxx', '29845823', 'gasmi.nayrouz@esprit.tn', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(42, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(43, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(44, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(45, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(47, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', 'e882b72bccfc2ad578c27b0d9b472a14', 'image', 0, '2011-10-01'),
+(48, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(49, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(50, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(51, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(52, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(53, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(54, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(55, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(56, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(57, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(58, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(59, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(60, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
+(61, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
+(62, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
+(63, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
+(64, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
+(65, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
+(66, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
+(67, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
+(68, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
+(69, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
+(70, '199525', 'ssss', 'cxx', '2568435', 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(71, '199525', 'ssss', 'cxx', '2568435', 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(73, '199525', 'ssss', 'cxx', '2568435', 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(74, '199525', 'ssss', 'cxx', '2568435', 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(75, '199525', 'ssss', 'cxx', '2568435', 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(76, '199525', 'ssss', 'cxx', '2568435', 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(77, '199525', 'ssss', 'cxx', '2568435', 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(78, '199525', 'ssss', 'cxx', '2568435', 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(811, '199525', 'ssss', 'cxx', '2568435', 'nex@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
+(812, '195', 'flam', 'fares', '256845', 'flam@live.fr', '0000', 'image', 0, '2010-09-11'),
+(813, '195', 'flam', 'fares', '256845', 'flam@live.fr', '0000', 'image', 0, '2010-09-11'),
+(814, '5866', 'dafdouf', 'zakzouk', '5895', 'zak@live.fr', '0000', 'image', 0, '2011-10-01'),
+(815, '195', 'nex', 'nex', '256845', 'nex@live.fr', 'aaaa', 'image', 0, '2010-09-11'),
+(816, '195', 'nex', 'nex', '256845', 'nex@live.fr', 'aaaa', 'image', 0, '2010-09-11'),
+(817, '195', 'nex', 'nex', '256845', 'nex@live.fr', 'aaaa', 'image', 0, '2010-09-11'),
+(818, '9638850', 'flam', 'med', '98222555', 'faresnex@esprit.tn', 'flamnex', 'fares.jpg', 0, '2020-02-07'),
+(819, '111112222', 'ben s3id', 'nexus', '92666777', '7anda3li@easy.tn', '2d1c78a165d1f3a5444caf4afe8e2d72', 'nex.png', 0, '1999-02-02'),
+(820, '9638850', 'si med flamedin', 'medssssss', '98222555', 'faresnex@esprit.tn', '2bef74e451a79914b1fc65e56fac5164', 'nexxs.jpg', 0, '2020-02-07'),
+(821, '99998888', 'fares', 'lam', '98305054', 'fares@esprit.com', '594f803b380a41396ed63dca39503542', 'fares.png', 0, '2022-02-22'),
+(822, '999999', 'fzzffez', 'fzfzf', '4444444', 'aaaa@a.tn', '5d793fc5b00a2348c3fb9ab59e5ca98a', 'aaaa.jpg', 0, '2022-02-09'),
+(823, '9993333', 'dafdafafa', 'fafafafafa', '90114475', 'fafafa@gmail.tn', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', 'dada.jpg', 0, '2006-03-09'),
+(824, '12345678', 'aaa', 'bbbb', '5555555', 'aaaa@aaa.tn', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', 'aaa.jpg', 0, '2001-02-03'),
+(825, '12345879', 'azzazaz', 'zzzzzzzzzz', '98665541', 'fares@esprit.tn', '5d793fc5b00a2348c3fb9ab59e5ca98a', 'fares.png', 0, '2000-02-02'),
+(826, '11223344', 'lamloum', 'fares', '98665580', 'fareslamloum@gmail.com', 'ab4f63f9ac65152575886860dde480a1', 'fares.png', 0, '2000-02-07'),
+(827, '1236987', 'lamloum', 'fares', '98663217', 'flam@gmail.com', '54965f9cd7e81588669cbbb393950569', 'fares.jpg', 0, '2000-02-07'),
+(828, '1230000', 'lamloum', 'fares', '98332140', 'fareslam@esprit.tn', '74b87337454200d4d33f80c4663dc5e5', 'fares.png', 0, '2000-07-08'),
+(831, '199525', 'ssss', 'cxx', '2568435', 'fares.lamloum@esprit.tn', '550e1bafe077ff0b0b67f4e32f29d751', 'image', 0, '2011-10-01');
 
 -- --------------------------------------------------------
 
@@ -371,7 +396,7 @@ INSERT INTO `voiture` (`Idvoit`, `Matricule`, `Puissance_fiscalle`, `Image_v`, `
 CREATE TABLE `voyage` (
   `Idv` int(11) NOT NULL,
   `Pays` varchar(20) NOT NULL,
-  `Image_pays` varchar(20) NOT NULL
+  `Image_pays` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -462,8 +487,8 @@ ALTER TABLE `abonnement`
 --
 ALTER TABLE `chambre`
   ADD PRIMARY KEY (`idc`),
-  ADD KEY `chambre_ibfk_1` (`idh`),
-  ADD KEY `idc` (`idc`);
+  ADD KEY `idc` (`idc`),
+  ADD KEY `idh` (`idh`);
 
 --
 -- Index pour la table `chauffeur`
@@ -506,7 +531,7 @@ ALTER TABLE `reservation_hotel`
   ADD PRIMARY KEY (`Idrh`),
   ADD KEY `Idrh` (`Idrh`),
   ADD KEY `FK_u` (`Idu`),
-  ADD KEY `fk_chh` (`idc`);
+  ADD KEY `kk_h` (`idh`);
 
 --
 -- Index pour la table `reservation_voiture`
@@ -583,7 +608,7 @@ ALTER TABLE `abonnement`
 -- AUTO_INCREMENT pour la table `chambre`
 --
 ALTER TABLE `chambre`
-  MODIFY `idc` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT pour la table `chauffeur`
@@ -601,7 +626,7 @@ ALTER TABLE `evenement`
 -- AUTO_INCREMENT pour la table `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `Idh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Idh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12237;
 
 --
 -- AUTO_INCREMENT pour la table `reservation_event`
@@ -613,7 +638,7 @@ ALTER TABLE `reservation_event`
 -- AUTO_INCREMENT pour la table `reservation_hotel`
 --
 ALTER TABLE `reservation_hotel`
-  MODIFY `Idrh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Idrh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `reservation_voiture`
@@ -631,13 +656,13 @@ ALTER TABLE `reservation_voyage`
 -- AUTO_INCREMENT pour la table `sponsor`
 --
 ALTER TABLE `sponsor`
-  MODIFY `ids` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ids` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `Idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=818;
+  MODIFY `Idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=832;
 
 --
 -- AUTO_INCREMENT pour la table `voiture`
@@ -674,6 +699,12 @@ ALTER TABLE `abonnement`
   ADD CONSTRAINT `FK_pai` FOREIGN KEY (`Ref_paiement`) REFERENCES `paiement` (`Ref_paiement`);
 
 --
+-- Contraintes pour la table `chambre`
+--
+ALTER TABLE `chambre`
+  ADD CONSTRAINT `fk_hot` FOREIGN KEY (`idh`) REFERENCES `hotel` (`Idh`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Contraintes pour la table `reservation_event`
 --
 ALTER TABLE `reservation_event`
@@ -684,7 +715,8 @@ ALTER TABLE `reservation_event`
 -- Contraintes pour la table `reservation_hotel`
 --
 ALTER TABLE `reservation_hotel`
-  ADD CONSTRAINT `FK_u` FOREIGN KEY (`Idu`) REFERENCES `user` (`Idu`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_u` FOREIGN KEY (`Idu`) REFERENCES `user` (`Idu`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kk_h` FOREIGN KEY (`idh`) REFERENCES `hotel` (`Idh`);
 
 --
 -- Contraintes pour la table `reservation_voiture`
