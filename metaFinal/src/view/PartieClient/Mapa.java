@@ -9,6 +9,7 @@ package view.PartieClient;
  *
  * @author medal
  */
+import Config.Datasource;
 import java.awt.BorderLayout;
 import java.util.concurrent.TimeUnit;
 
@@ -18,9 +19,22 @@ import javax.swing.WindowConstants;
 import com.teamdev.jxmaps.swing.MapView;
 
 import com.teamdev.jxmaps.*;
+import entities.localisationvoyage;
+import entities.user;
 import java.awt.event.ComponentAdapter;
 import static java.nio.file.Files.size;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import view.adminPanel.UserListController;
 
 public class Mapa extends MapView{
 	
@@ -62,37 +76,28 @@ public class Mapa extends MapView{
 	public void generateMarker(LatLng pos)
 	{        HashMap<String,LatLng > List = new HashMap< >();
         
+        ArrayList<localisationvoyage> localisationvoyage = new ArrayList<localisationvoyage>();
+                localisationvoyage= (ArrayList<localisationvoyage>) GetGPS();
+                
+                        ArrayList<LatLng> LatLng = new ArrayList<LatLng>();
+                         ArrayList<Marker> Marker = new ArrayList<Marker>();
+        for(int i = 0 ; i < localisationvoyage.size(); i++){
+             LatLng TN = new LatLng(localisationvoyage.get(i).getLatitude(),localisationvoyage.get(i).getLongitude());
+       
+             LatLng.add(TN);
+                
+        }
+         
+	   for(int i = 0 ; i < LatLng.size(); i++){
+            Marker  Marker1 = new Marker(map);
+            Marker1.setPosition(LatLng.get(i));
         
-        LatLng TN = new LatLng(36.7948624,10.0732375);
-          LatLng FR = new LatLng( 48.8588336,2.2769953);
-          LatLng DB = new LatLng( 25.0757595,54.9475542);
-                    LatLng QR = new LatLng( 25.2060906,51.0448971);
-                LatLng    AL = new LatLng(51.0054708,9.7018672  );
-       List.put("TN",TN );
-          List.put("FR",FR );
-             List.put("DB",DB );
-                List.put("QR",QR );
-                     List.put("AL",AL );
-	
-	
+        }
 			
-			 Marker  Marker1 = new Marker(map);
-                       map.setCenter(TN);
-			Marker1.setPosition(TN);
-                        Marker  marker2 = new Marker(map);
-                        	 marker2.setPosition(FR);
-                               Marker   marker3 = new Marker(map);
-                                marker3.setPosition(DB);
-                              Marker   marker4 = new Marker(map);
-                                    marker4.setPosition(QR);
-                                Marker     marker5 = new Marker(map);
-                                    marker5.setPosition(AL);
+			
                                     
 
 
-      final InfoWindow window = new InfoWindow(map);
-                                window.setContent("Tunisie");
-                                window.open(map,Marker1);
                                 
                                 
        
@@ -134,6 +139,26 @@ public class Mapa extends MapView{
 		circle.setVisible(true);
 		circle.setOptions(settingsCircle);
 	}
+        public List<localisationvoyage> GetGPS(){
+    
+	ArrayList<localisationvoyage> localisationvoyage = new ArrayList<localisationvoyage>(); 	
+                           Connection con = Datasource.getInstance().getCnx();
+				String select="SELECT  `latitude`, `longitude` FROM `localisationvoyage` ;";
+			
+				 try {
+            PreparedStatement st = con.prepareStatement(select);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                localisationvoyage u = new localisationvoyage();
+                u.setLatitude(rs.getFloat(1));
+                u.setLongitude(rs.getFloat(2));
+           
+                localisationvoyage.add(u);
+            }}
+         catch (SQLException ex) {
+         System.out.println(ex.getMessage());
+        }
+        return localisationvoyage;}
 
 	/**
 	 * Generate a line on the Map on the selected breakpoints
