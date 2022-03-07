@@ -103,7 +103,7 @@
                      </children></Pane>
                   <Pane layoutX="832.0" layoutY="89.0" prefHeight="198.0" prefWidth="269.0" style="-fx-background-color: lightblue; -fx-background-radius: 30;">
                      <children>
-                        <Text fx:id="nbv" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de voyages dispo">
+                        <Text id="nbv" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de voyages dispo">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>

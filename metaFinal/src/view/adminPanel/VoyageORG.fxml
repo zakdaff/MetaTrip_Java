@@ -77,7 +77,8 @@
                         <TableColumn fx:id="uAirline" prefWidth="205.0" text="Campagnie" />
                         <TableColumn fx:id="uNb_nuitees" prefWidth="104.0" text="Nb nuitées" />
                         <TableColumn fx:id="uetatVoyage" prefWidth="161.0" text="Status" />
-                        <TableColumn fx:id="uIdv" prefWidth="102.0" text="ID Voyage" />
+                        <TableColumn fx:id="uIdv" prefWidth="102.0" text=" Voyage" />
+                      
                     </columns>
                      
                      <columnResizePolicy>

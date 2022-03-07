@@ -8,17 +8,24 @@ package view.adminPanel;
 import Config.Datasource;
 import Config.Metatrip;
 import entities.EtatDispo;
+import entities.voyage;
 import entities.voyage_organise;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +44,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import services.user.UserService;
 import services.voyage.voyageService;
+import static services.voyage.voyageService.IDVOY;
 import services.voyage.voyage_organise.VoyageORG_Service;
 
 /**
@@ -65,7 +74,7 @@ public class VoyageORGController implements Initializable {
     @FXML
     private ComboBox<EtatDispo> etatVoyage;
     @FXML
-    private ComboBox<Integer> Idv;
+    private ComboBox<String> Idv;
     @FXML
     private TableView<voyage_organise> table_view;
     @FXML
@@ -85,17 +94,24 @@ public class VoyageORGController implements Initializable {
     private Statement statement;
     private ResultSet result;
 
-   
+       private Connection conn;
+    private Statement ste,ste2;
+    private PreparedStatement pste,pste2;
      private EtatDispo[] comboGender = {EtatDispo.DISPO, EtatDispo.INDISPO};
     
      VoyageORG_Service vos=new VoyageORG_Service();
+          voyageService vs=new voyageService();
     @FXML
     private TextField idvo1;
+    
+    public static int test=0;
     
          @Override
     public void initialize(URL url, ResourceBundle resource){
     
    comboBox();
+   uidvo.setVisible(false);
+   uIdv.setVisible(false);
         comboBox1();
        
       
@@ -123,24 +139,109 @@ public class VoyageORGController implements Initializable {
        @FXML
     public void comboBox1(){
         
-       voyageService vs= new voyageService();
-            List<Integer> list1 = new ArrayList<>();
-        for(Integer data:vs.getAllByID() ){
+     voyageService vs= new voyageService();
+            List<String> list1 = new ArrayList();
+          HashMap<Integer,String> listmap=new  HashMap<Integer,String> (); 
+         String req = "SELECT Idv,pays  from `voyage`";
+            try {
+                  conn = Datasource.getInstance().getCnx();
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
             
-            list1.add(data);
+            while(rs.next()){
+          
+                  
             
+               list1.add(rs.getString(2));
+               listmap.put(rs.getInt(1), rs.getString(2));
+            }
+              ObservableList dataList = FXCollections.observableArrayList(list1);
+                 Idv.setItems(dataList);
+                 boolean ok=false;
+                 for(Entry<Integer, String> entry: listmap.entrySet()) {
+                     if (entry.getValue().toString().equals(Idv.getSelectionModel().getSelectedItem()) && ok==false)
+                     {
+                         System.out.println("ID  "+ entry.getKey());
+                     
+                              test=entry.getKey();
+                     ok=true;
+                     
+                   /*  Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Adding voyage");
+
+		// Header Text: null
+		alert.setHeaderText(null);
+		alert.setContentText("id choisi"+test);
+
+		alert.showAndWait();*/
+                     break;
+                     }
+        
+              /* Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Adding voyage");
+
+		// Header Text: null
+		alert.setHeaderText(null);
+		alert.setContentText("id choisi"+test);
+
+		alert.showAndWait();*/
+                 }
+               
+        
+            }
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
         
-        ObservableList dataList = FXCollections.observableArrayList(list1);
-        
-        Idv.setItems(dataList);
-        
+   
+    
+
+   
+          
+       
     }
      
      
    
-
     
+    
+  
+     @FXML
+       public void selectData(){
+           etatVoyage.getSelectionModel().clearSelection();
+           
+       
+           
+          List<String> list1 = new ArrayList<>();
+     
+        voyage_organise vo = table_view.getSelectionModel().getSelectedItem();
+             
+        int num = table_view.getSelectionModel().getSelectedIndex();
+        
+        if((num-1) < -1)
+            return;
+        
+    if(vo.getEtatVoyage().toString().equals("DISPO")){
+       etatVoyage.getSelectionModel().selectFirst();
+    }else{
+       etatVoyage.getSelectionModel().selectLast();
+    }
+    
+   
+           
+ 
+     idvo.setText(String.valueOf(vo.getIdvo()));
+     prix_billet.setText(String.valueOf(vo.getPrix_billet()));
+      airline.setText(vo.getAirline());
+      nb_nuitees.setText(String.valueOf(vo.getNb_nuitees()));
+       String pays=vos.getByPays(vo.getIdv());
+       Idv.setValue(pays);
+         System.out.println("id choisi est "+vos.ID);
+       
+
+        
+    }
     
     
      public ObservableList<voyage_organise> dataList(){
@@ -247,7 +348,10 @@ public class VoyageORGController implements Initializable {
               prepare.setString(2, airline.getText());
               prepare.setInt(3,Integer.parseInt(nb_nuitees.getText()));
                 prepare.setString(4,String.valueOf(etatVoyage.getValue().name()));
-              prepare.setInt(5,Integer.parseInt(Idv.getValue().toString()));
+           
+                   // System.out.println(Idv.getSelectionModel().getSelectedItem());  
+              prepare.setInt(5,test);
+                
                          
                 prepare.executeUpdate();
             
@@ -464,34 +568,5 @@ public void toReserVoy(ActionEvent event) throws Exception {
     
     
 
-  
-     @FXML
-       public void selectData(){
-           etatVoyage.getSelectionModel().clearSelection();
-          List<String> list1 = new ArrayList<>();
-     
-        voyage_organise vo = table_view.getSelectionModel().getSelectedItem();
-             
-        int num = table_view.getSelectionModel().getSelectedIndex();
-        
-        if((num-1) < -1)
-            return;
-        
-    if(vo.getEtatVoyage().toString().equals("DISPO")){
-       etatVoyage.getSelectionModel().selectFirst();
-    }else{
-       etatVoyage.getSelectionModel().selectLast();
-    }
-
- 
-     idvo.setText(String.valueOf(vo.getIdvo()));
-     prix_billet.setText(String.valueOf(vo.getPrix_billet()));
-      airline.setText(vo.getAirline());
-      nb_nuitees.setText(String.valueOf(vo.getNb_nuitees()));
-        Idv.setValue(vo.getIdv());
-       
-
-        
-    }
     
 }

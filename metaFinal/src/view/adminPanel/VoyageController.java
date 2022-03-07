@@ -137,6 +137,7 @@ UserListController ul;
         sexe.setItems(sexel);
         sexe.setValue("Masculin");*/
         // TODO
+        uidv.setVisible(false);
         affiche();
     }  
     

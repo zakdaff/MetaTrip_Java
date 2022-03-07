@@ -22,6 +22,12 @@ public class voyage {
         this.Image_pays = Image_pays;
     }
 
+    public voyage(int Idv, String pays) {
+        this.Idv = Idv;
+        this.pays = pays;
+    }
+
+    
     
         public voyage(){}
 

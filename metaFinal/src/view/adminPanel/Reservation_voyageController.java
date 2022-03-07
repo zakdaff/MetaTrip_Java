@@ -381,11 +381,11 @@ idu11.setValue(data.getIdu());
     public void comboBox2(){
       voyageService u= new voyageService();
             List<Integer> list1 = new ArrayList<>();
-        for(Integer data:u.getAllByID()){
+       /* for(Integer data:u.getAllByID()){
            
             list1.add(data);
             
-        }
+        }*/
         
         ObservableList dataList = FXCollections.observableArrayList(list1);
         Idv122.setItems(dataList);

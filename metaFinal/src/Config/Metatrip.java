@@ -177,7 +177,7 @@ public class Metatrip  extends Application {
         System.out.println( vs.getAllByID());
         
         VoyageORG_Service vos = new VoyageORG_Service();
-        //vos.afficher().toString();
+        System.out.println("aff spec"+vos.afficherSpecial());
         abonnement_Service a = new abonnement_Service();
            VoyageVRT_Service vov = new VoyageVRT_Service();
         LoginAndSignupService loginSignup = new LoginAndSignupService();

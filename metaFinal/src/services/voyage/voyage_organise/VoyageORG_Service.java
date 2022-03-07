@@ -30,6 +30,7 @@ public class VoyageORG_Service implements IVoyage_ORG_Service{
     private PreparedStatement pste;
     private PreparedStatement pste2;
     EtatDispo ev;
+    public static int ID;
 
     public VoyageORG_Service() {
                 conn = Datasource.getInstance().getCnx();
@@ -61,6 +62,46 @@ public class VoyageORG_Service implements IVoyage_ORG_Service{
         
     }
 
+    
+    public String getByPays(int id)
+    {
+    
+       int x=0;
+     
+        String ch="";
+          voyage v= new voyage();
+               String req = "SELECT idv,pays FROM `voyage` WHERE Idv="+id+";";
+       
+        
+        try {
+
+              ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+             
+        
+                  v.setIdv( rs.getInt(1));
+                      v.setPays( rs.getString(2));
+         
+                                                
+                       ID=rs.getInt(1);          
+               ch=  rs.getString(2);
+                 
+                                                   
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return ch;
+    }
+    
+    
+    
+    
+    
+    
     
     @Override
     public void modifier(int idvo, voyage_organise vo) {
@@ -121,6 +162,7 @@ public class VoyageORG_Service implements IVoyage_ORG_Service{
                 vo.setNb_nuitees(rs.getInt(4));
                 vo.setEtatVoyage(EtatDispo.valueOf((rs.getString(5))));
                 vo.setIdv(rs.getInt(6));
+                
                 //Color color = Color.valueOf(resultSet.getString("color"));
 
                 //System.out.println(rs.getString(5).toString());
@@ -155,31 +197,35 @@ public class VoyageORG_Service implements IVoyage_ORG_Service{
     
     
     
-    public List<voyage_organise> afficherSpecial() {
-   List<voyage_organise> listVORG = new ArrayList<>();
+    public List<?> afficherSpecial() {
+   List<?> listVORG = new ArrayList<>();
    
-           List<voyage_organise> lista = new ArrayList<voyage_organise>();
+           List lista = new ArrayList();
          
     Statement statement;
     try {
         statement = conn.createStatement();
-              String req = "SELECT * FROM `voyage_organise` ;";
+              String req = "SELECT vo.idvo,vo.prix_billet,vo.airline,vo.etatVoyage,vo.nb_nuitees,v.idv,v.pays FROM `voyage` v,`voyage_organise` vo WHERE v.idv=vo.idv ;";
         //String req2 = "SELECT * FROM `voyage` where `Idv` = ?";
         ResultSet resultSet = statement.executeQuery(req);
         /* (name, price, weight, color, product count, size, material */
         while(resultSet.next()) {
-            int idv = resultSet.getInt("idvo");
+            int idvo = resultSet.getInt("idvo");
             Float prix_billet = resultSet.getFloat("prix_billet");
             String Airline = resultSet.getString("Airline");
             Integer Nb_nuitees = resultSet.getInt("Nb_nuitees");
-            EtatDispo etatVoyage = EtatDispo.valueOf(resultSet.getString("etatVoyage"));          
-            Integer Idv = resultSet.getInt("Idv");
+            EtatDispo etatVoyage = EtatDispo.valueOf(resultSet.getString("etatVoyage"));   
+            int idv=resultSet.getInt("idv");
+            String pays=resultSet.getString("pays");
             
 
-            voyage_organise v = new voyage_organise(idv, prix_billet, Airline, Nb_nuitees, etatVoyage, Idv);
+            voyage v=new voyage(idv,pays);
+            voyage_organise vo = new voyage_organise(idvo, prix_billet, Airline, Nb_nuitees, etatVoyage, v);
+            vo.setIdv(v.getIdv());
+           
             
-            lista.add(v);
-            //System.out.println(lista.toString());
+            lista.add(vo);
+           // System.out.println("lista.toString());
         }
 
     }

@@ -14,6 +14,7 @@ public class voyage_organise extends voyage{
     private EtatDispo etatVoyage;
     private voyage voyage;
     private int Idv;
+    private String pays;
    
   
 
@@ -111,12 +112,52 @@ public class voyage_organise extends voyage{
         this.Idv=Idv;
     }
 
+    public voyage_organise(int Idvo, float Prix_billet, String Airline, int Nb_nuitees, EtatDispo etatVoyage, voyage voyage, int Idv, String pays) {
+        this.Idvo = Idvo;
+        this.Prix_billet = Prix_billet;
+        this.Airline = Airline;
+        this.Nb_nuitees = Nb_nuitees;
+        this.etatVoyage = etatVoyage;
+        this.voyage = voyage;
+        this.Idv = Idv;
+        this.pays = pays;
+    }
+
+    public voyage_organise(int Idvo, float Prix_billet, String Airline, int Nb_nuitees, EtatDispo etatVoyage, int Idv, String pays) {
+        this.Idvo = Idvo;
+        this.Prix_billet = Prix_billet;
+        this.Airline = Airline;
+        this.Nb_nuitees = Nb_nuitees;
+        this.etatVoyage = etatVoyage;
+        this.Idv = Idv;
+        this.pays = pays;
+    }
+
   
 
 
     
 
-    
+        private String string;
+
+    /**
+     * Get the value of string
+     *
+     * @return the value of string
+     */
+    public String getString() {
+        return string;
+    }
+
+    /**
+     * Set the value of string
+     *
+     * @param string new value of string
+     */
+    public void setString(String string) {
+        this.string = string;
+    }
+
     
 
     public voyage_organise() {     this.Idvo=Idvo;
@@ -171,10 +212,11 @@ public class voyage_organise extends voyage{
 
     @Override
     public String toString() {
-        return "voyage_organise{" + "Idvo=" + Idvo + ", Prix_billet=" + Prix_billet + ", Airline=" + Airline + ", Nb_nuitees=" + Nb_nuitees + ", etatVoyage=" + etatVoyage + ", voyage=" + voyage + ", Idv=" + Idv + '}';
+        return "voyage_organise{" + "Idvo=" + Idvo + ", Prix_billet=" + Prix_billet + ", Airline=" + Airline + ", Nb_nuitees=" + Nb_nuitees + ", etatVoyage=" + etatVoyage + ", voyage=" + voyage + ", Idv=" + Idv + ", pays=" + pays + '}';
     }
 
   
+    
     
     
 }

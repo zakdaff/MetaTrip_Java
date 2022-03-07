@@ -15,6 +15,8 @@ import Config.Datasource;
 import entities.user;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import services.user.UserService;
 
 /**
@@ -24,8 +26,10 @@ import services.user.UserService;
 public class voyageService implements IVoyage{
     
     private Connection conn;
-    private Statement ste;
-    private PreparedStatement pste;
+    private Statement ste,ste2;
+    private PreparedStatement pste,pste2;
+    public static int IDVOY,T;
+  
 
     public voyageService() {
                   conn = Datasource.getInstance().getCnx();
@@ -133,11 +137,12 @@ public class voyageService implements IVoyage{
         }
     }
     
-     public  List<Integer> getAllByID()  {
-     List<Integer> ID = new ArrayList<>();
+     public  List<String> getAllByID()  {
+
+     List<String> CH = new ArrayList<>();
      
    
-          String req = "SELECT Idv  from `voyage`";
+          String req = "SELECT Idv,pays  from `voyage`";
             try {
 
             ste = conn.createStatement();
@@ -148,13 +153,16 @@ public class voyageService implements IVoyage{
                   
             
                
-                 ID.add(rs.getInt(1));                                   
-            }}
+                 CH.add(rs.getInt(1)+"  "+rs.getString(2));  
+                 IDVOY=rs.getInt(1);
+            }
+            
+            }
             catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return ID;    
+        return CH;    
     }
     
 
