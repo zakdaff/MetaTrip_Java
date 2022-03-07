@@ -43,6 +43,9 @@
                         <String fx:value="search-box" />
                         <String fx:value="shadow" />
                      </styleClass>
+                     <children>
+                        <Button fx:id="map" mnemonicParsing="false" onMouseClicked="#map" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: # #010D79;" styleClass="search-button" stylesheets="@../values/style.css" text="Map" textFill="WHITE" />
+                     </children>
                   </HBox>
                   <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
                   <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="484.0" prefWidth="296.0" stylesheets="@../values/style.css">
@@ -124,7 +127,7 @@
                         <HBox alignment="CENTER" prefHeight="28.0" prefWidth="79.0" styleClass="shopping-online-card" stylesheets="@../values/style.css" />
                         <Pane prefHeight="84.0" prefWidth="96.0">
                            <children>
-                              <Button fx:id="map" layoutX="41.0" layoutY="35.0" mnemonicParsing="false" onAction="#map" text="Map" />
+                              <Button fx:id="modifiercompte" layoutX="-18.0" layoutY="-1.0" mnemonicParsing="false" onAction="#link10" style="-fx-background-color: #010D79;" text="Modifier Compte" textFill="WHITE" />
                            </children></Pane>
                      </children>
                      <VBox.margin>

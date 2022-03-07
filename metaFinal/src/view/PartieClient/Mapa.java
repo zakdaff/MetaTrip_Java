@@ -10,6 +10,7 @@ package view.PartieClient;
  * @author medal
  */
 import Config.Datasource;
+import Config.Metatrip;
 import java.awt.BorderLayout;
 import java.util.concurrent.TimeUnit;
 
@@ -21,6 +22,7 @@ import com.teamdev.jxmaps.swing.MapView;
 import com.teamdev.jxmaps.*;
 import entities.localisationvoyage;
 import entities.user;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import static java.nio.file.Files.size;
 import java.sql.Connection;
@@ -34,6 +36,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javax.swing.JButton;
+import services.voyage.voyageService;
 import view.adminPanel.UserListController;
 
 public class Mapa extends MapView{
@@ -91,17 +100,22 @@ public class Mapa extends MapView{
 	   for(int i = 0 ; i < LatLng.size(); i++){
             Marker  Marker1 = new Marker(map);
             Marker1.setPosition(LatLng.get(i));
-        
+/*
+           
+     InfoWindow window = new InfoWindow(map);
+                                window.setContent("");
+                                window.open(map,Marker1);*/
         }
 			
-			
-                                    
-
+	
 
                                 
                                 
        
 	}
+        		
+                          
+
 
 	/**
 	 * Generate a simple nibe between two LatLong points
@@ -177,6 +191,7 @@ public class Mapa extends MapView{
 		Polyline polyline = new Polyline(map);
 		polyline.setPath(path);
 	}
+      
 
 	/**
 	 * Create a new Map panel whit the param Name
@@ -239,8 +254,19 @@ public class Mapa extends MapView{
 	}
 public static void test(){
     
+              Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("loading");
+                alert.setHeaderText("loading");
+                alert.setContentText("pouvez-vous attendre quelques secondes pour le chargement de map");
+                alert.show();
+                try{
+               
     		final Mapa example = new Mapa("test");
 		example.generateMarker(map.getCenter());
+                 }catch(NullPointerException ex){
+                                System.out.println("map closed");
+                         
+                 }
 }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

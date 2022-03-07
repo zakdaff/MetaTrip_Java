@@ -20,6 +20,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,6 +35,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import services.user.UserService;
 import view.adminPanel.Reservation_voyageController;
@@ -92,6 +94,8 @@ static String email;
     private Label idv50;
     @FXML
     private Button map;
+    @FXML
+    private Button modifiercompte;
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -272,11 +276,47 @@ public void link1(user user) throws Exception {
     }
 
     }
+      @FXML
+    private void link10(ActionEvent event) 
+    {
+     
+           UserService u= new UserService();
+   user u10=  u.getUserByEmail(username.getText());
+
+    try {
+        String zzz = String.valueOf(idv50.getText());
+            //Personne.user = ;
+            //Personne.user.get
+                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/modifierCompte.fxml"));
+            Parent root1 = loader1.load();
+            ModifierCompteController controller = loader1.getController();
+            controller.setUser(username.getText());
+       
+            //Personne.user = ;
+            //Personne.user.get
+            username.getScene().setRoot(root1);
+            idv50.getScene().setRoot(root1);
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+
+    }
+
 
     @FXML
-    private void map(ActionEvent event) {
-           Mapa.test();
+    private void map(MouseEvent event) {
+      
+ Mapa.test();
+ Metatrip.stg.show();
+
+    
+
     }
+
+    @FXML
+    private void modifiercompte(ActionEvent event) {
+    }
+    
     
 
 

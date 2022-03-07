@@ -414,12 +414,13 @@ public class UserService implements IuserService {
                 u.setImage(rs.getString(8));
                    u.setRole(rs.getInt(9));
                 u.setDateNaissance(rs.getDate(10));
-                 users.add(u) ;                                   
+                 users.add(u) ;    
+              
             }}
             catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+           System.out.println("1111111110"+u);
         return u;    
     }
     
