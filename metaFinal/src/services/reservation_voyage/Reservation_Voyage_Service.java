@@ -106,7 +106,7 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
    
         String req = "SELECT * FROM `reservation_voyage` ;";
         String req2 = "SELECT * FROM `voyage` where `Idv` = ?";
-        String req3 = "SELECT u.Idu,u.Cin,u.nom,u.prenom,u.tel,u.email,u.password,u.image,u.dateNaissance FROM `user` u where `Idu` = ?";
+        String req3 = "SELECT u.Idu,u.nom,u.prenom FROM `user` u where `Idu` = ?";
         //String req4 = "SELECT * FROM `paiement` where `Ref_paiement` = ?";
         
         try {
@@ -125,6 +125,8 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
                 rvo.setDate_depart(rs.getDate(2));
                 rvo.setDate_arrivee(rs.getDate(3));
                 rvo.setEtat(rs.getString(4));
+                rvo.setIdu(rs.getInt(5));
+                rvo.setIdv(rs.getInt(6));
                 //rvo.setIdu(rs.getInt(5));
                 //rvo.setIdv(rs.getInt(6));
                //rvo.setRef_paiement(rs.getInt(7));
@@ -141,16 +143,15 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
                 // pste4.setInt(1,rvo.getPaiement().getRef_paiement());
                    ResultSet rs3 = pste3.executeQuery(); 
                  ResultSet rs2 = pste2.executeQuery();
-                //affichage des voyage de req 2
-            
-                 //    ResultSet rs4 = pste4.executeQuery(); 
+           
+                 
                 
                 rs2.next();
                 
                   rs3.next();
                   
                  // rs4.next();
-               rvo.setUser(new user(rs3.getInt(1),rs3.getString(2),rs3.getString(3),rs3.getString(4),rs3.getString(5), rs3.getString(6),rs3.getString(7),rs3.getString(8),rs3.getDate(9)));
+               rvo.setUser(new user(rs3.getInt(1),rs3.getString(2),rs3.getString(3)));
 
                rvo.setVoyage(new voyage(rs2.getInt(1),rs2.getString(2),rs2.getString(3)));
                         

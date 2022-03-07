@@ -99,6 +99,7 @@ import org.apache.pdfbox.pdmodel.graphics.PDXObject;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.pdmodel.graphics.xobject.PDJpeg;
 import services.sponsor.Servicesponsor;
+import static services.voyage.voyage_organise.VoyageORG_Service.ID;
 
 
 /**
@@ -113,6 +114,8 @@ public class UserService implements IuserService {
     private Connection conn;
     private Statement ste;
     private PreparedStatement pste;
+    
+    public static int idd;
 
     public UserService() {
         conn = Datasource.getInstance().getCnx();
@@ -668,6 +671,42 @@ List<Object> voyages = new ArrayList<>();
     }
             
          
+    public String getByCIN_NOM_PRENOM(int id)
+    {
+    
+       int x=0;
+     
+        String ch="";
+          user u= new user();
+               String req = "SELECT idu,cin,nom,prenom FROM `user` WHERE Idu="+id+";";
+       
+        
+        try {
+
+              ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+             
+        
+                  u.setIdu(rs.getInt(1));
+                      u.setCin(rs.getString(2));
+                      u.setNom(rs.getString(3));
+                      u.setPrenom(rs.getString(4));
+         
+                                                
+                       idd=rs.getInt(1);          
+               ch=  rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4);
+                 
+                                                   
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return ch;
+    }
+    
 
 
 }

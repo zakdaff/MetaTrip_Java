@@ -18,6 +18,9 @@ public class reservation_voyage {
     private user user;
     private paiement paiement;
     private voyage voyage;
+    private String pays;
+    private String nom;
+    private String prenom;
 
     public reservation_voyage(int Idrv, Date Date_depart, Date Date_arrivee, String etat, int Idu, int Idv, int Ref_paiement) {
         this.Idrv = Idrv;
@@ -140,6 +143,43 @@ public class reservation_voyage {
 
     public void setVoyage(voyage voyage) {
         this.voyage = voyage;
+    }
+
+    public String getPays() {
+        return pays;
+    }
+
+    public void setPays(String pays) {
+        this.pays = pays;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public reservation_voyage(Date Date_depart, Date Date_arrivee, String etat, user user, paiement paiement, voyage voyage, String pays, String nom, String prenom) {
+        this.Date_depart = Date_depart;
+        this.Date_arrivee = Date_arrivee;
+        this.etat = etat;
+      
+        this.user = user;
+        this.paiement = paiement;
+        this.voyage = voyage;
+        this.pays = pays;
+        this.nom = nom;
+        this.prenom = prenom;
     }
 
     

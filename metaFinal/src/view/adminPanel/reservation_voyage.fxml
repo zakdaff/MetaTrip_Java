@@ -16,12 +16,12 @@
    <children>
       <AnchorPane fx:id="left_main" layoutX="296.0" layoutY="50.0" prefHeight="475.0" prefWidth="295.0">
          <children>
-            <TextField fx:id="Idrv258" editable="false" layoutX="135.0" layoutY="37.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Idrv" styleClass="textfield-design" stylesheets="@design.css" AnchorPane.leftAnchor="135.0">
+            <TextField fx:id="Idrv258" editable="false" layoutX="135.0" layoutY="37.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" opacity="0.0" prefHeight="28.0" prefWidth="220.0" promptText="Idrv" styleClass="textfield-design" stylesheets="@design.css" AnchorPane.leftAnchor="135.0">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <Label fx:id="Idrv0" layoutX="29.0" layoutY="41.0" text="Idrv">
+            <Label fx:id="Idrv0" layoutX="29.0" layoutY="41.0" opacity="0.0" text="Idrv">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
@@ -31,50 +31,50 @@
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="6.0" layoutY="123.0" text="Date_arrivee">
+            <Label layoutX="6.0" layoutY="132.0" text="Date_arrivee">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="etat" layoutX="26.0" layoutY="166.0" text="etat">
+            <Label fx:id="etat" layoutX="26.0" layoutY="183.0" text="Etat">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <ComboBox fx:id="etat15" layoutX="138.0" layoutY="162.0" onAction="#comboBox" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choose..." styleClass="textfield-design" stylesheets="@design.css" />
-            <Label fx:id="Idu1" layoutX="29.0" layoutY="216.0" text="Idu ">
+            <ComboBox fx:id="etat15" layoutX="138.0" layoutY="179.0" onAction="#comboBox" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choose..." styleClass="textfield-design" stylesheets="@design.css" />
+            <Label fx:id="Idu1" layoutX="9.0" layoutY="238.0" text="Utilisateur">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="insert" layoutX="19.0" layoutY="375.0" mnemonicParsing="false" onAction="#insert50" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: lightblue;" styleClass="insert-button" stylesheets="@design.css" text="Save" />
-            <Button fx:id="update" layoutX="124.0" layoutY="375.0" mnemonicParsing="false" onAction="#update" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: #6DF0AB;" styleClass="update-button" stylesheets="@design.css" text="Edit">
+            <Button fx:id="insert" layoutX="19.0" layoutY="408.0" mnemonicParsing="false" onAction="#insert50" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: lightblue;" styleClass="insert-button" stylesheets="@design.css" text="Save" />
+            <Button fx:id="update" layoutX="124.0" layoutY="408.0" mnemonicParsing="false" onAction="#update" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: #6DF0AB;" styleClass="update-button" stylesheets="@design.css" text="Edit">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="clear" layoutX="124.0" layoutY="434.0" mnemonicParsing="false" onAction="#clear" prefHeight="33.0" prefWidth="87.0" styleClass="clear-button" stylesheets="@design.css" text="Clear" />
-            <ComboBox fx:id="idu11" layoutX="138.0" layoutY="212.0" onAction="#comboBox1" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choose..." styleClass="textfield-design" stylesheets="@design.css" />
-            <ComboBox fx:id="Idv122" layoutX="135.0" layoutY="272.0" onAction="#comboBox2" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choose..." styleClass="textfield-design" stylesheets="@design.css" />
-            <Label fx:id="Idv1" layoutX="30.0" layoutY="276.0" text="Idv ">
+            <Button fx:id="clear" layoutX="124.0" layoutY="467.0" mnemonicParsing="false" onAction="#clear" prefHeight="33.0" prefWidth="87.0" styleClass="clear-button" stylesheets="@design.css" text="Clear" />
+            <ComboBox fx:id="idu11" layoutX="138.0" layoutY="234.0" onAction="#comboBox1" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choose..." styleClass="textfield-design" stylesheets="@design.css" />
+            <ComboBox fx:id="Idv122" layoutX="135.0" layoutY="293.0" onAction="#comboBox2" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choose..." styleClass="textfield-design" stylesheets="@design.css" />
+            <Label fx:id="Idv1" layoutX="18.0" layoutY="297.0" text="Voyage">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="Refpaiement" layoutX="8.0" layoutY="324.0" text="Ref_paiement ">
+            <Label fx:id="Refpaiement" layoutX="8.0" layoutY="357.0" text="Ref_paiement ">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="Refpaiement1" layoutX="138.0" layoutY="320.0" prefHeight="31.0" prefWidth="218.0" />
-            <DatePicker fx:id="Date_depart" layoutX="136.0" layoutY="78.0" />
-            <DatePicker fx:id="Date_arrivee" layoutX="136.0" layoutY="119.0" />
-            <Button fx:id="delete" layoutX="236.0" layoutY="375.0" mnemonicParsing="false" onAction="#delete" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: #FF4D4D;" styleClass="delete-button" stylesheets="@design.css" text="Delete" />
+            <TextField fx:id="Refpaiement1" layoutX="138.0" layoutY="353.0" prefHeight="31.0" prefWidth="218.0" />
+            <DatePicker fx:id="Date_depart" layoutX="136.0" layoutY="78.0" promptText="date depart" />
+            <DatePicker fx:id="Date_arrivee" layoutX="136.0" layoutY="128.0" promptText="date arrivee" />
+            <Button fx:id="delete" layoutX="236.0" layoutY="408.0" mnemonicParsing="false" onAction="#delete" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: #FF4D4D;" styleClass="delete-button" stylesheets="@design.css" text="Delete" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="595.0" prefHeight="497.0" prefWidth="942.0">
+      <AnchorPane layoutX="672.0" layoutY="20.0" prefHeight="497.0" prefWidth="942.0">
          <children>
-            <TableView fx:id="table_view" layoutX="93.0" layoutY="82.0" onMouseClicked="#selectData" prefHeight="364.0" prefWidth="781.0">
+            <TableView fx:id="table_view" layoutX="168.0" layoutY="90.0" onMouseClicked="#selectData" prefHeight="364.0" prefWidth="781.0">
               <columns>
                 <TableColumn fx:id="col_id" prefWidth="66.0" text="Idrv" />
                 <TableColumn fx:id="col_date_depart" prefWidth="162.0" text="Date_depart" />
@@ -103,10 +103,10 @@
                </image>
             </ImageView>
          </children></AnchorPane>
-      <Button layoutX="-1.0" layoutY="119.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des utlisateurs" onAction="#toUser"/>
-      <Button layoutX="-1.0" layoutY="151.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages" onAction="#toVoy"/>
-      <Button layoutX="-1.0" layoutY="183.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages organisés" onAction="#toVoyORG"/>
-      <Button layoutX="-1.0" layoutY="215.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages virtuels" onAction="#toReserVoy"/>
+      <Button layoutX="-1.0" layoutY="119.0" mnemonicParsing="false" onAction="#toUser" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des utlisateurs" />
+      <Button layoutX="-1.0" layoutY="151.0" mnemonicParsing="false" onAction="#toVoy" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages" />
+      <Button layoutX="-1.0" layoutY="183.0" mnemonicParsing="false" onAction="#toVoyORG" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages organisés" />
+      <Button layoutX="-1.0" layoutY="215.0" mnemonicParsing="false" onAction="#toReserVoy" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages virtuels" />
       <Button layoutX="-1.0" layoutY="247.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voyages" />
       <Button layoutX="-1.0" layoutY="280.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des hôtels" />
       <Button layoutX="-1.0" layoutY="312.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des chambres" />
@@ -115,8 +115,8 @@
       <Button layoutX="-1.0" layoutY="410.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservation évenements" />
       <Button layoutX="-1.0" layoutY="442.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gesion des voitures" />
       <Button layoutX="-1.0" layoutY="474.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voitures" />
-      <Button layoutX="-1.0" layoutY="580.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Paramétre compte" onAction="#settings"/>
-      <Button layoutX="-1.0" layoutY="613.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" onAction="#logout"/>
-      <Button layoutX="-1.0" layoutY="86.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Acceuil" onAction="#home"/>
+      <Button layoutX="-1.0" layoutY="580.0" mnemonicParsing="false" onAction="#settings" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Paramétre compte" />
+      <Button layoutX="-1.0" layoutY="613.0" mnemonicParsing="false" onAction="#logout" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" />
+      <Button layoutX="-1.0" layoutY="86.0" mnemonicParsing="false" onAction="#home" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Acceuil" />
    </children>
 </AnchorPane>

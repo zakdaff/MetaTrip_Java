@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <VBox prefHeight="671.0" prefWidth="1222.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.UserListController">
   <children>
@@ -23,7 +22,7 @@
       <children>
         <VBox layoutX="337.0" layoutY="89.0" prefHeight="157.0" prefWidth="62.0" spacing="25.0">
             <children>
-                <Label styleClass="labelform" text="ID" />
+                <Label opacity="0.0" styleClass="labelform" text="ID" />
                 <Label layoutX="10.0" layoutY="10.0" styleClass="labelform" text="CIN" />
                 <Label layoutX="10.0" layoutY="27.0" styleClass="labelform" text="NOM" />
                         <Label styleClass="labelform" text="PRENOM" />
@@ -90,7 +89,7 @@
         </TableView>
         <VBox layoutX="426.0" layoutY="79.0" prefHeight="346.0" prefWidth="199.0" spacing="15.0">
             <children>
-                            <TextField fx:id="idu" editable="false" prefHeight="20.0" prefWidth="80.0" />
+                            <TextField fx:id="idu" editable="false" opacity="0.0" prefHeight="20.0" prefWidth="80.0" />
                             <TextField fx:id="cin" layoutX="10.0" layoutY="10.0" />
                             <TextField fx:id="nom" layoutX="10.0" layoutY="20.0" />
                             <TextField fx:id="prenom" styleClass="field" />

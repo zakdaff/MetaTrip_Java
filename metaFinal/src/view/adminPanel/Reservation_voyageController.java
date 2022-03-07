@@ -11,10 +11,15 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,6 +47,8 @@ import services.reservation_voyage.Reservation_Voyage_Service;
 import services.user.UserService;
 import services.voiture.VoitureCRUD;
 import services.voyage.voyageService;
+import services.voyage.voyage_organise.VoyageORG_Service;
+import static view.adminPanel.VoyageORGController.test;
 import view.login_signup.LoginController;
 
 /**
@@ -84,9 +91,9 @@ public class Reservation_voyageController implements Initializable {
             @FXML
         private ComboBox<?> etat15;
     @FXML
-    private ComboBox<Integer> idu11;
+    private ComboBox<String> idu11;
     @FXML
-    private ComboBox<Integer> Idv122;
+    private ComboBox<String> Idv122;
     @FXML
     private Label Idv1;
 
@@ -113,7 +120,15 @@ public class Reservation_voyageController implements Initializable {
     private Statement statement;
     private ResultSet result;
     
-    
+
+       private Connection conn;
+    private Statement ste,ste2;
+    private PreparedStatement pste,pste2;
+     public static int Tidu=0;
+     public static int Tidv=0;
+         VoyageORG_Service vos=new VoyageORG_Service();
+         UserService us=new UserService();
+          voyageService vs=new voyageService();
     private String[] comboGender = {"NonPaye", "Paye"};
     
 public user setUser(String username) {
@@ -123,6 +138,28 @@ public user setUser(String username) {
          return u1;
     }
     
+
+  @Override
+    public void initialize(URL url, ResourceBundle resource){
+    col_id.setVisible(false);
+    col_Idu.setVisible(false);
+    col_Idv.setVisible(false);
+    col_Ref_paiement.setVisible(false);
+    
+    
+    
+        comboBox();
+        comboBox1();
+          comboBox2();
+        defaultId();
+       
+      
+        showData();
+        
+    }
+
+
+
         @FXML
     public void comboBox(){
         
@@ -145,18 +182,77 @@ public user setUser(String username) {
     public void comboBox1(){
         
        UserService u= new UserService();
-            List<Integer> list1 = new ArrayList<>();
-        for(Integer data:u.gelallID() ){
+            List<String> list1 = new ArrayList<>();
+  
+          HashMap<Integer,String> listmap=new  HashMap<Integer,String> (); 
+         String req = "SELECT Idu,cin,nom,prenom from `user`";
+            try {
+                  conn = Datasource.getInstance().getCnx();
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
             
-            list1.add(data);
+            while(rs.next()){
+          
+                  
             
-        }
-        
-        ObservableList dataList = FXCollections.observableArrayList(list1);
-        
-        idu11.setItems(dataList);
+               list1.add(rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
+               listmap.put(rs.getInt(1), rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
+            }
+              ObservableList dataList = FXCollections.observableArrayList(list1);
+                 idu11.setItems(dataList);
+                 boolean ok=false;
+                 for(Map.Entry<Integer, String> entry: listmap.entrySet()) {
+                     if (entry.getValue().toString().equals(idu11.getSelectionModel().getSelectedItem()) && ok==false)
+                     {
+                         System.out.println("ID  "+ entry.getKey());
+                     
+                              Tidu=entry.getKey();
+                     ok=true;
+                       break; }  }
+            }
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }   
         
     }
+    
+    
+            @FXML
+    public void comboBox2(){
+        
+     voyageService vs= new voyageService();
+            List<String> list1 = new ArrayList();
+          HashMap<Integer,String> listmap=new  HashMap<Integer,String> (); 
+         String req = "SELECT Idv,pays  from `voyage`";
+            try {
+                  conn = Datasource.getInstance().getCnx();
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                  
+            
+               list1.add(rs.getString(2));
+               listmap.put(rs.getInt(1), rs.getString(2));
+            }
+              ObservableList dataList = FXCollections.observableArrayList(list1);
+                 Idv122.setItems(dataList);
+                 boolean ok=false;
+                 for(Map.Entry<Integer, String> entry: listmap.entrySet()) {
+                     if (entry.getValue().toString().equals(Idv122.getSelectionModel().getSelectedItem()) && ok==false)
+                     {
+                         System.out.println("ID  "+ entry.getKey());
+                     
+                              Tidv=entry.getKey();
+                     ok=true;
+                       break; }  }
+            }
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+  
     
     public ObservableList<reservation_voyage> dataList(){
         
@@ -281,8 +377,8 @@ public user setUser(String username) {
                  prepare.setDate(1,date1);
               prepare.setDate(2, date2);
               prepare.setString(3, etat15.getValue().toString());
-               prepare.setInt(4, Integer.parseInt(idu11.getValue().toString()));
-              prepare.setInt(5,Integer.parseInt(Idv122.getValue().toString()));
+               prepare.setInt(4,Tidu);
+              prepare.setInt(5,Tidv);
                             prepare.setInt(6,Integer.parseInt(Refpaiement1.getText().toString()));
                 prepare.executeUpdate();
             
@@ -332,7 +428,7 @@ public user setUser(String username) {
           List<String> list1 = new ArrayList<>();
      
         reservation_voyage data = table_view.getSelectionModel().getSelectedItem();
-              System.out.println("tttttttttttttttttttttttS"+data.getIdu());
+             // System.out.println("tttttttttttttttttttttttS"+data.getIdu());
         int num = table_view.getSelectionModel().getSelectedIndex();
         
         if((num-1) < -1)
@@ -348,8 +444,11 @@ if(data.getEtat().toString().equals("NonPaye")){
      Idrv258.setText(String.valueOf(data.getIdrv()));
      Date_depart.setValue(data.getDate_depart().toLocalDate());
       Date_arrivee.setValue(data.getDate_arrivee().toLocalDate());
-idu11.setValue(data.getIdu());
-        Idv122.setValue(data.getIdv());
+    String coord=us.getByCIN_NOM_PRENOM(data.getIdu());
+      idu11.setValue(coord);
+    
+    String pays=vos.getByPays(data.getIdv());
+        Idv122.setValue(pays);
        Refpaiement1.setText(String.valueOf(data.getRef_paiement()));
         
     }
@@ -377,32 +476,7 @@ idu11.setValue(data.getIdu());
         
     }
       
-         @FXML
-    public void comboBox2(){
-      voyageService u= new voyageService();
-            List<Integer> list1 = new ArrayList<>();
-       /* for(Integer data:u.getAllByID()){
-           
-            list1.add(data);
-            
-        }*/
-        
-        ObservableList dataList = FXCollections.observableArrayList(list1);
-        Idv122.setItems(dataList);
-        
-    }
-    @Override
-    public void initialize(URL url, ResourceBundle resource){
-    
-        comboBox();
-        comboBox1();
-          comboBox2();
-        defaultId();
-       
-      
-        showData();
-        
-    }
+ 
     
 
     

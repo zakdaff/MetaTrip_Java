@@ -220,7 +220,7 @@ public class VoyageORG_Service implements IVoyage_ORG_Service{
             
 
             voyage v=new voyage(idv,pays);
-            voyage_organise vo = new voyage_organise(idvo, prix_billet, Airline, Nb_nuitees, etatVoyage, v);
+            voyage_organise vo = new voyage_organise(idvo, prix_billet, Airline, Nb_nuitees, etatVoyage, v,pays);
             vo.setIdv(v.getIdv());
            
             

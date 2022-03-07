@@ -139,7 +139,7 @@ public class Metatrip  extends Application {
     	@Override
 	public void start(Stage primaryStage) throws IOException {
             
-             Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/Voyage.fxml"));
+             Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/Reservation_voyage.fxml"));
         Scene scene = new Scene(root, 1200, 650);
      this.stg=primaryStage;
         primaryStage.setTitle("Welcome to MetaTrip!");
@@ -170,8 +170,7 @@ public class Metatrip  extends Application {
         UserService us = new UserService();
         Reservation_Voyage_Service rvs=  new Reservation_Voyage_Service();
         
-        
-
+        System.out.println(rvs.afficher());
         
         voyageService vs= new voyageService();
         System.out.println( vs.getAllByID());
@@ -230,8 +229,8 @@ public class Metatrip  extends Application {
                // voyage_organise vom = new voyage_organise(990.6f, "sounay", 3);
                 //vos.ajouter(vom);
         //vos.modifier(88, vom);
-        System.out.println("List voyages par date croissante"+ us.VoyageParDates());
-           System.out.println("Le nombre de users est = "+us.nbUsers());
+        //System.out.println("List voyages par date croissante"+ us.VoyageParDates());
+       //    System.out.println("Le nombre de users est = "+us.nbUsers());
                 //vos.ajouter(vo3);
       //  System.out.println("List voyages par date croissante"+ us.VoyageParDates());
          //  System.out.println("Le nombre de users est = "+us.nbUsers());
@@ -442,7 +441,7 @@ String strd="2020-09-01";
 //       //vs.modifier(97,chrf);
 //    //vs.supprimer(360);
 //     
-System.out.println(vos.afficher().toString()); 
+System.out.println("vosss"+vos.afficher().toString()); 
 //                    //  System.out.println(vo3.toString());
 //       
 //        //us.modifier(1,u3);

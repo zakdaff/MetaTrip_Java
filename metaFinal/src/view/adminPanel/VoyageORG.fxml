@@ -22,7 +22,7 @@
     <children>
         <VBox layoutX="308.0" layoutY="81.0" prefHeight="157.0" prefWidth="95.0" spacing="25.0">
             <children>
-                <Label styleClass="labelform" text="IDV_ORG" />
+                <Label opacity="0.0" styleClass="labelform" text="IDV_ORG" />
                 <Label layoutX="10.0" layoutY="10.0" styleClass="labelform" text="Prix Billet" />
                 <Label layoutX="10.0" layoutY="27.0" styleClass="labelform" text="Campagnie " />
                   <Label layoutX="10.0" layoutY="27.0" styleClass="labelform" text="Nb nuits" />
@@ -61,7 +61,7 @@
         <Pane layoutX="96.0" layoutY="12.0" prefHeight="39.0" prefWidth="634.0" />
         <VBox layoutX="438.0" layoutY="79.0" prefHeight="192.0" prefWidth="247.0" spacing="15.0">
             <children>
-                            <TextField fx:id="idvo" editable="false" prefHeight="20.0" prefWidth="80.0" />
+                            <TextField fx:id="idvo" editable="false" opacity="0.0" prefHeight="20.0" prefWidth="80.0" />
                             <TextField fx:id="prix_billet" layoutX="10.0" layoutY="10.0" />
                             <TextField fx:id="airline" layoutX="10.0" layoutY="20.0" />
                              <TextField fx:id="nb_nuitees" layoutX="10.0" layoutY="20.0" />
@@ -98,11 +98,11 @@
                               <Image url="@../img/logo_meta.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="-1.0" layoutY="105.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des utlisateurs" onAction="#toUser"/>
-                        <Button layoutX="-1.0" layoutY="138.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages" onAction="#toVoy"/>
-                        <Button layoutX="-1.0" layoutY="171.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages organisés" onAction="#toVoyORG" />
+                        <Button layoutX="-1.0" layoutY="105.0" mnemonicParsing="false" onAction="#toUser" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des utlisateurs" />
+                        <Button layoutX="-1.0" layoutY="138.0" mnemonicParsing="false" onAction="#toVoy" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages" />
+                        <Button layoutX="-1.0" layoutY="171.0" mnemonicParsing="false" onAction="#toVoyORG" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages organisés" />
                         <Button layoutX="-1.0" layoutY="204.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des voyages virtuels" />
-                        <Button layoutX="-1.0" layoutY="237.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voyages" onAction="#toReserVoy"/>
+                        <Button layoutX="-1.0" layoutY="237.0" mnemonicParsing="false" onAction="#toReserVoy" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voyages" />
                         <Button layoutX="-1.0" layoutY="270.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des hôtels" />
                         <Button layoutX="-1.0" layoutY="303.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gestion des chambres" />
                         <Button layoutX="-1.0" layoutY="336.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations hôtels" />
@@ -110,9 +110,9 @@
                         <Button layoutX="-1.0" layoutY="402.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservation évenements" />
                         <Button layoutX="-1.0" layoutY="435.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Gesion des voitures" />
                         <Button layoutX="-1.0" layoutY="468.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Réservations voitures" />
-                        <Button layoutY="550.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Paramétre compte" onAction="#settings"/>
-                        <Button layoutY="583.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" onAction="#logout"/>
-                        <Button layoutY="71.0" mnemonicParsing="false" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Acceuil" onAction="#home"/>
+                        <Button layoutY="550.0" mnemonicParsing="false" onAction="#settings" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Paramétre compte" />
+                        <Button layoutY="583.0" mnemonicParsing="false" onAction="#logout" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Déconnexion" />
+                        <Button layoutY="71.0" mnemonicParsing="false" onAction="#home" opacity="0.82" prefHeight="32.0" prefWidth="269.0" style="-fx-border-color: #91D4E5; -fx-background-color: #CDE2E6;" text="Acceuil" />
                      </children>
                   </AnchorPane>
         

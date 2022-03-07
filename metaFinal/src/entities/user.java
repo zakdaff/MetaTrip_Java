@@ -84,6 +84,20 @@ public class user {
         
     }
 
+    public user(int Idu, String Cin, String Nom) {
+        this.Idu = Idu;
+        this.Cin = Cin;
+        this.Nom = Nom;
+    }
+
+    public user(int Idu, String Cin, String Nom, String Prenom) {
+        this.Idu = Idu;
+        this.Cin = Cin;
+        this.Nom = Nom;
+        this.Prenom = Prenom;
+    }
+
+    
     public int getRole() {
         return Role;
     }
