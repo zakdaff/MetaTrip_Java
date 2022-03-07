@@ -12,7 +12,9 @@ import java.sql.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -121,11 +123,11 @@ file_path.setText(u1.getImage().toString());
         }
     }
  @FXML
-    private void Valider(ActionEvent event) {
+    private void Valider(ActionEvent event) throws Exception {
    
  Window owner = submitButton.getScene().getWindow();
 
-
+boolean flag=false;
         if ((Email.getText().isEmpty())||((!Email.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")))) {
         
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
@@ -182,6 +184,14 @@ file_path.setText(u1.getImage().toString());
             return;
            
         }
+              if (Prenom.getText().isEmpty()) {
+
+           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                    "Please enter your Prenom id");
+                                 return;
+
+                     }
+ 
          int monEntier = 0;
         boolean ok = true;
                                                                                         try
@@ -194,42 +204,30 @@ file_path.setText(u1.getImage().toString());
                                                                                                     {
                                                                                                        ok = false;
                                                                                                     }
-                                                                                       
-      if (Prenom.getText().isEmpty()) {
-
-           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your Prenom id");
-                                 return;
-
-                     }
-  if (Tel.getText().isEmpty()||(Tel.getText().length()!=8||(ok==false))) {
+               if (Tel.getText().isEmpty()||(Tel.getText().length()!=8||(ok==false))) {
         
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your Tel id");
             return;
            
-        }
+        }                                                                         
+ 
         String str2=DateNaissance.getValue().toString();  
      Date date1=Date.valueOf(str2);
 
-  user u1=new user(Cin.getText(),Nom.getText(),Prenom.getText(),Tel.getText(),Email.getText(),Password.getText(),file_path.getText(),date1);
 
-   
+
+
 
                   UserService us = new UserService();
                
         
-        user u2 = us.getUserByEmail(Email.getText().toString());
+ 
         
   user u10=new user(Cin.getText(),Nom.getText(),Prenom.getText(),Tel.getText(),Email.getText(),Password.getText(),file_path.getText(),date1);
-                  us.modifier(u2.getIdu(), u10);     //  boolean flag = loginSignup.Signup(u1);
-
-     /*   if (!flag) {
-            showAlert(Alert.AlertType.ERROR, owner,"Form Error!","Form invalide" );
-        } else {
-          
-            showAlert(Alert.AlertType.CONFIRMATION,owner,"Form Valide","Signup Successful");
-        }*/
+                  us.modifier(u10.getIdu(), u10);     //  boolean flag = loginSignup.Signup(u1);
+               user u2 = us.getUserByEmail(Email.getText().toString());    
+     link1(u2);
     }
     public static void infoBox(String infoMessage, String headerText, String title) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -249,6 +247,25 @@ file_path.setText(u1.getImage().toString());
     }
   
 
+
+public void link1(user user) throws Exception 
+{               
+ 
+    try {
+     
+            //Personne.user = ;
+            //Personne.user.get
+                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/VoyageORGClientPartie.fxml"));
+            Parent root1 = loader1.load();
+            VoyageORGClientPartieController controller = loader1.getController();
+            controller.setUser(user.getEmail());
+            //Personne.user = ;
+            //Personne.user.get
+            Email.getScene().setRoot(root1);
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+ }
 
     
 }

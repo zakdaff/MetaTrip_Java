@@ -32,7 +32,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import services.user.LoginAndSignupService;
+import services.user.UserService;
 import view.PartieClient.Reservation_VoyageClientController;
+import view.PartieClient.VoyageORGClientPartieController;
 import view.adminPanel.Reservation_voyageController;
 
 /**
@@ -125,6 +127,13 @@ public class SignupController implements Initializable {
             return;
            
         }
+          if (image_view.getImage() == null ) {
+        
+           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter your Image id");
+            return;
+           
+        }
         if ((Password.getText().isEmpty())||(Password.getText().length()<4)) {
     
              showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
@@ -132,6 +141,20 @@ public class SignupController implements Initializable {
             return;
             
           }
+          if (Prenom.getText().isEmpty()) {
+    
+             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter a Prenom");
+            return;
+            
+          } 
+           if (Nom.getText().isEmpty()) {
+    
+             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter a Nom");
+            return;
+            
+          } 
                if (DateNaissance.getValue().toString().isEmpty()) {
     
              showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
@@ -139,6 +162,7 @@ public class SignupController implements Initializable {
             return;
             
           }  
+               
                
                         int monEntier1 = 0;
         boolean ok1 = true;
@@ -167,13 +191,7 @@ public class SignupController implements Initializable {
             return;
             
           }
-         if (image_view.getImage() == null ) {
-        
-           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter your Image id");
-            return;
-           
-        }
+       
          int monEntier = 0;
         boolean ok = true;
                                                                                         try
@@ -204,19 +222,17 @@ public class SignupController implements Initializable {
         String str2=DateNaissance.getValue().toString();  
      Date date1=Date.valueOf(str2);
 
-  user u1=new user(Cin.getText(),Nom.getText(),Prenom.getText(),Tel.getText(),Email.getText(),Password.getText(),file_path.getText(),date1);
+  user u2=new user(Cin.getText(),Nom.getText(),Prenom.getText(),Tel.getText(),Email.getText(),Password.getText(),file_path.getText(),date1);
 
    
 
                   LoginAndSignupService loginSignup = new LoginAndSignupService();
-        boolean flag = loginSignup.Signup(u1);
+        boolean flag = loginSignup.Signup(u2);
+          UserService us=new UserService();
+           user u23=us.getUserByEmail(Email.getText().toString());
+           link1(u23);
 
-        if (!flag) {
-            showAlert(Alert.AlertType.ERROR, owner,"Form Error!","Form invalide" );
-        } else {
-          
-            showAlert(Alert.AlertType.CONFIRMATION,owner,"Form Valide","Signup Successful");
-        }
+ 
     }
     public static void infoBox(String infoMessage, String headerText, String title) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -236,34 +252,18 @@ public class SignupController implements Initializable {
     }
     
 
-public void link1(user user) throws Exception {               
- if(user.getRole()==1){
-       try {
-   
-          
-            //Personne.user = ;
-            //Personne.user.get
-                      FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
-            Parent root = loader.load();
-            Reservation_voyageController controller = loader.getController();
-            controller.setUser(Email.getText());
-            //Personne.user = ;
-            //Personne.user.get
-            Email.getScene().setRoot(root);
-        } catch (IOException ex) {
-         Metatrip.stg.close();   
-    } catch(Exception e) {
-        e.printStackTrace();
-    }
-}else{
+
+public void link1(user user) throws Exception 
+{               
+ 
     try {
      
             //Personne.user = ;
             //Personne.user.get
-                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
+                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/VoyageORGClientPartie.fxml"));
             Parent root1 = loader1.load();
-            Reservation_VoyageClientController controller = loader1.getController();
-            controller.setUser(Email.getText());
+            VoyageORGClientPartieController controller = loader1.getController();
+            controller.setUser(user.getEmail());
             //Personne.user = ;
             //Personne.user.get
             Email.getScene().setRoot(root1);
@@ -272,5 +272,5 @@ public void link1(user user) throws Exception {
     }
  }
 
-}
+
 }

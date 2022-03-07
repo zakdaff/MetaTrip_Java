@@ -26,7 +26,7 @@
                </image></ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="submitButton" contentDisplay="CENTER" defaultButton="true" layoutX="768.0" layoutY="553.0" mnemonicParsing="false" onAction="#Valider" prefHeight="31.0" prefWidth="192.0" style="-fx-background-color: #073258;" text="Valider" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="submitButton" contentDisplay="CENTER" defaultButton="true" layoutX="768.0" layoutY="553.0" mnemonicParsing="false" onAction="#signup" prefHeight="31.0" prefWidth="192.0" style="-fx-background-color: #073258;" text="Valider" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Akhbar MT" size="18.0" />
          </font>
