@@ -36,8 +36,6 @@ public boolean login (String email,String password) throws Exception {
     boolean test = false;
         List<user> users = new ArrayList<>();
         String req = "SELECT *  FROM `user` where Email='"+email+"' and Password ='"+doHashing(password)+"'";
-        System.out.println(email);
-         System.out.println(password);
         try {
 
        ste = conn.createStatement();
@@ -84,11 +82,13 @@ public boolean login (String email,String password) throws Exception {
               List<user> users = new ArrayList<>();
       String Email1=u.getEmail();
       String pass1=u.getPassword();
-    //  System.out.println(Email1);
-          // System.out.println(pass1);
+     System.out.println("sssssssssssssss"+u.getPassword());
+         System.out.println(pass1);
       String password=u.getPassword();
       String req = "SELECT *  FROM `user` where Email='"+Email1+"'";
-   
+           System.out.println("emailllllllllllllllllllll"+Email1);
+         System.out.println("pasworddddddddddddd"+password);
+
         try {
 
        ste = conn.createStatement();
@@ -146,6 +146,7 @@ public boolean login (String email,String password) throws Exception {
                                             test=false;
 
                                     }
+                                    System.out.println("test"+test);
                     return   test;               
                                        
  
