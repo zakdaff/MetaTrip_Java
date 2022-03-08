@@ -115,38 +115,44 @@ public class Metatrip  extends Application {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     
     
-     public static void createQR(String data, String path,
-                                String charset, Map hashMap,
-                                int height, int width)
-        throws WriterException, IOException
-    {
- 
-        BitMatrix matrix = new MultiFormatWriter().encode(
-            new String(data.getBytes(charset), charset),
-            BarcodeFormat.QR_CODE, width, height);
- 
-        MatrixToImageWriter.writeToFile(
-            matrix,
-            path.substring(path.lastIndexOf('.') + 1),
-            new File(path));
-    }
-    
+//     public static void createQR(String data, String path,
+//                                String charset, Map hashMap,
+//                                int height, int width)
+//        throws WriterException, IOException
+//    {
+// 
+//        BitMatrix matrix = new MultiFormatWriter().encode(
+//            new String(data.getBytes(charset), charset),
+//            BarcodeFormat.QR_CODE, width, height);
+// 
+//        MatrixToImageWriter.writeToFile(
+//            matrix,
+//            path.substring(path.lastIndexOf('.') + 1),
+//            new File(path));
+//    }
+//    
     
   
     	@Override
 	public void start(Stage primaryStage) throws IOException {
             
-         Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/EventList.fxml"));
-         
-         
-            
-        Scene scene = new Scene(root, 300, 250);
-        
-        String css = this.getClass().getResource("/css/BACK.css").toExternalForm();
-        scene.getStylesheets().add(css); 
+// Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/SponsorList.fxml")); // GESTION SPONSOR 
+  
+  //Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/EventList.fxml"));   // GESTION Evenement 
+       
+  // Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/EventList.fxml")); // GESTION Reservations event 
+  // Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/ReserveEvent.fxml")); // Assistant Interface 
+      //  Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/Chart.fxml")); // CHART
+ 
+        Scene scene = new Scene(root, 936, 509);
+       
+     String css = this.getClass().getResource("/css/BACK.css").toExternalForm();
+      scene.getStylesheets().add(css); 
+
 
         primaryStage.setTitle("MetaTrip Application");
         primaryStage.setScene(scene);
@@ -544,16 +550,16 @@ String strd="2020-09-01";
 
 
 
- us.factureuser(rvs.affichervoyageByid(10));
-     //System.out.println(resE.afficher());
-
-
-
-       String grCodeData ="https://pbs.twimg.com/profile_images/1118720684950085632/Qc9LxLu0_400x400.png";
-         String filePath = "C:\\Users\\Z4RGA\\OneDrive\\Documents\\JAWHABEHY\\ZARGA\\MetaTrip_Java\\metaFinal\\src\\services\\user\\websiteQRCode_noFrame.png";
-    String charset ="UTF-8"; // or "ISO-8859-1";
-   
-   
+// us.factureuser(rvs.affichervoyageByid(10));
+//     //System.out.println(resE.afficher());
+//
+//
+//
+//       String grCodeData ="https://pbs.twimg.com/profile_images/1118720684950085632/Qc9LxLu0_400x400.png";
+//         String filePath = "C:\\Users\\Z4RGA\\OneDrive\\Documents\\Metatrip\\JAWHABEHY\\ZARGA\\MetaTrip_Java\\metaFinal\\src\\services\\user\\websiteQRCode_noFrame.png";
+//    String charset ="UTF-8"; // or "ISO-8859-1";
+//   
+//   
   /*
 try{
     Map <EncodeHintType,ErrorCorrectionLevel> ss = new Hashtable < EncodeHintType, ErrorCorrectionLevel > ();

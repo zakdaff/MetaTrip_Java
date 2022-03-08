@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="401.0" prefWidth="865.0" styleClass="background" stylesheets="@../../../../css/BACK.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.Gestion_reservation_eventsController">
+  <children>
+      <VBox prefHeight="400.0" prefWidth="640.0">
+        <children>
+       
+<AnchorPane id="AnchorPane" fx:id="left_main" prefHeight="501.0" prefWidth="936.0" styleClass="background" xmlns="http://javafx.com/javafx/8.0.171">
+    <children>
+            <Button fx:id="bupdate" layoutX="192.0" layoutY="210.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;; -fx-effect: ropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" text="Accept">
+            
+                     <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+            </Button>
+            <Button fx:id="bdelete" layoutX="25.0" layoutY="210.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;; -fx-effect: ropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" styleClass="btn" text="Reject">
+            
+                                 <font>
+                <Font name="Times New Roman" size="12.0" />
+            </font>
+            </Button>
+            
+           <TableView fx:id="table" layoutX="294.0" layoutY="61.0" onMouseClicked="#tablehandleButtonAction" onMouseReleased="#ValidateEmail" prefHeight="326.0" prefWidth="557.0">
+            <columns>
+                <TableColumn fx:id="rIdrev" prefWidth="103.0" text="Idrev " />
+                <TableColumn fx:id="rNb_pers" prefWidth="116.0" text="Nb_pers" />
+                        <TableColumn fx:id="rIde" prefWidth="145.0" text="Ide" />
+                        <TableColumn fx:id="rIdu" prefWidth="168.0" text="Idu " />
+            </columns>
+        </TableView>
+        <Pane layoutX="104.0" layoutY="14.0" prefHeight="39.0" prefWidth="761.0">
+            <children>
+                <Label layoutX="219.0" layoutY="2.0" prefHeight="36.0" prefWidth="423.0" text="Gestion Reservations [EVENTS]" textFill="#ffc300">
+                    <font>
+                        <Font name="Arial Bold" size="25.0" />
+                    </font>
+                
+                </Label>
+            </children>
+        </Pane>
+            
+                          <Button layoutX="104.0" layoutY="260.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="88.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;; -fx-effect: ropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" styleClass="btn" text="Refresh">
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+            
+                    </Button>
+                  <Label layoutX="13.0" layoutY="325.0" text="Search Section">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="filterField" alignment="CENTER" layoutX="48.0" layoutY="354.0" prefHeight="35.0" prefWidth="235.0" promptText="Type Here!" />
+                  <ImageView fitHeight="191.0" fitWidth="242.0" layoutX="34.0">
+                     <image>
+                        <Image url="@../../logo.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="IdrevF" editable="false" layoutX="202.0" layoutY="293.0" prefHeight="35.0" prefWidth="35.0" visible="false" />
+        
+     
+    </children>
+</AnchorPane>
+            
+        </children>
+      </VBox>
+  </children>
+</VBox>

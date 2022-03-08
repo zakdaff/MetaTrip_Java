@@ -423,7 +423,7 @@ List<Object> voyages = new ArrayList<>();
         // The data that the QR code will contain
         String dataz = ux.toString();
             
-                   String path = "C:\\Users\\Z4RGA\\OneDrive\\Documents\\JAWHABEHY\\ZARGA\\MetaTrip_Java\\demo.png";
+                   String path = "C:\\Users\\Z4RGA\\OneDrive\\Documents\\Metatrip\\JAWHABEHY\\ZARGA\\MetaTrip_Java\\demo.png";
  
         Map<EncodeHintType, ErrorCorrectionLevel> hashMap
             = new HashMap<EncodeHintType,
@@ -446,7 +446,7 @@ List<Object> voyages = new ArrayList<>();
                  
           Document document=new Document ();
   
-                 PdfWriter.getInstance(document, new FileOutputStream("C:/Users/Z4RGA/OneDrive/Documents/JAWHABEHY/ZARGA/MetaTrip_Java/MetatripVoitureFacture.pdf"));
+                 PdfWriter.getInstance(document, new FileOutputStream("C:/Users/Z4RGA/Documents/JAWHABEHY/ZARGA/MetaTrip_JavaMetatripVoitureFacture.pdf"));
             document.open();
               Image image = Image.getInstance(path);
          
@@ -546,6 +546,28 @@ List<Object> voyages = new ArrayList<>();
     }
             
          
+  public  List<Integer> gelallID()  {
+     List<Integer> ID = new ArrayList<>();
+     
+   
+          String req = "SELECT Idu  from `user`";
+            try {
 
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                  
+            
+               
+                 ID.add(rs.getInt(1));                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return ID;    
+    }
 
 }

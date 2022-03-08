@@ -1,63 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="478.0" prefWidth="925.0" styleClass="background" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.SponsorListController">
+<VBox prefHeight="544.0" prefWidth="963.0" styleClass="background" stylesheets="@../../../../css/BACK.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.SponsorListController">
   <children>
       <VBox prefHeight="400.0" prefWidth="640.0">
         <children>
        
-<AnchorPane id="AnchorPane" prefHeight="511.0" prefWidth="925.0" styleClass="background" stylesheets="@../../css/BACK.css" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane id="AnchorPane" fx:id="left_main" prefHeight="501.0" prefWidth="939.0" styleClass="background" xmlns="http://javafx.com/javafx/8.0.171">
     <children>
-        <VBox layoutX="5.0" layoutY="83.0" prefHeight="322.0" prefWidth="71.0" spacing="25.0">
-            <children>
-                <Label styleClass="labelform" />
-                <Label layoutX="10.0" layoutY="10.0" styleClass="labelform" text="Nom" />
-                <Label layoutX="10.0" layoutY="27.0" prefHeight="17.0" prefWidth="52.0" styleClass="labelform" text="Tel" />
-                        <Label styleClass="labelform" text="Email" />
-                        <Label styleClass="labelform" text="Date" />
-                        <Label styleClass="labelform" text="Prix" />
-                        <Label prefHeight="49.0" prefWidth="36.0" styleClass="labelform" text="Image" />
-                
-            </children>
-        </VBox>
-        <Button fx:id="bsave" layoutX="17.0" layoutY="450.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;;" styleClass="btn" text="Save">
-           
-            <font>
+            <Button fx:id="bsave" layoutX="444.0" layoutY="434.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;;" styleClass="btn" text="Save">
+            
+                       <font>
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
-        </Button>
-        <Button fx:id="bupdate" layoutX="104.0" layoutY="450.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;; -fx-effect: ropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" text="Edit">
-         
-            <font>
+            </Button>
+            <Button fx:id="bupdate" layoutX="569.0" layoutY="464.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;; -fx-effect: ropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" text="Edit">
+            
+                     <font>
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
-        </Button>
-            <Button fx:id="bdelete" layoutX="189.0" layoutY="450.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;; -fx-effect: ropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" styleClass="btn" text="Delete">
+            </Button>
+            <Button fx:id="bdelete" layoutX="569.0" layoutY="433.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;; -fx-effect: ropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" styleClass="btn" text="Delete">
             
                                  <font>
                 <Font name="Times New Roman" size="12.0" />
             </font>
             </Button>
             
-              <Button layoutX="270.0" layoutY="450.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;; -fx-effect: ropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" styleClass="btn" text="Reset">
-            <font>
-                <Font name="Times New Roman Bold" size="12.0" />
-            </font>
-            
-        </Button>
-            
-           <TableView fx:id="table" layoutX="316.0" layoutY="66.0" onMouseClicked="#tablehandleButtonAction" prefHeight="302.0" prefWidth="575.0">
+           <TableView fx:id="table" layoutX="317.0" layoutY="44.0" onMouseClicked="#tablehandleButtonAction" onMouseReleased="#ValidateEmail" prefHeight="335.0" prefWidth="575.0">
             <columns>
                 <TableColumn fx:id="sids" prefWidth="33.0" text="ID" />
                 <TableColumn fx:id="snomsponsor" prefWidth="82.33331298828125" text="Nom" />
@@ -70,7 +53,7 @@
         </TableView>
         <Pane layoutX="104.0" layoutY="14.0" prefHeight="39.0" prefWidth="634.0">
             <children>
-                <Label layoutX="238.0" layoutY="1.0" prefHeight="10.0" prefWidth="337.0" text="Gestion des sponsors " textFill="#ffc300">
+                <Label layoutX="307.0" layoutY="-11.0" prefHeight="10.0" prefWidth="337.0" text="Gestion des sponsors " textFill="#ffc300">
                     <font>
                         <Font name="Arial Bold" size="25.0" />
                     </font>
@@ -78,24 +61,39 @@
                 </Label>
             </children>
         </Pane>
-        <VBox layoutX="52.0" layoutY="59.0" prefHeight="322.0" prefWidth="249.0" spacing="15.0">
+        <VBox layoutX="11.0" layoutY="82.0" prefHeight="415.0" prefWidth="298.0" spacing="15.0">
             <children>
-                            <TextField fx:id="ids" editable="false" prefHeight="0.0" prefWidth="249.0" />
-                            <TextField fx:id="nomsponsor" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="182.0" />
-                            <TextField fx:id="tel" layoutX="10.0" layoutY="20.0" />
-                            <TextField fx:id="email" styleClass="field" />
-                        <DatePicker prefHeight="35.0" prefWidth="250.0" />
-                            <TextField fx:id="prix_sp" prefHeight="20.0" prefWidth="249.0" styleClass="field" />
+                            <TextField fx:id="ids" editable="false" prefHeight="35.0" prefWidth="276.0" promptText="ID Automatique" visible="false" />
+                            <TextField fx:id="nomsponsor" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="182.0" promptText="Insérer le nom de sponsor" />
+                            <TextField fx:id="tel" alignment="CENTER" layoutX="10.0" layoutY="20.0" onMouseReleased="#ValidPhoneNumber" promptText="Enter le numéro de telephone" />
+                        <Label fx:id="phonelabel" prefHeight="17.0" prefWidth="315.0" />
+                            <TextField fx:id="email" alignment="CENTER" onMouseReleased="#ValidateEmail" promptText="Sponsor Email" styleClass="field" />
+                        <Label fx:id="maillabel" prefHeight="1.0" prefWidth="298.0" />
+                        <DatePicker fx:id="date_sp" prefHeight="35.0" prefWidth="305.0" promptText="Date " />
+                            <TextField fx:id="prix_sp" alignment="CENTER" prefHeight="22.0" prefWidth="298.0" promptText="Prix" styleClass="field" />
             </children>
         </VBox>
-                  <ImageView fitHeight="61.0" fitWidth="81.0" layoutX="76.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="insert_image" layoutX="14.0" layoutY="400.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="17.0" prefWidth="34.0" styleClass="btn" text="...">
+                  <ImageView fx:id="image_view" fitHeight="86.0" fitWidth="101.0" layoutX="328.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="file_path" alignment="CENTER" layoutX="856.0" layoutY="469.0" prefHeight="23.0" prefWidth="71.0" />
+            
+                          <Button layoutX="444.0" layoutY="467.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;; -fx-effect: ropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" styleClass="btn" text="Reset">
+            <font>
+                <Font name="Times New Roman Bold" size="12.0" />
+            </font>
+            
+                    </Button>
+                  <Label layoutX="667.0" layoutY="396.0" text="Search Section">
                      <font>
-                        <Font name="Times New Roman Bold" size="12.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
-                  </Button>
-                  <Label layoutX="14.0" layoutY="66.0" prefHeight="17.0" prefWidth="26.0" text="ID" />
-                  <Label fx:id="file_path" alignment="CENTER" layoutX="479.0" layoutY="452.0" prefHeight="23.0" prefWidth="199.0" />
+                  </Label>
+                  <TextField fx:id="filterField" alignment="CENTER" layoutX="667.0" layoutY="420.0" prefHeight="35.0" prefWidth="235.0" promptText="Type Here!" />
+                  <ImageView fitHeight="86.0" fitWidth="112.0" layoutY="10.0">
+                     <image>
+                        <Image url="@../../logo.png" />
+                     </image>
+                  </ImageView>
+                  <ComboBox fx:id="ide" layoutX="89.0" layoutY="64.0" onAction="#combobox2" prefHeight="26.0" prefWidth="206.0" promptText="Choose Event" />
         
      
     </children>
@@ -103,5 +101,10 @@
             
         </children>
       </VBox>
+      <Button fx:id="insert_image" minWidth="53.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="35.0" prefWidth="53.0" styleClass="btn" text="...">
+         <font>
+            <Font name="Times New Roman Bold" size="12.0" />
+         </font>
+      </Button>
   </children>
 </VBox>

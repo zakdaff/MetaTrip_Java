@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="457.0" prefWidth="739.0" styleClass="background" stylesheets="@../../css/BACK.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.adminPanel.ChartController">
+   <children>
+      <PieChart fx:id="piechart" layoutX="99.0" layoutY="51.0" prefHeight="392.0" prefWidth="620.0" />
+      <ImageView fitHeight="86.0" fitWidth="111.0">
+         <image>
+            <Image url="@../../logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="216.0" layoutY="14.0" prefHeight="51.0" prefWidth="490.0" text="Chanteur le plus réservé " textFill="#00d8ff">
+         <font>
+            <Font name="Arial Bold" size="35.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

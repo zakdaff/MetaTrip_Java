@@ -18,6 +18,7 @@ public class sponsor {
     private Date date_sp ; 
     private float prix_sp ; 
     private String image;
+   
     
     private evenement evenement ; 
     

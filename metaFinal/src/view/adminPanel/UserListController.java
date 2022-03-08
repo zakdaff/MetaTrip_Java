@@ -83,22 +83,30 @@ public class UserListController implements Initializable {
 		
                 
                 //*********si flam******************//
+    @FXML
 		private TextField  idu;
                 
                 
+    @FXML
 		private TextField  nom;
                 
+    @FXML
 		private TextField  prenom;
                 
+    @FXML
 		private TextField  email;
                 
+    @FXML
 		private TextField  password;
                                 	
                 @FXML
 		private TextField  image;
                                 
+    @FXML
 		private TextField dateNaissance;
+    @FXML
 		private TextField  tel;
+    @FXML
 		private TextField  cin;
                 
 		user user;
@@ -108,18 +116,6 @@ public class UserListController implements Initializable {
 		PreparedStatement st=null;
  
     UserService us;
-    @FXML
-    private TextField Ide;
-    @FXML
-    private TextField type_event;
-    @FXML
-    private TextField Chanteur;
-    @FXML
-    private TextField Adresse;
-    @FXML
-    private TextField date_event;
-    @FXML
-    private TextField prix_e;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
