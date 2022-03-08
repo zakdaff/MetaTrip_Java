@@ -127,6 +127,7 @@ public class SignupController implements Initializable {
       boolean ok = true;
          boolean flag=false;
      ArrayList<user> user5 = new ArrayList<>();
+          ArrayList<user> user6= new ArrayList<>();
  Window owner = submitButton.getScene().getWindow();
 System.out.println("date"+DateNaissance.getValue());
    if (Prenom.getText().isEmpty()==true) { 
@@ -137,16 +138,7 @@ System.out.println("date"+DateNaissance.getValue());
                              
 
                      }
-   UserService us5 =new UserService();
-   user5=(ArrayList<user>) us5.getuserbycin(Integer.parseInt(Cin.getText()));
-   if(user5.size()>0){
-   
-            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "cin est deja utilise");
-                 ok = false;
-                      return;
-   
-   }
+  
     if (DateNaissance.getValue()==null) {
               
       
@@ -293,6 +285,25 @@ System.out.println("date"+DateNaissance.getValue());
               ok = false;
            
         }
+   UserService us5 =new UserService();
+   user5=(ArrayList<user>) us5.getuserbycin(Integer.parseInt(Cin.getText()));
+   user6=(ArrayList<user>) us5.getuserbyTel(Integer.parseInt(Tel.getText()));
+   if(user5.size()>0){
+   
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "cin est deja utilise");
+                 ok = false;
+                      return;
+   
+   }
+      if(user6.size()>0){
+   
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Tel est deja utilise");
+                 ok = false;
+                      return;
+   
+   }
   if( ok==true){
    String str2=DateNaissance.getValue().toString();  
      Date date1=Date.valueOf(str2);
