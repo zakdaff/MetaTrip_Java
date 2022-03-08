@@ -200,7 +200,8 @@ public class Mapa extends MapView{
 	public Mapa(String pString) {
 
 		JFrame frame = new JFrame("Chicago-Data: "+pString);
-
+                 frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
 		settingsCircle=new CircleOptions();
 		settingsCircle.setFillColor("#FF0000");
@@ -246,11 +247,16 @@ public class Mapa extends MapView{
 			e1.printStackTrace();
 		}
 		System.out.println("|");
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.add(this, BorderLayout.CENTER);
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+frame.add(this, BorderLayout.CENTER);
 		frame.setSize(700, 500);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+
+                 frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 	}
 public static void test(){
     
@@ -262,6 +268,7 @@ public static void test(){
                 try{
                
     		 Mapa example = new Mapa("test");
+
 		example.generateMarker(map.getCenter());
                  }catch(NullPointerException ex){
                                 System.out.println("map closed");

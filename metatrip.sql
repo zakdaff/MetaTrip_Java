@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 26 fév. 2022 à 00:12
+-- Généré le : mar. 08 mars 2022 à 23:38
 -- Version du serveur : 10.4.22-MariaDB
--- Version de PHP : 8.1.2
+-- Version de PHP : 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -129,6 +129,27 @@ INSERT INTO `hotel` (`Idh`, `Nom_hotel`, `Nb_etoiles`, `Adresse`, `image`) VALUE
 (10, '4 seasons', 4, 'gammarth', ''),
 (11, '4 seasons', 4, 'gammarth', ''),
 (12, 'gulden tulip', 4, 'gammarth', '');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `localisationvoyage`
+--
+
+CREATE TABLE `localisationvoyage` (
+  `Idlocalisation` int(11) NOT NULL,
+  `latitude` int(11) NOT NULL,
+  `longitude` int(11) NOT NULL,
+  `idv` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `localisationvoyage`
+--
+
+INSERT INTO `localisationvoyage` (`Idlocalisation`, `latitude`, `longitude`, `idv`) VALUES
+(1, 37, 10, 98),
+(2, 51, 6, 600);
 
 -- --------------------------------------------------------
 
@@ -289,7 +310,7 @@ CREATE TABLE `user` (
   `Tel` varchar(20) NOT NULL,
   `Email` varchar(38) NOT NULL,
   `Password` varchar(50) NOT NULL,
-  `Image` varchar(40) NOT NULL,
+  `Image` varchar(1000) NOT NULL,
   `Role` int(11) DEFAULT 0,
   `dateNaissance` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -302,7 +323,6 @@ INSERT INTO `user` (`Idu`, `Cin`, `Nom`, `Prenom`, `Tel`, `Email`, `Password`, `
 (41, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (42, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (43, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
-(44, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (45, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
 (47, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', 'e882b72bccfc2ad578c27b0d9b472a14', 'image', 0, '2011-10-01'),
 (48, '196525', 'ssss', 'cxx', '2568435', 'fares@live.fr', '25d55ad283aa400af464c76d713c07ad', 'image', 0, '2011-10-01'),
@@ -353,7 +373,9 @@ INSERT INTO `user` (`Idu`, `Cin`, `Nom`, `Prenom`, `Tel`, `Email`, `Password`, `
 (826, '11223344', 'lamloum', 'fares', '98665580', 'fareslamloum@gmail.com', 'ab4f63f9ac65152575886860dde480a1', 'fares.png', 0, '2000-02-07'),
 (827, '1236987', 'lamloum', 'fares', '98663217', 'flam@gmail.com', '54965f9cd7e81588669cbbb393950569', 'fares.jpg', 0, '2000-02-07'),
 (828, '1230000', 'lamloum', 'fares', '98332140', 'fareslam@esprit.tn', '74b87337454200d4d33f80c4663dc5e5', 'fares.png', 0, '2000-07-08'),
-(831, '199525', 'ssss', 'cxx', '2568435', 'fares.lamloum@esprit.tn', '550e1bafe077ff0b0b67f4e32f29d751', 'image', 0, '2011-10-01');
+(831, '199525', 'ssss', 'cxx', '2568435', 'fares.lamloum@esprit.tn', '550e1bafe077ff0b0b67f4e32f29d751', 'image', 0, '2011-10-01'),
+(835, '09634840', 'sdsdsd', 'sdsdsdsd', '53084352', '69sxxxx@gmail.com', '4a7d1ed414474e4033ac29ccb8653d9b', 'C:\\\\Users\\\\medal\\\\OneDrive\\\\Images\\\\000.jpg', 0, '2022-03-01'),
+(836, '12345678', 'bs', 'dali', '53084352', 'test@gmail.com', '4a7d1ed414474e4033ac29ccb8653d9b', 'C:\\\\Users\\\\medal\\\\OneDrive\\\\Images\\\\000.jpg', 0, '2022-03-08');
 
 -- --------------------------------------------------------
 
@@ -511,6 +533,13 @@ ALTER TABLE `hotel`
   ADD PRIMARY KEY (`Idh`);
 
 --
+-- Index pour la table `localisationvoyage`
+--
+ALTER TABLE `localisationvoyage`
+  ADD PRIMARY KEY (`Idlocalisation`),
+  ADD KEY `idv` (`idv`);
+
+--
 -- Index pour la table `paiement`
 --
 ALTER TABLE `paiement`
@@ -630,6 +659,12 @@ ALTER TABLE `hotel`
   MODIFY `Idh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT pour la table `localisationvoyage`
+--
+ALTER TABLE `localisationvoyage`
+  MODIFY `Idlocalisation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT pour la table `reservation_event`
 --
 ALTER TABLE `reservation_event`
@@ -663,7 +698,7 @@ ALTER TABLE `sponsor`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `Idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=832;
+  MODIFY `Idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=840;
 
 --
 -- AUTO_INCREMENT pour la table `voiture`
@@ -703,7 +738,13 @@ ALTER TABLE `abonnement`
 -- Contraintes pour la table `chambre`
 --
 ALTER TABLE `chambre`
-  ADD CONSTRAINT `fk_hot` FOREIGN KEY (`idh`) REFERENCES `hotel` (`idh`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_hot` FOREIGN KEY (`idh`) REFERENCES `hotel` (`Idh`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `localisationvoyage`
+--
+ALTER TABLE `localisationvoyage`
+  ADD CONSTRAINT `localisationvoyage_ibfk_1` FOREIGN KEY (`idv`) REFERENCES `voyage` (`Idv`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `reservation_event`
