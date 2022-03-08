@@ -261,20 +261,14 @@ public static void test(){
                 alert.show();
                 try{
                
-    		final Mapa example = new Mapa("test");
+    		 Mapa example = new Mapa("test");
 		example.generateMarker(map.getCenter());
                  }catch(NullPointerException ex){
                                 System.out.println("map closed");
                          
                  }
 }
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		final Mapa example = new Mapa("test");
-		example.generateMarker(map.getCenter());
 	
-        
-	}
 
 
 
