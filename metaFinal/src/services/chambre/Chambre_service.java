@@ -34,7 +34,7 @@ public class Chambre_service {
     
        public void ajouter(Chambre ch) {
      
-            String req2 = "INSERT INTO `chambre` (`idc`,`numc`,`image`,`type`,`etat`,`idh`) VALUES (?,?,?,?,?,?)";
+            String req2 = "INSERT INTO `chambre` (`idc`,`numc`,`image`,`type`,`etat`,`idh`,`prixc`) VALUES (?,?,?,?,?,?,?)";
             
 
         try {
@@ -46,10 +46,11 @@ public class Chambre_service {
               pste.setString(4, ch.getType());
               pste.setString(5,ch.getEtat_dispo());
               pste.setInt(6, ch.getHotel().getIdh());
+              pste.setFloat(7, ch.getPrixc());
              
            
               pste.executeUpdate();
-            System.out.println("voyage organise créée");
+            System.out.println("chambre cree ");
             
             
         } catch (SQLException ex) {
@@ -61,7 +62,7 @@ public class Chambre_service {
      
     public void modifier(int idc, Chambre ch) {
            String req = "UPDATE `chambre` SET "
-                +"`numc`=?,`type`=?,`etat`=?,`image`=?,`idh`=?"
+                +"`numc`=?,`type`=?,`etat`=?,`image`=?,`idh`=?,`prixc`=?"
                + " WHERE idc = '" + idc+ "'";
     
         try {
@@ -72,6 +73,7 @@ public class Chambre_service {
             pste.setString(3, ch.getEtat_dispo());
             pste.setString(4, ch.getImage_chambre());
             pste.setInt(5, ch.getIdh());
+            pste.setFloat(6, ch.getPrixc());
             
             pste.executeUpdate();
             System.out.println("Chambre de id "+ idc+ " Updated sucessfully");
@@ -113,9 +115,12 @@ public class Chambre_service {
                 
                 ch.setIdc(rs.getInt(1));
                 ch.setNumc(rs.getInt(2));
-                ch.setType(rs.getString(3));
+                ch.setImage_chambre(rs.getString(3));
                 ch.setType(rs.getString(4));
-                ch.setImage_chambre(rs.getString(5));
+                ch.setEtat_dispo(rs.getString(5));
+                ch.setPrixc(rs.getFloat(6));
+              
+               
                 
                                              
                 listCham.add(ch);

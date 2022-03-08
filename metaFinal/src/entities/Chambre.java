@@ -16,6 +16,7 @@ public class Chambre {
     private  String etat_dispo  ;
     private hotel hotel ;
     private int Idh ;
+    private float prixc;
     private  String image_chambre ;
  
     
@@ -23,6 +24,16 @@ public class Chambre {
         
     }
 
+    public Chambre(int idc, int numc, String type, String etat_dispo, hotel hotel, float prixc, String image_chambre) {
+        this.idc = idc;
+        this.numc = numc;
+        this.type = type;
+        this.etat_dispo = etat_dispo;
+        this.hotel = hotel;
+        this.prixc = prixc;
+        this.image_chambre = image_chambre;
+    }
+     
     public Chambre(int idc, int numc, String type, String etat_dispo, hotel hotel, String image_chambre) {
         this.idc = idc;
         this.numc = numc;
@@ -58,6 +69,28 @@ public class Chambre {
         this.Idh = Idh;
         this.image_chambre = image_chambre;
     }
+
+    public Chambre(int idc, int numc, String type, String etat_dispo, hotel hotel, int Idh, float prixc, String image_chambre) {
+        this.idc = idc;
+        this.numc = numc;
+        this.type = type;
+        this.etat_dispo = etat_dispo;
+        this.hotel = hotel;
+        this.Idh = Idh;
+        this.prixc = prixc;
+        this.image_chambre = image_chambre;
+    }
+
+    public Chambre(int idc, int numc, String type, String etat_dispo, int Idh, float prixc, String image_chambre) {
+        this.idc = idc;
+        this.numc = numc;
+        this.type = type;
+        this.etat_dispo = etat_dispo;
+        this.Idh = Idh;
+        this.prixc = prixc;
+        this.image_chambre = image_chambre;
+    }
+    
 
     public Chambre(int idc, int numc, String type, hotel hotel, String image_chambre) {
         this.idc = idc;
@@ -192,10 +225,22 @@ public class Chambre {
         this.image_chambre = image_chambre;
     }
 
+    public void setPrixc(float prixc) {
+        this.prixc = prixc;
+    }
+
+    public float getPrixc() {
+        return prixc;
+    }
+    
+
     @Override
     public String toString() {
-        return "Chambre{" + "idc=" + idc + ", numc=" + numc + ", type=" + type + ", etat_dispo=" + etat_dispo + ", hotel=" + hotel + ", Idh=" + Idh + ", image_chambre=" + image_chambre + '}';
+        return "Chambre{" + "idc=" + idc + ", numc=" + numc + ", type=" + type + ", etat_dispo=" + etat_dispo + ", hotel=" + hotel + ", Idh=" + Idh + ", prixc=" + prixc + ", image_chambre=" + image_chambre + '}';
     }
+
+    
+    
     
     
 

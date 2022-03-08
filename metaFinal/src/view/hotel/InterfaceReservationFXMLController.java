@@ -6,6 +6,7 @@
 package view.hotel;
 
 import Config.Datasource;
+import entities.Chambre;
 import entities.hotel;
 import entities.reservation_hotel;
 import java.io.IOException;
@@ -76,6 +77,7 @@ public class InterfaceReservationFXMLController implements Initializable {
     private ComboBox<String> Idh;
     Reserrvation_Hotel_Service rs=new Reserrvation_Hotel_Service();
     HotelCRUD hc=new HotelCRUD();
+    Chambre c= new Chambre();
     private Connection conn= Datasource.getInstance().getCnx();;
     private Statement ste;
     private PreparedStatement pste;

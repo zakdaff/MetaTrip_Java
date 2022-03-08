@@ -13,7 +13,7 @@ import services.reservation_hotel.Reserrvation_Hotel_Service;
 
 /**
  *
- * @author Mortadha
+ * @author nayrouz
  */
 public class NewMain {
 

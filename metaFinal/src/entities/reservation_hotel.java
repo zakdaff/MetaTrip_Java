@@ -31,7 +31,8 @@ public class reservation_hotel {
         
         this.Nb_nuitees = Nb_nuitees;
         this.Nb_personnes = Nb_personnes;
-        this.Prix = Prix;
+       // this.Prix = Prix;
+        this.Prix = Prix*Nb_personnes*Nb_nuitees;
         this.user = user;
        this.chambre=chambre ;
     }
@@ -59,6 +60,7 @@ public class reservation_hotel {
         this.Nb_nuitees = Nb_nuitees;
         this.Nb_personnes = Nb_personnes;
         this.Prix = Prix;
+    
         this.Idu = Idu;
         this.Idh = Idh;
         this.Date_depart = Date_depart;

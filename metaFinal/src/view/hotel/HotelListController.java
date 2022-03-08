@@ -308,7 +308,7 @@ ObservableList<hotel> resultat=FXCollections.observableArrayList();
             } else {
 
                 st.executeUpdate(sql);
-
+                
 //                Alert alert = new Alert(AlertType.INFORMATION);
 //
 //                alert.setTitle("MarcoMan Message");

@@ -46,7 +46,7 @@ import services.voyage.voyage_virtuel.VoyageVRT_Service;
 
 /**
  *
- * @author FLAM
+ * @author Nayrouz
  */
 
 /**
@@ -128,15 +128,17 @@ public class Metatrip extends Application {
             Reserrvation_Hotel_Service rvc =new Reserrvation_Hotel_Service(); 
             //rvc.rechercherHotelparNom("gulden tulip");
             //System.out.println(rvc.getHotelByNom("gulden tulip"));
-             hotel h1 = new hotel (12,"mouradi",4,"gammarth","hhhh");
-             //hc.ajouterHotel(h1);
+             hotel h1 = new hotel ("mouradi",4,"gammarth","hhhh");
+          //  hc.ajouterHotel(h1);
             
-             Chambre ch1= new Chambre (1,50,"ff","d",h1,"hhh");
-//             ic.ajouter(ch1); 
+            // Chambre ch1= new Chambre (1,50,"ff","d",h1,"hhh");
+            Chambre ch2= new Chambre (1,50,"ff","d",h1,5.2f,"hhh");
+            
+               ic.ajouter(ch2); 
 //     
-            reservation_hotel rh =new reservation_hotel(12,2,5,190.2f,u1,ch1,date2,date2);
+            reservation_hotel rh =new reservation_hotel(12,2,5,190.2f,u1,ch2,date2,date2);
             //System.out.println(rvc.nbChambreDispo()); 
-             rvc.ajouter(rh);
+            // rvc.ajouter(rh);
             // rvc.supprimer(17);
             
             // hc.supprimerHotel(h);
