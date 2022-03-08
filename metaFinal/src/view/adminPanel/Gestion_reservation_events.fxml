@@ -25,7 +25,7 @@
                 <Font name="Times New Roman Bold" size="12.0" />
             </font>
             </Button>
-            <Button fx:id="bdelete" layoutX="25.0" layoutY="210.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="33.0" prefWidth="71.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;; -fx-effect: ropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" styleClass="btn" text="Reject">
+            <Button fx:id="bdelete" layoutX="25.0" layoutY="210.0" mnemonicParsing="false" onAction="#delete" onMouseClicked="#tablehandleButtonAction" prefHeight="33.0" prefWidth="71.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;; -fx-effect: ropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" styleClass="btn" text="Reject">
             
                                  <font>
                 <Font name="Times New Roman" size="12.0" />
@@ -68,7 +68,7 @@
                         <Image url="@../../logo.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="IdrevF" editable="false" layoutX="202.0" layoutY="293.0" prefHeight="35.0" prefWidth="35.0" visible="false" />
+                  <TextField fx:id="IdrevF" editable="false" layoutX="202.0" layoutY="293.0" prefHeight="35.0" prefWidth="187.0" visible="false" />
         
      
     </children>

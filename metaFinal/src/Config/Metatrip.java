@@ -142,9 +142,9 @@ public class Metatrip  extends Application {
             
 // Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/SponsorList.fxml")); // GESTION SPONSOR 
   
-  //Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/EventList.fxml"));   // GESTION Evenement 
+   //Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/EventList.fxml"));   // GESTION Evenement 
        
-  // Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/EventList.fxml")); // GESTION Reservations event 
+Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/Gestion_reservation_events.fxml")); // GESTION Reservations event 
   // Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/ReserveEvent.fxml")); // Assistant Interface 
       //  Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/Chart.fxml")); // CHART
  

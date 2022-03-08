@@ -7,12 +7,14 @@ package view.adminPanel;
 import Config.Datasource;
 import entities.evenement;
 import entities.reservation_event;
+import entities.sponsor;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,10 +29,12 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.Notifications;
@@ -147,7 +151,6 @@ public class Gestion_reservation_eventsController implements Initializable {
         send_notify();
     }
 
-    @FXML
     private void deleteEvent(ActionEvent event) {
         
            delete();
@@ -161,6 +164,16 @@ public class Gestion_reservation_eventsController implements Initializable {
 
     @FXML
     private void tablehandleButtonAction(MouseEvent event) {
+        
+        reservation_event s = table.getSelectionModel().getSelectedItem();
+        IdrevF.setText(String.valueOf(s.getIdrev()));
+
+
+
+        // bsave.setDisable(true);
+        
+        
+        
     }
 
     
@@ -214,6 +227,7 @@ public class Gestion_reservation_eventsController implements Initializable {
     }
     
      /* Delete*/
+    @FXML
     public void delete() {
         con = Datasource.getInstance().getCnx();
         String delete = "DELETE FROM reservation_event where Idrev = ?";
@@ -221,21 +235,36 @@ public class Gestion_reservation_eventsController implements Initializable {
             st = con.prepareStatement(delete);
             st.setInt(1, Integer.parseInt(IdrevF.getText()));
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Deleting Reservation");
+           // Alert alert = new Alert(Alert.AlertType.INFORMATION);
+           // alert.setTitle("Deleting Reservation");
+           
+           
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
-            // Header Text: null
+            alert.setTitle("Confirmation Message");
             alert.setHeaderText(null);
-            alert.setContentText(" EVENT Reservation deleted ");
+            alert.setContentText("Are you sure that you want to delete it?");
+            
+             Optional<ButtonType> buttonType = alert.showAndWait();
 
-            alert.showAndWait();
+               if (buttonType.get() == ButtonType.OK) {
+                               
+
+              
+            // Header Text: null
+           // alert.setHeaderText(null);
+           // alert.setContentText(" EVENT Reservation deleted ");
+
+            // alert.showAndWait();
 
             st.executeUpdate();
             affiche();
+             }
         } catch (SQLException ex) {
             Logger.getLogger(Gestion_reservation_eventsController.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
+        
     }
     
     
@@ -258,4 +287,5 @@ public class Gestion_reservation_eventsController implements Initializable {
         notificationBuilder.show();
 
     }
+
 }
