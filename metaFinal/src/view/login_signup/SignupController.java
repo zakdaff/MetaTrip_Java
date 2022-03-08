@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -120,9 +123,10 @@ public class SignupController implements Initializable {
     }
     @FXML
     public void signup(ActionEvent event) throws SQLException, Exception  {
-
+ String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
       boolean ok = true;
          boolean flag=false;
+     ArrayList<user> user5 = new ArrayList<>();
  Window owner = submitButton.getScene().getWindow();
 System.out.println("date"+DateNaissance.getValue());
    if (Prenom.getText().isEmpty()==true) { 
@@ -133,7 +137,16 @@ System.out.println("date"+DateNaissance.getValue());
                              
 
                      }
+   UserService us5 =new UserService();
+   user5=(ArrayList<user>) us5.getuserbycin(Integer.parseInt(Cin.getText()));
+   if(user5.size()>0){
    
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "cin est deja utilise");
+                 ok = false;
+                      return;
+   
+   }
     if (DateNaissance.getValue()==null) {
               
       
@@ -144,10 +157,23 @@ System.out.println("date"+DateNaissance.getValue());
          
             
           }  
-      if (Tel.getText().isEmpty()==true) { 
+       if (DateNaissance.getValue()==null) {
+              
+      
+             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter a DateNaissance");
+                 ok = false;
+                      return;
+         
+            
+          }  
+         String str20=DateNaissance.getValue().toString();  
+     Date date11=Date.valueOf(str20);
+       Date date20=Date.valueOf(timeStamp);
+      if (date11.after(date20)) { 
    
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your Tel id");
+                    "date invalide par rapport a la date System");
            
                   ok = false;      
                        return;
@@ -322,7 +348,7 @@ public void link1(user user) throws Exception {
             //Personne.user.get
                       FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
             Parent root = loader.load();
-            Reservation_voyageController controller = loader.getController();
+            VoyageORGClientPartieController controller = loader.getController();
             controller.setUser(Email.getText());
             //Personne.user = ;
             //Personne.user.get
@@ -337,9 +363,9 @@ public void link1(user user) throws Exception {
      
             //Personne.user = ;
             //Personne.user.get
-                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
+                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/voyageORGClientPartie.fxml"));
             Parent root1 = loader1.load();
-            Reservation_VoyageClientController controller = loader1.getController();
+            VoyageORGClientPartieController controller = loader1.getController();
             controller.setUser(Email.getText());
             //Personne.user = ;
             //Personne.user.get

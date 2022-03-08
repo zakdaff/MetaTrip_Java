@@ -82,7 +82,7 @@ public boolean login (String email,String password) throws Exception {
               List<user> users = new ArrayList<>();
       String Email1=u.getEmail();
       String pass1=u.getPassword();
-     System.out.println("sssssssssssssss"+u.getPassword());
+     System.out.println("sssssssssssssss"+Email1);
          System.out.println(pass1);
       String password=u.getPassword();
       String req = "SELECT *  FROM `user` where Email='"+Email1+"'";

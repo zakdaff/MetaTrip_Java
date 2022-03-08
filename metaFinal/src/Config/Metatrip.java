@@ -108,6 +108,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import services.user.MailSender;
 
@@ -167,6 +168,7 @@ public class Metatrip  extends Application  {
     public static void main(String[] args) throws Exception, WriterException, IOException,
                NotFoundException{
         // TODO code application logic here
+         
         Datasource data = Datasource.getInstance();
         Datasource data2 = Datasource.getInstance();
 
