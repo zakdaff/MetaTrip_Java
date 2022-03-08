@@ -220,13 +220,14 @@ boolean flag=false;
 
 
                   UserService us = new UserService();
-               
+              
         
  
         
   user u10=new user(Cin.getText(),Nom.getText(),Prenom.getText(),Tel.getText(),Email.getText(),Password.getText(),file_path.getText(),date1);
-                  us.modifier(u10.getIdu(), u10);     //  boolean flag = loginSignup.Signup(u1);
-               user u2 = us.getUserByEmail(Email.getText().toString());    
+                user u2 = us.getUserByEmail(Email.getText().toString());          
+  us.modifier(u2.getIdu(), u10);     //  boolean flag = loginSignup.Signup(u1);
+           
      link1(u2);
     }
     public static void infoBox(String infoMessage, String headerText, String title) {
