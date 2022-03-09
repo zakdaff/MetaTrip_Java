@@ -68,8 +68,6 @@ public class InterfaceReservationFXMLController implements Initializable {
     @FXML
     private DatePicker Date_arrivee;
     @FXML
-    private Button affich_list;
-    @FXML
     private Button retour_btn;
     @FXML
     private TextField Nb_personnes2;
@@ -81,6 +79,8 @@ public class InterfaceReservationFXMLController implements Initializable {
     private Connection conn= Datasource.getInstance().getCnx();;
     private Statement ste;
     private PreparedStatement pste;
+    @FXML
+    private ComboBox<String> Idc;
     
 
     /**
@@ -89,13 +89,25 @@ public class InterfaceReservationFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        
         ResultSet rs;
         try {
             ste = conn.createStatement();
-            rs = ste.executeQuery("Select Nom_hotel from hotel");
+            rs = ste.executeQuery("Select Distinct( Nom_hotel) from hotel");
             while (rs.next()) {  // loop
 
                 Idh.getItems().addAll(rs.getString("Nom_hotel")); 
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfaceReservationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          ResultSet rc;
+        try {
+            ste = conn.createStatement();
+            rc = ste.executeQuery("Select Distinct(numc) from chambre where Etat='Disponible' ");
+            while (rc.next()) {  // loop
+
+                Idc.getItems().addAll(rc.getString("numc")); 
             }
         } catch (SQLException ex) {
             Logger.getLogger(InterfaceReservationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,30 +116,29 @@ public class InterfaceReservationFXMLController implements Initializable {
         
     }    
 
-    @FXML
-    private void AfficherListe(ActionEvent event) throws IOException {
+//    private void AfficherListe(ActionEvent event) throws IOException {
+//    
+//       
+// try {
+//     //9bal mat7el ay interface zid il zouz ostra hedhom taw tetsaker wtet7al  interface o5ra
+//     //********
+//                   Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+//            
+//            stageclose.close();
+//            //-******
+//            Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/ReservationHotel.fxml"));
+//            Scene scene = new Scene(parent);
+//            
+//            Stage stage = new Stage();
+//            //stage.getIcons().add(new Image("wood.jpg"));
+//            stage.setScene(scene);
+//            stage.initStyle(StageStyle.UTILITY);
+//            stage.show();
+//        } catch (IOException ex) {
+//           System.err.println(ex.getMessage());;
+//        }
+            
     
-       
- try {
-     //9bal mat7el ay interface zid il zouz ostra hedhom taw tetsaker wtet7al  interface o5ra
-     //********
-                   Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            stageclose.close();
-            //-******
-            Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/ReservationHotel.fxml"));
-            Scene scene = new Scene(parent);
-            
-            Stage stage = new Stage();
-            //stage.getIcons().add(new Image("wood.jpg"));
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-        } catch (IOException ex) {
-           System.err.println(ex.getMessage());;
-        }
-            
-    }
 
     @FXML
     private void Retour(ActionEvent event) {
@@ -159,7 +170,7 @@ public boolean isNumeric(String str){
         return true;
     }
     @FXML
-    private void reserver(ActionEvent event) {
+    private void reserver(ActionEvent event) throws IOException {
         String erreurs="";
         if(Nb_personnes.getText().trim().isEmpty()){
             erreurs+="- Please enter person number \n";
@@ -199,6 +210,14 @@ public boolean isNumeric(String str){
                 Integer.parseInt(Nb_personnes.getText()),
                 60*Integer.parseInt(Nb_personnes.getText())*Integer.parseInt(Nb_personnes2.getText()),41,h.getIdh(),Date.valueOf(Date_depart.getValue()),Date.valueOf(Date_arrivee.getValue()));
         rs.ajouter(r);
+        Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/AcceuilFXML.fxml"));
+            Scene scene = new Scene(parent);
+            
+            Stage stage = new Stage();
+            //stage.getIcons().add(new Image("wood.jpg"));
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
         TrayNotification tray = new TrayNotification();
             AnimationType type = AnimationType.POPUP;
             tray.setAnimationType(type);

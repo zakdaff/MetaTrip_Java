@@ -22,14 +22,17 @@ import javafx.scene.image.ImageView;
  */
 public class ItemController implements Initializable {
 
-    @FXML
     private Label namehotel;
-    @FXML
     private Label adressehotel;
-    @FXML
     private ImageView image_hotel;
     @FXML
-    private Button btn_reservation;
+    private ImageView image;
+    @FXML
+    private Label nomhotel;
+    @FXML
+    private Label nb_etoile;
+    @FXML
+    private Label adressehotel1;
 
     /**
      * Initializes the controller class.

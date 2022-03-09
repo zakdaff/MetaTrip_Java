@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -15,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="698.0" prefWidth="1039.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.hotel.ReservationHotelController">
    <children>
-      <TableView fx:id="tab_reservation" layoutX="28.0" layoutY="155.0" onMouseClicked="#tablehandleButtonAction" prefHeight="422.0" prefWidth="773.0">
+      <TableView fx:id="tab_reservation" layoutX="28.0" layoutY="181.0" onMouseClicked="#tablehandleButtonAction" prefHeight="456.0" prefWidth="773.0">
         <columns>
           <TableColumn fx:id="Idrh" prefWidth="111.0" text="Id reservation" />
           <TableColumn fx:id="Nb_nuitees" prefWidth="117.0" text="nombre nuités" />
@@ -27,34 +26,37 @@
             <TableColumn fx:id="Date_arrivee" prefWidth="90.0" text="Date arrive" />
         </columns>
       </TableView>
-      <Button fx:id="btn_cofirmation" layoutX="823.0" layoutY="464.0" mnemonicParsing="false" onAction="#ConfirmerReservation" stylesheets="@../../values/style.css" text="Confirmer Reservation ">
+      <Button fx:id="btn_cofirmation" layoutX="823.0" layoutY="531.0" mnemonicParsing="false" onAction="#ConfirmerReservation" prefHeight="44.0" prefWidth="183.0" stylesheets="@../../values/style.css" text="Confirmer Reservation " textFill="WHITE">
          <styleClass>
             <String fx:value="search-box" />
             <String fx:value="search-button" />
             <String fx:value="search-box" />
-         </styleClass></Button>
-      <Button layoutX="337.0" layoutY="613.0" mnemonicParsing="false" onAction="#Retour" prefHeight="31.0" prefWidth="143.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Retour" />
-      <Button layoutX="823.0" layoutY="510.0" mnemonicParsing="false" onAction="#SupprimerReservation" prefHeight="31.0" prefWidth="172.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Supprimer Reservation" />
-      <VBox alignment="CENTER" layoutX="372.0" layoutY="14.0" prefHeight="85.0" prefWidth="476.0" styleClass="chosen-fruit-card" stylesheets="@../../values/style.css" AnchorPane.rightAnchor="300.0">
+         </styleClass>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button layoutX="183.0" layoutY="646.0" mnemonicParsing="false" onAction="#Retour" prefHeight="35.0" prefWidth="143.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Retour" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button layoutX="823.0" layoutY="586.0" mnemonicParsing="false" onAction="#SupprimerReservation" prefHeight="44.0" prefWidth="183.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Supprimer Reservation" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <VBox alignment="CENTER" layoutX="372.0" layoutY="14.0" prefHeight="85.0" prefWidth="1002.0" styleClass="chosen-fruit-card" stylesheets="@../../values/style.css" AnchorPane.rightAnchor="19.0">
          <children>
-            <HBox prefHeight="66.0" prefWidth="448.0">
-               <children>
-                  <ImageView fitHeight="101.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/logo_meta.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" text="MetaTrip  Hotel " textFill="#fcf3f3">
-                     <font>
-                        <Font name="Cambria Bold" size="36.0" />
-                     </font>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
+            <ImageView fitHeight="80.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo_meta.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" text="MetaTrip  Reservation" textFill="#fcf3f3">
+               <font>
+                  <Font name="Cambria Bold" size="36.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
+      <HBox layoutX="275.0" layoutY="65.0" prefHeight="80.0" prefWidth="531.0" />
    </children>
 </AnchorPane>

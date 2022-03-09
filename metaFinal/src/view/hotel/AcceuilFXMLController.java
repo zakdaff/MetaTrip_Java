@@ -61,6 +61,8 @@ public class AcceuilFXMLController implements Initializable {
     int i=0;
     @FXML
     private Label label;
+    @FXML
+    private Label label1;
    
 
     /**
@@ -74,6 +76,7 @@ public class AcceuilFXMLController implements Initializable {
         
         String picture ="file:" + h.getImage_hotel();
         label.setText(h.getNom_hotel());
+//        label1.setText(h.getAdresse());
          Image image = new Image(picture);
 
         image_view.setImage(image);
@@ -197,30 +200,29 @@ public class AcceuilFXMLController implements Initializable {
             
     }
 
-    @FXML
-    private void Gerer(ActionEvent event) {
-         try {
-     //9bal mat7el ay interface zid il zouz ostra hedhom taw tetsaker wtet7al  interface o5ra
-     //********
-                   Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            stageclose.close();
-            //-******
-            Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/InterfaceGestion.fxml"));
-            Scene scene = new Scene(parent);
-            
-            Stage stage = new Stage();
-            //stage.getIcons().add(new Image("wood.jpg"));
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-        } catch (IOException ex) {
-           System.err.println(ex.getMessage());;
-        }
+//    private void Gerer(ActionEvent event) {
+//         try {
+//     //9bal mat7el ay interface zid il zouz ostra hedhom taw tetsaker wtet7al  interface o5ra
+//     //********
+//                   Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+//            
+//            stageclose.close();
+//            //-******
+//            Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/InterfaceGestion.fxml"));
+//            Scene scene = new Scene(parent);
+//            
+//            Stage stage = new Stage();
+//            //stage.getIcons().add(new Image("wood.jpg"));
+//            stage.setScene(scene);
+//            stage.initStyle(StageStyle.UTILITY);
+//            stage.show();
+//        } catch (IOException ex) {
+//           System.err.println(ex.getMessage());;
+//        }
         
     }
         
-    }
+    
     
 
 

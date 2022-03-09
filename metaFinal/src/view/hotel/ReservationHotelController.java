@@ -77,6 +77,9 @@ Connection con = null;
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Idrh.setVisible(false);
+        Idu.setVisible(false);
+        idc.setVisible(false);
         AfficherReservation();
         // TODO
     }    
@@ -177,6 +180,14 @@ Connection con = null;
         Reserrvation_Hotel_Service rh  = new Reserrvation_Hotel_Service();
          rh.supprimer(tab_reservation.getSelectionModel().getSelectedItem().getIdrh());
         try {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Deleting reservation");
+//
+            // Header Text: null
+            alert.setHeaderText(null);
+            alert.setContentText(" Vous voulez vraiment supprimé la reservation  avec ID" + tab_reservation.getSelectionModel().getSelectedItem().getIdrh());
+
+            alert.showAndWait();
             javafx.scene.Parent tableview = FXMLLoader.load(getClass().getResource("ReservationHotel.fxml"));
             Scene sceneview = new Scene(tableview);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

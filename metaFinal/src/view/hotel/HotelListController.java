@@ -8,8 +8,7 @@ package view.hotel;
 
 import javafx.util.Duration;
 import tray.animations.AnimationType;
-import tray.notification.NotificationType;
-import tray.notification.TrayNotification;
+
 import Config.Datasource;
 import entities.hotel;
 
@@ -48,6 +47,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import tray.notification.TrayNotification;
+import tray.notification.NotificationType;
+
 
 
 
@@ -104,6 +106,7 @@ public class HotelListController implements Initializable {
      * Initializes the controller class.
      */
     public void initialize(URL url, ResourceBundle rb) {
+        id_hotel_tab.setVisible(false);
         AffichageHotel();
         recherche_avance();
 
@@ -144,7 +147,7 @@ if(tab_hotel.getSelectionModel().getSelectedItem()!=null){
 
             // Header Text: null
             alert.setHeaderText(null);
-            alert.setContentText(" hotel " + Nom_hotel.getText() + " avec ID" + tab_hotel.getSelectionModel().getSelectedItem().getIdh() + " est supprimé avec succés");
+            alert.setContentText(" hotel " + Nom_hotel.getText() + " avec ID" + tab_hotel.getSelectionModel().getSelectedItem().getIdh() + " va etre supprime");
 
             alert.showAndWait();
 
@@ -182,6 +185,28 @@ if(tab_hotel.getSelectionModel().getSelectedItem()!=null){
     }
 
     private void insert() {
+       
+         String erreurs = "";
+        if (Nom_hotel.getText().trim().isEmpty()) {
+            erreurs += "- Entrez le nom d'hotel ";
+        }
+        if (Nb_etoiles.getText().trim().isEmpty())  {
+            erreurs += "- Entrez le nombre des etoile ";
+        }
+        if (Adresse.getText().trim().isEmpty()) {
+            erreurs += "- Entrez l'adresse de l'hotel  ";
+        
+   
+        }
+        if (image_view.getImage() == null){
+            erreurs += "- Choissisez une image   ";}
+        if (erreurs.length() > 0) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Add fail");
+            alert.setContentText(erreurs);
+            alert.showAndWait();
+        } else {
+        
         con = Datasource.getInstance().getCnx();
         String insert = "INSERT INTO hotel (`Nom_hotel`,`Nb_etoiles`,`Adresse`,`image`) VALUES (?,?,?,?) ;";
         try {
@@ -193,30 +218,28 @@ if(tab_hotel.getSelectionModel().getSelectedItem()!=null){
             st.setString(3, Adresse.getText());
             st.setString(4, file_path.getText());
             file_path.setOpacity(0);
-            
-                Alert alert = new Alert(AlertType.INFORMATION);
-
-                alert.setTitle("MarcoMan Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Successfully !");
-                alert.showAndWait();
-//
-////           Alert alert = new Alert(AlertType.INFORMATION);
-////		alert.setTitle("Deleting user");
-////		 Header Text: null
-////		alert.setHeaderText(null);
-////		alert.setContentText("'utilisateur " +nom.getText()+"   "+prenom.getText()+" est ajouté avec succés");
-////
-////		alert.showAndWait();
-           
-//            st.executeUpdate();
-//            Affiffiche();
-         st.executeUpdate();
+            st.executeUpdate();
+                   TrayNotification tray = new TrayNotification();
+                AnimationType type = AnimationType.POPUP;
+                tray.setAnimationType(type);
+                tray.setTitle("Add Reservation");
+                tray.setMessage("fail");
+                tray.setNotificationType(NotificationType.ERROR);
+                tray.showAndDismiss(Duration.millis(1000));
+         
            //AffichageHotel();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-    }
+        //Notification
+            TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Add Success");
+            tray.setMessage("You successufuly added a chambre");
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(1000));}}
+    
 
     void clear() {
         
@@ -290,38 +313,35 @@ ObservableList<hotel> resultat=FXCollections.observableArrayList();
                     | Nb_etoiles.getText().isEmpty()
                     | Adresse.getText().isEmpty()
                     | image_view.getImage() == null) {
-
-//                Alert alert = new Alert(AlertType.ERROR);
+                Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Deleting chambre");
 //
-//                alert.setTitle("Error Message");
-//                alert.setHeaderText(null);
-//                alert.setContentText("Enter all blank fields!");
-//                alert.showAndWait();
+            // Header Text: null
+            alert.setHeaderText(null);
+            alert.setContentText(" Vous voulez vraiment mettre a jour l'hotel  avec id  " + tab_hotel.getSelectionModel().getSelectedItem().getIdh());
+
+            alert.showAndWait();
+
+//              
  TrayNotification tray = new TrayNotification();
             AnimationType type = AnimationType.POPUP;
             tray.setAnimationType(type);
-            tray.setTitle("Add Success");
-            tray.setMessage("You successufuly added room in ur application");
-            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.setTitle("Update Failed");
+            tray.setMessage("Update Failed");
+            tray.setNotificationType(NotificationType.ERROR);
             tray.showAndDismiss(Duration.millis(1000));
 
             } else {
 
                 st.executeUpdate(sql);
                 
-//                Alert alert = new Alert(AlertType.INFORMATION);
-//
-//                alert.setTitle("MarcoMan Message");
-//                alert.setHeaderText(null);
-//                alert.setContentText("Successfully Update the data!");
-//                alert.showAndWait();
 
  TrayNotification tray = new TrayNotification();
             AnimationType type = AnimationType.POPUP;
             tray.setAnimationType(type);
             tray.setTitle("Add Success");
             tray.setMessage("You successufuly added room in ur application");
-            tray.setNotificationType(NotificationType.ERROR);
+            tray.setNotificationType(NotificationType.SUCCESS);
             tray.showAndDismiss(Duration.millis(1000));
 
                 //AffichageHotel();

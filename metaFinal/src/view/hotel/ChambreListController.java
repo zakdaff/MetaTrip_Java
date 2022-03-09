@@ -47,6 +47,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import static javax.management.remote.JMXConnectorFactory.connect;
 import services.chambre.Chambre_service;
 import services.hotel.HotelCRUD;
 import tray.animations.AnimationType;
@@ -136,6 +137,8 @@ public class ChambreListController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        idc_tab.setVisible(false);
+        idh_tab.setVisible(false);
         etat.setPromptText("Selectioner l'etat du chambre");
         etat.setItems(etatt);
         type.setPromptText("Selectioner le type");
@@ -160,6 +163,7 @@ public class ChambreListController implements Initializable {
     private void AjouterChambre(ActionEvent event) {
         InsertHotel();
         AfficherChambre();
+        Clear();
     }
 
     @FXML
@@ -167,10 +171,75 @@ public class ChambreListController implements Initializable {
         Delete();
 
         AfficherChambre();
+        
     }
-
+private void update(ActionEvent event) {
+//         connect = connectDb();
+//        
+//        String path = file_path.getText();
+//        
+//        path = path.replace("\\", "\\\\");
+//        
+//        String sql = "UPDATE account SET  Type = '" 
+//                + prix.getText() 
+//                + "', Type = '" 
+//                + type.getSelectionModel().getSelectedItem() 
+//                + "', picture = '" + path 
+//                
+//                + "' WHERE id = '" + id.getText() + "'";
+//        
+//        try{
+//            
+//            if(id.getText().isEmpty() | surname.getText().isEmpty()
+//                    | given.getText().isEmpty() 
+//                    | gender.getSelectionModel().isEmpty()
+//                    | image_view.getImage() == null){
+//                
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                
+//                alert.setTitle("Error Message");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Enter all blank fields!");
+//                alert.showAndWait();
+//                
+//            }else{
+//            
+//                statement = connect.createStatement();
+//                statement.executeUpdate(sql);
+//
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//
+//                alert.setTitle("MarcoMan Message");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Successfully Update the data!");
+//                alert.showAndWait();
+//
+//                showData();
+//                clear();
+//                
+//            }
+//        }catch(Exception e){}
+    }
     @FXML
     private void EditChambre(ActionEvent event) {
+         con = Datasource.getInstance().getCnx();
+//
+        String path = file_path.getText();
+
+        path = path.replace("\\", "\\\\");
+
+        String sql = "UPDATE chambre SET `numc` = '"
+                + numc.getText() + "', `image` = '"
+                + image_view + "', `type` = '"
+                + type.getSelectionModel().getSelectedItem()
+                + "', `etat` = '"
+                + etat.getSelectionModel().getSelectedItem()
+                +"', `prixc` = '"
+                + prixc.getText()
+                + "' WHERE idc = '" + tab_chambre.getSelectionModel().getSelectedItem().getIdc() + "'";
+
+        try {
+        
         String erreurs = "";
         if (numc.getText().trim().isEmpty()) {
             erreurs += "- Please enter a number\n";
@@ -196,15 +265,29 @@ public class ChambreListController implements Initializable {
             tray.setAnimationType(type);
             tray.setTitle("Add Reservation");
             tray.setMessage("Fail");
+            tray.setNotificationType(NotificationType.ERROR);
+            tray.showAndDismiss(Duration.millis(1000));
+           } else {
+//
+            ste = conn.createStatement();
+               ste.executeUpdate(sql);
+TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+            tray.setAnimationType(type);
+            tray.setTitle("Successfully Update the data!");
+            tray.setMessage("");
             tray.setNotificationType(NotificationType.SUCCESS);
             tray.showAndDismiss(Duration.millis(1000));
-        } else {
-              hotel h=hc.findByName(nomhotel.getValue());
-            Chambre ch = new Chambre(Integer.parseInt(numc.getText()), type.getValue(), etat.getValue(),h.getIdh(), file_path.getText());
-            cs.modifier(tab_chambre.getSelectionModel().getSelectedItem().getIdc(), ch);
 
-            AfficherChambre();
-            clear();
+               AfficherChambre();
+                Clear();
+//                
+//            }
+
+            }
+        } catch (Exception e) {
+            System.out.println("errrretyyyyy"+e);
+//
         }
 
     }
@@ -254,22 +337,26 @@ public class ChambreListController implements Initializable {
     private void InsertHotel() {
         String erreurs = "";
         if (numc.getText().trim().isEmpty()) {
-            erreurs += "- Please enter a number";
+            erreurs += "- Please enter a  number of room ";
         }
         if (type.getValue() == null) {
-            erreurs += "- Please enter a Type";
+            erreurs += "- Please enter a Type of room";
         }
         if (etat.getValue() == null) {
-            erreurs += "- Please enter a state";
+            erreurs += "- Please enter the etat of room";
         }
         if (nomhotel.getValue() == null) {
-            erreurs += "- Please enter a hostel";
+            erreurs += "- Please enter the nom of hotel";
+        }
+         if (prixc.getText() == null) {
+            erreurs += "- Please enter the nom of hotel";
         }
         if (erreurs.length() > 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Add fail");
             alert.setContentText(erreurs);
             alert.showAndWait();
+            
         } else {
             con = Datasource.getInstance().getCnx();
             String insert = "INSERT INTO chambre (`numc`,`image`,`type`,`etat`,`Idh`,`prixc`) VALUES (?,?,?,?,?,?) ;";
@@ -291,9 +378,10 @@ public class ChambreListController implements Initializable {
                 TrayNotification tray = new TrayNotification();
                 AnimationType type = AnimationType.POPUP;
                 tray.setAnimationType(type);
+         
                 tray.setTitle("Add Reservation");
                 tray.setMessage("fail");
-                tray.setNotificationType(NotificationType.SUCCESS);
+                tray.setNotificationType(NotificationType.ERROR);
                 tray.showAndDismiss(Duration.millis(1000));
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());
@@ -322,7 +410,7 @@ public class ChambreListController implements Initializable {
 //
             // Header Text: null
             alert.setHeaderText(null);
-            alert.setContentText(" chambre " + numc.getText() + " avec ID" + tab_chambre.getSelectionModel().getSelectedItem().getIdc() + " est supprimé avec succés");
+            alert.setContentText(" Vous voulez vraiment supprimé la chambre numero chambre " + numc.getText() + " avec ID" + tab_chambre.getSelectionModel().getSelectedItem().getIdc() );
 
             alert.showAndWait();
 //            
@@ -393,60 +481,61 @@ public class ChambreListController implements Initializable {
 
         }
     }
-
-    public void Update() {
-
-        con = Datasource.getInstance().getCnx();
-
-        String path = file_path.getText();
-
-        path = path.replace("\\", "\\\\");
-
-        String sql = "UPDATE chambre SET `numc` = '"
-                + numc.getText() + "', `image` = '"
-                + image_view + "', `type` = '"
-                + type.getSelectionModel().getSelectedItem()
-                + "', `etat` = '"
-                + etat.getSelectionModel().getSelectedItem()
-                +"', `prixc` = '"
-                + prixc.getText()
-                + "' WHERE idc = '" + tab_chambre.getSelectionModel().getSelectedItem().getIdc() + "'";
-
-        try {
-
-            if (numc.getText().isEmpty() | prixc.getText().isEmpty()
-                    | type.getSelectionModel().isEmpty()
-                    | etat.getSelectionModel().isEmpty()
-                    | image_view.getImage() == null) {
-
-                TrayNotification tray = new TrayNotification();
-                AnimationType type = AnimationType.POPUP;
-                tray.setAnimationType(type);
-                tray.setTitle("Add Reservation");
-                tray.setMessage("failed");
-                tray.setNotificationType(NotificationType.ERROR);
-                tray.showAndDismiss(Duration.millis(1000));
-
-            } else {
-
-                System.out.println("updaaaaaaaaaaaaaate");
-                st.executeUpdate(sql);
-                System.out.println("updaaaaaaaaaaaaaate");
-                TrayNotification tray = new TrayNotification();
-                AnimationType type = AnimationType.POPUP;
-                tray.setAnimationType(type);
-                tray.setTitle("Add Reservation");
-                tray.setMessage("You successufuly update chambre");
-                tray.setNotificationType(NotificationType.SUCCESS);
-                tray.showAndDismiss(Duration.millis(1000));
-
-                AfficherChambre();
-
-            }
-        } catch (Exception e) {
-        }
-
-    }
+//@FXML
+//    public void EditChambre() {
+//
+//        con = Datasource.getInstance().getCnx();
+//
+//        String path = file_path.getText();
+//
+//        path = path.replace("\\", "\\\\");
+//
+//        String sql = "UPDATE chambre SET `numc` = '"
+//                + numc.getText() + "', `image` = '"
+//                + image_view + "', `type` = '"
+//                + type.getSelectionModel().getSelectedItem()
+//                + "', `etat` = '"
+//                + etat.getSelectionModel().getSelectedItem()
+//                +"', `prixc` = '"
+//                + prixc.getText()
+//                + "' WHERE idc = '" + tab_chambre.getSelectionModel().getSelectedItem().getIdc() + "'";
+//
+//        try {
+//
+//            if (numc.getText().isEmpty() | prixc.getText().isEmpty()
+//                    | type.getSelectionModel().isEmpty()
+//                    | etat.getSelectionModel().isEmpty()
+//                    | image_view.getImage() == null) {
+//
+//                TrayNotification tray = new TrayNotification();
+//                AnimationType type = AnimationType.POPUP;
+//                tray.setAnimationType(type);
+//                tray.setTitle("Add Reservation");
+//                tray.setMessage("failed");
+//                tray.setNotificationType(NotificationType.ERROR);
+//                tray.showAndDismiss(Duration.millis(1000));
+//
+//            } else {
+//
+//                System.out.println("updaaaaaaaaaaaaaate");
+//                st.executeUpdate(sql);
+//                System.out.println("updaaaaaaaaaaaaaate");
+//                TrayNotification tray = new TrayNotification();
+//                AnimationType type = AnimationType.POPUP;
+//                tray.setAnimationType(type);
+//                tray.setTitle("Add Reservation");
+//                tray.setMessage("You successufuly update chambre");
+//                tray.setNotificationType(NotificationType.SUCCESS);
+//                tray.showAndDismiss(Duration.millis(1000));
+//
+//                AfficherChambre();
+//                Clear();
+//
+//            }
+//        } catch (Exception e) {
+//        }
+//
+//    }
 
     @FXML
     private void Retour(ActionEvent event) {
@@ -502,20 +591,36 @@ public class ChambreListController implements Initializable {
         tab_chambre.setItems(filteredlist);
     }
 
-    private void clear() {
-         
-        
-       numc.setText("");
-        type.getSelectionModel().clearSelection();
-        etat.getSelectionModel().clearSelection();
-       nomhotel.getSelectionModel().clearSelection();
-        image_view.setImage(null);
+//    private void clear() {
+//         
+//        
+//       numc.setText("");
+//        type.getSelectionModel().clearSelection();
+//        etat.getSelectionModel().clearSelection();
+//       nomhotel.getSelectionModel().clearSelection();
+//        image_view.setImage(null);
+//        prixc.setText("");
+//
+//
+//        //sexe.getSelectionModel().selectFirst();
+//       
+//    }
 
+    private void Clear() {
+       
+       numc.setText(null);
+       type.setValue(null);
+        etat.setValue(null);
+        nomhotel.setValue(null);
+        prixc.setText(null);
+       file_path.setOpacity(0);
+        image_view.setImage(null);
 
         //sexe.getSelectionModel().selectFirst();
        
     }
-    
     }
+    
+    
 
 
