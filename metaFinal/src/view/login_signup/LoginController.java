@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package view.login_signup;
 
 import Config.Metatrip;
@@ -11,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -23,6 +29,7 @@ import javafx.stage.Window;
 import services.user.LoginAndSignupService;
 import services.user.UserService;
 import view.PartieClient.Reservation_VoyageClientController;
+import view.PartieClient.VoyageORGClientPartieController;
 import view.adminPanel.Reservation_voyageController;
 
 /**
@@ -45,8 +52,7 @@ public class LoginController implements Initializable {
    @FXML
     public void login(ActionEvent event) throws SQLException, Exception  {
 
-        System.out.println(emailIdField.getText());
-        System.out.println(passwordField.getText());
+     
  Window owner = submitButton.getScene().getWindow();
 
 
@@ -100,14 +106,17 @@ public class LoginController implements Initializable {
 
      @FXML
 public void link(ActionEvent event) throws Exception {               
- 
-       try {
+ try {
+                  final Node source = (Node) event.getSource();
+
+            Metatrip.stg.close();  
        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login_signup/signup.fxml"));
             Parent root = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
+           final Stage stage = (Stage) source.getScene().getWindow();
             stage.setScene(new Scene(root));  
+             Metatrip.stg.close();  
             stage.show();
-         Metatrip.stg.close();   
+           
     } catch(Exception e) {
         e.printStackTrace();
     }
@@ -125,9 +134,11 @@ public void link1(user user) throws Exception {
             Parent root = loader.load();
             Reservation_voyageController controller = loader.getController();
             controller.setUser(emailIdField.getText());
+                    emailIdField.getScene().setRoot(root);
+                    
             //Personne.user = ;
             //Personne.user.get
-            emailIdField.getScene().setRoot(root);
+    
         } catch (IOException ex) {
          Metatrip.stg.close();   
     } catch(Exception e) {
@@ -138,9 +149,9 @@ public void link1(user user) throws Exception {
      
             //Personne.user = ;
             //Personne.user.get
-                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
+                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/VoyageORGClientPartie.fxml"));
             Parent root1 = loader1.load();
-            Reservation_VoyageClientController controller = loader1.getController();
+            VoyageORGClientPartieController controller = loader1.getController();
             controller.setUser(emailIdField.getText());
             //Personne.user = ;
             //Personne.user.get

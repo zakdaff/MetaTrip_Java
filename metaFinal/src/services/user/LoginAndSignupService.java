@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Config.Datasource;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import static services.user.MailSender.sendMail;
 
 /**
@@ -32,7 +34,7 @@ public class LoginAndSignupService {
 public boolean login (String email,String password) throws Exception {
     boolean test = false;
         List<user> users = new ArrayList<>();
-        String req = "SELECT *  FROM `user` where Email='"+email+"' and Password ='"+password+"'";
+        String req = "SELECT *  FROM `user` where Email='"+email+"' and Password ='"+doHashing(password)+"'";
         System.out.println(email);
          System.out.println(password);
         try {
@@ -125,7 +127,7 @@ public boolean login (String email,String password) throws Exception {
                                                            pste.setString(3, u.getPrenom());
                                                             pste.setString(4,u.getTel());
                                                              pste.setString(5, u.getEmail());
-                                                              pste.setString(6, u.getPassword());
+                                                              pste.setString(6, UserService.doHashing(u.getPassword()));
                                                                pste.setString(7, u.getImage());
                                                                  pste.setDate(8, u.getDateNaissance());
                                                            pste.executeUpdate();
@@ -148,4 +150,25 @@ public boolean login (String email,String password) throws Exception {
 
 
 
-}}
+  }      public static String doHashing(String password) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+
+            messageDigest.update(password.getBytes());
+
+            byte[] resultByteArray = messageDigest.digest();
+
+            StringBuilder sb = new StringBuilder();
+ 
+            for (byte b : resultByteArray) {
+                sb.append(String.format("%02x", b));
+            }
+
+            return sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }}

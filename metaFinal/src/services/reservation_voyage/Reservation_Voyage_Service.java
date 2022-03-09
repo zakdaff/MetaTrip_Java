@@ -384,7 +384,7 @@ public class Reservation_Voyage_Service implements IReservation_Voyage{
   
                  
                 }                                          
-            
+        
             
         } catch (SQLException ex) {
            System.out.println(ex.getMessage());

@@ -109,6 +109,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import services.user.MailSender;
 
 public class Metatrip  extends Application {
@@ -139,7 +141,7 @@ public class Metatrip  extends Application {
     	@Override
 	public void start(Stage primaryStage) throws IOException {
             
-             Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/Reservation_voyage.fxml"));
+             Parent root = FXMLLoader.load(getClass().getResource("/view/login_signup/login.fxml"));
         Scene scene = new Scene(root, 1200, 650);
      this.stg=primaryStage;
         primaryStage.setTitle("Welcome to MetaTrip!");
@@ -203,6 +205,9 @@ public class Metatrip  extends Application {
 
         user u1 = new user(9999, "5866", "dafdouf", "zakzouk", "5895", "zak@live.fr", "0000", "image",date2);
          user u8 = new user(811,"199525", "ssss", "cxx", "2568435", "fares.lamloum@esprit.tn", doHashing("12345678"), "image",date2);
+        
+        
+        
          //MailSender.sendMail(u8);
          //us.ajouter(u8);
      

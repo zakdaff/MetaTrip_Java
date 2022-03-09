@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package view.login_signup;
 
 import Config.Metatrip;
@@ -7,12 +12,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -22,12 +32,16 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import services.user.LoginAndSignupService;
+import services.user.UserService;
 import view.PartieClient.Reservation_VoyageClientController;
+import view.PartieClient.VoyageORGClientPartieController;
 import view.adminPanel.Reservation_voyageController;
 
 /**
@@ -36,7 +50,7 @@ import view.adminPanel.Reservation_voyageController;
  * @author medal
  */
 public class SignupController implements Initializable {
-
+   boolean ok = true;
      @FXML
     private Button submitButton;
 
@@ -72,6 +86,8 @@ public class SignupController implements Initializable {
  
     @FXML
     private AnchorPane left_main;
+    @FXML
+    private Button submitButton1;
     /**
      * Initializes the controller class.
      */
@@ -79,6 +95,7 @@ public class SignupController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     } 
+    
      @FXML
    public void insertImage(){
         
@@ -108,36 +125,124 @@ public class SignupController implements Initializable {
     }
     @FXML
     public void signup(ActionEvent event) throws SQLException, Exception  {
-
-   
+ String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+      boolean ok = true;
+         boolean flag=false;
+     ArrayList<user> user5 = new ArrayList<>();
+          ArrayList<user> user6= new ArrayList<>();
  Window owner = submitButton.getScene().getWindow();
-
-
-        if ((Email.getText().isEmpty())||((!Email.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")))) {
-        
+System.out.println("date"+DateNaissance.getValue());
+   if (Prenom.getText().isEmpty()==true) { 
+   
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter your email id");
-            return;
-           
-        }
-        if ((Password.getText().isEmpty())||(Password.getText().length()<4)) {
-    
-             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter a password");
-            return;
-            
-          }
-               if (DateNaissance.getValue().toString().isEmpty()) {
-    
+                    "Please enter your Prenom id");
+             ok = false;
+                             
+
+                     }
+  
+    if (DateNaissance.getValue()==null) {
+              
+      
              showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter a DateNaissance");
-            return;
+                 ok = false;
+                      return;
+         
+            
+          }  
+       if (DateNaissance.getValue()==null) {
+              
+      
+             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter a DateNaissance");
+                 ok = false;
+                      return;
+         
+            
+          }  
+         String str20=DateNaissance.getValue().toString();  
+     Date date11=Date.valueOf(str20);
+       Date date20=Date.valueOf(timeStamp);
+      if (date11.after(date20)) { 
+   
+           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                    "date invalide par rapport a la date System");
+           
+                  ok = false;      
+                       return;
+
+                     }
+
+        if ((Email.getText().isEmpty())||((!Email.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")))) {
+         
+           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter your email id");
+          
+              ok = false;
+                   return;
+            
+           
+        }
+           if (image_view.getImage() == null ) {
+        
+           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter your Image id");
+        
+              ok = false;
+                   return;
+           
+        }
+           if (Nom.getText().isEmpty()==true) {
+   
+             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter a Nom");
+              
+            ok = false;
+                 return;
+            
+          }
+         if (Cin.getText().isEmpty()==true){
+            
+           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter your Cin id");
+          
+             ok = false;
+                  return;
+         }
+        if (Password.getText().isEmpty()==true){
+     
+             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Password vide");
+             
+                  ok = false;
+                 return;
+          }
+        if(Password.getText().length()<4){
+          showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "changer votre Password");
+             
+                  ok = false;
+                 return;
+        
+        }
+        
+        
+        
+               if (DateNaissance.getValue().toString().isEmpty()==true) {
+                 System.out.println("date invalide");
+  
+             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter a DateNaissance");
+                   ok = false;
+              return;
             
           }  
                
                         int monEntier1 = 0;
-        boolean ok1 = true;
-                                                                                        try
+        boolean ok1 = true;                                                            
+                                                                                                if(!Cin.getText().toString().isEmpty()==true){
+                                                                                                   try
                                                                                                  {
                                                                                                     monEntier1 = Integer.parseInt(Cin.getText());
                                                                                         // s'il ne contient que des chiffres (0 à 9) c'est ok sauf si les limites int sont dépassées
@@ -147,30 +252,21 @@ public class SignupController implements Initializable {
                                                                                                     {
                                                                                                        ok1= false;
                                                                                                     }
+                                                                                                        }
+                                                                                      
      
-        if (Cin.getText().isEmpty()||((Cin.getText().length()!=8)||(ok1==false))) {
-        
-           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter your Cin id");
-            return;
-           
-        }
-        if (Nom.getText().isEmpty()) {
-    
-             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter a password");
-            return;
+        if (((Cin.getText().length()!=8)||(ok1==false))) {
             
-          }
-         if (image_view.getImage() == null ) {
-        
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter your Image id");
-            return;
+               " Cin est invalide");
+        
+         ok = false;
            
         }
+     
+      
          int monEntier = 0;
-        boolean ok = true;
+                                                                           if(!Tel.getText().toString().isEmpty()){
                                                                                         try
                                                                                                  {
                                                                                                     monEntier = Integer.parseInt(Tel.getText());
@@ -180,37 +276,62 @@ public class SignupController implements Initializable {
                                                                                                      catch(NumberFormatException nfe)
                                                                                                     {
                                                                                                        ok = false;
-                                                                                                    }
+                                                                                                    }}
                                                                                        
-      if (Prenom.getText().isEmpty()) {
-
+        System.out.println("password+++++++"+Password.getText());
+  if ((Tel.getText().length()!=8||(ok==false))) {
+         
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your Prenom id");
-                                 return;
-
-                     }
-  if (Tel.getText().isEmpty()||(Tel.getText().length()!=8||(ok==false))) {
-        
-           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter your Tel id");
-            return;
+                "Nb de Tel faible ou invalide");
+            
+              ok = false;
            
         }
-        String str2=DateNaissance.getValue().toString();  
+   UserService us5 =new UserService();
+   user5=(ArrayList<user>) us5.getuserbycin(Integer.parseInt(Cin.getText()));
+   user6=(ArrayList<user>) us5.getuserbyTel(Integer.parseInt(Tel.getText()));
+   if(user5.size()>0){
+   
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "cin est deja utilise");
+                 ok = false;
+                      return;
+   
+   }
+      if(user6.size()>0){
+   
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Tel est deja utilise");
+                 ok = false;
+                      return;
+   
+   }
+  if( ok==true){
+   String str2=DateNaissance.getValue().toString();  
      Date date1=Date.valueOf(str2);
+
 
   user u1=new user(Cin.getText(),Nom.getText(),Prenom.getText(),Tel.getText(),Email.getText(),Password.getText(),file_path.getText(),date1);
 
    
 
                   LoginAndSignupService loginSignup = new LoginAndSignupService();
-        boolean flag = loginSignup.Signup(u1);
-
-        if (!flag) {
-            showAlert(Alert.AlertType.ERROR, owner,"Form Error!","Form invalide" );
-        } else {
+         flag = loginSignup.Signup(u1);
+ 
+  }
+  if( flag==false){
+    showAlert(Alert.AlertType.ERROR, owner,"Form Error!","Email deja utilisé" );
+       return;
+  }
+     else{
           
-            showAlert(Alert.AlertType.CONFIRMATION,owner,"Form Valide","Signup Successful");
+     
+  UserService us=new UserService();
+           user u23=us.getUserByEmail(Email.getText().toString());
+           link1(u23);
+           
+             showAlert(Alert.AlertType.CONFIRMATION,owner,"Form Valide","Signup Successful");
+                return;
         }
     }
     public static void infoBox(String infoMessage, String headerText, String title) {
@@ -240,7 +361,7 @@ public void link1(user user) throws Exception {
             //Personne.user.get
                       FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
             Parent root = loader.load();
-            Reservation_voyageController controller = loader.getController();
+            VoyageORGClientPartieController controller = loader.getController();
             controller.setUser(Email.getText());
             //Personne.user = ;
             //Personne.user.get
@@ -255,9 +376,9 @@ public void link1(user user) throws Exception {
      
             //Personne.user = ;
             //Personne.user.get
-                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
+                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/voyageORGClientPartie.fxml"));
             Parent root1 = loader1.load();
-            Reservation_VoyageClientController controller = loader1.getController();
+            VoyageORGClientPartieController controller = loader1.getController();
             controller.setUser(Email.getText());
             //Personne.user = ;
             //Personne.user.get
@@ -268,4 +389,25 @@ public void link1(user user) throws Exception {
  }
 
 }
+
+  
+
+    @FXML
+    private void Login(ActionEvent event) {
+       try {
+                  final Node source = (Node) event.getSource();
+
+            Metatrip.stg.close();  
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login_signup/login.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+           final Stage stage = (Stage) source.getScene().getWindow();
+            stage.setScene(new Scene(root));  
+             Metatrip.stg.close();  
+            stage.show();
+           
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+    }
+
 }

@@ -121,7 +121,38 @@ public class UserService implements IuserService {
         conn = Datasource.getInstance().getCnx();
     }
  
+    public    List<user> getuserbyTel(int Tel)  {
+     List<user> users = new ArrayList<>();
+      user u = new user();
    
+          String req = "SELECT * from `user` where Tel="+Tel+";";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                  
+                u.setIdu(rs.getInt(1));
+                  u.setCin( rs.getString(2));
+                u.setNom(rs.getString(3));
+                u.setPrenom(rs.getString(4));      
+                    u.setTel(rs.getString(5));
+            
+              u.setEmail( rs.getString(6));
+               u.setPassword(rs.getString(7));
+                u.setImage(rs.getString(8));
+                   u.setRole(rs.getInt(9));
+                u.setDateNaissance(rs.getDate(10));
+                 users.add(u) ;                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return users;    
+    }
  
     @Override
     public void ajouter(user u) {
@@ -434,6 +465,39 @@ public class UserService implements IuserService {
         
         return u;    
     }
+     
+      public    List<user> getuserbycin(int cin)  {
+     List<user> users = new ArrayList<>();
+      user u = new user();
+   
+          String req = "SELECT * from `user` where cin="+cin+";";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+          
+                  
+                u.setIdu(rs.getInt(1));
+                  u.setCin( rs.getString(2));
+                u.setNom(rs.getString(3));
+                u.setPrenom(rs.getString(4));      
+                    u.setTel(rs.getString(5));
+            
+              u.setEmail( rs.getString(6));
+               u.setPassword(rs.getString(7));
+                u.setImage(rs.getString(8));
+                   u.setRole(rs.getInt(9));
+                u.setDateNaissance(rs.getDate(10));
+                 users.add(u) ;                                   
+            }}
+            catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return users;    
+    }
       public  List<Integer> gelallID()  {
      List<Integer> ID = new ArrayList<>();
      
@@ -548,7 +612,7 @@ List<Object> voyages = new ArrayList<>();
         // The data that the QR code will contain
         String dataz = ux.toString();
             
-                   String path = "C:\\Users\\medal\\OneDrive\\Bureau\\Metatrip_git\\MetaTrip_Java\\MetaTrip_Java\\demo.png";
+                   String path = "C:\\Users\\FLAM\\Desktop\\MetatripGit\\MetaTrip_Java\\demo.png";
  
         Map<EncodeHintType, ErrorCorrectionLevel> hashMap
             = new HashMap<EncodeHintType,
@@ -571,7 +635,7 @@ List<Object> voyages = new ArrayList<>();
                  
           Document document=new Document ();
   
-                 PdfWriter.getInstance(document, new FileOutputStream("C:/Users/medal/OneDrive/Bureau/Metatrip_git/MetaTrip_Java/MetaTrip_Java/MetatripVoitureFacture.pdf"));
+                 PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\FLAM\\Desktop\\MetatripGit\\MetaTrip_Java\\MetatripVoyageFacture.pdf"));
             document.open();
               Image image = Image.getInstance(path);
          
@@ -707,6 +771,5 @@ List<Object> voyages = new ArrayList<>();
     return ch;
     }
     
-
 
 }

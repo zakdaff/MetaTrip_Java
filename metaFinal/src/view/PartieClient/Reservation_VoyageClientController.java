@@ -1,4 +1,8 @@
- 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package view.PartieClient;
 
 import com.google.zxing.WriterException;
@@ -45,12 +49,22 @@ public class Reservation_VoyageClientController implements Initializable {
         // TODO
     }    
 user u1 = new user();
+  voyage  v2 = new voyage();   
  public user setUser(String username) {
   UserService u= new UserService();
         
  u1= u.getUserByEmail(username);
          return u1;
     }
+ public voyage SetVoyage(String id ) {
+     System.out.println("5altet"+id.toString());
+  voyageService u= new voyageService();
+        int sss = Integer.parseInt(id);
+ v2= u.afficherbyID(sss);
+         return v2;
+    }
+voyage v = new voyage();
+
 
    
 
@@ -85,14 +99,14 @@ user u1 = new user();
                 alert.showAndWait();
                  ok = false;
             }
-       
+            if(r1.lastDatearrivebyuser(u1)!=null){
             if(date.compareTo(r1.lastDatearrivebyuser(u1))<0){
                   alert.setTitle("Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Vous avez une Reservation dans cette periode Merci ");
                 alert.showAndWait();
                  ok = false;
-            }
+            }}
             if(ok==true){
           
             Reservation_Voyage_Service  rvs = new  Reservation_Voyage_Service ();
@@ -101,7 +115,7 @@ user u1 = new user();
     
    voyage v1=v.afficherbyID(97);
 
-            reservation_voyage r=new reservation_voyage(date1,date2,"NonPaye",u1,v1);
+            reservation_voyage r=new reservation_voyage(date1,date2,"NonPaye",u1,v2);
              
  System.out.println("585958855"+v1);
  
