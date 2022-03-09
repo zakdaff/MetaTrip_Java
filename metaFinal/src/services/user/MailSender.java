@@ -1,4 +1,13 @@
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+
+
 package services.user;
 import entities.user;
 import java.io.IOException;
@@ -30,6 +39,7 @@ import javax.mail.internet.MimeMultipart;
  * @author medal
 =======
 import javax.mail.internet.MimeMessage;
+
 /**
  *
  * @author FLAM
@@ -93,7 +103,7 @@ public class MailSender {
    public static void sendFacture(String to){
    
    //change accordingly   
-        final String user="solidev.3a18@gmail.com";//change accordingly   
+ 
        //change accordingly     
 
         //1) get the session object      
@@ -106,7 +116,7 @@ public class MailSender {
         p.put("mail.smtp.port", "587");
         
         String myAccountEmail = "solidev.3a18@gmail.com";
-        String password = "flam123.";
+        String password = "NEXUS123.";
         
         Session session = Session.getInstance(p , new Authenticator() {
         @Override 
@@ -118,7 +128,7 @@ public class MailSender {
         //2) compose message      
         try{    
             MimeMessage message = new MimeMessage(session);    
-            message.setFrom(new InternetAddress(user));     
+            message.setFrom(new InternetAddress(to));     
             message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
             message.setSubject(" Facture Metatrip");         
 
@@ -128,7 +138,7 @@ public class MailSender {
 
             //4) create new MimeBodyPart object and set DataHandler object to this object        
             MimeBodyPart messageBodyPart2 = new MimeBodyPart();      
-            String filename = "C:\\Users\\FLAM\\Desktop\\MetatripGit\\MetaTrip_Java\\MetatripVoyageFacture.pdf";//change accordingly     
+            String filename = "C:\\Users\\medal\\OneDrive\\Bureau\\metatripFinalInt\\MetaTrip_Java\\MetatripVoyageFacture.pdf";//change accordingly     
             DataSource source = new FileDataSource(filename);    
             messageBodyPart2.setDataHandler(new DataHandler(source));    
             messageBodyPart2.setFileName(filename);             
@@ -148,3 +158,8 @@ public class MailSender {
         }catch (MessagingException ex) {ex.printStackTrace();}  
     }
    }
+   
+ 
+
+   
+

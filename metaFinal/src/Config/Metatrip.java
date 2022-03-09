@@ -178,7 +178,7 @@ public class Metatrip  extends Application {
         System.out.println( vs.getAllByID());
         
         VoyageORG_Service vos = new VoyageORG_Service();
-        System.out.println("aff spec"+vos.afficherSpecial());
+//        System.out.println("aff spec"+vos.afficherSpecial());
         abonnement_Service a = new abonnement_Service();
            VoyageVRT_Service vov = new VoyageVRT_Service();
         LoginAndSignupService loginSignup = new LoginAndSignupService();
@@ -446,7 +446,7 @@ String strd="2020-09-01";
 //       //vs.modifier(97,chrf);
 //    //vs.supprimer(360);
 //     
-System.out.println("vosss"+vos.afficher().toString()); 
+//System.out.println("vosss"+vos.afficher().toString()); 
 //                    //  System.out.println(vo3.toString());
 //       
 //        //us.modifier(1,u3);

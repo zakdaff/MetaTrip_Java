@@ -323,7 +323,7 @@ public user setUser(String username) {
                 Connection connect = Datasource.getInstance().getCnx();
                 Alert alert = new Alert(AlertType.ERROR);
    int monEntier = 0;
-        boolean ok = true;
+        boolean ok = false;
 //        I HAVE 5 COLUMNS
 
 
@@ -389,6 +389,13 @@ public user setUser(String username) {
         
         System.out.println(e.getMessage());}
         
+    }
+    
+    if(ok ==false){
+          alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Enter all blank fields!");
+                alert.showAndWait();
     }}
         @FXML
     public void update(){

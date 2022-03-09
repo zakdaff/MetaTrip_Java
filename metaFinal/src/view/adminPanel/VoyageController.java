@@ -239,14 +239,26 @@ UserListController ul;
          private void insert() {
 	con =Datasource.getInstance().getCnx();
        String insert = "INSERT INTO voyage (`pays`,`Image_pays`) VALUES (?,?) ;";
+       ArrayList<voyage> v = new ArrayList<voyage>();
+           System.out.println("size v++++++++++++++++++++++++++"+pays.getText());
+       if((!pays.getText().isEmpty())||(!file_path.getText().isEmpty())){
         try {
             
             st = con.prepareStatement(insert);
-            st.setString(1, pays.getText());
+            
+         
+        
+            //st.setString(3, sexe.getSelectionModel().getSelectedItem());
+            voyageService vs = new voyageService();
+         v= (ArrayList<voyage>) vs.afficherByPays(pays.getText());
      
+         if(v.size()==0){
+                st.setString(1, pays.getText());
+         file_path.setOpacity(0);
      
             st.setString(2, file_path.getText().toString());
-            file_path.setOpacity(0);
+           st.executeUpdate();
+           
             Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Adding voyage");
 
@@ -255,13 +267,31 @@ UserListController ul;
 		alert.setContentText("'voyage de pays  " +pays.getText()+" est ajouté avec succés");
 
 		alert.showAndWait();
-            //st.setString(3, sexe.getSelectionModel().getSelectedItem());
-            st.executeUpdate();
+         }else{
+                Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("voyage est déjà existe");
+
+		// Header Text: null
+		alert.setHeaderText(null);
+		
+
+		alert.showAndWait();
+         }
+          
             affiche();
         } catch (SQLException ex) {
             Logger.getLogger(VoyageController.class.getName())
                     .log(Level.SEVERE, null, ex);
-        }
+        }}else{
+         Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Form error");
+
+		// Header Text: null
+		alert.setHeaderText(null);
+		alert.setTitle("Form error");
+
+		alert.showAndWait();
+       }
     }
  
          

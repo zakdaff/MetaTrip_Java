@@ -409,5 +409,23 @@ public void link1(user user) throws Exception {
         e.printStackTrace();
     }
     }
-
+   @FXML
+    private void link99(MouseEvent event) {
+       
+                  
+                        Stage stageclose=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+        
+            //-******
+           try {
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_signup/login.fxml"));
+            Parent root = (Parent) loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));  
+            stage.show();
+         Metatrip.stg.close();   
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}
 }

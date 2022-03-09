@@ -56,7 +56,7 @@ public class LoginController implements Initializable {
  Window owner = submitButton.getScene().getWindow();
 
 
-        if (emailIdField.getText().isEmpty()||((!emailIdField.getText().matches("\\w{3,}@\\S+")))) {
+        if (emailIdField.getText().isEmpty()||((!emailIdField.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")))) {
         
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your email id");

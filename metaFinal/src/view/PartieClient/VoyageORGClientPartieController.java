@@ -272,7 +272,7 @@ public void link1(user user) throws Exception {
             username.getScene().setRoot(root1);
             idv50.getScene().setRoot(root1);
     } catch(Exception e) {
-        e.printStackTrace();
+System.out.println(e.getMessage());
     }
 
     }
