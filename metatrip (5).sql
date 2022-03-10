@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 06 mars 2022 à 20:33
+-- Généré le : jeu. 10 mars 2022 à 17:38
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -58,8 +58,10 @@ CREATE TABLE `chambre` (
 --
 
 INSERT INTO `chambre` (`idc`, `numc`, `image`, `type`, `etat`, `idh`, `prixc`) VALUES
-(135, 255, '', 'Double', 'Non Disponible', 12236, NULL),
-(136, 14, 'C:\\\\Users\\\\Nayrouz\\\\Documents\\\\NetBeansProjects\\\\metaFinal\\\\src\\\\image\\\\hotel4.jpg', 'Double', 'Disponible', 12235, NULL);
+(139, 122, 'C:\\\\Users\\\\Nayrouz\\\\Documents\\\\NetBeansProjects\\\\metaFinal\\\\src\\\\image\\\\hotel1.jpg', 'Single', 'Disponible', 12236, 0),
+(140, 5, 'C:\\\\Users\\\\Nayrouz\\\\Documents\\\\NetBeansProjects\\\\metaFinal\\\\src\\\\image\\\\cigale.jpg', 'Double', 'Disponible', 12235, 70),
+(141, 20, 'ImageView[id=image_view, styleClass=image-view]', 'Double', 'Non Disponible', 12236, 80),
+(143, 17, 'C:\\\\Users\\\\Nayrouz\\\\Documents\\\\NetBeansProjects\\\\metaFinal\\\\src\\\\image\\\\hotel4.jpg', 'Single', 'Disponible', 12235, 500);
 
 -- --------------------------------------------------------
 
@@ -127,7 +129,10 @@ CREATE TABLE `hotel` (
 
 INSERT INTO `hotel` (`Idh`, `Nom_hotel`, `Nb_etoiles`, `Adresse`, `image`) VALUES
 (12235, 'mouradi', 5, 'hammamet', 'C:\\Users\\Nayrouz\\Documents\\NetBeansProjects\\metaFinal\\src\\image\\hotel2.jpeg'),
-(12236, 'movenpick ', 5, 'gammarth', 'C:\\\\Users\\\\Nayrouz\\\\Documents\\\\NetBeansProjects\\\\metaFinal\\\\src\\\\image\\\\hotel3.jpg');
+(12236, 'movenpick ', 5, 'gammarth', 'C:UsersNayrouzDocumentsNetBeansProjectsmetaFinalsrcimagehotel3.jpg'),
+(12238, 'la cigale ', 5, 'taba', 'C:\\Users\\Nayrouz\\Documents\\NetBeansProjects\\metaFinal\\src\\image\\cigale.jpg'),
+(12239, 'golden tulip', 4, 'tunis', 'C:\\\\Users\\\\Nayrouz\\\\Documents\\\\NetBeansProjects\\\\metaFinal\\\\src\\\\image\\\\hotel4.jpg'),
+(12240, 'movenpick ', 4, 'gammarth', 'C:UsersNayrouzDocumentsNetBeansProjectsmetaFinalsrcimagehotel3.jpg');
 
 -- --------------------------------------------------------
 
@@ -193,7 +198,15 @@ CREATE TABLE `reservation_hotel` (
 
 INSERT INTO `reservation_hotel` (`Idrh`, `Nb_nuitees`, `Nb_personnes`, `Prix`, `Idu`, `idh`, `Date_depart`, `Date_arrivee`) VALUES
 (24, 5, 10, 3000, 41, 12236, '2022-03-15', '2022-03-17'),
-(25, 2, 2, 240, 41, 12235, '2022-03-08', '2022-03-08');
+(25, 2, 2, 240, 41, 12235, '2022-03-08', '2022-03-08'),
+(26, 4, 2, 0, 41, 12236, '2022-03-03', '2022-03-17'),
+(29, 5, 5, 1500, 41, 12236, '2022-03-09', '2022-03-24'),
+(31, 5, 5, 1500, 41, 12236, '2022-03-17', '2022-03-18'),
+(32, 5, 2, 600, 41, 12235, '2022-03-09', '2022-03-16'),
+(33, 5, 4, 1200, 41, 12239, '2022-03-23', '2022-03-27'),
+(34, 5, 2, 600, 41, 12235, '2022-03-10', '2022-03-14'),
+(35, 2, 2, 240, 41, 12235, '2022-03-01', '2022-03-08'),
+(36, 2, 2, 240, 41, 12235, '2022-03-01', '2022-03-15');
 
 -- --------------------------------------------------------
 
@@ -365,27 +378,26 @@ CREATE TABLE `voiture` (
   `Matricule` varchar(50) NOT NULL,
   `Puissance_fiscalle` int(11) NOT NULL,
   `Image_v` varchar(50) NOT NULL,
-  `Modele` varchar(20) NOT NULL,
-  `type` varchar(20) NOT NULL
+  `Modele` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `voiture`
 --
 
-INSERT INTO `voiture` (`Idvoit`, `Matricule`, `Puissance_fiscalle`, `Image_v`, `Modele`, `type`) VALUES
-(1, '120TU120', 12, 'image', 'Mercedes', ''),
-(2, '120TU120', 12, 'image', 'Mercedes', ''),
-(3, '220TU120', 12, 'image', 'bmw', ''),
-(55, '220TU120', 12, 'image', 'Mercedes', ''),
-(663, '220TU120', 12, 'image', 'bmw', ''),
-(669, '220TU120', 12, 'image', 'bmw', ''),
-(2000, '220TU120', 12, 'image', 'bmw', ''),
-(2001, '220TU120', 12, 'image', 'bmw', ''),
-(6390, '220TU120', 12, 'image', 'bmw', ''),
-(6600, '220TU120', 12, 'image', 'bmw', ''),
-(6690, '220TU120', 12, 'image', 'bmw', ''),
-(6890, '220TU120', 12, 'image', 'bmw', '');
+INSERT INTO `voiture` (`Idvoit`, `Matricule`, `Puissance_fiscalle`, `Image_v`, `Modele`) VALUES
+(1, '120TU120', 12, 'image', 'Mercedes'),
+(2, '120TU120', 12, 'image', 'Mercedes'),
+(3, '220TU120', 12, 'image', 'bmw'),
+(55, '220TU120', 12, 'image', 'Mercedes'),
+(663, '220TU120', 12, 'image', 'bmw'),
+(669, '220TU120', 12, 'image', 'bmw'),
+(2000, '220TU120', 12, 'image', 'bmw'),
+(2001, '220TU120', 12, 'image', 'bmw'),
+(6390, '220TU120', 12, 'image', 'bmw'),
+(6600, '220TU120', 12, 'image', 'bmw'),
+(6690, '220TU120', 12, 'image', 'bmw'),
+(6890, '220TU120', 12, 'image', 'bmw');
 
 -- --------------------------------------------------------
 
@@ -608,7 +620,7 @@ ALTER TABLE `abonnement`
 -- AUTO_INCREMENT pour la table `chambre`
 --
 ALTER TABLE `chambre`
-  MODIFY `idc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `idc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
 -- AUTO_INCREMENT pour la table `chauffeur`
@@ -626,7 +638,7 @@ ALTER TABLE `evenement`
 -- AUTO_INCREMENT pour la table `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `Idh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12237;
+  MODIFY `Idh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12241;
 
 --
 -- AUTO_INCREMENT pour la table `reservation_event`
@@ -638,7 +650,7 @@ ALTER TABLE `reservation_event`
 -- AUTO_INCREMENT pour la table `reservation_hotel`
 --
 ALTER TABLE `reservation_hotel`
-  MODIFY `Idrh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `Idrh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT pour la table `reservation_voiture`
