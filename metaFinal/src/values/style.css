@@ -49,3 +49,7 @@
     -fx-background-color: #FFFFFF;
         -fx-background-radius: 30;
 }
+.item_box{
+    -fx-background-color:#e7e3e3;
+    -fx-background-radius: 30;
+}

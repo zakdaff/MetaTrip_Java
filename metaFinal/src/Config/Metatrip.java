@@ -9,37 +9,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import entities.EtatDispo;
-import entities.Voiture;
-import entities.Voyage_virtuel;
-import entities.abonnement;
-import entities.evenement;
+
 import entities.hotel;
-import entities.reservation_event;
+
 import entities.reservation_hotel;
-import entities.reservation_voiture;
+
 import entities.user;
-import entities.voyage;
-import entities.voyage_organise;
-import entities.sponsor;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import javafx.application.Application;
-import services.abonnement.abonnement_Service;
+
 import services.chambre.Chambre_service;
-import services.evenement.Serviceevenement;
-import services.evenement.Servicereservation_event;
+
 import services.hotel.HotelCRUD;
 import services.reservation_hotel.Reserrvation_Hotel_Service;
-import services.reservation_voiture.Reservation_voiture_Service;
-import services.reservation_voyage.Reservation_Voyage_Service;
-import services.sponsor.Servicesponsor;
+
 import services.user.LoginAndSignupService;
 import services.user.UserService;
-import services.voiture.VoitureCRUD;
-import services.voyage.voyageService;
-import services.voyage.voyage_organise.VoyageORG_Service;
-import services.voyage.voyage_virtuel.VoyageVRT_Service;
+
 
 
 
@@ -86,13 +75,13 @@ public class Metatrip extends Application {
         System.out.println(data.hashCode() + "-" + data2.hashCode());
 
         UserService us = new UserService();
-        Reservation_Voyage_Service rvs=  new Reservation_Voyage_Service();
-        
-        voyageService vs= new voyageService();
-        
-        VoyageORG_Service vos = new VoyageORG_Service();
-        abonnement_Service a = new abonnement_Service();
-           VoyageVRT_Service vov = new VoyageVRT_Service();
+//        Reservation_Voyage_Service rvs=  new Reservation_Voyage_Service();
+//        
+//        voyageService vs= new voyageService();
+//        
+//        VoyageORG_Service vos = new VoyageORG_Service();
+//        abonnement_Service a = new abonnement_Service();
+//           VoyageVRT_Service vov = new VoyageVRT_Service();
         LoginAndSignupService loginSignup = new LoginAndSignupService();
         
         HotelCRUD hc=new HotelCRUD();
@@ -103,13 +92,13 @@ public class Metatrip extends Application {
   
           Date datedebut = Date.valueOf(xx);
         Date datefinal = Date.valueOf(xx2 );//converting string into sql date   
-        voyage v2024 = new voyage(2024, "Madrid", "c://madrid.png");
-
-        abonnement abon1 = new abonnement(2, "ss", 90, datedebut, datefinal, "Etat", 1);
-        abonnement abon2 = new abonnement("ss", 90, datedebut, datefinal, "Etat", 1);
-       
-       // a.ajouter(abon1);
-         Voyage_virtuel vov2 = new Voyage_virtuel("Videsso", "Image", abon1, v2024);
+//        voyage v2024 = new voyage(2024, "Madrid", "c://madrid.png");
+//
+//        abonnement abon1 = new abonnement(2, "ss", 90, datedebut, datefinal, "Etat", 1);
+//        abonnement abon2 = new abonnement("ss", 90, datedebut, datefinal, "Etat", 1);
+//       
+//       // a.ajouter(abon1);
+//         Voyage_virtuel vov2 = new Voyage_virtuel("Videsso", "Image", abon1, v2024);
           //vov.afficher();
              //vov.ajouter(vov2);   
        //  vov.modifier(3,vov2);
@@ -143,7 +132,7 @@ public class Metatrip extends Application {
             
             // hc.supprimerHotel(h);
              //Chambre ch = new Chambre(1,20,"single",EtatDispo.DISPO,h,rh);
-        voyage v1 = new voyage( 605,"gafsa", "c://beja.png");
+//        voyage v1 = new voyage( 605,"gafsa", "c://beja.png");
    //vs.ajout(v1); 
    
      //vs.ajout(v1); 
@@ -152,7 +141,7 @@ public class Metatrip extends Application {
        // System.out.println(v.getIdv());
 
                                 //voyage_organise vo2=new voyage_organise(5,50.6f,"Lufthansa",15,5,"torkiya","c://assets"); 
-     voyage_organise vo3 = new voyage_organise(170.6f, "nexdd", 3,EtatDispo.INDISPO, v1);
+//     voyage_organise vo3 = new voyage_organise(170.6f, "nexdd", 3,EtatDispo.INDISPO, v1);
           //voyage_organise vo4 = new voyage_organise(10.6f, "flam", 3, v);
                // voyage_organise vom = new voyage_organise(990.6f, "sounay", 3);
                 //vos.ajouter(vo3);
@@ -205,25 +194,25 @@ public class Metatrip extends Application {
 
   // System.out.print("ss"+us.afficher());
         //System.out.print(loginSignup.login("'zak@live.fr'", "0000"));
-      Voiture v99 =new Voiture(95,"220TU120",12,"image","Mercedes");
-        VoitureCRUD VC=new VoitureCRUD();
-      //VC.ajouterVoiture(v99);
-             Voiture v98 =new Voiture(3,"220TU120",12,"image","bmw");
-        //VC.modifierVoiture(v98);
-               reservation_voiture rhv=new reservation_voiture();
-                  Reservation_voiture_Service rvs55= new Reservation_voiture_Service();
-              /* rhv.setChauffeur("mohamed salah");
-              rhv.setPrix_rent((float) 5.5);
-              rhv.setTrajet("jerba");
-              rhv.setUser(u2);
-               rhv.setVoiture(v99);*/
-            
-                 user u18 = new user(811,199525, "ssss", "cxx", 2568435, "nex@live.fr", doHashing("12345678"), "image",date2);
-              // us.ajouter(u18);
-                            Voiture v78 =new Voiture(2001,"220TU120",12,"image","bmw");
+//      Voiture v99 =new Voiture(95,"220TU120",12,"image","Mercedes");
+//        VoitureCRUD VC=new VoitureCRUD();
+//      //VC.ajouterVoiture(v99);
+//             Voiture v98 =new Voiture(3,"220TU120",12,"image","bmw");
+//        //VC.modifierVoiture(v98);
+//               reservation_voiture rhv=new reservation_voiture();
+//                  Reservation_voiture_Service rvs55= new Reservation_voiture_Service();
+//              /* rhv.setChauffeur("mohamed salah");
+//              rhv.setPrix_rent((float) 5.5);
+//              rhv.setTrajet("jerba");
+//              rhv.setUser(u2);
+//               rhv.setVoiture(v99);*/
+//            
+//                 user u18 = new user(811,199525, "ssss", "cxx", 2568435, "nex@live.fr", doHashing("12345678"), "image",date2);
+//              // us.ajouter(u18);
+//                            Voiture v78 =new Voiture(2001,"220TU120",12,"image","bmw");
                              //     VC.ajouterVoiture(v78);
                                   
-    reservation_voiture rhv1=new reservation_voiture(5.5f,"cccc","jandouba",u8,v78);
+//    reservation_voiture rhv1=new reservation_voiture(5.5f,"cccc","jandouba",u8,v78);
   
               
             
@@ -251,17 +240,17 @@ public class Metatrip extends Application {
                 //     System.out.println ("la list  de voyage Trié selon Prix est "+rvs.listedevoyageTrierParPrix());
                    
   
- Serviceevenement se = new Serviceevenement() ; 
- evenement e = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
-  evenement e1 = new evenement(4, "aaaaaaa", "c", "7 rue 2938", date1, 120.0f) ; 
-  //se.ajouter(e1);
-    //se.modifier(e);
-  // se.supprimer(1);
-  // System.out.println(se.afficher());
-   user ux = new user(817,195, "nex", "nex", 256845, "nex@live.fr", "aaaa", "image",date);
-   //us.ajouter(ux);
-  Servicereservation_event resE=new Servicereservation_event();
-  reservation_event resev=new reservation_event(22,82,e,ux);
+// Serviceevenement se = new Serviceevenement() ; 
+// evenement e = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
+//  evenement e1 = new evenement(4, "aaaaaaa", "c", "7 rue 2938", date1, 120.0f) ; 
+//  //se.ajouter(e1);
+//    //se.modifier(e);
+//  // se.supprimer(1);
+//  // System.out.println(se.afficher());
+//   user ux = new user(817,195, "nex", "nex", 256845, "nex@live.fr", "aaaa", "image",date);
+//   //us.ajouter(ux);
+//  Servicereservation_event resE=new Servicereservation_event();
+//  reservation_event resev=new reservation_event(22,82,e,ux);
 
 //        System.out.println(data.hashCode() + "-" + data2.hashCode());
 //
@@ -419,9 +408,9 @@ public class Metatrip extends Application {
 //                   
 //  
 // Serviceevenement se = new Serviceevenement() ; 
-evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
-
-evenement e4 = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
+//evenement ex = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
+//
+//evenement e4 = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ; 
 
 //  evenement e1 = new evenement(4, "aaaaaaa", "c", "7 rue 2938", date1, 120.0f) ; 
 //  //se.ajouter(e1);
@@ -458,8 +447,8 @@ evenement e4 = new evenement(2, "hhhuhonl", "c", "7 rue 2938", date1, 12.0f) ;
      // GESTION SPONSOR 
     //String xx2="2011-10-01";  
      Date date_sp=Date.valueOf(xx2);
-     sponsor s = new sponsor(25, "Vitalait", 22252718, "amine@zarga.tn", date_sp, 12.0f,e) ; 
-     Servicesponsor ss = new Servicesponsor(); 
+//     sponsor s = new sponsor(25, "Vitalait", 22252718, "amine@zarga.tn", date_sp, 12.0f,e) ; 
+//     Servicesponsor ss = new Servicesponsor(); 
      
    //  ss.ajouter(s);
                    

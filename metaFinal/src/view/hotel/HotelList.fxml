@@ -37,19 +37,19 @@
       <TextField fx:id="Nom_hotel" layoutX="131.0" layoutY="193.0" prefHeight="42.0" prefWidth="199.0" styleClass="search-box" stylesheets="@../../values/style.css" />
       <TextField fx:id="Nb_etoiles" layoutX="131.0" layoutY="255.0" prefHeight="42.0" prefWidth="199.0" styleClass="search-box" stylesheets="@../../values/style.css" />
       <TextField fx:id="Adresse" layoutX="126.0" layoutY="319.0" prefHeight="42.0" prefWidth="199.0" styleClass="search-box" stylesheets="@../../values/style.css" />
-      <Button fx:id="delete" layoutX="695.0" layoutY="577.0" mnemonicParsing="false" onAction="#DeleteHotel" prefHeight="33.0" prefWidth="71.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Delete" textFill="WHITE">
+      <Button fx:id="delete" layoutX="688.0" layoutY="568.0" mnemonicParsing="false" onAction="#DeleteHotel" prefHeight="42.0" prefWidth="78.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Delete" textFill="WHITE">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="bsave1" layoutX="572.0" layoutY="577.0" mnemonicParsing="false" onAction="#EditHotel" prefHeight="33.0" prefWidth="71.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Edit" textFill="WHITE">
+      <Button fx:id="bsave1" layoutX="565.0" layoutY="568.0" mnemonicParsing="false" onAction="#EditHotel" prefHeight="42.0" prefWidth="78.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Edit" textFill="WHITE">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="bsave11" layoutX="451.0" layoutY="577.0" mnemonicParsing="false" onAction="#SaveHotel" prefHeight="33.0" prefWidth="71.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Save" textFill="WHITE">
+      <Button fx:id="bsave11" layoutX="444.0" layoutY="568.0" mnemonicParsing="false" onAction="#SaveHotel" prefHeight="42.0" prefWidth="78.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Save" textFill="WHITE">
          <font>
-            <Font name="Times New Roman Bold" size="12.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Button>
       <Button fx:id="insert_image" layoutX="29.0" layoutY="436.0" mnemonicParsing="false" onAction="#insert_image" prefHeight="33.0" prefWidth="78.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Browse" textFill="WHITE" />
@@ -68,7 +68,7 @@
          <children>
             <ImageView fitHeight="80.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/logo_meta.png" />
+                  <Image url="@../../image/logo_meta_1.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" text="MetaTrip  Hotel " textFill="#fcf3f3">

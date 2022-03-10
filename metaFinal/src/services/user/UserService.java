@@ -20,8 +20,7 @@ import java.util.logging.Logger;
 import java.sql.SQLException;
 import Config.Datasource;
 import static Config.Metatrip.doHashing;
-import entities.reservation_voyage;
-import entities.voyage;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import services.IService;
@@ -334,16 +333,16 @@ List<Object> voyages = new ArrayList<>();
             
               while(rs.next()){
                   
-                voyage v = new voyage();
-                reservation_voyage rv=new reservation_voyage();
-                v.setIdv(rs.getInt(1));
-                v.setPays( rs.getString(2));
-                v.setImage_pays(rs.getString(3));
-                rv.setDate_depart(rs.getDate(4));
-
-                 voyages.add(v) ; 
-                  voyages.add(rv.getDate_depart()) ; 
-                                                   
+//                voyage v = new voyage();
+//                reservation_voyage rv=new reservation_voyage();
+//                v.setIdv(rs.getInt(1));
+//                v.setPays( rs.getString(2));
+//                v.setImage_pays(rs.getString(3));
+//                rv.setDate_depart(rs.getDate(4));
+//
+//                 voyages.add(v) ; 
+//                  voyages.add(rv.getDate_depart()) ; 
+//                                                   
             }
             
             

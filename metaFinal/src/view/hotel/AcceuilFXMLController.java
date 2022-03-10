@@ -5,7 +5,7 @@
  */
 package view.hotel;
 
-import entities.AffichHotel;
+
 import entities.hotel;
 import java.awt.Insets;
 import java.io.IOException;
@@ -48,7 +48,7 @@ public class AcceuilFXMLController implements Initializable {
     private HBox hosenhotelCard;
     @FXML
     private GridPane grid;
-    List<AffichHotel> listeh= new ArrayList();
+   
     @FXML
     private ScrollPane hotelgrid;
     @FXML
@@ -221,6 +221,8 @@ public class AcceuilFXMLController implements Initializable {
 //        }
         
     }
+        
+    
         
     
     

@@ -144,7 +144,7 @@ public class InterfaceReservationFXMLController implements Initializable {
     private void Retour(ActionEvent event) {
         try {
                    
-            Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/AcceuilFXML.fxml"));
+            Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/AccFXML.fxml"));
             Scene scene = new Scene(parent);
             
             Stage stage = new Stage();
@@ -210,7 +210,7 @@ public boolean isNumeric(String str){
                 Integer.parseInt(Nb_personnes.getText()),
                 60*Integer.parseInt(Nb_personnes.getText())*Integer.parseInt(Nb_personnes2.getText()),41,h.getIdh(),Date.valueOf(Date_depart.getValue()),Date.valueOf(Date_arrivee.getValue()));
         rs.ajouter(r);
-        Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/AcceuilFXML.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/view/hotel/AccFXML.fxml"));
             Scene scene = new Scene(parent);
             
             Stage stage = new Stage();
