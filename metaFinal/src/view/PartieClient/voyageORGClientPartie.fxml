@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -19,23 +18,23 @@
    <children>
       <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox prefHeight="810.0" prefWidth="264.0" style="-fx-background-color: #010D79;" styleClass="right-bar" stylesheets="@../PartieClient/style.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="810.0" prefWidth="264.0" style="-fx-background-color: #A9A8A8;" styleClass="right-bar" stylesheets="@../PartieClient/style.css" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0" style="-fx-background-color: #010D79;">
+                  <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0" style="-fx-background-color: A9A8A8;" stylesheets="@../../values/style.css">
                      <children>
-                        <Label prefHeight="49.0" prefWidth="98.0" text="Meta" textFill="WHITE">
+                        <Label prefHeight="49.0" prefWidth="189.0" text="MetaTrip" textFill="WHITE">
                            <font>
                               <Font name="Cambria Bold" size="40.0" />
                            </font>
                         </Label>
-                        <Label text="Trip" textFill="#00bfff">
+                        <Label prefHeight="49.0" prefWidth="76.0" textFill="#00bfff">
                            <font>
                               <Font name="Cambria" size="40.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" stylesheets="@../values/style.css" VBox.vgrow="NEVER">
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: A9A8A8;" stylesheets="@../values/style.css" VBox.vgrow="NEVER">
                      <VBox.margin>
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
@@ -47,8 +46,8 @@
                         <Button fx:id="map" mnemonicParsing="false" onMouseClicked="#map" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: # #010D79;" styleClass="search-button" stylesheets="@../values/style.css" text="Map" textFill="WHITE" />
                      </children>
                   </HBox>
-                  <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
-                  <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="484.0" prefWidth="296.0" stylesheets="@../values/style.css">
+                  <Pane prefHeight="57.0" prefWidth="435.0" style="-fx-background-color: A9A8A8;" VBox.vgrow="ALWAYS" />
+                  <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="484.0" prefWidth="296.0" style="-fx-background-color: #A9A8A8;" stylesheets="@../values/style.css">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
@@ -68,9 +67,6 @@
                               </Label>
                               <Label fx:id="idv10" text="Label" />
                            </children>
-                           <VBox.margin>
-                              <Insets left="20.0" top="30.0" />
-                           </VBox.margin>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
                            <children>
@@ -85,50 +81,33 @@
                                  </font>
                               </Label>
                            </children>
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
                            <children>
                               <Label fx:id="idv50" text="Label" />
-                           </children></HBox>
+                           </children>
+                        </HBox>
                         <Button fx:id="ReserverButton" mnemonicParsing="false" onAction="#link1" prefHeight="66.0" prefWidth="171.0" styleClass="search-button" stylesheets="@../values/style.css" text="Reserver" textFill="WHITE" />
                      </children>
                   </VBox>
-                  <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+                  <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="map1" layoutX="166.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#map" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: # #010D79;" styleClass="search-button" stylesheets="@../values/style.css" text="Déconnexion" textFill="WHITE" />
+                     </children>
+                  </Pane>
                </children>
             </VBox>
          </left>
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                     <children>
-                        <Pane prefHeight="65.0" prefWidth="393.0" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="username" prefHeight="62.0" prefWidth="100.0" textFill="#878787">
-                           <font>
-                              <Font name="Cambria" size="18.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="36.0" fitWidth="36.0">
-                           <image>
-                              <Image url="@../../../../../../../../../Downloads/Account-User-PNG-Clipart.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
-                        <HBox alignment="CENTER" prefHeight="28.0" prefWidth="79.0" styleClass="shopping-online-card" stylesheets="@../values/style.css" />
-                        <Pane prefHeight="84.0" prefWidth="96.0">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="148.0" styleClass="shopping-online-card" stylesheets="@../values/style.css">
                            <children>
-                              <Button fx:id="modifiercompte" layoutX="-18.0" layoutY="-1.0" mnemonicParsing="false" onAction="#link10" style="-fx-background-color: #010D79;" text="Modifier Compte" textFill="WHITE" />
-                           </children></Pane>
+                              <Button fx:id="modifiercompte" mnemonicParsing="false" onAction="#link10" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: A9A8A8;" text="Modifier Compte" textFill="#433e3e" />
+                           </children></HBox>
+                        <Pane prefHeight="84.0" prefWidth="96.0" />
                      </children>
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" top="10.0" />
@@ -138,7 +117,7 @@
                      <children>
                         <TableView fx:id="tableVoyage" onMouseClicked="#selectData" prefHeight="529.0" prefWidth="843.0" style="-fx-border-color: 20px;">
                           <columns>
-                            <TableColumn fx:id="idv" minWidth="0.0" prefWidth="91.0" text="idv" />
+                            <TableColumn fx:id="idv" minWidth="0.0" prefWidth="91.0" text="idv" visible="false" />
                             <TableColumn fx:id="Pays" prefWidth="171.0" text="Pays" />
                               <TableColumn fx:id="Image1" prefWidth="231.0" text="Image" />
                               <TableColumn fx:id="Prix_billet" prefWidth="195.0" text="billet d'avion" />

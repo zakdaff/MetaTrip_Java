@@ -47,7 +47,7 @@ public class MailSender {
         p.put("mail.smtp.port", "587");
         
         String myAccountEmail = "solidev.3a18@gmail.com";
-        String password = "flam123.";
+        String password = "NEXUS123.";
         
         Session session = Session.getInstance(p , new Authenticator() {
         @Override 

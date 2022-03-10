@@ -1,53 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="759.0" prefWidth="1262.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PartieClient.Reservation_VoyageClientController">
    <children>
-      <AnchorPane layoutX="323.0" prefHeight="764.0" prefWidth="975.0" style="-fx-background-color: #073258;">
+      <AnchorPane layoutX="323.0" prefHeight="764.0" prefWidth="975.0" stylesheets="@../../values/style.css">
          <children>
-            <DatePicker fx:id="Date_depart" layoutX="285.0" layoutY="324.0" prefHeight="46.0" prefWidth="352.0" promptText="Date_depart" />
-            <Button fx:id="Reserver" contentDisplay="CENTER" defaultButton="true" layoutX="405.0" layoutY="530.0" mnemonicParsing="false" onAction="#ReserverVoyage" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: lightblue;" text="Réserver" textAlignment="CENTER" textFill="#0b0022">
+            <DatePicker fx:id="Date_depart" layoutX="285.0" layoutY="324.0" prefHeight="46.0" prefWidth="352.0" promptText="Choisir Date_depart" />
+            <Button fx:id="Reserver" contentDisplay="CENTER" defaultButton="true" layoutX="405.0" layoutY="530.0" mnemonicParsing="false" onAction="#ReserverVoyage" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #A9A8A8; -fx-background-radius: 50;" text="Réserver" textAlignment="CENTER" textFill="#0b0022">
                <font>
                   <Font name="Akhbar MT" size="18.0" />
                </font>
             </Button>
-            <DatePicker fx:id="Date_arrivee" layoutX="285.0" layoutY="405.0" prefHeight="46.0" prefWidth="352.0" promptText="Date_arrivee" />
-            <Text fill="#c1dee3" layoutX="218.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Réserver votre voyage">
+            <DatePicker fx:id="Date_arrivee" layoutX="285.0" layoutY="405.0" prefHeight="46.0" prefWidth="352.0" promptText="Choisir Date_arrivee" />
+            <Label layoutX="286.0" layoutY="82.0" prefHeight="66.0" prefWidth="351.0" text="Reservation voyage" textFill="#8d8686">
                <font>
-                  <Font size="47.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="155.0" fitWidth="167.0" layoutX="794.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../login_signup/272896551_284823900301309_6294383665325954873_n.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="55.0" layoutY="24.0" prefHeight="39.0" prefWidth="124.0" text="USER: aaaa" textFill="#fcfcfc">
-               <font>
-                  <Font name="System Bold" size="21.0" />
+                  <Font name="Cambria Bold" size="36.0" />
                </font>
             </Label>
+            <Button fx:id="retour_btn" layoutX="183.0" layoutY="604.0" mnemonicParsing="false" onAction="#Retour" prefHeight="48.0" prefWidth="135.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Retour" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <VBox layoutX="-328.0" prefHeight="764.0" prefWidth="325.0" styleClass="right-bar" stylesheets="@../../values/style.css">
+               <children>
+                  <HBox fx:id="chosenhotelCard" alignment="CENTER" prefHeight="110.0" prefWidth="200.0" styleClass="shadow" stylesheets="@../../values/style.css">
+                     <children>
+                        <Label text="MetaTrip  " textFill="#8d8686">
+                           <font>
+                              <Font name="Cambria Bold" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="21.0" prefWidth="250.0" styleClass="search-box" stylesheets="@../../values/style.css">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <BorderPane prefHeight="53.0" prefWidth="385.0" />
+                  <VBox alignment="CENTER_LEFT" prefHeight="528.0" prefWidth="262.0" styleClass="chosen-fruit-card" stylesheets="@../../values/style.css">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView fitHeight="117.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/logo_meta.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="60.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <VBox prefHeight="88.0" prefWidth="210.0">
+                           <children>
+                              <HBox fx:id="hosenhotelCard1" prefHeight="36.0" prefWidth="235.0">
+                                 <children>
+                                    <Text fill="#e7e6fc" strokeType="OUTSIDE" strokeWidth="0.0" text="Une Fois MetaTrip ">
+                                       <font>
+                                          <Font name="System Italic" size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <Text fill="#e7e6fc" strokeType="OUTSIDE" strokeWidth="0.0" text="Toujours MetaTrip!">
+                                 <font>
+                                    <Font name="System Italic" size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" />
+                                 </VBox.margin>
+                              </Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <AnchorPane prefHeight="764.0" prefWidth="325.0" style="-fx-background-color: lightgray;">
-         <children>
-            <Button layoutY="55.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="345.0" text="Liste voyages organisés" />
-            <Button layoutY="128.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="345.0" text="Liste des voitures disponibles" />
-            <Button layoutY="167.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="345.0" text="Liste des hôtels disponibles" />
-            <Button layoutY="94.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="345.0" text="Liste voyages virtuels" />
-            <Button layoutY="206.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="345.0" text="Liste des évenements disponibles" />
-            <Button layoutY="587.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="348.0" text="Paramétres compte" />
-            <Button layoutY="626.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="348.0" text="Déconnexion" />
-         </children>
-      </AnchorPane>
    </children>
 </AnchorPane>
