@@ -5,6 +5,7 @@
  */
 package view.PartieClient;
 
+import Config.Metatrip;
 import com.google.zxing.WriterException;
 import entities.reservation_voyage;
 import entities.user;
@@ -15,12 +16,17 @@ import java.sql.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import services.reservation_voyage.Reservation_Voyage_Service;
 import services.user.MailSender;
 import services.user.UserService;
@@ -127,5 +133,28 @@ voyage v = new voyage();
 
             }
     }
+    
+    
+    
+    
+        
+            @FXML
+public void Retour(ActionEvent event) throws Exception {               
+    try {
+                  final Node source = (Node) event.getSource();
+
+         Metatrip.stg.close();  
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/PartieClient/voyageORGClientPartie.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+           final Stage stage = (Stage) source.getScene().getWindow();
+            stage.setScene(new Scene(root)); 
+              Metatrip.stg.close();  
+            stage.show();
+           
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}
+    
     
 }

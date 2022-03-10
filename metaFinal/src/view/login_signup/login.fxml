@@ -45,6 +45,5 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Hyperlink layoutX="834.0" layoutY="509.0" text="Forget Your Password?" textFill="#073258" />
    </children>
 </AnchorPane>

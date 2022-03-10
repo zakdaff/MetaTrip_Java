@@ -27,7 +27,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -37,6 +39,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import services.user.UserService;
 import view.adminPanel.Reservation_voyageController;
 
@@ -111,7 +114,7 @@ static String email;
      
   u1= u.getUserByEmail(email);
                System.out.println("sssssssssssss"+u1);
-
+ 
          username.setText(u1.getEmail());
          return u1;
     }
@@ -157,48 +160,7 @@ System.out.println(data.getImage_pays().toString());
      
 
 }
-public void link1(user user) throws Exception {  
- 
-      UserService u= new UserService();
-     
-  //u1= u.getUserByEmail(email);
-    
-/* if(user.getRole()==1){
-       try {
-   
-          
-            //Personne.user = ;
-            //Personne.user.get
-                      FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
-            Parent root = loader.load();
-            Reservation_voyageController controller = loader.getController();
-            controller.setUser(user.getEmail());
-            //Personne.user = ;
-            //Personne.user.get
-            username.getScene().setRoot(root);
-        } catch (IOException ex) {
-         Metatrip.stg.close();   
-    } catch(Exception e) {
-        e.printStackTrace();
-    }
-}else{
-    try {
-     
-            //Personne.user = ;
-            //Personne.user.get
-                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/PartieClient/Reservation_VoyageClient.fxml"));
-            Parent root1 = loader1.load();
-            Reservation_VoyageClientController controller = loader1.getController();
-            controller.setUser(username.getText());
-            //Personne.user = ;
-            //Personne.user.get
-            username.getScene().setRoot(root1);
-    } catch(Exception e) {
-        e.printStackTrace();
-    }
- }*/
 
-}
  public ObservableList<VoyageX> dataList(){            
 
         System.out.println("sssssssssssss"+email);
@@ -302,6 +264,27 @@ public void link1(user user) throws Exception {
 
     }
 
+    
+            @FXML
+public void logout(ActionEvent event) throws Exception {               
+    try {
+                  final Node source = (Node) event.getSource();
+
+         Metatrip.stg.close();  
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login_signup/login.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+           final Stage stage = (Stage) source.getScene().getWindow();
+            stage.setScene(new Scene(root)); 
+              Metatrip.stg.close();  
+            stage.show();
+           
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}
+    
+    
+    
 
     @FXML
     private void map(MouseEvent event) {

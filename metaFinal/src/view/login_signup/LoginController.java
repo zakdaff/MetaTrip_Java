@@ -16,7 +16,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -106,17 +105,14 @@ public class LoginController implements Initializable {
 
      @FXML
 public void link(ActionEvent event) throws Exception {               
- try {
-                  final Node source = (Node) event.getSource();
-
-            Metatrip.stg.close();  
+ 
+       try {
        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login_signup/signup.fxml"));
             Parent root = (Parent) fxmlLoader.load();
-           final Stage stage = (Stage) source.getScene().getWindow();
+            Stage stage = new Stage();
             stage.setScene(new Scene(root));  
-             Metatrip.stg.close();  
             stage.show();
-           
+         Metatrip.stg.close();   
     } catch(Exception e) {
         e.printStackTrace();
     }
