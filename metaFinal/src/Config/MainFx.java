@@ -25,9 +25,9 @@ public class MainFx extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         // Parent root = FXMLLoader.load(getClass().getResource("/view/hotel/ChambreList.fxml"));
-      // Parent root = FXMLLoader.load(getClass().getResource("/view/hotel/HotelList.fxml"));
-       //Parent root = FXMLLoader.load(getClass().getResource("/view/hotel/AcceuilFXML.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/view/hotel/AccFXML.fxml"));
+     //  Parent root = FXMLLoader.load(getClass().getResource("/view/hotel/HotelList.fxml"));
+      //Parent root = FXMLLoader.load(getClass().getResource("/view/hotel/AcceuilFXML.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/view/hotel/AccFXML.fxml"));
         Scene scene = new Scene(root);
         //sscene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         primaryStage.setScene(scene);
