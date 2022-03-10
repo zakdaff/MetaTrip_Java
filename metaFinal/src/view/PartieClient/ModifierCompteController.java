@@ -249,9 +249,9 @@ boolean flag=false;
   
 
 
-public void link1(user user) throws Exception 
-{               
- 
+public void link1(user user) throws Exception {
+  if (user.getRole()==0){
+      
     try {
      
             //Personne.user = ;
@@ -266,7 +266,27 @@ public void link1(user user) throws Exception
     } catch(Exception e) {
         e.printStackTrace();
     }
+
+    }   else{
+    try {
+     
+            //Personne.user = ;
+            //Personne.user.get
+                      FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/adminPanel/reservation_voyage.fxml"));
+            Parent root1 = loader1.load();
+            VoyageORGClientPartieController controller = loader1.getController();
+            controller.setUser(user.getEmail());
+            //Personne.user = ;
+            //Personne.user.get
+            Email.getScene().setRoot(root1);
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+
+
+}
  }
 
-    
-}
+   }
+
+  

@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +37,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -257,7 +259,7 @@ public class VoyageORGController implements Initializable {
              prepare = con.prepareStatement(sql);
             ResultSet rs = prepare.executeQuery();
      
-            
+            System.out.println(rs);
             while(rs.next()){
                 
               voyage_organise rvo = new voyage_organise();
@@ -270,7 +272,7 @@ public class VoyageORGController implements Initializable {
              rvo.setIdv(rs.getInt(6));
              
          
-             
+                 System.out.println("rvo:"+rvo);
                 dataList.add(rvo);
                 
             }
@@ -278,7 +280,7 @@ public class VoyageORGController implements Initializable {
         }catch(Exception e){
         System.out.println(e.getMessage());
         }
-        
+        System.out.println("dataList:"+dataList);
         return dataList;
         
     }
@@ -387,9 +389,24 @@ public class VoyageORGController implements Initializable {
          
            voyage_organise v=new voyage_organise(pb,air,nb,etat);
 
+               Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Updating  ");
+
+		// Header Text: null
+		alert.setHeaderText(null);
+		         alert.setContentText("Are you sure that you want to update it?");
+                                     Optional<ButtonType> buttonType = alert.showAndWait();
+		alert.showAndWait();
+             if (buttonType.get() == ButtonType.OK) {
+            
+        
+                   
     vos.modifier(id, v);
         showData();
-                clear(); 
+              clear(); 
+                 }
+ 
+          
     }
     
     @FXML
@@ -402,10 +419,23 @@ public class VoyageORGController implements Initializable {
     
     
     public void delete(){
+          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Deleting  ");
 
+		// Header Text: null
+		alert.setHeaderText(null);
+		         alert.setContentText("Are you sure that you want to deletee it?");
+                                     Optional<ButtonType> buttonType = alert.showAndWait();
+		alert.showAndWait();
+             if (buttonType.get() == ButtonType.OK) {
+            
+        
+                   
   vos.supprimer(Integer.parseInt(idvo.getText()));  
                 showData();
                 clear();
+                 }
+
     }
     
     

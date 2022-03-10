@@ -214,7 +214,7 @@ public class UserListController implements Initializable {
          dateNaissance.setValue(u.getDateNaissance().toLocalDate());
       
             String picture ="file:" +  u.getImage().toString();
-
+file_path.setText(u.getImage().toString());
         Image image1 = new Image(picture, 110, 110, false, true);
 
         image_view.setImage(image1);
@@ -293,10 +293,10 @@ public class UserListController implements Initializable {
           ArrayList<user> user6= new ArrayList<>();
  Window owner = bsave.getScene().getWindow();
 System.out.println("date"+dateNaissance.getValue());
-   if (prenom.getText().isEmpty()==true) { 
+   if (prenom.getText()==null) { 
    
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your Prenom id");
+                    "Form invalide");
              ok = false;
                              
 
@@ -306,7 +306,7 @@ System.out.println("date"+dateNaissance.getValue());
               
       
              showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter a DateNaissance");
+                "Form invalide");
                  ok = false;
                       return;
  
@@ -316,12 +316,13 @@ System.out.println("date"+dateNaissance.getValue());
               
       
              showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter a DateNaissance");
+                "Form invalide");
                  ok = false;
                       return;
          
             
           }  
+       
    
          String str20=dateNaissance.getValue().toString();  
      Date date11=Date.valueOf(str20);
@@ -336,10 +337,10 @@ System.out.println("date"+dateNaissance.getValue());
 
                      }             
      
-        if ((email.getText().isEmpty())||((!email.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")))) {
+        if ((email.getText()==null)||((!email.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")))) {
          
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter your email id");
+                "Form invalide");
           
               ok = false;
                    return;
@@ -349,30 +350,30 @@ System.out.println("date"+dateNaissance.getValue());
            if (image_view.getImage() == null ) {
         
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter your Image id");
+                "Form invalide");
         
               ok = false;
                    return;
            
         }  
-           if (nom.getText().isEmpty()==true) {
+           if (nom.getText()==null) {
    
              showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter a Nom");
+                "Form invalide");
               
             ok = false;
                  return;
             
           } 
-         if (cin.getText().isEmpty()==true){
+         if (cin.getText()==null){
             
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter your Cin id");
+                "Form invalide");
           
              ok = false;
                   return;
          }
-        if (password.getText().isEmpty()==true){
+        if (password.getText()==null){
      
              showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Password vide");
@@ -395,7 +396,7 @@ System.out.println("date"+dateNaissance.getValue());
                  System.out.println("date invalide");
   
              showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter a DateNaissance");
+                "Form invalide");
                    ok = false;
               return;
             
@@ -444,7 +445,7 @@ System.out.println("date"+dateNaissance.getValue());
   if ((tel.getText().length()!=8||(ok==false))) {
          
            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Nb de Tel faible ou invalide");
+                " Tel estinvalide");
             
               ok = false;
            
@@ -518,41 +519,119 @@ System.out.println("date"+dateNaissance.getValue());
     }
    
           private void update() {
+               Window owner = bupdate.getScene().getWindow();
+              boolean ok= true;
                 String str20=dateNaissance.getValue().toString();  
+         
+                     System.out.println("sssssss"+dateNaissance.getValue().toString()  )  ;
      Date date11=Date.valueOf(str20);
 	con =Datasource.getInstance().getCnx();
-        	String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
-            String update = "UPDATE `user` SET "
-                +"`Cin`=?,`Nom`=?,`Prenom`=?,`Tel`=?,`Email`=?,`Image`=?,`dateNaissance`=?"
-                + "WHERE idu =?";
-        try {
-                st = con.prepareStatement(update);
-                st.setString(1, cin.getText());
-                st.setString(2, nom.getText());
-                st.setString(3, prenom.getText());
-                st.setString(4, tel.getText());
-                st.setString(5, email.getText());
-                //st.setString(6, UserService.doHashing(password.getText()));
-                st.setString(6, image.getText());
-                st.setDate(7, date11);
-                st.setInt(8, Integer.parseInt(idu.getText()));
-                   
+    
+      System.out.println("idu:"+idu.getText());
+                    System.out.println("cin"+cin.getText());
+                        System.out.println("nom"+nom.getText());
+                            System.out.println("prenom"+prenom.getText());
+                                System.out.println("tel"+tel.getText());
+                                   System.out.println("email"+email.getText());
+                                    System.out.println("password"+password.getText());
+                                     System.out.println("image"+file_path.getText());
+                                                        System.out.println("date11"+date11);
+           user u10=new user(cin.getText(),nom.getText(),prenom.getText(),tel.getText(),email.getText(),password.getText(),file_path.getText(),date11);
+           if ((email.getText()==null)||((!email.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")))) {
+         
+           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Form invalide");
+          
+              ok = false;
+                   return;
+            
+           
+        }
+                  String str200=dateNaissance.getValue().toString();
+     Date date121=Date.valueOf(str200);
+      String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+       Date date200=Date.valueOf(timeStamp);
+      if (date121.after(date200)) { 
+   
+           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                    "date invalide par rapport a la date System");
+           
+                  ok = false;      
+                       return;
+
+                     }
+
+           
+           if (file_path.getText()== null ) {
+        
+           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Form invalide");
+        
+              ok = false;
+                   return;
+           
+        }  
+           if (nom.getText()==null) {
+   
+             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Form invalide");
+              
+            ok = false;
+                 return;
+            
+          } 
+         if (cin.getText()==null){
+            
+           showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Form invalide");
+          
+             ok = false;
+                  return;
+         }
+        if (password.getText()==null){
+     
+             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Password vide");
+             
+                  ok = false;
+                 return;
+          }
+        if(email.getText().length()<4){
+          showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "changer votre Password");
+             
+                  ok = false;
+                 return;
+        
+        }
+        if(ok==true){
+        
+     
             //st.setString(3, sexe.getSelectionModel().getSelectedItem());
-    Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Deleting user");
+ Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("updating  user");
 
 		// Header Text: null
 		alert.setHeaderText(null);
-		alert.setContentText("'utilisateur " +nom.getText()+"   "+prenom.getText()+" avec ID"+idu .getText()+" est modifié avec succés");
-
+		         alert.setContentText("Are you sure that you want to update it?");
+                                     Optional<ButtonType> buttonType = alert.showAndWait();
 		alert.showAndWait();
-                
-                st.executeUpdate();
+             if (buttonType.get() == ButtonType.OK) {
+            
+ UserService ss=new UserService();
+  ss.modifier(Integer.parseInt(idu.getText()), u10); 
                 affiche();
-        } catch (SQLException ex) {
-            Logger.getLogger(UserListController.class.getName())
-                    .log(Level.SEVERE, null, ex);
-        }
+                 }
+            
+   }
+        
+        
+        
+        
+        
+        
+        
+        
     }
          
          public void delete() {

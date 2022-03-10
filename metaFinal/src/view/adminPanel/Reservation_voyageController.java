@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +33,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -71,8 +73,6 @@ public class Reservation_voyageController implements Initializable {
     @FXML
     private Label Idu1;
     @FXML
-    private Label file_path;
-    @FXML
     private Button insert;
     @FXML
     private Button update;
@@ -80,8 +80,6 @@ public class Reservation_voyageController implements Initializable {
     private Button clear;
     @FXML
     private Button delete;
-    @FXML
-    private Button print;
       @FXML
     private TextField Refpaiement1;
     @FXML
@@ -130,6 +128,10 @@ public class Reservation_voyageController implements Initializable {
          UserService us=new UserService();
           voyageService vs=new voyageService();
     private String[] comboGender = {"NonPaye", "Paye"};
+    @FXML
+    private Label Refpaiement;
+    @FXML
+    private AnchorPane left_main1;
     
 public user setUser(String username) {
   UserService u= new UserService();
@@ -296,12 +298,10 @@ public user setUser(String username) {
         return dataList;
         
     }
-      @FXML
       public void print(){
         
   
     }
-        @FXML
     public void showData(){
        
         ObservableList<reservation_voyage> showList = dataList();
@@ -317,20 +317,55 @@ public user setUser(String username) {
         
     }
     
-
-        @FXML
+  @FXML
     public void insert50(){
+        System.out.println("etat15.getValue():"+etat15.getValue());
                 Connection connect = Datasource.getInstance().getCnx();
-                Alert alert = new Alert(AlertType.ERROR);
+
+                         
    int monEntier = 0;
-        boolean ok = false;
-//        I HAVE 5 COLUMNS
-
-
-                    
-            if( etat15.getValue().toString().isEmpty() ||Refpaiement1.getText().toString().isEmpty()||Date_depart.getValue().toString().isEmpty()||Date_arrivee.getValue().toString().isEmpty()||etat15.getValue().toString().isEmpty()||idu11.getValue().toString().isEmpty()||Idv122.getValue().toString().isEmpty()||Refpaiement1.getText().toString().isEmpty())
+        boolean ok = true;
+    
+            if( etat15.getValue()==null)
             {
      
+                    Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Enter all blank fields!");
+                alert.showAndWait();
+                
+                 ok = false;
+                    return;
+            }
+                    
+            if( Date_depart.getValue()==null )
+            {
+     
+                    Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Enter all blank fields!");
+                alert.showAndWait();
+                
+                 ok = false;
+                    return;
+            }
+              if( Date_arrivee.getValue()==null)
+            {
+     
+                    Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Enter all blank fields!");
+                alert.showAndWait();
+                
+                 ok = false;
+                    return;
+            }
+                  if(etat15.getValue()==null)
+            {
+         Alert alert = new Alert(AlertType.ERROR);
                 
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
@@ -338,7 +373,46 @@ public user setUser(String username) {
                 alert.showAndWait();
                 
                  ok = false;
+                    return;
             }
+                    if(idu11.getValue()==null)
+            {
+     
+                    Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Enter all blank fields!");
+                alert.showAndWait();
+                
+                 ok = false;
+                    return;
+            }
+                      if(Idv122.getValue()==null)
+            {
+     
+                    Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Enter all blank fields!");
+                alert.showAndWait();
+                
+                 ok = false;
+                    return;
+            }
+                         if(Refpaiement1.getText()==null)
+            {
+         Alert alert = new Alert(AlertType.ERROR);
+                
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Enter all blank fields!");
+                alert.showAndWait();
+                
+                 ok = false;
+                    return;
+            }
+            
+            
             
                                                                                                   try
                                                                                                  {
@@ -347,7 +421,7 @@ public user setUser(String username) {
                                                                                         // sinon une exception est levée
                                                                                                  }
                                                                                                      catch(NumberFormatException nfe)
-                                                                                                    {   
+                                                                                                    {           Alert alert = new Alert(AlertType.ERROR); 
                                                                                                         alert.setTitle("Error Message");
                                                                                              alert.setHeaderText(null);
                                                                                alert.setContentText("RefPeiment doit étre un nombre");
@@ -359,13 +433,14 @@ public user setUser(String username) {
         String str2=Date_arrivee.getValue().toString();  
      Date date2=Date.valueOf(str2);
             if(!date1.before(date2)){
-                  
+                      Alert alert = new Alert(AlertType.ERROR);
                 
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Date Depart > Date Arrive");
                 alert.showAndWait();
                  ok = false;
+                 return;
             }
             
             if(ok==true){
@@ -380,6 +455,8 @@ public user setUser(String username) {
                prepare.setInt(4,Tidu);
               prepare.setInt(5,Tidv);
                             prepare.setInt(6,Integer.parseInt(Refpaiement1.getText().toString()));
+                            
+                            
                 prepare.executeUpdate();
             
                 showData();
@@ -392,39 +469,83 @@ public user setUser(String username) {
     }
     
     if(ok ==false){
+            Alert alert = new Alert(AlertType.ERROR);
           alert.setTitle("Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Enter all blank fields!");
                 alert.showAndWait();
+                  return;
     }}
         @FXML
     public void update(){
-        
-               
+        boolean ok = true;
+            int monEntier1;   
        String id =Idrv258.getText().toString();
                String str1=Date_depart.getValue().toString();  
       Date date1=Date.valueOf(str1);
         String str2=Date_arrivee.getValue().toString();  
      Date date2=Date.valueOf(str2);
+     System.out.println("idupdate:"+id);
    
            //  UserService us=new UserService();
           //  user u1= us.getUserByID(Integer.parseInt(idu11.getValue().toString()));
            //  voyageService VC=new voyageService();
               //  voyage v=VC.afficherbyID(Integer.parseInt(Idv122.getValue().toString()));
-
+       
+                 
+            if(!date1.before(date2)){
+                      Alert alert = new Alert(AlertType.ERROR);
+                
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Date Depart > Date Arrive");
+                alert.showAndWait();
+             ok = false;
+                 return;
+            }
+                                                                                  
          
            reservation_voyage rv=new reservation_voyage(date1,date2,etat15.getValue().toString());
     Reservation_Voyage_Service rvs=new Reservation_Voyage_Service();
-    rvs.modifier(Integer.parseInt(id), rv);
+    
+    if(ok==true){
+     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("updating  ");
+
+		// Header Text: null
+		alert.setHeaderText(null);
+		         alert.setContentText("Are you sure that you want to update it?");
+                                     Optional<ButtonType> buttonType = alert.showAndWait();
+		alert.showAndWait();
+             if (buttonType.get() == ButtonType.OK) {
+            
+        
+              rvs.modifier(Integer.parseInt(id), rv);
         showData();
-                clear(); 
+             clear(); 
+                 }
+ 
+    }
     }
         @FXML
     public void delete(){
   Reservation_Voyage_Service rv = new   Reservation_Voyage_Service();
-  rv.supprimer(Integer.parseInt(Idrv258.getText()));  
+   Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("deleting  ");
+
+		// Header Text: null
+		alert.setHeaderText(null);
+		         alert.setContentText("Are you sure that you want to delete it?");
+                                     Optional<ButtonType> buttonType = alert.showAndWait();
+		alert.showAndWait();
+             if (buttonType.get() == ButtonType.OK) {
+            
+        
+           rv.supprimer(Integer.parseInt(Idrv258.getText()));  
     showData();
                 clear();
+                 }
+
     }
     
 
@@ -471,6 +592,7 @@ if(data.getEtat().toString().equals("NonPaye")){
         Refpaiement1.setText("");
         
     }
+    @FXML
     public void textfieldDesign(){
         
      
@@ -526,20 +648,23 @@ public void logout(ActionEvent event) throws Exception {
 
        @FXML
 public void settings(ActionEvent event) throws Exception {               
-    try {
+     try {
                   final Node source = (Node) event.getSource();
 
-              Metatrip.stg.close();  
-       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/adminPanel/updateUser.fxml"));
+            Metatrip.stg.close();   
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/PartieClient/modiffierCompte.fxml"));
             Parent root = (Parent) fxmlLoader.load();
            final Stage stage = (Stage) source.getScene().getWindow();
-            stage.setScene(new Scene(root)); 
-          Metatrip.stg.close();  
+            stage.setScene(new Scene(root));  
+                  Metatrip.stg.close();  
             stage.show();
-          
+   
     } catch(Exception e) {
         e.printStackTrace();
-    }}
+    }
+
+
+}
     
     
        @FXML
@@ -611,7 +736,11 @@ public void toReserVoy(ActionEvent event) throws Exception {
    
     } catch(Exception e) {
         e.printStackTrace();
-    }}
+    }
+
+}
+
+
 
 
 

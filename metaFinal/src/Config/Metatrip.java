@@ -23,10 +23,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import javafx.application.Application;
-import java.io.FileOutputStream;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
+
 import entities.reservation_voyage;
 import services.abonnement.abonnement_Service;
 import services.evenement.Serviceevenement;
@@ -172,7 +169,7 @@ public class Metatrip  extends Application {
         UserService us = new UserService();
         Reservation_Voyage_Service rvs=  new Reservation_Voyage_Service();
         
-        System.out.println(rvs.afficher());
+//        System.out.println(rvs.afficher());
         
         voyageService vs= new voyageService();
         System.out.println( vs.getAllByID());

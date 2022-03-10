@@ -27,6 +27,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +43,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -269,7 +271,7 @@ UserListController ul;
 		alert.showAndWait();
          }else{
                 Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("voyage est déjà existe");
+                    alert.setTitle("voyage existe deja");
 
 		// Header Text: null
 		alert.setHeaderText(null);
@@ -310,16 +312,22 @@ UserListController ul;
                 st.setInt(3, Integer.parseInt(idv.getText()));
             
             //st.setString(3, sexe.getSelectionModel().getSelectedItem());
-    Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Updating voyage");
+   Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("updating  ");
 
 		// Header Text: null
 		alert.setHeaderText(null);
-	alert.setContentText("'voyage de pays  " +pays.getText()+" est modifié avec succés");
+		         alert.setContentText("Are you sure that you want to update it?");
+                                     Optional<ButtonType> buttonType = alert.showAndWait();
 		alert.showAndWait();
-                
-                st.executeUpdate();
+             if (buttonType.get() == ButtonType.OK) {
+            
+        
+          st.executeUpdate();
                 affiche();
+                 }
+                
+          
         } catch (SQLException ex) {
             Logger.getLogger(VoyageController.class.getName())
                     .log(Level.SEVERE, null, ex);
@@ -334,18 +342,24 @@ UserListController ul;
             st.setInt(1, Integer.parseInt(idv.getText()));
             
             
-            	Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Deleting user");
+          
+            
+               Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Deleting  ");
 
 		// Header Text: null
 		alert.setHeaderText(null);
-	alert.setContentText("'voyage de ID  "+ idv.getText()+"  est supprimé avec succés");
+		         alert.setContentText("Are you sure that you want to delete it?");
+                                     Optional<ButtonType> buttonType = alert.showAndWait();
 		alert.showAndWait();
+             if (buttonType.get() == ButtonType.OK) {
             
-            
-            
-            st.executeUpdate();
+        
+           st.executeUpdate();
             affiche();
+                 }
+            
+       
         } catch (SQLException ex) {
             Logger.getLogger(VoyageController.class.getName())
                     .log(Level.SEVERE, null, ex);

@@ -67,8 +67,8 @@
                </font>
             </Label>
             <TextField fx:id="Refpaiement1" layoutX="138.0" layoutY="353.0" prefHeight="31.0" prefWidth="218.0" />
-            <DatePicker fx:id="Date_depart" layoutX="136.0" layoutY="78.0" promptText="date depart" />
-            <DatePicker fx:id="Date_arrivee" layoutX="136.0" layoutY="128.0" promptText="date arrivee" />
+            <DatePicker fx:id="Date_depart" layoutX="136.0" layoutY="78.0" promptText="date_depart" />
+            <DatePicker fx:id="Date_arrivee" layoutX="136.0" layoutY="128.0" promptText="date_arrivee" />
             <Button fx:id="delete" layoutX="236.0" layoutY="408.0" mnemonicParsing="false" onAction="#delete" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: #FF4D4D;" styleClass="delete-button" stylesheets="@design.css" text="Delete" />
          </children>
       </AnchorPane>

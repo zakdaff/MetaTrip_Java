@@ -125,7 +125,7 @@ public class SignupController implements Initializable {
     }
     @FXML
     public void signup(ActionEvent event) throws SQLException, Exception  {
- String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+
       boolean ok = true;
          boolean flag=false;
      ArrayList<user> user5 = new ArrayList<>();
@@ -163,6 +163,7 @@ System.out.println("date"+DateNaissance.getValue());
           }  
          String str20=DateNaissance.getValue().toString();  
      Date date11=Date.valueOf(str20);
+      String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
        Date date20=Date.valueOf(timeStamp);
       if (date11.after(date20)) { 
    
