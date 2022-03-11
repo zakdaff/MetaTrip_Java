@@ -100,6 +100,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                      <children>
+                        <AnchorPane fx:id="pane" prefHeight="200.0" prefWidth="200.0" />
                         <Pane prefHeight="158.0" prefWidth="664.0">
                            <children>
                               <Label layoutX="58.0" layoutY="50.0" text="Reserver votre Evennement" textFill="#8d8686">

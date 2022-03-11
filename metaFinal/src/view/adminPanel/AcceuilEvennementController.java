@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import org.controlsfx.control.Rating;
 import services.evenement.Serviceevenement;
 
 /**
@@ -36,6 +37,8 @@ public class AcceuilEvennementController implements Initializable {
     private GridPane grid;
     Serviceevenement hc= new Serviceevenement();
      private final List<evenement> publication = new ArrayList<>();
+    @FXML
+    private AnchorPane pane;
 
     /**
      * Initializes the controller class.
@@ -67,6 +70,18 @@ public class AcceuilEvennementController implements Initializable {
                 }
         } catch (IOException ex) {
                  // TODO
+                 
+           final Rating rating = new Rating();
+                        rating.setUpdateOnHover(false);
+                        rating.setPartialRating(false);
+                        rating.setMax(5);
+                        
+                        AnchorPane anchorpane = null ;
+                        
+                        anchorpane.getChildren().setAll(pane);
+                 
+                 
+                 
                  
     }    }}
     

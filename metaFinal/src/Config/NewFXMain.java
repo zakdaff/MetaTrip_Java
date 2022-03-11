@@ -22,8 +22,19 @@ public class NewFXMain extends Application {
     
     public void start(Stage primaryStage) throws IOException {
        
-    Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/AcceuilEvennement.fxml"));
+   // Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/AcceuilEvennement.fxml"));
+    // Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/Gestion_reservation_events.fxml"));
+  //  Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/ReserveEvent.fxml"));
+  Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/EventList.fxml"));
+  //Parent root = FXMLLoader.load(getClass().getResource("/view/adminPanel/AcceuilEvennement.fxml"));
         Scene scene = new Scene(root);
+        
+        
+//         String css = this.getClass().getResource("/css/style.css").toExternalForm();
+//      scene.getStylesheets().add(css); 
+      
+      
+      
         //sscene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();

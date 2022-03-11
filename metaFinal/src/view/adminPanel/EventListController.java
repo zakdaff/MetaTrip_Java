@@ -53,6 +53,7 @@ import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
 import services.evenement.Serviceevenement;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.control.Rating;
 
 /**
  * FXML Controller class
@@ -142,6 +143,8 @@ public class EventListController implements Initializable {
         
         eIde.setVisible(false);
         
+                                 
+
         
 //          Serviceevenement see = new Serviceevenement();
 //        List personnes = see.afficher();
