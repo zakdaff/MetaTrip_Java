@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.view.adminPanel.VoyageVirtuel">
+   <children>
+      <AnchorPane fx:id="left_main" layoutX="-13.0" layoutY="21.0" prefHeight="770.0" prefWidth="1295.0" styleClass="add-btn" stylesheets="@../../values/style.css">
+         <children>
+            <TextField fx:id="id" layoutX="528.0" layoutY="155.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" opacity="0.0" prefHeight="28.0" prefWidth="220.0" promptText="Entrer id du voyage virtuel" styleClass="clear-button" AnchorPane.leftAnchor="528.0">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="494.0" layoutY="158.0" opacity="0.0" text="ID:">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="idv" layoutX="698.0" layoutY="52.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" opacity="0.0" prefHeight="28.0" prefWidth="220.0" promptText="Id voyage" styleClass="clear-button" AnchorPane.leftAnchor="698.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="438.0" layoutY="200.0" text="Voyage :">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="ida" layoutX="678.0" layoutY="89.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" opacity="0.0" prefHeight="28.0" prefWidth="220.0" promptText="Id abonnement" styleClass="clear-button">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="400.0" layoutY="240.0" text="Abonnement :">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="454.0" layoutY="284.0" text="Video :">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="20.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="gender" layoutX="526.0" layoutY="280.0" onAction="#comboBox" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choisir.." styleClass="clear-button" />
+            <Label fx:id="file_path" alignment="CENTER" layoutX="105.0" layoutY="464.0" prefHeight="23.0" prefWidth="199.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Separator layoutX="11.0" layoutY="44.0" orientation="VERTICAL" prefHeight="475.0" prefWidth="1.0" />
+            <TableView fx:id="table_view" layoutX="471.0" layoutY="548.0" onMouseClicked="#selectData" prefHeight="191.0" prefWidth="764.0">
+              <columns>
+                <TableColumn fx:id="col_id" prefWidth="67.0" text="ID" />
+                <TableColumn fx:id="col_idv" prefWidth="83.0" text="Id Voyage" />
+                  <TableColumn fx:id="col_ida" prefWidth="75.0" text="Id Abonnement" />
+                  <TableColumn fx:id="col_gender" prefWidth="66.0" text="Video" />
+                  <TableColumn fx:id="col_picture" prefWidth="129.0" text="Picture" />
+                  <TableColumn fx:id="col_nom" prefWidth="129.0" text="Destination" />
+              </columns>
+            </TableView>
+            <AnchorPane layoutX="798.0" layoutY="72.0" prefHeight="229.0" prefWidth="466.0" stylesheets="@../../values/style.css">
+               <children>
+                  <Separator layoutX="54.0" layoutY="69.0" orientation="VERTICAL" prefHeight="281.0" prefWidth="4.0" />
+                  <Button fx:id="OnClickedStatistique" layoutX="277.0" layoutY="404.0" mnemonicParsing="false" onAction="#OnClickedStatistique" prefHeight="46.0" prefWidth="109.0" styleClass="print-button" stylesheets="@../../values/style.css" text="Statistiques" />
+                  <Label layoutX="97.0" layoutY="42.0" prefHeight="39.0" prefWidth="96.0" styleClass="search-button" stylesheets="@../../values/style.css" text="   Photo">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="insert_image" layoutX="172.0" layoutY="69.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="200.0" prefWidth="200.0" styleClass="insert-image-button" stylesheets="@../../values/style.css" text="Insert Image" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="187.0" layoutY="92.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+                  <ImageView fx:id="image_view" fitHeight="200.0" fitWidth="200.0" layoutX="186.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="clear" layoutX="238.0" layoutY="321.0" mnemonicParsing="false" onAction="#clear" prefHeight="46.0" prefWidth="87.0" styleClass="clear-button" stylesheets="@../../values/style.css" text="Effacer" />
+               </children>
+            </AnchorPane>
+            <VBox layoutX="-7.0" layoutY="-19.0" prefHeight="800.0" prefWidth="3.0" styleClass="right-bar" stylesheets="@../../values/style.css">
+               <children>
+                  <HBox fx:id="chosenhotelCard" alignment="CENTER" prefHeight="110.0" prefWidth="200.0" styleClass="shadow" stylesheets="@../../values/style.css">
+                     <children>
+                        <Label text="MetaTrip   " textFill="#8d8686">
+                           <font>
+                              <Font name="Cambria Bold" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="52.0" prefWidth="310.0" styleClass="search-box" stylesheets="@../../values/style.css">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <TextField fx:id="TFSearch" prefHeight="50.0" prefWidth="180.0" promptText="Recherche..." styleClass="transparent" stylesheets="@../../values/style.css">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="88.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Recherche" />
+                     </children>
+                  </HBox>
+                  <BorderPane prefHeight="53.0" prefWidth="385.0" />
+                  <VBox alignment="CENTER_LEFT" prefHeight="358.0" prefWidth="194.0" styleClass="chosen-fruit-card" stylesheets="@../../values/style.css">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@1.jpg" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="150.0" prefWidth="207.0">
+                           <children>
+                              <Text fill="#e7e6fc" strokeType="OUTSIDE" strokeWidth="0.0" text="Toujours MetaTrip!">
+                                 <font>
+                                    <Font name="System Italic" size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <HBox fx:id="hosenhotelCard" prefHeight="36.0" prefWidth="235.0">
+                                 <children>
+                                    <Text fill="#e7e6fc" strokeType="OUTSIDE" strokeWidth="0.0" text="Une Fois MetaTrip " wrappingWidth="215.34132385253906">
+                                       <font>
+                                          <Font name="System Italic" size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <Label layoutX="356.0" layoutY="34.0" prefHeight="73.0" prefWidth="212.0" styleClass="chosen-fruit-card" text="     Voyage virtuel">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="insert" layoutX="482.0" layoutY="391.0" mnemonicParsing="false" onAction="#insert" prefHeight="46.0" prefWidth="87.0" styleClass="insert-button" stylesheets="@design.css" text="Ajouter" />
+            <Button fx:id="update" layoutX="604.0" layoutY="390.0" mnemonicParsing="false" onAction="#update" prefHeight="46.0" prefWidth="87.0" styleClass="update-button" stylesheets="@design.css" text="Modifier">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="delete" layoutX="733.0" layoutY="388.0" mnemonicParsing="false" onAction="#delete" prefHeight="46.0" prefWidth="87.0" styleClass="delete-button" stylesheets="@design.css" text="Supprimer" />
+            <Button fx:id="print" layoutX="639.0" layoutY="481.0" mnemonicParsing="false" onAction="#print" prefHeight="46.0" prefWidth="348.0" styleClass="search-box" stylesheets="@design.css" text="Visualier tous les voyages virtuels" />
+            <TextField fx:id="nom" layoutX="527.0" layoutY="330.0" prefHeight="26.0" prefWidth="220.0" promptText="Destination" />
+            <ComboBox fx:id="ab" layoutX="525.0" layoutY="239.0" onAction="#comboBoxab" prefHeight="26.0" prefWidth="223.0" promptText="Choisir.." />
+            <Button fx:id="back" layoutX="336.0" layoutY="697.0" mnemonicParsing="false" onAction="#back" text="Revenir" />
+            <ComboBox fx:id="vo" layoutX="525.0" layoutY="196.0" onAction="#comboBoxvo" prefHeight="26.0" prefWidth="221.0" promptText="Choisir.." />
+            <Label layoutX="406.0" layoutY="328.0" prefHeight="23.0" prefWidth="119.0" text="Destination :">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

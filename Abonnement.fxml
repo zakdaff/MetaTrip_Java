@@ -1,0 +1,166 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.view.adminPanel.Abonnementcontroller">
+   <children>
+      <AnchorPane fx:id="left_main" layoutX="9.0" layoutY="15.0" prefHeight="770.0" prefWidth="1295.0" styleClass="add-btn" stylesheets="@../../values/style.css">
+         <children>
+            <TextField fx:id="id" layoutX="528.0" layoutY="122.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Entrer id abonnement" styleClass="clear-button" AnchorPane.leftAnchor="528.0">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="494.0" layoutY="125.0" text="ID:">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="prix" layoutX="529.0" layoutY="202.0" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="..DT" styleClass="clear-button" AnchorPane.leftAnchor="529.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="480.0" layoutY="208.0" text="Prix :">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="466.0" layoutY="164.0" prefHeight="23.0" prefWidth="62.0" text="Type :">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="20.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="type" layoutX="528.0" layoutY="158.0" onAction="#comboBox" onKeyTyped="#textfieldDesign" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="31.0" prefWidth="220.0" promptText="Choisir.." styleClass="clear-button" />
+            <Label fx:id="file_path" alignment="CENTER" layoutX="105.0" layoutY="464.0" prefHeight="23.0" prefWidth="199.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Separator layoutX="11.0" layoutY="44.0" orientation="VERTICAL" prefHeight="475.0" prefWidth="1.0" />
+            <TableView fx:id="table_view" layoutX="471.0" layoutY="548.0" onMouseClicked="#selectData" prefHeight="191.0" prefWidth="634.0">
+              <columns>
+                <TableColumn fx:id="col_id" prefWidth="67.0" text="ID" />
+                <TableColumn fx:id="col_type" prefWidth="83.0" text="Type" />
+                  <TableColumn fx:id="col_prix" prefWidth="75.0" text="Prix" />
+                  <TableColumn fx:id="col_da1" prefWidth="140.37640380859375" text="Date achat" />
+                  <TableColumn fx:id="col_da2" prefWidth="131.2359619140625" text="Date expiration" />
+                  <TableColumn fx:id="col_etat" prefWidth="131.2359619140625" text="Etat" />
+                  <TableColumn fx:id="col_rp" prefWidth="131.2359619140625" text="rf" />
+              </columns>
+            </TableView>
+            <AnchorPane layoutX="798.0" layoutY="72.0" prefHeight="229.0" prefWidth="466.0" stylesheets="@../../values/style.css" />
+            <VBox layoutX="-7.0" layoutY="-19.0" prefHeight="800.0" prefWidth="3.0" styleClass="right-bar" stylesheets="@../../values/style.css">
+               <children>
+                  <HBox fx:id="chosenhotelCard" alignment="CENTER" prefHeight="110.0" prefWidth="200.0" styleClass="shadow" stylesheets="@../../values/style.css">
+                     <children>
+                        <Label text="MetaTrip   " textFill="#8d8686">
+                           <font>
+                              <Font name="Cambria Bold" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="52.0" prefWidth="310.0" styleClass="search-box" stylesheets="@../../values/style.css">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <TextField prefHeight="50.0" prefWidth="180.0" promptText="Recherche..." styleClass="transparent" stylesheets="@../../values/style.css">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="88.0" styleClass="search-button" stylesheets="@../../values/style.css" text="Recherche" />
+                     </children>
+                  </HBox>
+                  <BorderPane prefHeight="53.0" prefWidth="385.0" />
+                  <VBox alignment="CENTER_LEFT" prefHeight="180.0" prefWidth="172.0" styleClass="chosen-fruit-card" stylesheets="@../../values/style.css">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView fitHeight="101.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/logo_meta.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="60.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <VBox prefHeight="80.0" prefWidth="265.0">
+                           <children>
+                              <HBox fx:id="hosenhotelCard" prefHeight="36.0" prefWidth="235.0">
+                                 <children>
+                                    <Text fill="#e7e6fc" strokeType="OUTSIDE" strokeWidth="0.0" text="Une Fois MetaTrip ">
+                                       <font>
+                                          <Font name="System Italic" size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <Text fill="#e7e6fc" strokeType="OUTSIDE" strokeWidth="0.0" text="Toujours MetaTrip!">
+                                 <font>
+                                    <Font name="System Italic" size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" />
+                                 </VBox.margin>
+                              </Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <Label layoutX="505.0" layoutY="40.0" prefHeight="73.0" prefWidth="212.0" styleClass="chosen-fruit-card" text="Abonnement">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="insert" layoutX="482.0" layoutY="433.0" mnemonicParsing="false" onAction="#insert" prefHeight="46.0" prefWidth="87.0" styleClass="insert-button" stylesheets="@design.css" text="Ajouter" />
+            <Button fx:id="update" layoutX="604.0" layoutY="432.0" mnemonicParsing="false" onAction="#update" prefHeight="46.0" prefWidth="87.0" styleClass="update-button" stylesheets="@design.css" text="Modifier">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="delete" layoutX="733.0" layoutY="430.0" mnemonicParsing="false" onAction="#delete" prefHeight="46.0" prefWidth="87.0" styleClass="delete-button" stylesheets="@design.css" text="Supprimer" />
+            <Button fx:id="print" layoutX="639.0" layoutY="481.0" mnemonicParsing="false" onAction="#print" prefHeight="46.0" prefWidth="348.0" styleClass="search-box" stylesheets="@design.css" text="Visualier tous les abonnement" />
+            <DatePicker fx:id="da1" layoutX="532.0" layoutY="247.0" prefHeight="26.0" prefWidth="212.0" />
+            <Label layoutX="433.0" layoutY="248.0" text="Date achat :">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="400.0" layoutY="289.0" text="Date expiration :">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="18.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="da2" layoutX="533.0" layoutY="289.0" prefHeight="26.0" prefWidth="212.0" />
+            <Button fx:id="OnClickedStatistique" layoutX="1135.0" layoutY="536.0" mnemonicParsing="false" onAction="#OnClickedStatistique" prefHeight="56.0" prefWidth="139.0" styleClass="print-button" stylesheets="@design.css" text="Statistiques" />
+            <Button fx:id="clear" layoutX="1179.0" layoutY="693.0" mnemonicParsing="false" onAction="#clear" prefHeight="46.0" prefWidth="87.0" styleClass="clear-button" stylesheets="@design.css" text="Effacer" />
+            <Button fx:id="OnClickedStatistique2" layoutX="1135.0" layoutY="459.0" mnemonicParsing="false" onAction="#OnClickedStatistique2" prefHeight="56.0" prefWidth="139.0" styleClass="print-button" stylesheets="@design.css" text="Statistiques" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
