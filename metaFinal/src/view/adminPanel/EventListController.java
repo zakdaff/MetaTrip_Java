@@ -139,7 +139,10 @@ public class EventListController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
+        eIde.setVisible(false);
+        
+        
 //          Serviceevenement see = new Serviceevenement();
 //        List personnes = see.afficher();
 //        ObservableList list = FXCollections.observableArrayList(personnes);

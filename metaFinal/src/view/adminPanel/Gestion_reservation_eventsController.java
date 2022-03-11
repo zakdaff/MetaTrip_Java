@@ -91,6 +91,8 @@ public class Gestion_reservation_eventsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
          affiche();
          
+       
+         
          
          /* SEARCH BAR */ 
          

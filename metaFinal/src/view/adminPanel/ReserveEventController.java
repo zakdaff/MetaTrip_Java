@@ -29,6 +29,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javax.swing.JOptionPane;
 import org.controlsfx.control.Notifications;
 import services.evenement.Serviceevenement;
@@ -57,6 +58,10 @@ public class ReserveEventController implements Initializable {
     //****** *** Z4RGA ******************//
     @FXML
     private TextField Nb_pers;
+    @FXML
+    private HBox chosenhotelCard;
+    @FXML
+    private HBox hosenhotelCard1;
  
     
     
@@ -67,17 +72,31 @@ public class ReserveEventController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         combobox2();
         
-//         
+ 
      combobox3();
+     
+     
     }    
 
 
 
     @FXML
     private void combobox2(){
-          Serviceevenement e = new Serviceevenement();
-        List<Integer> list1 = new ArrayList<>();
-        for (Integer data : e.gelallID()) {
+//          Serviceevenement e = new Serviceevenement();
+//        List<Integer> list1 = new ArrayList<>();
+//        for (Integer data : e.gelallID()) {
+//
+//            list1.add(data);
+//
+//        }
+//
+//        ObservableList dataList = FXCollections.observableArrayList(list1);
+//        ide.setItems(dataList);
+
+
+    Serviceevenement e = new Serviceevenement();
+        List<String> list1 = new ArrayList<>();
+        for (String data : e.gelallChanteur()) {
 
             list1.add(data);
 
@@ -85,6 +104,7 @@ public class ReserveEventController implements Initializable {
 
         ObservableList dataList = FXCollections.observableArrayList(list1);
         ide.setItems(dataList);
+
     }
 
     @FXML

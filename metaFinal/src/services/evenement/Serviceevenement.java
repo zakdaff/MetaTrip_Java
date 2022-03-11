@@ -330,30 +330,29 @@ public class Serviceevenement {
     }
     
     
-//        public  List<Integer> gelallChanteur()  {
-//     List<Integer> list = new ArrayList<>();
-//     
-//         
-//          
-//          String req = "SELECT Chanteur from `evenement`";
-//            try {
-//            
-//            ste = conn.createStatement();
-//            ResultSet rs = ste.executeQuery(req);
-//            
-//            while(rs.next()){
-//                 Serviceevenement se = new Serviceevenement(); 
-//     
-//               
-//                                 se.setChanteur(rs.getInt("Idrev"));
-//                                 
-//            }}
-//            catch (SQLException ex) {
-//          
-//        }
-//        
-//        return Chanteur;    
-//    }
+        public  List<String> gelallChanteur()  {
+            
+         List<String> Chanteur = new ArrayList<>();
+     
+   
+          String req = "SELECT Ide from `evenement`";
+            try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+     
+               
+                 Chanteur.add(rs.getString(3));                                   
+            }}
+            catch (SQLException ex) {
+          
+        }
+        
+        return Chanteur;  
+        
+    }
     
     
 }

@@ -146,6 +146,7 @@ public class SponsorListController implements Initializable {
 
         affiche();
         combobox2();
+          sids.setVisible(false);
 
         //observalble list to store data
         ObservableList<sponsor> FiltreddataList = FXCollections.observableArrayList();
